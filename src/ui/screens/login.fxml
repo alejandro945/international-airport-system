@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1420.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <WebView fx:id="googleAuth" layoutX="53.0" layoutY="30.0" prefHeight="894.0" prefWidth="613.0" />
+      <Pane fx:id="signup" layoutX="17.0" layoutY="24.0" prefHeight="894.0" prefWidth="657.0" style="-fx-background-color: #fff;">
+         <children>
+            <Label layoutX="56.0" layoutY="43.0" prefHeight="53.0" prefWidth="546.0" styleClass="label-login" stylesheets="@../assets/styles/login.css" text="Welcome to Shipment System" textFill="#6400ff" />
+            <Label layoutX="85.0" layoutY="116.0" prefHeight="73.0" prefWidth="448.0" styleClass="label1" text="Get instance access to the key takeways from the world´s most influential aircrafts that are guaranteed to change your life" wrapText="true" />
+            <JFXButton buttonType="RAISED" layoutX="85.0" layoutY="710.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="43.0" prefWidth="487.0" styleClass="button-login" stylesheets="@../assets/styles/login.css" text="Create Account" textAlignment="CENTER">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#4d007c" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXCheckBox checkedColor="#3b05ae" layoutX="86.0" layoutY="566.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="487.0" styleClass="keep" stylesheets="@../assets/styles/login.css" text="Yes i understand and agree to shipment´s Terms of service, including the user agreement and Privacy Police." unCheckedColor="#9a00b2" wrapText="true" />
+            <JFXTextField alignment="CENTER" layoutX="86.0" layoutY="395.0" prefHeight="35.0" prefWidth="487.0" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5300b2" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" layoutX="86.0" layoutY="289.0" prefHeight="35.0" prefWidth="227.0" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5300b2" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" layoutX="345.0" layoutY="289.0" prefHeight="35.0" prefWidth="227.0" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#6100b5" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" layoutX="86.0" layoutY="493.0" prefHeight="35.0" prefWidth="227.0" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5300b2" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" layoutX="345.0" layoutY="493.0" prefHeight="35.0" prefWidth="227.0" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#6100b5" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <Label layoutX="85.0" layoutY="260.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="First Name" textFill="#8500ff" />
+            <Label layoutX="356.0" layoutY="260.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="Last Name" textFill="#8500ff" />
+            <Label layoutX="85.0" layoutY="464.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="Password" textFill="#8500ff" />
+            <Label layoutX="356.0" layoutY="464.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="Confirm Password" textFill="#8500ff" />
+            <Label layoutX="85.0" layoutY="359.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="Email Address" textFill="#8500ff" />
+            <Separator layoutX="85.0" layoutY="215.0" prefHeight="8.0" prefWidth="487.0" />
+            <Separator layoutX="85.0" layoutY="665.0" prefHeight="8.0" prefWidth="487.0" />
+            <Label layoutX="107.0" layoutY="818.0" styleClass="label1" text="Already have an account?" />
+            <JFXButton buttonType="RAISED" layoutX="383.0" layoutY="807.0" onAction="#singIn" prefHeight="44.0" prefWidth="162.0" styleClass="button-account" stylesheets="@../assets/styles/login.css" text="Sing in">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/offline_pin_80px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#331565" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane fx:id="singin" layoutX="22.0" layoutY="21.0" prefHeight="894.0" prefWidth="657.0" style="-fx-background-color: #fff;">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="88.0" layoutY="489.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="43.0" prefWidth="487.0" styleClass="button-login" stylesheets="@../assets/styles/login.css" text="Log in" textAlignment="CENTER">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#4d007c" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="379.0" layoutY="812.0" onAction="#singUp" prefHeight="44.0" prefWidth="162.0" styleClass="button-account" stylesheets="@../assets/styles/login.css" text="Sing up">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/compass_east_80px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#331565" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+            <Label layoutX="102.0" layoutY="823.0" styleClass="label1" text="Dont have an account yet?" />
+            <Separator layoutX="421.0" layoutY="236.0" prefHeight="8.0" prefWidth="152.0" />
+            <JFXTextField alignment="CENTER" layoutX="136.0" layoutY="284.0" prefHeight="35.0" prefWidth="391.0" promptText="Your Email" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5300b2" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <JFXTextField alignment="CENTER" layoutX="133.0" layoutY="362.0" prefHeight="35.0" prefWidth="391.0" promptText="Your Password" styleClass="email" stylesheets="@../assets/styles/login.css">
+               <unFocusColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#7405ab" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </unFocusColor>
+               <focusColor>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#003beb" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </focusColor>
+            </JFXTextField>
+            <JFXCheckBox checkedColor="#3b05ae" layoutX="136.0" layoutY="440.0" styleClass="keep" stylesheets="@../assets/styles/login.css" text="Keep me logged in" unCheckedColor="#9a00b2" />
+            <Label layoutX="397.0" layoutY="440.0" styleClass="forget" stylesheets="@../assets/styles/login.css" text="Forget Password" />
+            <Separator layoutX="85.0" layoutY="779.0" prefHeight="8.0" prefWidth="487.0" />
+            <Label layoutX="182.0" layoutY="40.0" prefHeight="73.0" prefWidth="292.0" styleClass="label-login" stylesheets="@../assets/styles/login.css" text="Welcome Back" textFill="#6400ff" />
+            <ImageView fitHeight="189.0" fitWidth="211.0" layoutX="237.0" layoutY="568.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/our-mission.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="85.0" layoutY="139.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#googleAuth" prefHeight="43.0" prefWidth="487.0" styleClass="button-login" stylesheets="@../assets/styles/login.css" text="Login with Google" textAlignment="CENTER">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#4d007c" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/google.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <Separator layoutX="91.0" layoutY="236.0" prefHeight="8.0" prefWidth="152.0" />
+            <Label layoutX="251.0" layoutY="228.0" styleClass="label1" text="Or login with email" />
+         </children>
+      </Pane>
+      <Pane fx:id="infoSingup" layoutX="710.0" layoutY="1.0" prefHeight="950.0" prefWidth="710.0" styleClass="info-singup" stylesheets="@../assets/styles/login.css">
+         <children>
+            <ImageView fitHeight="433.0" fitWidth="362.0" layoutX="201.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/was.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="494.0" layoutY="46.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="New Update Avaible" textFill="#8500ff" />
+            <Label layoutX="468.0" layoutY="74.0" prefHeight="53.0" prefWidth="211.0" styleClass="label1" text="We have added some awesome features" textAlignment="RIGHT" wrapText="true" />
+            <Button layoutX="555.0" layoutY="133.0" mnemonicParsing="false" styleClass="button2" text="Learn more" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane fx:id="infoSingin" layoutX="710.0" prefHeight="950.0" prefWidth="710.0" styleClass="info-singin" stylesheets="@../assets/styles/login.css">
+         <children>
+            <ImageView fitHeight="320.0" fitWidth="416.0" layoutX="178.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/automation.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="494.0" layoutY="46.0" prefHeight="29.0" prefWidth="185.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="New Update Avaible" textFill="#8500ff" />
+            <Label layoutX="468.0" layoutY="74.0" prefHeight="53.0" prefWidth="211.0" styleClass="label1" text="We have added some awesome features" textAlignment="RIGHT" wrapText="true" />
+            <Button layoutX="555.0" layoutY="133.0" mnemonicParsing="false" styleClass="button2" text="Learn more" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

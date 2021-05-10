@@ -1,0 +1,97 @@
+.navbar{
+    -fx-background-color: linear-gradient(to left,#a28bff ,#3929E0);
+    -fx-background-radius: 40 40 40 40;
+}
+.top-bar{
+    -fx-effect: dropshadow( gaussian, rgba(192, 192, 192, 0.4), 40, 0.2, 0, 30 );
+    -fx-background-radius: 0 40 0 0;
+    -fx-padding: 10;
+    -fx-background-color: white;
+}
+.box{
+    -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.8, 0.0, 0.0 );
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+}
+.main-pane{
+    -fx-background-color: white;
+    -fx-background-radius: 40 40 40 40;
+}
+.button1{
+    -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
+    -fx-background-radius: 40 40 40 40;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.button2{
+    -fx-background-color: linear-gradient(to left,#fb8bff ,#e02994);
+    -fx-background-radius: 40 40 40 40;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.button2:hover{
+    -fx-background-color : #4b28ffcb ;
+}
+.label1{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.label2{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+.menu-label{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+}
+.menu-render{
+    -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 20, 0.2, 0.0, 0.0 );
+    -fx-background-color: #5e55c400;
+    -fx-background-radius: 40;
+}
+.menu{
+    -fx-background-color: linear-gradient(to left,#a28bff ,#3929E0);
+}
+.button-menu
+{
+    -fx-background-color : #fcfcfc00;
+    -fx-background-radius :  40;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-label-padding: 5px;
+}
+.button-menu:hover
+{
+    -fx-background-color : #8170d4cb ;
+}
+.button-menu:pressed
+{
+    -fx-background-color : #ff5858 ;
+}
+.logo{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-radius: 50;
+}
+.tab{
+    -fx-pref-width: 160px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+.tab-header-background{
+    -fx-background-color: linear-gradient(to right,#a28bff ,#3929E0);
+}
+.jfx-tab-pane .tab-selected-line{
+    -fx-border-color:#c70000 ;
+}

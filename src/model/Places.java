@@ -1,0 +1,5 @@
+package model;
+
+public enum Places {
+    BOGOTA, CALI, MEDELLIN, MIAMI, NEW_YORK, MADRID, BARCELONA, PARIS, TOKIO, OTAWA, MILAN, MOSCOW, SYDNEY;
+}

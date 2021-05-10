@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="910.0" prefWidth="1403.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="303.0" prefHeight="41.0" prefWidth="1100.0" styleClass="top-bar" stylesheets="@../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="94.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <AnchorPane prefHeight="910.0" prefWidth="340.0" styleClass="navbar" stylesheets="@../assets/styles/vendor.css">
+         <children>
+            <Line endX="140.0" layoutX="169.0" layoutY="177.0" startX="-137.0" stroke="WHITE" />
+            <Line endX="140.0" layoutX="169.0" layoutY="728.0" startX="-137.0" stroke="WHITE" />
+            <Label alignment="CENTER" layoutX="118.0" layoutY="100.0" prefHeight="41.0" prefWidth="106.0" styleClass="menu-label" stylesheets="@../assets/styles/vendor.css" text="Menu" textFill="WHITE" />
+            <VBox layoutX="23.0" layoutY="201.0" prefHeight="508.0" prefWidth="296.0" styleClass="menu-render" stylesheets="@../assets/styles/vendor.css">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Home" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/increase_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Departures" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/airplane_take_off_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" centerShape="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Arrives" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/airplane_landing_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Trips" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/audit_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="53.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Flight Status" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/flight_seat_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Shopping" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/shopping_cart_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Schedule" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/event_accepted_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Users" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/add_user_group_man_man_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Tickets" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/ticket_confirmed_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Credit Cards" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/visa_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="288.0" styleClass="button-menu" stylesheets="@../assets/styles/vendor.css" text="Book" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/img/membership_card_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Pane layoutX="339.0" layoutY="156.0" prefHeight="757.0" prefWidth="1067.0">
+         <children>
+            <JFXTabPane layoutY="-1.0" prefHeight="757.0" prefWidth="1067.0" styleClass="jfx-tab-pane" stylesheets="@../assets/styles/vendor.css">
+               <tabs>
+                  <Tab text="Graphics">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane layoutX="45.0" layoutY="533.0" prefHeight="125.0" prefWidth="308.0" styleClass="box" stylesheets="@../assets/styles/vendor.css">
+                                 <children>
+                                    <Button layoutX="72.0" layoutY="63.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="165.0" styleClass="button2" stylesheets="@../assets/styles/vendor.css" text="Button">
+                                       <font>
+                                          <Font name="Century Gothic Italic" size="19.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="41.0" layoutY="26.0" styleClass="label1" stylesheets="@../assets/styles/vendor.css" text="Pérdidas">
+                                       <font>
+                                          <Font name="Century Gothic Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="185.0" layoutY="26.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="\$2.548">
+                                       <font>
+                                          <Font name="Century Gothic Bold Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="396.0" layoutY="258.0" prefHeight="230.0" prefWidth="310.0" styleClass="box" stylesheets="@../assets/styles/vendor.css" />
+                              <AnchorPane layoutX="45.0" layoutY="256.0" prefHeight="232.0" prefWidth="308.0" styleClass="box" stylesheets="@../assets/styles/vendor.css" />
+                              <AnchorPane layoutX="397.0" layoutY="533.0" prefHeight="125.0" prefWidth="308.0" styleClass="box" stylesheets="@../assets/styles/vendor.css">
+                                 <children>
+                                    <Button layoutX="72.0" layoutY="63.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="165.0" styleClass="button1" stylesheets="@../assets/styles/vendor.css" text="Button">
+                                       <font>
+                                          <Font name="Century Gothic Italic" size="19.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="43.0" layoutY="26.0" styleClass="label1" stylesheets="@../assets/styles/vendor.css" text="Ganancias">
+                                       <font>
+                                          <Font name="Century Gothic Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="185.0" layoutY="26.0" styleClass="label2" stylesheets="@../assets/styles/vendor.css" text="\$12.548">
+                                       <font>
+                                          <Font name="Century Gothic Bold Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <ImageView fitHeight="232.0" fitWidth="276.0" layoutX="737.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/img/welcome.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Render">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="664.0">
+                           <children>
+                              <ImageView fitHeight="213.0" fitWidth="288.0" layoutX="142.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/img/Operators%20controlling%20aircraft%20flat%20vector%20illustration.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
