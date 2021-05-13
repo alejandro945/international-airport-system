@@ -30,11 +30,11 @@ public class LoginController {
 
     @FXML
     void googleAuth(ActionEvent event) {
-        WebEngine webEngine = googleAuth.getEngine();
-        com.sun.javafx.webkit.WebConsoleListener.setDefaultListener((webView, message, lineNumber,
-                sourceId) -> System.out.println("Console: [" + sourceId + ":" + lineNumber + "] " + message));
-        webEngine.load("https://calendar.google.com");
-        googleAuth.toFront();
+        String gClientId = "222822404785-n40avtj1dmpb3dkh1hdj96og5o5relf3.apps.googleusercontent.com";
+        String gRedir = "https://international-airport-31fd4.web.app/";
+        String gSecret = "_AwJffmnRwGryFre5qg7LZix";
+        OAuthAuthenticator auth = new OAuthAuthenticator(gClientId, gRedir, gSecret);
+        auth.startLogin();
     }
 
     @FXML
