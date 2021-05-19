@@ -1,14 +1,52 @@
-## Getting Started
+<div align="center">
+<h2> Welcome to our proyect! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
+</div>
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# International Airport System ✈️ ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
 
-## Folder Structure
+This version was created by Alejandro Varela and Juan David Ballesteros. The interesting about 
+the work is the application code don't use lists from java lang, util or collections, all lists 
+are linked list created by the authors.
 
-The workspace contains two folders by default, where:
+### Pre-requirements 📋
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+```
+You need at least JRE 1.8_261 or newest realest.
+```
+## Documentation 📃
 
-## Dependency Management
+**Click here ➡️ [Requirements](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/docs/Documents.pdf)
 
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+## Screens 🚀
+
+* <b>_Sign in_</b> <br><br>
+![ScreenShot]()<br><br>
+* <b>_  Sign up_</b> <br><br>
+![ScreenShot]()<br><br>
+* <b>_Google OAuth_</b> <br><br>
+![ScreenShot]()<br><br>
+
+
+## Build with 🛠️
+
+_Project tools_
+
+* Java
+* JavaFx
+* Scene Builder
+* VS code
+* Windows
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+## Authors ✒️
+
+* **Alejandro Varela**  - [Alejandro Varela](https://github.com/alejandro945)
+* **Juan David Ballesteros**  - [Juan David Ballesteros](https://github.com/JuanDavidBallesteros)
+* **Juan Felipe Sinisterra** - [Juan Felipe Sinisterra](https://github.com/Sinis2101)
+---
+<div align="center">
+<i>Random dev joke for you!</i><br>
+<a href="https://readme-jokes.vercel.app"><img align="center" src="https://readme-jokes.vercel.app/api" alt="README Jokes"></a>
+
+
+⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945), [Juan Felipe Sinisterra](https://github.com/Sinis2101) y [Juan David Ballesteros](https://github.com/JuanDavidBallesteros) 😊
