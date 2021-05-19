@@ -1,30 +1,31 @@
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/logo.jpeg)<br>
 <div align="center">
 <h2> Welcome to our proyect! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
 </div>
 
 # International Airport System ✈️ ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
 
-This version was created by Alejandro Varela and Juan David Ballesteros. The interesting about 
-the work is the application code don't use lists from java lang, util or collections, all lists 
-are linked list created by the authors.
+This application is the system for Madrid's new international airport. The aim of this software is to manage the main dipendencis of the airport and allow customers by tickets and check their tickets record. The airlines administrators, migration officers, and tower control operator can access this application to acomplish theirs duties. 
 
-### Pre-requirements 📋
+Airlines adminitrator can create new flys, planes, asssing personal to airplane. Migration officers can see the length of persons in line to go out and some people flow indicators. Finally, tower control operators can check the status of each current fly.
 
+This version was created by Alejandro Varela, Juan Felipe Sinisterra and Juan David Ballesteros. The interesting about the work, is the application code use a varitie of java tools like collections an data structures, but also the team create some binary trees and linked lists.
+
+### Pre-requirements 💥
 ```
 You need at least JRE 1.8_261 or newest realest.
 ```
 ## Documentation 📃
-
-**Click here ➡️ [Requirements](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/docs/Documents.pdf)
+**Don´t hesitate, click here ➡️ [Requirements](https://github.com/alejandro945/international-airport-system/blob/master/docs/Requirements.pdf)
 
 ## Screens 🚀
 
 * <b>_Sign in_</b> <br><br>
-![ScreenShot]()<br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/login.png)<br><br>
 * <b>_  Sign up_</b> <br><br>
-![ScreenShot]()<br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/signup.png)<br><br>
 * <b>_Google OAuth_</b> <br><br>
-![ScreenShot]()<br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/Oauth.png)<br><br>
 
 
 ## Build with 🛠️
@@ -35,7 +36,11 @@ _Project tools_
 * JavaFx
 * Scene Builder
 * VS code
+
+## Operation System 📢
+
 * Windows
+* Linux
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 ## Authors ✒️
