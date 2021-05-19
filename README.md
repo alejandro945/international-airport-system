@@ -1,7 +1,6 @@
-
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/logo2.jpeg)<br>
 <div align="center">
 <h2> Welcome to our proyect! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
-![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/logo.jpeg)<br>
 </div>
 
 # International Airport System ✈️ ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
