@@ -7,12 +7,14 @@ import javafx.scene.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import model.Airport;
+import route.Route;
 
 public class Main extends Application {
     private AirportController airportController;
     private Airport airport;
 
     public Main() {
+        airport = new Airport();
         airportController = new AirportController(airport);
     }
 
@@ -22,7 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("screens/mainPane.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(Route.MAINPANE.getRoute()));
         fxmlloader.setController(airportController);
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
@@ -30,8 +32,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        scene.getStylesheets().add(getClass().getResource("assets/styles/vendor.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource(Route.STYLES.getRoute()).toExternalForm());
         primaryStage.show();
-        airportController.showHome();
+        airportController.showLogin();
     }
 }

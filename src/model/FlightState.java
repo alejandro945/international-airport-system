@@ -1,5 +1,5 @@
 package model;
 
-public enum FlightStatus {
+public enum FlightState {
     CANCELED, DONE, AIRBORNE, DELAYED, BOARD
 }
