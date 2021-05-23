@@ -12,18 +12,30 @@ public class Aircraft {
     private int planeWeight;
     private String planeCode;
 
+    /**
+     * @return int
+     */
     public int getPlaneWeight() {
         return this.planeWeight;
     }
 
+    /**
+     * @param planeWeight
+     */
     public void setPlaneWeight(int planeWeight) {
         this.planeWeight = planeWeight;
     }
 
+    /**
+     * @return String
+     */
     public String getPlaneCode() {
         return this.planeCode;
     }
 
+    /**
+     * @param planeCode
+     */
     public void setPlaneCode(String planeCode) {
         this.planeCode = planeCode;
     }

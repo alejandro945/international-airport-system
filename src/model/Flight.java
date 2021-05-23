@@ -8,7 +8,7 @@ public class Flight {
     private Places origin;
     private Places destination;
     private Aircraft plane;
-    private FlightStatus flightStatus;
+    private FlightState flightStatus;
 
     /**
      * @return String
@@ -111,14 +111,14 @@ public class Flight {
     /**
      * @return FlightStatus
      */
-    public FlightStatus getFlightStatus() {
+    public FlightState getFlightStatus() {
         return this.flightStatus;
     }
 
     /**
      * @param flightStatus
      */
-    public void setFlightStatus(FlightStatus flightStatus) {
+    public void setFlightStatus(FlightState flightStatus) {
         this.flightStatus = flightStatus;
     }
 

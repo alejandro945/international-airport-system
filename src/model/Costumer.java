@@ -1,32 +1,38 @@
 package model;
 
-public class Costumer extends Person {
-    private String email;
-    private String password;
+public class Costumer extends User {
+    private String iconPath;
     private Ticket ticket;
 
-    public String getEmail() {
-        return this.email;
+    public Costumer(String name, String lastName, long id, String email, String password) {
+        super(name, lastName, id, email, password);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Costumer(String name, String lastName, long id, String iconPath) {
+        super(name, lastName, id, "", "");
+        this.iconPath = iconPath;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    /**
+     * @return Ticket
+     */
     public Ticket getTicket() {
         return this.ticket;
     }
 
+    /**
+     * @param ticket
+     */
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
+    }
+
+    public String getIconPath() {
+        return this.iconPath;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
     }
 
 }

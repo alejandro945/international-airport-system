@@ -1,12 +1,12 @@
 package controller;
 
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.web.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import org.json.JSONObject;
+
+import animatefx.animation.FadeIn;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -17,70 +17,115 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class OAuthAuthenticator {
+    private final String GOOGLE_APISCOPE = "https://www.googleapis.com/auth/userinfo.profile";
     private JSONObject accessedJsonData;
-
     private boolean gotData = false;
-
     private String accessToken;
     private String accessCode;
-
     private String clientID;
     private String redirectUri;
     private String clientSecret;
+    private String[] userInfo;
 
-    private Stage stage;
-
+    /**
+     * The constructor method of an OAuth Object<br>
+     */
     public OAuthAuthenticator(String clientID, String redirectUri, String clientSecret) {
         this.clientID = clientID;
         this.redirectUri = redirectUri;
         this.clientSecret = clientSecret;
+        userInfo = new String[4];
     }
 
-    private String GOOGLE_apiScope = "https://www.googleapis.com/auth/userinfo.profile";
-
-    String getWebUrl() {
-        return "https://accounts.google.com/o/oauth2/v2/auth?scope=" + GOOGLE_apiScope
+    /**
+     * Gets web Url <br>
+     * 
+     * @return Actual web url.
+     */
+    private String getWebUrl() {
+        return "https://accounts.google.com/o/oauth2/v2/auth?scope=" + GOOGLE_APISCOPE
                 + "&access_type=offline&redirect_uri=" + getRedirectUri() + "&response_type=code&client_id="
                 + getClientID();
     }
 
-    String getApiTokenUrl() {
+    /**
+     * Gets API Token url.
+     * 
+     * @return redered url concatenated with our accessToken.
+     */
+    private String getApiTokenUrl() {
         return "https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + getAccessToken();
     }
 
-    String getApiAccessUrl() {
+    /**
+     * Gets API Access url.
+     * 
+     * @return String waited.
+     */
+    private String getApiAccessUrl() {
         return "https://www.googleapis.com/oauth2/v4/token";
     }
 
-    public String getClientID() {
+    /**
+     * Gets Client Id own our google app.
+     * 
+     * @return clientID
+     */
+    private String getClientID() {
         return clientID;
     }
 
-    public String getClientSecret() {
+    /**
+     * Gets Client secret own our google app.
+     * 
+     * @return clientSecret
+     */
+    private String getClientSecret() {
         return clientSecret;
     }
 
-    public String getRedirectUri() {
+    /**
+     * Gets redirect URI.
+     * 
+     * @return redirectUri
+     */
+    private String getRedirectUri() {
         return redirectUri;
     }
 
-    String getApiAccessParams() {
+    /**
+     * Gets API parameters.
+     * 
+     * @return String to be used later
+     */
+    private String getApiAccessParams() {
         return "client_id=" + getClientID() + "&redirect_uri=" + getRedirectUri() + "&client_secret="
                 + getClientSecret() + "&grant_type=authorization_code&code=" + getAccessCode();
     }
 
-    public String getAccessToken() {
+    /**
+     * Gets access token.
+     * 
+     * @return accessToken
+     */
+    private String getAccessToken() {
         return accessToken;
     }
 
-    public String getAccessCode() {
+    /**
+     * Gets access code.
+     * 
+     * @return accessCode
+     */
+    private String getAccessCode() {
         return accessCode;
     }
 
-    public boolean hasFinishedSuccessfully() {
-        return gotData;
-    }
-
+    /**
+     * Gets a json object own of our attribute.
+     * 
+     * @return accessedJsonData
+     */
     public JSONObject getJsonData() {
         if (gotData) {
             return accessedJsonData;
@@ -90,26 +135,26 @@ public class OAuthAuthenticator {
         }
     }
 
-    private void closeStage() {
-        stage.close();
-    }
-
-    private void notifyLoginViewCompleted() {
-        if (gotData) {
-            System.out.println("logueado");
-        }
-    }
-
-    public void startLogin() {
-        stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        WebView root = new WebView();
+    /**
+     * This method satisfies google authentication requirement.<br>
+     * <b>post:</b> Will redirect our costumer to dashboard route.
+     * 
+     * @param lController != null
+     * @param aController != null
+     */
+    public void startLogin(WebView root, Pane gPane, Pane gInfo, AirportController aController,
+            LoginController lController) {
         WebEngine engine = root.getEngine();
         engine.load(getWebUrl());
         engine.setOnStatusChanged(new EventHandler<WebEvent<String>>() {
             public void handle(WebEvent<String> event) {
                 WebEngine we = (WebEngine) event.getSource();
-                closeStage();
+                try {
+                    aController.showLogin();
+                } catch (IOException e1) {
+
+                    e1.printStackTrace();
+                }
                 String location = we.getLocation();
                 if (location.contains("code") && location.startsWith(getRedirectUri())) {
                     gotData = true;
@@ -117,16 +162,26 @@ public class OAuthAuthenticator {
                     accessToken = doGetAccessTokenRequest(accessCode);
                     String returnedJson = doGetAccountInfo(accessToken);
                     accessedJsonData = new JSONObject(returnedJson);
-                    System.out.println(returnedJson);
-                    notifyLoginViewCompleted();
+                    try {
+                        lController.authGoogle(userInfo);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        new FadeIn(gPane).play();
+        gPane.toFront();
+        new FadeIn(gInfo).play();
+        gInfo.toFront();
     }
 
+    /**
+     * Help us for getting our user information.
+     * 
+     * @param accessToken redered by another method.
+     * @return user google information
+     */
     private String doGetAccountInfo(String accessToken) {
         try {
             HttpURLConnection connection2 = null;
@@ -143,16 +198,19 @@ public class OAuthAuthenticator {
                 BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
                 String inputLine2;
                 StringBuffer response2 = new StringBuffer();
+                int i = 0;
                 while ((inputLine2 = in2.readLine()) != null) {
                     if (inputLine2.length() > 8) {
                         String[] render = inputLine2.split(" ");
                         if (render[2].equals("\"id\"" + ":") || render[2].equals("\"given_name\"" + ":")
                                 || render[2].equals("\"family_name\"" + ":") || render[2].equals("\"picture\"" + ":")) {
                             String redux = render[3].replaceAll("\"", "");
-                            System.out.println(redux.substring(0, redux.length() - 1));
+                            userInfo[i] = redux.substring(0, redux.length() - 1);
+                            i++;
                         }
                     }
                     response2.append(inputLine2);
+
                 }
                 in2.close();
                 connection2.disconnect();
@@ -166,6 +224,12 @@ public class OAuthAuthenticator {
         return null;
     }
 
+    /**
+     * Help us for getting our access token.
+     * 
+     * @param code obtained in our webview route path.
+     * @return access token for our json user data.
+     */
     private String doGetAccessTokenRequest(String code) {
         try {
             URL url = new URL(getApiAccessUrl());

@@ -6,6 +6,10 @@
     -fx-background-color: linear-gradient(to left,#fae6da ,#e6671e);
     -fx-background-radius: 0 40 40 0;
 }
+.info-google{
+    -fx-background-color: linear-gradient(to left,#dffada ,#1ee62f);
+    -fx-background-radius: 0 40 40 0;
+}
 .label-login{
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
