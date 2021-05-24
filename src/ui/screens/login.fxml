@@ -238,7 +238,7 @@
             <Button layoutX="555.0" layoutY="133.0" mnemonicParsing="false" styleClass="button2" text="Learn more" textFill="WHITE" />
          </children>
       </Pane>
-      <Pane fx:id="singin" layoutX="22.0" layoutY="21.0" onKeyPressed="#keyPress1" prefHeight="894.0" prefWidth="657.0" style="-fx-background-color: #fff;">
+      <Pane fx:id="singin" layoutX="15.0" layoutY="21.0" onKeyPressed="#keyPress1" prefHeight="894.0" prefWidth="664.0" style="-fx-background-color: #fff;">
          <children>
             <JFXButton buttonType="RAISED" layoutX="88.0" layoutY="489.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#logIn" prefHeight="43.0" prefWidth="487.0" styleClass="button-login" stylesheets="@../assets/styles/login.css" text="Log in" textAlignment="CENTER">
                <ripplerFill>

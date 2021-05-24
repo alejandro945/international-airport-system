@@ -17,6 +17,13 @@
     -fx-background-color: white;
     -fx-background-radius: 40 40 40 40;
 }
+.button{
+    -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
+    -fx-background-radius: 10 10 10 10;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
 .button1{
     -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
     -fx-background-radius: 40 40 40 40;
@@ -33,6 +40,11 @@
 }
 .button2:hover{
     -fx-background-color : #4b28ffcb ;
+}
+.label{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 16px;
 }
 .label1{
     -fx-font-family: "Century Gothic" ;

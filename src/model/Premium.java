@@ -3,8 +3,8 @@ package model;
 public class Premium extends Ticket {
     private int premiumPrice;
 
-    public Premium(Flight flight, Seat fligthSeat, int premiumPrice) {
-        super(flight, fligthSeat);
+    public Premium(Flight flight, Seat fligthSeat, Luggage luggage, int premiumPrice) {
+        super(flight, fligthSeat, luggage);
         this.premiumPrice = premiumPrice;
     }
 

@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.*;
 import model.Airport;
+import route.Route;
 
 public class LoginController {
 
@@ -73,8 +74,8 @@ public class LoginController {
 
     public void authGoogle(String[] googleUser) throws IOException {
         airportController.createAlert(airport.createUser(googleUser[1], googleUser[2],
-                Long.parseLong(googleUser[0].substring(0, googleUser[0].length() - 4)), googleUser[3]));
-        airportController.showDashboard();
+                Long.parseLong(googleUser[0].substring(0, googleUser[0].length() - 4)), googleUser[3]),Route.SUCCESS);
+        airportController.changeScreen(Route.DASHBOARD);
     }
 
     /**
@@ -121,47 +122,6 @@ public class LoginController {
         createUser();
     }
 
-    public void validateUser() throws IOException {
-        boolean render = airport.userVerification(Long.parseLong(txtLogin.getText()), txtPass.getText());
-        if (render) {
-            airportController.showDashboard();
-        } else {
-            airportController.createAlert(Constant.USER_NOT_EXIST);
-        }
-
-    }
-
-    private void createUser() {
-        String render = validateFields();
-        if (render.isEmpty()) {
-            String msg = airport.createUser(lblName.getText(), lblLastName.getText(), Long.parseLong(lblId.getText()),
-                    lblEmail.getText(), lblPass.getText());
-            airportController.createAlert(msg);
-            trimFields();
-        } else {
-            airportController.createAlert(render);
-        }
-    }
-
-    private void trimFields() {
-
-    }
-
-    private String validateFields() {
-        String msg = "";
-        if (!lblPass.getText().equals(lblCofirmPass.getText())) {
-            msg = Constant.PASSWORD_CREATION_ERROR;
-        } else if (lblPass.getText().length() <= 6) {
-            msg = Constant.PASSWORD_WEAK_ERROR;
-        } else if (lblName.getText().isEmpty() || lblLastName.getText().isEmpty() || lblEmail.getText().isEmpty()
-                || lblId.getText().isEmpty() || lblPass.getText().isEmpty()) {
-            msg = Constant.EMPTY_FIELDS;
-        } else if (!cbPolicies.isSelected()) {
-            msg = Constant.POLICIES_ERROR;
-        }
-        return msg;
-    }
-
     @FXML
     private void keyPress1(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
@@ -175,4 +135,57 @@ public class LoginController {
             createUser();
         }
     }
+
+    public void validateUser() throws IOException {
+        if (!validateLoginFields()) {
+            boolean render = airport.userVerification(Long.parseLong(txtLogin.getText()), txtPass.getText());
+            if (render) {
+                airportController.changeScreen(Route.DASHBOARD);
+            } else {
+                airportController.createAlert(Constant.USER_NOT_EXIST, Route.ERROR);
+            }
+        } else {
+            airportController.createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
+        }
+    }
+
+    private void createUser() {
+        String render = validateRegisterFields();
+        if (render.isEmpty()) {
+            String msg = airport.createUser(lblName.getText(), lblLastName.getText(), Long.parseLong(lblId.getText()),
+                    lblEmail.getText(), lblPass.getText());
+            airportController.createAlert(msg, Route.SUCCESS);
+            trimFields();
+        } else {
+            airportController.createAlert(render, Route.WARNING);
+        }
+    }
+
+    private void trimFields() {
+
+    }
+
+    private String validateRegisterFields() {
+        String msg = "";
+        if (lblName.getText().isEmpty() || lblLastName.getText().isEmpty() || lblEmail.getText().isEmpty()
+                || lblId.getText().isEmpty() || lblPass.getText().isEmpty()) {
+            msg = Constant.EMPTY_FIELDS;
+        } else if (!lblPass.getText().equals(lblCofirmPass.getText())) {
+            msg = Constant.PASSWORD_CREATION_ERROR;
+        } else if (lblPass.getText().length() <= 6) {
+            msg = Constant.PASSWORD_WEAK_ERROR;
+        } else if (!cbPolicies.isSelected()) {
+            msg = Constant.POLICIES_ERROR;
+        }
+        return msg;
+    }
+
+    private boolean validateLoginFields() {
+        boolean empty = false;
+        if (txtLogin.getText().isEmpty() || txtPass.getText().isEmpty()) {
+            empty = true;
+        }
+        return empty;
+    }
+
 }

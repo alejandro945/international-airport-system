@@ -3,8 +3,8 @@ package model;
 public class Standard extends Ticket {
     private int flightPrice;
 
-    public Standard(Flight flight, Seat fligthSeat, int flightPrice) {
-        super(flight, fligthSeat);
+    public Standard(Flight flight, Seat fligthSeat, Luggage luggage, int flightPrice) {
+        super(flight, fligthSeat, luggage);
         this.flightPrice = flightPrice;
     }
 
