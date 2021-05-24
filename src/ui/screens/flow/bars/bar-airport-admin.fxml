@@ -17,10 +17,10 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../assets/img/bar-icons/tickets-flat.png" />
+                        <Image url="@../../../assets/img/bar-icons/dashboard.png" />
                      </image>
                   </ImageView>
-                  <Label text="My Flights">
+                  <Label text="Dashboard">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
@@ -34,10 +34,38 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
+                        <Image url="@../../../assets/img/bar-icons/control-tower.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="CT Supervisors">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/img/bar-icons/employees.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Migration Agents">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="120.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
                         <Image url="@../../../assets/img/bar-icons/plane-flat.png" />
                      </image>
                   </ImageView>
-                  <Label text="New Flight">
+                  <Label text="Airlines">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>

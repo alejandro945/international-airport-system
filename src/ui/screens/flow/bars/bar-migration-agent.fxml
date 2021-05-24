@@ -17,10 +17,10 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../assets/img/bar-icons/tickets-flat.png" />
+                        <Image url="@../../../assets/img/bar-icons/dashboard.png" />
                      </image>
                   </ImageView>
-                  <Label text="My Flights">
+                  <Label text="Indicators">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
@@ -29,20 +29,6 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../assets/img/bar-icons/plane-flat.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="New Flight">
-                     <font>
-                        <Font name="Montserrat Regular" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
             </HBox>
          </children>
          <padding>
