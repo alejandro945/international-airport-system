@@ -1,9 +1,9 @@
 package model;
 
-public class Assistant extends User {
+public class Assistant extends Employee {
 
-    public Assistant(String name, String lastName, String email, String password, int id) {
-        super(name, lastName, id, email, password);
+    public Assistant(String name, String lastName, long id, int salary) {
+        super(name, lastName, id, salary);
     }
 
 }

@@ -29,11 +29,11 @@ public class Main extends Application {
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add(getClass().getResource(Route.STYLES.getRoute()).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        scene.getStylesheets().add(getClass().getResource(Route.STYLES.getRoute()).toExternalForm());
         primaryStage.show();
-        airportController.showLogin();
+        airportController.changeScreen(Route.LOGIN);
     }
 }

@@ -149,12 +149,6 @@ public class OAuthAuthenticator {
         engine.setOnStatusChanged(new EventHandler<WebEvent<String>>() {
             public void handle(WebEvent<String> event) {
                 WebEngine we = (WebEngine) event.getSource();
-                try {
-                    aController.showLogin();
-                } catch (IOException e1) {
-
-                    e1.printStackTrace();
-                }
                 String location = we.getLocation();
                 if (location.contains("code") && location.startsWith(getRedirectUri())) {
                     gotData = true;

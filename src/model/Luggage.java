@@ -4,6 +4,7 @@ public class Luggage {
     private int luggagePrice;
     private double height;
     private double weight;
+    private Luggage nextLuggage;
 
     public Luggage(double height, double weight) {
         this.height = height;
@@ -33,6 +34,18 @@ public class Luggage {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public void setLuggagePrice(int luggagePrice) {
+        this.luggagePrice = luggagePrice;
+    }
+
+    public Luggage getNextLuggage() {
+        return this.nextLuggage;
+    }
+
+    public void setNextLuggage(Luggage nextLuggage) {
+        this.nextLuggage = nextLuggage;
     }
 
 }

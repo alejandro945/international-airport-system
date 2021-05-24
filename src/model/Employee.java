@@ -1,41 +1,25 @@
 package model;
 
 public class Employee extends Person {
-    private String email;
-    private String password;
+    private int salary;
 
-    public Employee(String name, String lastName, long id, String email, String password) {
+    public Employee(String name, String lastName, long id, int salary) {
         super(name, lastName, id);
-        this.email = email;
-        this.password = password;
+        this.salary = salary;
     }
 
     /**
-     * @return String
+     * @return int
      */
-    public String getEmail() {
-        return this.email;
+    public int getSalary() {
+        return this.salary;
     }
 
     /**
-     * @param email
+     * @param salary
      */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return String
-     */
-    public String getPassword() {
-        return this.password;
-    }
-
-    /**
-     * @param password
-     */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
 }
