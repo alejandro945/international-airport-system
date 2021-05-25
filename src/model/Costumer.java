@@ -7,6 +7,11 @@ public class Costumer extends User {
     private String iconPath;
     private List<Ticket> ticket;
 
+    public Costumer(){  //JUnit Tests
+        super("Tester", "User", 122442, "testerUser@correo.co", "password", UserRole.COSTUMER_USER);
+        ticket = new ArrayList<>();
+    }
+
     public Costumer(String name, String lastName, long id, String email, String password) {
         super(name, lastName, id, email, password, UserRole.COSTUMER_USER);
         ticket = new ArrayList<>();
