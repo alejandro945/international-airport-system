@@ -9,7 +9,7 @@ public class Costumer extends User {
 
     public Costumer(){  //JUnit Tests
         super("Tester", "User", 122442, "testerUser@correo.co", "password", UserRole.COSTUMER_USER);
-        ticket = new ArrayList<>();
+        trip = new ArrayList<>();
     }
 
     public Costumer(String name, String lastName, long id, String email, String password) {
