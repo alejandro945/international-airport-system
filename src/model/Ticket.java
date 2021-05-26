@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Ticket {
+public class Ticket {
     private Flight flight;
     private Seat fligthSeat;
     private int flightPrice;

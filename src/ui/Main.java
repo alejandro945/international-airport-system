@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import controller.AirportController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,11 +31,15 @@ public class Main extends Application {
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
-        scene.getStylesheets().add(getClass().getResource(Route.STYLES.getRoute()).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
         airportController.changeScreen(Route.LOGIN);
+    }
+
+    @Override
+    public void init() throws IOException {
+
     }
 }

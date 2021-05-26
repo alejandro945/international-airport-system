@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,15 +10,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="225.0" styleClass="side-bar" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="595.0" prefWidth="225.0">
+      <VBox alignment="TOP_CENTER" prefHeight="770.0" prefWidth="225.0" styleClass="side-bar">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../assets/img/bar-icons/plane-flat.png" />
+                        <Image url="@../../assets/img/icons/plane-flat.png" />
                      </image>
                   </ImageView>
                   <Label text="Airline Flights">
@@ -30,11 +31,11 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../../assets/styles/dash.css">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../assets/img/bar-icons/employees.png" />
+                        <Image url="@../../assets/img/icons/employees.png" />
                      </image>
                   </ImageView>
                   <Label text="Employees">
@@ -50,4 +51,8 @@
          </padding>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../../assets/styles/dash.css" />
+      <URL value="@../../assets/styles/vendor.css" />
+   </stylesheets>
 </Pane>

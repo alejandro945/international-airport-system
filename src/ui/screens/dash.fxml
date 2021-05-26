@@ -12,19 +12,19 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1420.0" style="-fx-background-radius: 40;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="75.0" prefWidth="200.0" spacing="15.0" styleClass="top-bar" stylesheets="@../../assets/styles/styles.css" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="75.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #f43;" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER_LEFT">
          <children>
             <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../assets/img/logo.png" />
+                  <Image url="@../assets/img/logo.png" />
                </image>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </ImageView>
-            <VBox alignment="CENTER_LEFT">
+            <VBox alignment="CENTER_LEFT" stylesheets="@../assets/styles/vendor.css">
                <children>
                   <Label fx:id="lblDate" text="Monday, May 23, 2021">
                      <font>
@@ -38,7 +38,7 @@
                   </Label>
                </children>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" HBox.hgrow="ALWAYS">
                <children>
                   <Label layoutX="929.0" layoutY="40.0" text="Test User Type:">
                      <font>
@@ -55,7 +55,10 @@
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="imgUser" fill="#ffffff00" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="imgUser" fill="#ffffff00" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin></Circle>
                </children>
             </HBox>
          </children>
@@ -65,17 +68,17 @@
       </HBox>
    </top>
    <center>
-      <Pane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" styleClass="main-pane" stylesheets="@../../assets/styles/styles.css" BorderPane.alignment="CENTER" />
+      <Pane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" styleClass="main-pane" stylesheets="@../assets/styles/dash.css" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <VBox prefHeight="645.0" prefWidth="225.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="820.0" prefWidth="225.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="mainBar" prefHeight="595.0" prefWidth="225.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+            <Pane fx:id="mainBar" prefHeight="796.0" prefWidth="225.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../assets/styles/dash.css">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../assets/img/bar-icons/logout-flat.png" />
+                        <Image url="@../assets/img/logo.png" />
                      </image>
                   </ImageView>
                   <Label text="Log Out">

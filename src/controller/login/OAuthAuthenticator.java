@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
@@ -7,6 +7,7 @@ import javafx.scene.web.*;
 import org.json.JSONObject;
 
 import animatefx.animation.FadeIn;
+import controller.AirportController;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
