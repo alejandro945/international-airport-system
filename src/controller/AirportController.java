@@ -38,10 +38,16 @@ public class AirportController {
         dashboardController = new DashboardController(airport, this);
     }
 
+    /**
+     * @param route
+     */
     private void setRecentRoute(Route route) {
         recentRoute = route;
     }
 
+    /**
+     * @param event
+     */
     @FXML
     public void handleMouseClick(MouseEvent event) {
         if (event.getSource() == btnCloseLogin) {
@@ -51,10 +57,16 @@ public class AirportController {
         }
     }
 
+    /**
+     * @return Stage
+     */
     public Stage getWindow() {
         return (Stage) mainPane.getScene().getWindow();
     }
 
+    /**
+     * @throws IOException
+     */
     public void showSpinner() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(Route.SPINNER.getRoute()));
         Parent spinner = fxmlloader.load();
@@ -62,12 +74,20 @@ public class AirportController {
         mainPane.getChildren().setAll(spinner);
     }
 
+    /**
+     * @param route
+     * @throws IOException
+     */
     public void changeScreen(Route route) throws IOException {
         showSpinner();
         Spinner spinner = new Spinner(route, this);
         spinner.start();
     }
 
+    /**
+     * @param route
+     * @throws IOException
+     */
     public void renderScreen(Route route) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(route.getRoute()));
         fxmlloader.setController(setController(route));
@@ -78,12 +98,19 @@ public class AirportController {
         initScreen();
     }
 
+    /**
+     * @throws IOException
+     */
     public void initScreen() throws IOException {
         if (recentRoute == Route.DASHBOARD) {
             dashboardController.init();
         }
     }
 
+    /**
+     * @param route
+     * @return Object
+     */
     public Object setController(Route route) {
         switch (route) {
             case DASHBOARD:
@@ -95,23 +122,33 @@ public class AirportController {
         }
     }
 
-    public void createAlert(String message, Route route) {
+    /**
+     * Creates airport system alerts
+     * 
+     * @param message
+     * @param alertType
+     */
+    public void createAlert(String message, Route alertType) {
         JFXAlert<String> newAlert = new JFXAlert<>();
         newAlert.initModality(Modality.APPLICATION_MODAL);
         newAlert.setOverlayClose(false);
+        // GIF RENDERING
+        ImageView gif = new ImageView(new Image(alertType.getRoute()));
+        gif.setFitHeight(50);
+        gif.setFitWidth(75);
+        // ALERT-CONTENT
         JFXDialogLayout layout = new JFXDialogLayout();
         layout.getStylesheets().add(Route.ALERT.getRoute());
-        ImageView gif = new ImageView(new Image(route.getRoute()));
-        gif.setFitHeight(50);
-        gif.setFitWidth(50);
         layout.setHeading(new Label("Airport Alerts"));
         layout.setBody(new HBox(8, new Label(message), gif));
+        // ACTIONS
         JFXButton cancelButton = new JFXButton("OK");
         cancelButton.setButtonType(JFXButton.ButtonType.RAISED);
         cancelButton.setCancelButton(true);
         cancelButton.setStyle(Route.ALERT.getRoute());
         cancelButton.setOnAction(closeEvent -> newAlert.hideWithAnimation());
         layout.setActions(cancelButton);
+        // STANGING
         Stage stage = (Stage) newAlert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("file:" + Route.ICON.getRoute()));
         newAlert.setContent(layout);

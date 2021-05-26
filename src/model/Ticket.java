@@ -3,12 +3,12 @@ package model;
 public abstract class Ticket {
     private Flight flight;
     private Seat fligthSeat;
-    private Luggage luggage;
+    private int flightPrice;
 
-    public Ticket(Flight flight, Seat fligthSeat, Luggage luggage) {
+    public Ticket(Flight flight, Seat fligthSeat, Luggage luggage, int flightPrice) {
         this.flight = flight;
         this.fligthSeat = fligthSeat;
-        this.luggage = luggage;
+        this.flightPrice = flightPrice;
     }
 
     /**
@@ -40,17 +40,17 @@ public abstract class Ticket {
     }
 
     /**
-     * @return Luggage
+     * @return int
      */
-    public Luggage getLuggage() {
-        return this.luggage;
+    public int getFlightPrice() {
+        return this.flightPrice;
     }
 
     /**
-     * @param luggage
+     * @param flightPrice
      */
-    public void setLuggage(Luggage luggage) {
-        this.luggage = luggage;
+    public void setFlightPrice(int flightPrice) {
+        this.flightPrice = flightPrice;
     }
 
 }

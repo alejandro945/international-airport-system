@@ -4,7 +4,7 @@ public class Premium extends Ticket {
     private int premiumPrice;
 
     public Premium(Flight flight, Seat fligthSeat, Luggage luggage, int premiumPrice) {
-        super(flight, fligthSeat, luggage);
+        super(flight, fligthSeat, luggage, premiumPrice);
         this.premiumPrice = premiumPrice;
     }
 

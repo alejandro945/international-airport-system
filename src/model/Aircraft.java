@@ -2,13 +2,11 @@ package model;
 
 import java.util.List;
 
-public class Aircraft {
+public class Aircraft implements Weight {
     private Seat[][] seat;// Bynary Search
     private Pilot pilot;
-    private Assistant assistantRoot; // Bynary Tree
     private List<Costumer> costumer; // Bynary Search
     private Track track;
-    private int planeSize;
     private int planeWeight;
     private String planeCode;
 
@@ -69,20 +67,6 @@ public class Aircraft {
     }
 
     /**
-     * @return Assistant
-     */
-    public Assistant getAssistantRoot() {
-        return this.assistantRoot;
-    }
-
-    /**
-     * @param assistantRoot
-     */
-    public void setAssistantRoot(Assistant assistantRoot) {
-        this.assistantRoot = assistantRoot;
-    }
-
-    /**
      * @return ArrayList<Costumer>
      */
     public List<Costumer> getCostumer() {
@@ -110,18 +94,9 @@ public class Aircraft {
         this.track = track;
     }
 
-    /**
-     * @return int
-     */
-    public int getPlaneSize() {
-        return this.planeSize;
-    }
-
-    /**
-     * @param planeSize
-     */
-    public void setPlaneSize(int planeSize) {
-        this.planeSize = planeSize;
+    @Override
+    public double calculateWeight() {
+        return 0;
     }
 
 }

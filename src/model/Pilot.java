@@ -1,9 +1,28 @@
 package model;
 
-public class Pilot extends Employee {
+import java.util.ArrayList;
+import java.util.List;
 
-    public Pilot(String name, String lastName, long id, int salary) {
-        super(name, lastName, id, salary);
+public class Pilot extends Collaborator {
+    private List<Flight> flight;
+
+    public Pilot(String name, String lastName, long id, Airline airline) {
+        super(name, lastName, id, airline);
+        flight = new ArrayList<>();
+    }
+
+    /**
+     * @return List<Flight>
+     */
+    public List<Flight> getFlight() {
+        return this.flight;
+    }
+
+    /**
+     * @param flight
+     */
+    public void setFlight(List<Flight> flight) {
+        this.flight = flight;
     }
 
 }

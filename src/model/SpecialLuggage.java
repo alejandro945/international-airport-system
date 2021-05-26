@@ -3,8 +3,8 @@ package model;
 public class SpecialLuggage extends Luggage {
     private String luggageType;
 
-    public SpecialLuggage(double height, double weight, String luggageType) {
-        super(height, weight);
+    public SpecialLuggage(double height, double width, double weight, String luggageType) {
+        super(height, width, weight);
         this.luggageType = luggageType;
         calculateLuggagePrice(35);
     }

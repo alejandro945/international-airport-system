@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Costumer extends User {
     private String iconPath;
-    private List<Ticket> ticket;
+    private List<Trip> trip;
 
     public Costumer(String name, String lastName, long id, String email, String password) {
         super(name, lastName, id, email, password, UserRole.COSTUMER_USER);
-        ticket = new ArrayList<>();
+        trip = new ArrayList<>();
     }
 
     public Costumer(String name, String lastName, long id, String iconPath) {
         super(name, lastName, id, "", "", UserRole.COSTUMER_USER);
         this.iconPath = iconPath;
-        ticket = new ArrayList<>();
+        trip = new ArrayList<>();
     }
 
     public String getIconPath() {
@@ -26,12 +26,12 @@ public class Costumer extends User {
         this.iconPath = iconPath;
     }
 
-    public List<Ticket> getTicket() {
-        return this.ticket;
+    public List<Trip> getTrip() {
+        return this.trip;
     }
 
-    public void setTicket(List<Ticket> ticket) {
-        this.ticket = ticket;
+    public void setTrip(List<Trip> trip) {
+        this.trip = trip;
     }
 
 }
