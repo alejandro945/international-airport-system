@@ -14,9 +14,6 @@ public class AirportAdminBarController {
     private final DashboardController dController;
 
     @FXML
-    private ImageView imgDashboard;
-
-    @FXML
     private ImageView imgSupervisors;
 
     @FXML
@@ -27,13 +24,6 @@ public class AirportAdminBarController {
 
     public AirportAdminBarController(DashboardController dController) {
         this.dController = dController;
-    }
-
-    @FXML
-    void showDashboard(MouseEvent event) throws IOException {
-        resetAllIcons();
-        imgDashboard.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
-        dController.loadView(Route.DASHBOARD);
     }
 
     @FXML
@@ -58,7 +48,6 @@ public class AirportAdminBarController {
     }
 
     public void resetAllIcons() {
-        imgDashboard.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
         imgSupervisors.setImage(new Image("/ui/assets/img/icons/control-tower.png"));
         imgMigrationAgents.setImage(new Image("/ui/assets/img/icons/employees.png"));
         imgAirlines.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));

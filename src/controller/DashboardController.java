@@ -1,28 +1,25 @@
 package controller;
 
 import controller.bar.*;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import controller.view.*;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.fxml.*;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import model.Airport;
 import route.Route;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DashboardController implements Initializable {
     private AirportController airportController;
@@ -41,12 +38,13 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Label lblTime;
-
+    @FXML
+    private Circle imgUser;
     @FXML
     private Label lblUser;
 
     @FXML
-    private Pane mainPane;
+    private Pane dashPane;
 
     @FXML
     private Pane mainBar;
@@ -59,9 +57,9 @@ public class DashboardController implements Initializable {
     public void init() {
         String path = airport.getLogged().getIconPath();
         if (path != null) {
-            // userIcon.setImage(new Image(path));
+            imgUser.setFill(new ImagePattern(new Image(path)));
         }
-        // lblUserName.setText(airport.getLogged().getName());
+        lblUser.setText(airport.getLogged().getName());
     }
 
     @Override
@@ -94,37 +92,70 @@ public class DashboardController implements Initializable {
 
     public void loadBar(Route route) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route.getRoute()));
-        setBarController(fxmlLoader, route);
+        fxmlLoader.setController(setBarController(route));
         Parent bar = fxmlLoader.load();
         mainBar.getChildren().setAll(bar);
     }
 
     public void loadView(Route route) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route.getRoute()));
+        fxmlLoader.setController(setViewController(route));
         Parent view = fxmlLoader.load();
-        mainPane.getChildren().setAll(view);
+        dashPane.getChildren().setAll(view);
     }
 
-    public void setBarController(FXMLLoader fxmlLoader, Route route) {
+    public Object setViewController(Route route) {
+        switch (route) {
+            case MY_TRIPS:
+                return new ClientFlightsController(this);
+            case AP_EMPLOYEES:
+                return new AirportEmployeesController(this);
+            case NEW_EMPLOYEE:
+                return new NewEmployeeController(this);
+            case AIRLINES:
+                return new AirportAirlinesController(this);
+            case NEW_AIRLINE:
+                return new NewAirlineController(this);
+            case ACTIVE_FLIGHTS:
+                return new ActiveFlightsController(this);
+            case UPCOMING_FLIGHTS:
+                return new UpcomingFlightsController(this);
+            case FLIGHTS_STATUS:
+                return new StatusController(this);
+            case NEW_MAINTENANCE:
+                return new NewMaintenanceController(this);
+            case INDICATORS:
+                return new IndicatorsController(this);
+            case FLIGHTS:
+                return new AirlineFlightsController(this);
+            case AIRLINE_EMPLOYEES:
+                return new AirlineEmployeesController(this);
+            case MIGRATION_AGENT:
+                return new NewMaintenanceController(this);
+            default:
+                return null;
+        }
+    }
+
+    public Object setBarController(Route route) {
         switch (route) {
             case AIRLINE_ADMIN:
-                fxmlLoader.setController(new AirlineAdminBarController(this));
-                break;
+                return new AirlineAdminBarController(this);
             case AIRPORT_ADMIN:
-                fxmlLoader.setController(new AirportAdminBarController(this));
-                break;
+                return new AirportAdminBarController(this);
             case CT_SUPERVISOR:
-                fxmlLoader.setController(new CTSupervisorBarController(this));
-                break;
+                return new CTSupervisorBarController(this);
             case MIGRATION_AGENT:
-                fxmlLoader.setController(new MigrationAgentBarController(this));
-                break;
+                return new MigrationAgentBarController(this);
             case COSTUMER:
-                fxmlLoader.setController(new ClientBarController(this));
-                break;
+                return new ClientBarController(this);
             default:
-                break;
+                return null;
         }
+    }
+
+    public String getActiveUser() {
+        return activeUser;
     }
 
     public void changeUserType(ActionEvent event) {
@@ -133,6 +164,7 @@ public class DashboardController implements Initializable {
             case ("Client"):
                 try {
                     loadBar(Route.COSTUMER);
+                    activeUser = "Client";
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -140,6 +172,7 @@ public class DashboardController implements Initializable {
             case ("Airport Admin"):
                 try {
                     loadBar(Route.AIRPORT_ADMIN);
+                    activeUser = "Airport Admin";
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -147,6 +180,7 @@ public class DashboardController implements Initializable {
             case ("CT Supervisor"):
                 try {
                     loadBar(Route.CT_SUPERVISOR);
+                    activeUser = "CT Supervisor";
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -154,6 +188,7 @@ public class DashboardController implements Initializable {
             case ("Migration Agent"):
                 try {
                     loadBar(Route.MIGRATION_AGENT);
+                    activeUser = "Migration Agent";
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -161,6 +196,7 @@ public class DashboardController implements Initializable {
             case ("Airline Admin"):
                 try {
                     loadBar(Route.AIRLINE_ADMIN);
+                    activeUser = "Airline Admin";
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
