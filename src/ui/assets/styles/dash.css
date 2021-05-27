@@ -1,0 +1,117 @@
+.status-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+}
+
+.main-pane {
+    -fx-background-color: #eeeeee;
+}
+
+.top-bar {
+    -fx-background-color: #ffffff;
+}
+
+.side-bar {
+    -fx-background-color: #f4f4f4;
+}
+
+.drop-shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0.0, 0.0, 5.0);
+}
+
+.button {
+    -fx-font-family: Montserrat;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #090B14;
+    -fx-background-radius: 20;
+    -fx-pref-height: 35;
+    -fx-pref-width: 150;
+}
+
+.text-field {
+    -fx-font-family: Montserrat;
+    -fx-padding: 0 15 0 15;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #090B14;
+    -fx-background-radius: 20;
+    -fx-pref-height: 35;
+    -fx-pref-width: 250;
+}
+
+.text-area {
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 20;
+    -fx-background-color: transparent;
+    -fx-pref-width: 490;
+}
+
+.text-area .content {
+    -fx-padding: 15 15 15 15;
+    -fx-background-color: #090B14;
+    -fx-background-radius: 20;
+}
+
+.date-picker {
+    -fx-font-family: Montserrat;
+    -fx-background-radius: 20 0 0 20;
+    -fx-pref-width: 200;
+}
+
+.date-picker .button {
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: #090B14;
+    -fx-background-insets: 1 0 1 1;
+    -fx-background-radius: 20 0 0 20;
+}
+
+.date-picker:focused > .text-field, .date-picker > .text-field:focused {
+    -fx-background-color: #090B14;
+    -fx-background-insets: 1 0 1 1, 1 0 1 1, 3 2 3 3;
+    -fx-background-radius: 20 0 0 20, 20 0 0 20, 0;
+}
+
+.choice-box {
+    -fx-cursor: hand;
+    -fx-padding: 0 0 0 10;
+    -fx-font-family: Montserrat;
+    -fx-background-color: #090B14;
+    -fx-background-radius: 20;
+    -fx-pref-height: 35;
+    -fx-pref-width: 150;
+}
+
+.choice-box .label {
+    -fx-text-fill: #ffffff;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #090B14;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #00A2D4;
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: #ffffff;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: #090B14;
+}
+
+.hover:hover {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(from 0% 0% to 75% 75%, #b8b8b8, transparent);
+}
+
+.button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #00A2D4;
+}

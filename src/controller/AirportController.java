@@ -2,18 +2,15 @@ package controller;
 
 import model.*;
 import route.Route;
-import thread.Spinner;
+import controller.login.*;
 
 import java.io.IOException;
 
 import com.jfoenix.controls.*;
-
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
@@ -65,26 +62,6 @@ public class AirportController {
     }
 
     /**
-     * @throws IOException
-     */
-    public void showSpinner() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(Route.SPINNER.getRoute()));
-        Parent spinner = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(spinner);
-    }
-
-    /**
-     * @param route
-     * @throws IOException
-     */
-    public void changeScreen(Route route) throws IOException {
-        showSpinner();
-        Spinner spinner = new Spinner(route, this);
-        spinner.start();
-    }
-
-    /**
      * @param route
      * @throws IOException
      */
@@ -93,7 +70,6 @@ public class AirportController {
         fxmlloader.setController(setController(route));
         Parent root = fxmlloader.load();
         setRecentRoute(route);
-        mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         initScreen();
     }

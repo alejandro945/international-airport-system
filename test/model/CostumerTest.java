@@ -1,7 +1,6 @@
 package model;
 
 import org.junit.Test;
-//import static org.junit.jupiter.api.Assertions.*;
 
 public class CostumerTest {
 
@@ -11,25 +10,25 @@ public class CostumerTest {
 		costumer = new Costumer();
 	}
 
-    private void setupScenary2() {
+	private void setupScenary2() {
 		costumer = new Costumer();
 	}
 
-	//---------------------------- Cases
+	// ---------------------------- Cases
 
 	@Test
 	public void createTicket1() {
-        
-    }
 
-    @Test
+	}
+
+	@Test
 	public void createTicket2() {
-        
-    }
 
-    @Test
+	}
+
+	@Test
 	public void eliminateTicket() {
-        
-    }
+
+	}
 
 }

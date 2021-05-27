@@ -6,6 +6,7 @@ import java.util.List;
 public class Airport {
     public static final String USER_SUCCESS = " have been added to our Airport succesfully";
     public static final String USER_ERROR = " could not been added to our Airport (Already exists)";
+    public static final String OAUTH_MESSAGE = " your account have been rendered succesfully";
     private Track firstTrack;
     private List<User> users;
     private Costumer logged;
@@ -58,7 +59,7 @@ public class Airport {
             setLogged(newCostumer);
             msg = name + USER_SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = OAUTH_MESSAGE;
         }
         return msg;
     }

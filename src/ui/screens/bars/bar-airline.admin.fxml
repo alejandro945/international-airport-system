@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="225.0" style="-fx-background-color: #fff;" styleClass="side-bar" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="770.0" prefWidth="225.0" style="-fx-background-color: #fff;" styleClass="side-bar">
+         <children>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showFlights" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgAirlineFlights" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/plane-flat.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Airline Flights">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" onMouseClicked="#showEmployees" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../../assets/styles/dash.css">
+               <children>
+                  <ImageView fx:id="imgEmployees" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/employees.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Employees">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../../assets/styles/dash.css" />
+      <URL value="@../../assets/styles/vendor.css" />
+   </stylesheets>
+</Pane>

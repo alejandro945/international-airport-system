@@ -1,25 +1,25 @@
 package model;
 
 public class Premium extends Ticket {
-    private int premiumPrice;
+    private Meal[] meals;
 
     public Premium(Flight flight, Seat fligthSeat, Luggage luggage, int premiumPrice) {
         super(flight, fligthSeat, luggage, premiumPrice);
-        this.premiumPrice = premiumPrice;
+        meals = new Meal[2];
     }
 
     /**
-     * @return int
+     * @return Meal[]
      */
-    public int getPremiumPrice() {
-        return this.premiumPrice;
+    public Meal[] getMeals() {
+        return this.meals;
     }
 
     /**
-     * @param premiumPrice
+     * @param meals
      */
-    public void setPremiumPrice(int premiumPrice) {
-        this.premiumPrice = premiumPrice;
+    public void setMeals(Meal[] meals) {
+        this.meals = meals;
     }
 
 }

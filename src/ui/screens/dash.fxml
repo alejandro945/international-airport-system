@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1420.0" style="-fx-background-radius: 40;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="75.0" prefWidth="200.0" spacing="15.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <VBox alignment="CENTER_LEFT" stylesheets="@../assets/styles/vendor.css">
+               <children>
+                  <Label fx:id="lblDate" text="Monday, May 23, 2021">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTime" layoutX="10.0" layoutY="10.0" text="15:00">
+                     <font>
+                        <Font name="Montserrat Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label layoutX="929.0" layoutY="40.0" text="Test User Type:">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="devUserType" prefWidth="150.0" stylesheets="@../assets/styles/dash.css">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+                  <Label fx:id="lblUser" text="Username">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Circle fx:id="imgUser" fill="#ffffff00" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin></Circle>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <center>
+      <Pane fx:id="dashPane" prefHeight="200.0" prefWidth="200.0" styleClass="main-pane" stylesheets="@../assets/styles/dash.css" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <VBox prefHeight="820.0" prefWidth="225.0" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="mainBar" prefHeight="796.0" prefWidth="225.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../assets/styles/dash.css">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/img/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Log Out">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <padding>
+      <Insets top="25.0" />
+   </padding>
+</BorderPane>
