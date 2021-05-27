@@ -1,5 +1,5 @@
 package model;
 
 public enum FlightState {
-    CANCELED, DONE, AIRBORNE, DELAYED, BOARD
+    CANCELED, DONE, AIRBORNE, DELAYED, BOARD, EMERGENCY;
 }
