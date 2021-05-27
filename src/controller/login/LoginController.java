@@ -75,7 +75,7 @@ public class LoginController {
                 airport.createUser(googleUser[1], googleUser[2],
                         Long.parseLong(googleUser[0].substring(0, googleUser[0].length() - 4)), googleUser[3]),
                 Route.SUCCESS);
-        airportController.changeScreen(Route.DASHBOARD);
+        airportController.renderScreen(Route.DASHBOARD);
     }
 
     /**
@@ -140,7 +140,7 @@ public class LoginController {
         if (!validateLoginFields()) {
             boolean render = airport.userVerification(Long.parseLong(txtLogin.getText()), txtPass.getText());
             if (render) {
-                airportController.changeScreen(Route.DASHBOARD);
+                airportController.renderScreen(Route.DASHBOARD);
             } else {
                 airportController.createAlert(Constant.USER_NOT_EXIST, Route.ERROR);
             }

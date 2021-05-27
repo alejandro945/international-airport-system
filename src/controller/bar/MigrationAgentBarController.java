@@ -21,7 +21,7 @@ public class MigrationAgentBarController {
     void showIndicators(MouseEvent event) throws IOException {
         resetAllIcons();
         imgIndicators.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
-        dController.loadView(Route.MIGRATION_AGENT);
+        dController.loadView(Route.INDICATORS);
     }
 
     public void resetAllIcons() {

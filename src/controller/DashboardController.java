@@ -8,6 +8,7 @@ import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -58,6 +59,8 @@ public class DashboardController implements Initializable {
         String path = airport.getLogged().getIconPath();
         if (path != null) {
             imgUser.setFill(new ImagePattern(new Image(path)));
+        } else {
+            imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
         }
         lblUser.setText(airport.getLogged().getName());
     }
@@ -88,6 +91,11 @@ public class DashboardController implements Initializable {
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+    }
+
+    @FXML
+    void showProfile(MouseEvent event) throws IOException {
+        loadView(Route.PROFILE);
     }
 
     public void loadBar(Route route) throws IOException {
@@ -130,8 +138,8 @@ public class DashboardController implements Initializable {
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:
                 return new AirlineEmployeesController(this);
-            case MIGRATION_AGENT:
-                return new NewMaintenanceController(this);
+            case PROFILE_SETTING:
+                return new ProfileController(this);
             default:
                 return null;
         }

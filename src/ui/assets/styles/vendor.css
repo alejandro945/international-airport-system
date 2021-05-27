@@ -57,6 +57,11 @@
     -fx-font-weight: bold;
     -fx-font-size: 18px;
 }
+.label-spinner{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 25px;
+}
 .menu-label{
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;

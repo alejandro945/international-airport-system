@@ -2,7 +2,6 @@ package controller;
 
 import model.*;
 import route.Route;
-import thread.Spinner;
 import controller.login.*;
 
 import java.io.IOException;
@@ -60,25 +59,6 @@ public class AirportController {
      */
     public Stage getWindow() {
         return (Stage) mainPane.getScene().getWindow();
-    }
-
-    /**
-     * @throws IOException
-     */
-    public void showSpinner() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(Route.SPINNER.getRoute()));
-        Parent spinner = fxmlloader.load();
-        mainPane.getChildren().setAll(spinner);
-    }
-
-    /**
-     * @param route
-     * @throws IOException
-     */
-    public void changeScreen(Route route) throws IOException {
-        showSpinner();
-        Spinner spinner = new Spinner(route, this);
-        spinner.start();
     }
 
     /**

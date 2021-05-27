@@ -8,6 +8,7 @@ public class Airline {
     private Advisor assistantRoot; // Bynary Tree
     private List<User> users;
     private Ticket ticket; // Binary Tree
+    private List<Flight> flights;
 
     public String createUser(String name, String lastName, long id, String email, String password) {
         String msg = "";

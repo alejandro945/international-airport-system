@@ -2,8 +2,11 @@ package ui;
 
 import java.io.IOException;
 
+import com.sun.javafx.application.LauncherImpl;
+
 import controller.AirportController;
 import javafx.application.Application;
+import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
@@ -12,6 +15,7 @@ import model.Airport;
 import route.Route;
 
 public class Main extends Application {
+    private final int RENDER_COMPONENTES = 5000;
     private AirportController airportController;
     private Airport airport;
 
@@ -21,7 +25,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        LauncherImpl.launchApplication(Main.class, Splash.class, args);
     }
 
     @Override
@@ -34,11 +38,14 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
-        airportController.changeScreen(Route.LOGIN);
+        airportController.renderScreen(Route.LOGIN);
     }
 
     @Override
     public void init() throws IOException {
-
+        for (int i = 0; i < RENDER_COMPONENTES; i++) {
+            double progress = (100 * i) / RENDER_COMPONENTES;
+            LauncherImpl.notifyPreloader(this, new Preloader.ProgressNotification(progress));
+        }
     }
 }
