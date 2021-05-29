@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import route.Root;
 import route.Route;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class NewAirlineController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imgAirlineLogo.setImage(new Image("/img/icons/image.png"));
+        imgAirlineLogo.setImage(new Image(Root.IMG.getRoot() + "icons/image.png"));
     }
 
     @FXML

@@ -3,24 +3,33 @@
 }
 .table-view {
     -fx-background-color:#651FFF;
-    -fx-background-radius:14 14 0 0;
-    
+    -fx-background-radius:14 14 14 14;
     }
 .table-view .column-header-background{
         -fx-background-color: #651FFF;
         -fx-background-radius:14;
-        -fx-background-insets: 0 0 10 0;
-       
-        
-        
+        -fx-background-insets: 0 0 10 0;    
     }
 .table-view .column-header, .table-view .filler{
         -fx-size:50px;
         -fx-border-width: 0 0 10 0;
         -fx-background-color:transparent;
-        
     }
     
 .table-view .column-header .label {
         -fx-text-fill: white ;
+    }
+    #delete{
+        -fx-background-color: linear-gradient(to left,#fb8bff ,#e02994);
+        -fx-background-radius: 10;
+        -fx-font-family: "Century Gothic" ;
+        -fx-font-style: italic;
+        -fx-font-size: 10px;
+    }
+    #edit{
+        -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
+        -fx-background-radius: 10;
+        -fx-font-family: "Century Gothic" ;
+        -fx-font-style: italic;
+        -fx-font-size: 10px;
     }

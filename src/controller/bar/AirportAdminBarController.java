@@ -34,6 +34,13 @@ public class AirportAdminBarController {
     }
 
     @FXML
+    void showUserCrud(MouseEvent event) throws IOException {
+        resetAllIcons();
+        imgSupervisors.setImage(new Image("/ui/assets/img/icons/active-control-tower.png"));
+        dController.loadView(Route.USER_TABLE);
+    }
+
+    @FXML
     void showMigrationAgents(MouseEvent event) throws IOException {
         resetAllIcons();
         imgMigrationAgents.setImage(new Image("/ui/assets/img/icons/active-employees.png"));

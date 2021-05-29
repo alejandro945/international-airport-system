@@ -1,6 +1,7 @@
 package controller;
 
 import controller.bar.*;
+import controller.crud.UserController;
 import controller.view.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -53,6 +54,10 @@ public class DashboardController implements Initializable {
     public DashboardController(Airport airport, AirportController airportController) {
         this.airportController = airportController;
         this.airport = airport;
+    }
+
+    public AirportController geAirportController() {
+        return airportController;
     }
 
     public void init() {
@@ -140,6 +145,8 @@ public class DashboardController implements Initializable {
                 return new AirlineEmployeesController(this);
             case PROFILE_SETTING:
                 return new ProfileController(this);
+            case USER_TABLE:
+                return new UserController(airport, this);
             default:
                 return null;
         }
