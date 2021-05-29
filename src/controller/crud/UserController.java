@@ -1,6 +1,8 @@
 package controller.crud;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.*;
 
@@ -19,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +29,7 @@ import javafx.scene.control.*;
 import model.*;
 import route.Route;
 
-public class UserController {
+public class UserController implements Initializable {
 
     @FXML
     private TableView<User> userTbl;
@@ -68,6 +71,12 @@ public class UserController {
     private JFXComboBox<UserRole> txtRole;
 
     @FXML
+    private JFXComboBox<Airline> txtAirline;
+    @FXML
+    private Button btnEdit;
+    @FXML
+    private Button btnSave;
+    @FXML
     private Label modalName;
 
     private Airport airport;
@@ -102,29 +111,24 @@ public class UserController {
                         setText(null);
                     } else {
                         Button delete = new Button("Delete");
+                        delete.setId("delete");
                         Button edit = new Button("Edit");
+                        edit.setId("edit");
                         delete.getStylesheets().add(Route.CRUD.getRoute());
                         edit.getStylesheets().add(Route.CRUD.getRoute());
                         delete.setOnAction((ActionEvent event) -> {
-                            selected = userTbl.getSelectionModel().getSelectedItem();
-                            airport.deleteUser(selected);
+                            selected = (User) getTableRow().getItem();
+                            dController.geAirportController().createAlert(airport.deleteUser(selected), Route.SUCCESS);
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = userTbl.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource(Route.USER_MODAL.getRoute()));
-                            loader.setController(this);
+                            selected = (User) getTableRow().getItem();
                             try {
-                                loader.load();
+                                showModal();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            modalName.setText("Edit User");
                             prepareEdition(selected);
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");
@@ -140,12 +144,20 @@ public class UserController {
         actionsCol.setCellFactory(cellFact);
     }
 
-    private void prepareEdition(User selected) {
+    public void prepareEdition(User selected) {
         txtId.setText(String.valueOf(selected.getId()));
         txtName.setText(selected.getName());
         txtLast.setText(selected.getLastName());
         txtEmail.setText(selected.getEmail());
         txtRole.setValue(selected.getRole());
+        txtRole.setDisable(true);
+        btnEdit.setVisible(true);
+        btnSave.setVisible(false);
+        if (selected instanceof AirlineUser) {
+            AirlineUser aUser = (AirlineUser) selected;
+            txtAirline.setVisible(true);
+            txtAirline.setValue(aUser.getAirline());
+        }
     }
 
     @FXML
@@ -155,28 +167,70 @@ public class UserController {
 
     @FXML
     public void saveUser(ActionEvent event) {
-        if (validateFields()) {
-            String msg = airport.createUser(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
-                    txtEmail.getText(), txtPass.getText());
+        userAction(1);
+    }
+
+    @FXML
+    public void editUser(ActionEvent event) {
+        userAction(2);
+    }
+
+    public void userAction(int option) {
+        String msg = "";
+        if (validateFields() && txtAirline.getSelectionModel().getSelectedItem() != null) {
+            if (option == 1) {
+                msg = airport.createUser(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
+                        txtEmail.getText(), txtPass.getText(), txtAirline.getValue());
+            } else {
+                msg = airport.editUser((AirlineUser) selected, txtName.getText(), txtLast.getText(),
+                        Long.parseLong(txtId.getText()), txtEmail.getText(), txtPass.getText(), txtAirline.getValue());
+            }
             dController.geAirportController().createAlert(msg, Route.SUCCESS);
+            trimFileds();
+        } else if (validateFields()) {
+            if (option == 1) {
+                msg = airport.createUser(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
+                        txtEmail.getText(), txtPass.getText(), txtRole.getValue());
+            } else {
+                msg = airport.editUser(selected, txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
+                        txtEmail.getText(), txtPass.getText(), txtRole.getValue());
+            }
+            dController.geAirportController().createAlert(msg, Route.SUCCESS);
+            trimFileds();
+        } else {
+            dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
         getData();
     }
 
     public boolean validateFields() {
-        boolean render = false;
+        boolean render = true;
         if (txtId.getText().isEmpty() || txtName.getText().isEmpty() || txtLast.getText().isEmpty()
                 || txtEmail.getText().isEmpty() || txtPass.getText().isEmpty()
                 || txtRole.getSelectionModel().getSelectedItem() == null) {
-            dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
-        } else {
-            render = true;
+            render = false;
         }
         return render;
     }
 
+    public void trimFileds() {
+        txtName.setText("");
+        txtLast.setText("");
+        txtId.setText("");
+        txtEmail.setText("");
+        txtPass.setText("");
+        txtRole.setValue(null);
+        txtRole.setDisable(false);
+        txtAirline.setValue(null);
+    }
+
     public void initRoles() {
         txtRole.getItems().addAll(UserRole.values());
+    }
+
+    public void initAirlines() {
+        txtAirline.getItems().clear();
+        txtAirline.getItems().addAll(airport.getAirlines());
     }
 
     public void setModal(Stage modal) {
@@ -184,7 +238,24 @@ public class UserController {
     }
 
     @FXML
+    public void isAirline(ActionEvent event) {
+        if (txtRole.getValue() == UserRole.AIRLINE_ADMIN) {
+            initAirlines();
+            txtAirline.setVisible(true);
+        } else {
+            txtAirline.setVisible(false);
+        }
+    }
+
+    @FXML
     public void newUser(ActionEvent event) throws IOException {
+        showModal();
+        modalName.setText("Create User");
+        btnEdit.setVisible(false);
+        btnSave.setVisible(true);
+    }
+
+    public void showModal() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Route.USER_MODAL.getRoute()));
         fxmlLoader.setController(this);
         Parent modal = fxmlLoader.load();
@@ -195,5 +266,10 @@ public class UserController {
         setModal(stage);
         initRoles();
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getData();
     }
 }

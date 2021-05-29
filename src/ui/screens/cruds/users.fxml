@@ -24,7 +24,7 @@
                   <TableColumn fx:id="actionsCol" prefWidth="190.0" text="Actions" />
               </columns>
             </TableView>
-            <Button layoutX="73.0" layoutY="20.0" mnemonicParsing="false" onAction="#newUser" prefHeight="36.0" prefWidth="36.0" styleClass="button-menu">
+            <Button layoutX="38.0" layoutY="20.0" mnemonicParsing="false" onAction="#newUser" prefHeight="46.0" prefWidth="168.0" styleClass="button-menu" text="New User" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>

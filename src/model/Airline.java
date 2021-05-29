@@ -10,12 +10,8 @@ public class Airline {
     private Ticket ticket; // Binary Tree
     private List<Flight> flights;
 
-    public String createUser(String name, String lastName, long id, String email, String password) {
-        String msg = "";
-        Costumer newCostumer = new Costumer(name, lastName, id, email, password);
-        users.add(newCostumer);
-        msg = name + Airport.USER_SUCCESS;
-        return msg;
+    public Airline(String airlineName) {
+        this.airlineName = airlineName;
     }
 
     /**
@@ -30,5 +26,10 @@ public class Airline {
      */
     public void setAssistantRoot(Advisor assistantRoot) {
         this.assistantRoot = assistantRoot;
+    }
+
+    @Override
+    public String toString() {
+        return airlineName;
     }
 }

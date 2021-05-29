@@ -26,18 +26,18 @@
     -fx-background-radius: 40 40 0 0;
 }
 .modal{
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(255, 255, 255, 0);
 }
 .button{
-    -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
-    -fx-background-radius: 10 10 10 10;
+    -fx-background-color: linear-gradient(to right,#8b9cff ,#2969e0);
+    -fx-background-radius: 10;
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
     -fx-font-size: 18px;
 }
 .button1{
     -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
-    -fx-background-radius: 40 40 40 40;
+    -fx-background-radius: 10;
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
     -fx-font-size: 18px;
@@ -49,8 +49,11 @@
     -fx-font-style: italic;
     -fx-font-size: 18px;
 }
+.button:hover{
+    -fx-background-color : linear-gradient(to left,#fb8bff ,#e02994) ;
+}
 .button2:hover{
-    -fx-background-color : #4b28ffcb ;
+    -fx-background-color : linear-gradient(to right,#8b9cff ,#2969e0);
 }
 .label{
     -fx-font-family: "Century Gothic" ;
@@ -99,11 +102,7 @@
 }
 .button-menu:hover
 {
-    -fx-background-color : #e02994;
-}
-.button-menu:pressed
-{
-    -fx-background-color : #a28bff ;
+    -fx-background-color : linear-gradient(to left,#fb8bff ,#e02994);
 }
 .logo{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);

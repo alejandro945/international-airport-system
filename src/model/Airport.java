@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Airport {
     public static final String USER_SUCCESS = " have been added to our Airport succesfully";
-    public static final String DELETE_SUCCESS = " have been deleted to our Airport succesfully";
+    public static final String DELETE_SUCCESS = " have been deleted succesfully";
+    public static final String EDIT_SUCCEES = " have been edited  succesfully";
     public static final String USER_ERROR = " could not been added to our Airport (Already exists)";
     public static final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public static final String OAUTH_MESSAGE = " your account have been rendered succesfully";
@@ -16,7 +17,13 @@ public class Airport {
     private User adminLogged;
 
     public Airport() {
-        users = new ArrayList<User>();
+        users = new ArrayList<>();
+        airlines = new ArrayList<>();
+        users.add(
+                new User("Alejandro", "Varela", 1006343560, "alejo8677@gmail.com", "1472583", UserRole.AIRPORT_ADMIN));
+        airlines.add(new Airline("Avianca"));
+        airlines.add(new Airline("Spirit"));
+        airlines.add(new Airline("Viva Air"));
     }
 
     public Track getFirstTrack() {
@@ -72,6 +79,41 @@ public class Airport {
         return msg;
     }
 
+    public String editUser(User user, String name, String lastName, long id, String email, String password,
+            UserRole role) {
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setId(id);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setRole(role);
+        return name + EDIT_SUCCEES;
+    }
+
+    // AIRLINE-ADMIN
+    public String createUser(String name, String lastName, long id, String email, String password, Airline airline) {
+        String msg = "";
+        if (!searchUserId(id)) {
+            AirlineUser newaAirlineUser = new AirlineUser(name, lastName, id, email, password, airline);
+            users.add(newaAirlineUser);
+            msg = name + USER_SUCCESS;
+        } else {
+            msg = USER_ERROR;
+        }
+        return msg;
+    }
+
+    public String editUser(AirlineUser user, String name, String lastName, long id, String email, String password,
+            Airline airline) {
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setId(id);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setAirline(airline);
+        return name + EDIT_SUCCEES;
+    }
+
     // JWT-COSTUMER
     public String createUser(String name, String lastName, long id, String email, String password) {
         String msg = "";
@@ -94,6 +136,7 @@ public class Airport {
             setLogged(newCostumer);
             msg = name + USER_SUCCESS;
         } else {
+            setLogged((Costumer) searchUser(id));
             msg = OAUTH_MESSAGE;
         }
         return msg;
@@ -118,6 +161,16 @@ public class Airport {
             }
         }
         return render;
+    }
+
+    public User searchUser(long id) {
+        User user = null;
+        for (User u : users) {
+            if (u.getId() == id) {
+                user = u;
+            }
+        }
+        return user;
     }
 
     public boolean userVerification(long id, String password) {

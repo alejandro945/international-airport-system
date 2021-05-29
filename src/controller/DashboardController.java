@@ -61,13 +61,18 @@ public class DashboardController implements Initializable {
     }
 
     public void init() {
-        String path = airport.getLogged().getIconPath();
-        if (path != null) {
-            imgUser.setFill(new ImagePattern(new Image(path)));
+        if (airport.getLogged() != null) {
+            lblUser.setText(airport.getLogged().getName());
+            String path = airport.getLogged().getIconPath();
+            if (path != null) {
+                imgUser.setFill(new ImagePattern(new Image(path)));
+            } else {
+                imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
+            }
         } else {
+            lblUser.setText(airport.getAdminLogged().getName());
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
         }
-        lblUser.setText(airport.getLogged().getName());
     }
 
     @Override
