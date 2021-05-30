@@ -1,6 +1,7 @@
 package controller;
 
 import controller.bar.*;
+import controller.crud.UserController;
 import controller.view.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -55,14 +56,23 @@ public class DashboardController implements Initializable {
         this.airport = airport;
     }
 
+    public AirportController geAirportController() {
+        return airportController;
+    }
+
     public void init() {
-        String path = airport.getLogged().getIconPath();
-        if (path != null) {
-            imgUser.setFill(new ImagePattern(new Image(path)));
+        if (airport.getLogged() != null) {
+            lblUser.setText(airport.getLogged().getName());
+            String path = airport.getLogged().getIconPath();
+            if (path != null) {
+                imgUser.setFill(new ImagePattern(new Image(path)));
+            } else {
+                imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
+            }
         } else {
+            lblUser.setText(airport.getAdminLogged().getName());
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
         }
-        lblUser.setText(airport.getLogged().getName());
     }
 
     @Override
@@ -140,6 +150,8 @@ public class DashboardController implements Initializable {
                 return new AirlineEmployeesController(this);
             case PROFILE_SETTING:
                 return new ProfileController(this);
+            case USER_TABLE:
+                return new UserController(airport, this);
             default:
                 return null;
         }

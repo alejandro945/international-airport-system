@@ -4,9 +4,9 @@ public enum Route {
 
     SPLASH("/ui/screens/splash.fxml"), LOGIN("/ui/screens/login.fxml"), DASHBOARD("/ui/screens/dash.fxml"),
     MAINPANE("screens/mainPane.fxml"), ICON("src/ui/assets/img/ico.jpeg"), ALERT("/ui/assets/styles/vendor.css"),
-    SPINNER("/ui/screens/spinner.fxml"), SUCCESS("/ui/assets/img/success.gif"), ERROR("/ui/assets/img/error.gif"),
-    WARNING("/ui/assets/img/warning.gif"), USER_ICON("/ui/assets/img/icons/user.png"),
-    AIRLINE_ADMIN(Root.BAR.getRoot() + "bar-airline.admin.fxml"),
+    CRUD("/ui/assets/styles/table.css"), SPINNER("/ui/screens/spinner.fxml"), SUCCESS("/ui/assets/img/success.gif"),
+    ERROR("/ui/assets/img/error.gif"), WARNING("/ui/assets/img/warning.gif"),
+    USER_ICON("/ui/assets/img/icons/user.png"), AIRLINE_ADMIN(Root.BAR.getRoot() + "bar-airline.admin.fxml"),
     AIRPORT_ADMIN(Root.BAR.getRoot() + "bar-airport-admin.fxml"),
     CT_SUPERVISOR(Root.BAR.getRoot() + "bar-ct-supervisor.fxml"),
     MIGRATION_AGENT(Root.BAR.getRoot() + "bar-migration-agent.fxml"),
@@ -21,7 +21,8 @@ public enum Route {
     NEW_TRIP(Root.CLIENT.getRoot() + "new-flight.fxml"), PLAN_FLIGHT(Root.CLIENT.getRoot() + "plan-flight.fxml"),
     PROFILE_SETTING(Root.CLIENT.getRoot() + "profile-settings.fxml"),
     INDICATORS(Root.MIGRATION.getRoot() + "indicators.fxml"), NEW_EMPLOYEE(Root.GLOBAL.getRoot() + "new-employee.fxml"),
-    PROFILE(Root.USER.getRoot() + "profile.fxml"), CARD(Root.CARD.getRoot() + "flight.fxml");
+    PROFILE(Root.USER.getRoot() + "profile.fxml"), CARD(Root.CARD.getRoot() + "flight.fxml"),
+    USER_MODAL(Root.CRUD.getRoot() + "usersModal.fxml"), USER_TABLE(Root.CRUD.getRoot() + "users.fxml");
 
     private String route;
 

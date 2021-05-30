@@ -162,7 +162,12 @@ public class LoginController {
     }
 
     private void trimFields() {
-
+        lblName.setText("");
+        lblLastName.setText("");
+        lblEmail.setText("");
+        lblId.setText("");
+        lblPass.setText("");
+        lblCofirmPass.setText("");
     }
 
     private String validateRegisterFields() {

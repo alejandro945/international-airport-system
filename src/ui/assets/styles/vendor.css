@@ -17,29 +17,43 @@
     -fx-background-color: white;
     -fx-background-radius: 40 40 40 40;
 }
+.main-dash{
+    -fx-background-color: white;
+    -fx-background-radius: 0 0 40 0;
+}
+.main-top{
+    -fx-background-color: #651FFF;
+    -fx-background-radius: 40 40 0 0;
+}
+.modal{
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
 .button{
-    -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
-    -fx-background-radius: 10 10 10 10;
+    -fx-background-color: linear-gradient(to right,#8b9cff ,#2969e0);
+    -fx-background-radius: 10;
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
     -fx-font-size: 18px;
 }
 .button1{
     -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
-    -fx-background-radius: 40 40 40 40;
+    -fx-background-radius: 10;
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
     -fx-font-size: 18px;
 }
 .button2{
     -fx-background-color: linear-gradient(to left,#fb8bff ,#e02994);
-    -fx-background-radius: 40 40 40 40;
+    -fx-background-radius: 10;
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
     -fx-font-size: 18px;
 }
+.button:hover{
+    -fx-background-color : linear-gradient(to left,#fb8bff ,#e02994) ;
+}
 .button2:hover{
-    -fx-background-color : #4b28ffcb ;
+    -fx-background-color : linear-gradient(to right,#8b9cff ,#2969e0);
 }
 .label{
     -fx-font-family: "Century Gothic" ;
@@ -78,8 +92,8 @@
 }
 .button-menu
 {
-    -fx-background-color : #fcfcfc00;
-    -fx-background-radius :  40;
+-fx-background-radius: 14;
+    -fx-background-color:linear-gradient(to right,#8bffae ,#2fe029);
     -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
     -fx-font-weight: bold;
@@ -88,11 +102,7 @@
 }
 .button-menu:hover
 {
-    -fx-background-color : #8170d4cb ;
-}
-.button-menu:pressed
-{
-    -fx-background-color : #ff5858 ;
+    -fx-background-color : linear-gradient(to left,#fb8bff ,#e02994);
 }
 .logo{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
@@ -111,4 +121,16 @@
 }
 .jfx-tab-pane .tab-selected-line{
     -fx-border-color:#c70000 ;
+}
+.jfx-text-field{
+-fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+}
+.jfx-password-field{
+-fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+}
+.jfx-combo-box{
+-fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
 }

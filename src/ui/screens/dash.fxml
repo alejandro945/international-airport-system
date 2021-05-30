@@ -14,33 +14,36 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1420.0" style="-fx-background-radius: 40;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="75.0" prefWidth="200.0" spacing="15.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="75.0" prefWidth="200.0" spacing="15.0" styleClass="main-top" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="49.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/logo.png" />
                </image>
                <HBox.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </HBox.margin>
             </ImageView>
-            <VBox alignment="CENTER_LEFT" stylesheets="@../assets/styles/vendor.css">
+            <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="179.0" stylesheets="@../assets/styles/vendor.css">
                <children>
-                  <Label fx:id="lblDate" text="Monday, May 23, 2021">
+                  <Label fx:id="lblDate" text="Monday, May 23, 2021" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTime" layoutX="10.0" layoutY="10.0" text="15:00">
+                  <Label fx:id="lblTime" layoutX="10.0" layoutY="10.0" text="15:00" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" styleClass="main-top" stylesheets="@../assets/styles/vendor.css" HBox.hgrow="ALWAYS">
                <children>
-                  <Label layoutX="929.0" layoutY="40.0" text="Test User Type:">
+                  <Label layoutX="929.0" layoutY="40.0" text="Test User Type:" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
@@ -50,12 +53,12 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Label fx:id="lblUser" text="Username">
+                  <Label fx:id="lblUser" text="Username" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="imgUser" fill="#ffffff00" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fx:id="imgUser" fill="#ffffff00" radius="20.0" stroke="WHITE" strokeType="INSIDE">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Circle>
@@ -63,7 +66,7 @@
             </HBox>
          </children>
          <padding>
-            <Insets left="15.0" right="15.0" />
+            <Insets left="40.0" right="20.0" />
          </padding>
          <BorderPane.margin>
             <Insets />
@@ -71,12 +74,12 @@
       </HBox>
    </top>
    <center>
-      <Pane fx:id="dashPane" prefHeight="200.0" prefWidth="200.0" styleClass="main-pane" stylesheets="@../assets/styles/dash.css" BorderPane.alignment="CENTER" />
+      <Pane fx:id="dashPane" prefHeight="835.0" prefWidth="1195.0" style="-fx-background-color: #fff;" styleClass="main-dash" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER" />
    </center>
    <left>
       <VBox prefHeight="820.0" prefWidth="225.0" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="mainBar" prefHeight="796.0" prefWidth="225.0" />
+            <Pane fx:id="mainBar" prefHeight="795.0" prefWidth="225.0" />
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../assets/styles/dash.css">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -100,7 +103,4 @@
          </children>
       </VBox>
    </left>
-   <padding>
-      <Insets top="25.0" />
-   </padding>
 </BorderPane>

@@ -1,26 +1,51 @@
 .btn:hover{
     -fx-cursor:hand ;
 }
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: #ebebeb;
+}
 .table-view {
-    -fx-background-color:#651FFF;
-    -fx-background-radius:14 14 0 0;
-    
+    -fx-background-color:whitesmoke;
+    -fx-background-radius:12 12 0 0;
     }
 .table-view .column-header-background{
         -fx-background-color: #651FFF;
-        -fx-background-radius:14;
-        -fx-background-insets: 0 0 10 0;
-       
-        
-        
+        -fx-background-radius:12 12 0 0;   
+        -fx-background-insets:0 0 10 0;
     }
-.table-view .column-header, .table-view .filler{
-        -fx-size:50px;
-        -fx-border-width: 0 0 10 0;
-        -fx-background-color:transparent;
-        
+      .table-view .column-header .label{
+          -fx-alignment: CENTER;
+      }
+    .table-cell{
+        -fx-font: 16px "Century Gothic";
     }
-    
+    .table-row-cell:empty .table-cell {
+        -fx-border-width: 0px;
+    }
+    .table-row-cell:odd {
+    -fx-background-color: rgb(190, 213, 255);
+}
+.table-row-cell:empty, .table-cell:empty:hover {
+    -fx-background-color: whitesmoke;
+}
 .table-view .column-header .label {
         -fx-text-fill: white ;
+    }
+    .table-view .column-header, .table-view .filler{
+        -fx-size:50px;
+        -fx-background-color: transparent;
+    }
+    #delete{
+        -fx-background-color: linear-gradient(to left,#fb8bff ,#e02994);
+        -fx-background-radius: 10;
+        -fx-font-family: "Century Gothic" ;
+        -fx-font-style: italic;
+        -fx-font-size: 16px;
+    }
+    #edit{
+        -fx-background-color: linear-gradient(to right,#a28bff ,#3929E0);
+        -fx-background-radius: 10;
+        -fx-font-family: "Century Gothic" ;
+        -fx-font-style: italic;
+        -fx-font-size: 16px;
     }

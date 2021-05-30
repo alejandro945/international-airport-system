@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import model.Flight;
 import route.Route;
 
 import java.io.IOException;
@@ -31,13 +32,10 @@ public class ClientFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Flight flight : client.getFlights()) {
-            try {
-                addCard(flight);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        /*
+         * for (Flight flight : client.getFlights()) { try { addCard(flight); } catch
+         * (IOException e) { e.printStackTrace(); } }
+         */
     }
 
     public void addCard(Flight flight) throws IOException {
