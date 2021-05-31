@@ -1,4 +1,6 @@
 ![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/logo2.jpeg)<br>
+
+
 <div align="center">
 <h2> Welcome to our proyect! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
 </div>
@@ -11,12 +13,30 @@ Airlines adminitrator can create new flys, planes, asssing personal to airplane.
 
 This version was created by Alejandro Varela, Juan Felipe Sinisterra and Juan David Ballesteros. The interesting about the work, is the application code use a varitie of java tools like collections an data structures, but also the team create some binary trees and linked lists.
 
+### Changelog 
+
+#### Milestone 2
+* JUnit Tests diagrams
+* Class Diagram
+* Two funtional requirements implemented
+* Screens and navegation done
+* Requirements done
+
+#### Milestone 1
+* Functional requirements
+* Proyect description
+* Readme
+
 ### Pre-requirements 💥
 ```
 You need at least JRE 1.8_261 or newest realest.
 ```
 ## Documentation 📃
 **Don´t hesitate, click here ➡️ [Requirements](https://github.com/alejandro945/international-airport-system/blob/master/docs/Requirements.pdf)
+
+**Don´t hesitate, click here ➡️ [JUnit Test](https://github.com/alejandro945/international-airport-system/blob/master/docs/JUnit%20Tests.pdf)
+
+**Don´t hesitate, click here ➡️ [Class Diagram](https://github.com/alejandro945/international-airport-system/blob/master/docs/Class%20Diagram.pdf)
 
 ## Screens 🚀
 
