@@ -15,14 +15,14 @@ This version was created by Alejandro Varela, Juan Felipe Sinisterra and Juan Da
 
 ### Changelog 
 
-#### Milestone 2
+#### Version 2
 * JUnit Tests diagrams
 * Class Diagram
-* Two funtional requirements implemented
+* Four funtional requirements implemented
 * Screens and navegation done
 * Requirements done
 
-#### Milestone 1
+#### Version 1
 * Functional requirements
 * Proyect description
 * Readme
@@ -32,11 +32,13 @@ This version was created by Alejandro Varela, Juan Felipe Sinisterra and Juan Da
 You need at least JRE 1.8_261 or newest realest.
 ```
 ## Documentation 📃
-**Don´t hesitate, click here ➡️ [Requirements](https://github.com/alejandro945/international-airport-system/blob/master/docs/Requirements.pdf)
+**Don´t hesitate 
 
-**Don´t hesitate, click here ➡️ [JUnit Test](https://github.com/alejandro945/international-airport-system/blob/master/docs/JUnit%20Tests.pdf)
+* click here ➡️ [Requirements](https://github.com/alejandro945/international-airport-system/blob/master/docs/Requirements.pdf)
 
-**Don´t hesitate, click here ➡️ [Class Diagram](https://github.com/alejandro945/international-airport-system/blob/master/docs/Class%20Diagram.pdf)
+* click here ➡️ [JUnit Test](https://github.com/alejandro945/international-airport-system/blob/master/docs/JUnit%20Tests.pdf)
+
+* click here ➡️ [Class Diagram](https://github.com/alejandro945/international-airport-system/blob/master/docs/Class%20Diagram.pdf)
 
 ## Screens 🚀
 
