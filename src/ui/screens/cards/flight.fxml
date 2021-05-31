@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="280.0" stylesheets="@../../resources/cards.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="90.0" prefWidth="280.0">
          <children>
@@ -46,7 +47,12 @@
    </children>
    <styleClass>
       <String fx:value="card" />
+      <String fx:value="box" />
       <String fx:value="drop-shadow" />
       <String fx:value="hover" />
    </styleClass>
+   <stylesheets>
+      <URL value="@../../assets/styles/cards.css" />
+      <URL value="@../../assets/styles/vendor.css" />
+   </stylesheets>
 </Pane>

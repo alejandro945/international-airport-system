@@ -10,6 +10,18 @@ public class Flight {
     private Aircraft plane;
     private FlightState flightStatus;
 
+    public Flight(String departureDate, String departureHour, String arrivalDate, String arrivalHour, Places origin,
+            Places destination) {
+        this.departureDate = departureDate;
+        this.departureHour = departureHour;
+        this.arrivalDate = arrivalDate;
+        this.arrivalHour = arrivalHour;
+        this.origin = origin;
+        this.destination = destination;
+        // this.plane = plane;
+        this.flightStatus = FlightState.AIRBORNE;
+    }
+
     /**
      * @return String
      */

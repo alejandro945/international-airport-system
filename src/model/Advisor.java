@@ -1,25 +1,28 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Advisor extends Collaborator {
-    private Costumer costumer;
+    private List<Costumer> costumers;
 
-    public Advisor(String name, String lastName, long id, Airline airline, Costumer costumer) {
+    public Advisor(String name, String lastName, long id, Airline airline) {
         super(name, lastName, id, airline);
-        this.costumer = costumer;
+        costumers = new ArrayList<>();
     }
 
     /**
-     * @return Costumer
+     * @return List<Costumer>
      */
-    public Costumer getCostumer() {
-        return this.costumer;
+    public List<Costumer> getCostumers() {
+        return this.costumers;
     }
 
     /**
-     * @param costumer
+     * @param costumers
      */
-    public void setCostumer(Costumer costumer) {
-        this.costumer = costumer;
+    public void setCostumers(List<Costumer> costumers) {
+        this.costumers = costumers;
     }
 
 }

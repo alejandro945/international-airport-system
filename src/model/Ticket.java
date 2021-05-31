@@ -1,11 +1,11 @@
 package model;
 
-public class Ticket {
+public class Ticket implements Price {
     private Flight flight;
     private Seat fligthSeat;
     private int flightPrice;
 
-    public Ticket(Flight flight, Seat fligthSeat, Luggage luggage, int flightPrice) {
+    public Ticket(Flight flight, Seat fligthSeat, int flightPrice) {
         this.flight = flight;
         this.fligthSeat = fligthSeat;
         this.flightPrice = flightPrice;
@@ -51,6 +51,11 @@ public class Ticket {
      */
     public void setFlightPrice(int flightPrice) {
         this.flightPrice = flightPrice;
+    }
+
+    @Override
+    public void calculatePrice(int increase) {
+
     }
 
 }

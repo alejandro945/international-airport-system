@@ -7,7 +7,7 @@ public class TripTest {
 	private Trip trip;
 
 	private void setupScenary1() {
-		trip = new Trip();
+		trip = new Trip(null, null, 0);
 	}
 
 	@Test
@@ -15,5 +15,4 @@ public class TripTest {
 
 	}
 
-	
 }

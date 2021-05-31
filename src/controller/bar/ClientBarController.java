@@ -22,6 +22,15 @@ public class ClientBarController {
 
     @FXML
     private ImageView imgNewFlight;
+    @FXML
+    private ImageView imgLuggage;
+
+    @FXML
+    void showLugagge(MouseEvent event) throws IOException {
+        resetAllIcons();
+        imgLuggage.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
+        dController.loadView(Route.LUGAGGE_TABLE);
+    }
 
     @FXML
     void showMyFlights(MouseEvent event) throws IOException {
@@ -38,6 +47,7 @@ public class ClientBarController {
     }
 
     public void resetAllIcons() {
+        imgLuggage.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
         imgMyFlights.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
         imgNewFlight.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
     }

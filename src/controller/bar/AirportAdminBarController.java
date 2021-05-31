@@ -14,10 +14,10 @@ public class AirportAdminBarController {
     private final DashboardController dController;
 
     @FXML
-    private ImageView imgSupervisors;
+    private ImageView imgTracks;
 
     @FXML
-    private ImageView imgMigrationAgents;
+    private ImageView imgUsers;
 
     @FXML
     private ImageView imgAirlines;
@@ -27,36 +27,29 @@ public class AirportAdminBarController {
     }
 
     @FXML
-    void showSupervisors(MouseEvent event) throws IOException {
+    void showTracks(MouseEvent event) throws IOException {
         resetAllIcons();
-        imgSupervisors.setImage(new Image("/ui/assets/img/icons/active-control-tower.png"));
-        dController.loadView(Route.AP_EMPLOYEES);
+        imgTracks.setImage(new Image("/ui/assets/img/icons/active-control-tower.png"));
+        dController.loadView(Route.TRACK_TABLE);
     }
 
     @FXML
     void showUserCrud(MouseEvent event) throws IOException {
         resetAllIcons();
-        imgSupervisors.setImage(new Image("/ui/assets/img/icons/active-control-tower.png"));
+        imgUsers.setImage(new Image("/ui/assets/img/icons/active-employees.png"));
         dController.loadView(Route.USER_TABLE);
-    }
-
-    @FXML
-    void showMigrationAgents(MouseEvent event) throws IOException {
-        resetAllIcons();
-        imgMigrationAgents.setImage(new Image("/ui/assets/img/icons/active-employees.png"));
-        dController.loadView(Route.AP_EMPLOYEES);
     }
 
     @FXML
     void showAirlines(MouseEvent event) throws IOException {
         resetAllIcons();
         imgAirlines.setImage(new Image("/ui/assets/img/icons/active-plane-flat.png"));
-        dController.loadView(Route.AIRLINES);
+        dController.loadView(Route.AIRLINE_TABLE);
     }
 
     public void resetAllIcons() {
-        imgSupervisors.setImage(new Image("/ui/assets/img/icons/control-tower.png"));
-        imgMigrationAgents.setImage(new Image("/ui/assets/img/icons/employees.png"));
+        imgTracks.setImage(new Image("/ui/assets/img/icons/control-tower.png"));
+        imgUsers.setImage(new Image("/ui/assets/img/icons/employees.png"));
         imgAirlines.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
     }
 

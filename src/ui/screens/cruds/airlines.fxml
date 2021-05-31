@@ -14,29 +14,27 @@
    <children>
       <Pane layoutX="90.0" layoutY="85.0" prefHeight="696.0" prefWidth="1010.0" styleClass="box">
          <children>
-            <TableView fx:id="userTbl" layoutX="38.0" layoutY="81.0" prefHeight="577.0" prefWidth="933.0" stylesheets="@../../assets/styles/table.css">
-              <columns>
-                <TableColumn fx:id="idCol" prefWidth="127.0" text="Identification" />
-                <TableColumn fx:id="nameCol" prefWidth="173.0" text="Name" />
-                  <TableColumn fx:id="lastCol" minWidth="0.0" prefWidth="143.0" text="Last Name" />
-                  <TableColumn fx:id="emailCol" prefWidth="177.0" text="Email" />
-                  <TableColumn fx:id="roleCol" prefWidth="122.0" text="Role" />
+            <TableView fx:id="airlineTbl" layoutX="81.0" layoutY="81.0" prefHeight="577.0" prefWidth="848.0" stylesheets="@../../assets/styles/table.css">
+               <columns>
+                  <TableColumn fx:id="idCol" prefWidth="147.0" text="Id" />
+                  <TableColumn fx:id="nameCol" prefWidth="281.0" text="Airline Name" />
+                  <TableColumn fx:id="logoCol" minWidth="0.0" prefWidth="228.0" text="Airline Logo" />
                   <TableColumn fx:id="actionsCol" prefWidth="190.0" text="Actions" />
-              </columns>
+               </columns>
             </TableView>
-            <Button layoutX="38.0" layoutY="20.0" mnemonicParsing="false" onAction="#newUser" prefHeight="46.0" prefWidth="168.0" styleClass="button-menu" text="New User" textFill="WHITE">
+            <Button layoutX="105.0" layoutY="25.0" mnemonicParsing="false" onAction="#newAirline" prefHeight="46.0" prefWidth="183.0" styleClass="button-menu" text="New Airline" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../assets/img/add_user_group_man_man_80px.png" />
+                        <Image url="@../../assets/img/window_secured_80px.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Label layoutX="46.0" layoutY="658.0" prefHeight="20.0" prefWidth="205.0" text="Showing 16 results of 40" textFill="#8d8d8d" />
+            <Label layoutX="105.0" layoutY="658.0" prefHeight="20.0" prefWidth="205.0" text="Showing 16 results of 40" textFill="#8d8d8d" />
          </children>
       </Pane>
       <Separator layoutY="53.0" prefHeight="9.0" prefWidth="1195.0" />
-      <Label layoutX="42.0" layoutY="10.0" styleClass="menu-label" text="Users Details" />
+      <Label layoutX="42.0" layoutY="10.0" styleClass="menu-label" text="Airlines Details" />
    </children>
 </AnchorPane>

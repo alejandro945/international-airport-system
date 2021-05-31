@@ -44,6 +44,20 @@
                   </Label>
                </children>
             </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showLugagge" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgLuggage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/dashboard.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Luggage">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets top="10.0" />

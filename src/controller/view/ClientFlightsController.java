@@ -8,7 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import model.Flight;
+import model.Costumer;
+import model.Trip;
 import route.Route;
 
 import java.io.IOException;
@@ -20,8 +21,10 @@ public class ClientFlightsController implements Initializable {
     private HBox hboxFlights;
 
     private final DashboardController dController;
+    private Costumer client;
 
     public ClientFlightsController(DashboardController dController) {
+        client = new Costumer();
         this.dController = dController;
     }
 
@@ -32,14 +35,18 @@ public class ClientFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
-         * for (Flight flight : client.getFlights()) { try { addCard(flight); } catch
-         * (IOException e) { e.printStackTrace(); } }
-         */
+        for (Trip flight : client.getTrip()) {
+            try {
+                addCard(flight);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
-    public void addCard(Flight flight) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cards/flight.fxml"));
+    public void addCard(Trip flight) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Route.CARD.getRoute()));
         FlightCardController controller = new FlightCardController(flight);
         fxmlLoader.setController(controller);
         Pane pane = fxmlLoader.load();

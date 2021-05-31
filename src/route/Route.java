@@ -12,7 +12,6 @@ public enum Route {
     MIGRATION_AGENT(Root.BAR.getRoot() + "bar-migration-agent.fxml"),
     COSTUMER(Root.BAR.getRoot() + "bar-costumer.fxml"), ACTIVE_FLIGHTS(Root.TOWER.getRoot() + "active-flights.fxml"),
     NEW_MAINTENANCE(Root.TOWER.getRoot() + "new-maintenance.fxml"),
-    FLIGHTS_STATUS(Root.TOWER.getRoot() + "status.fxml"),
     UPCOMING_FLIGHTS(Root.TOWER.getRoot() + "upcoming-flights.fxml"),
     AIRLINE_EMPLOYEES(Root.AIRLINE.getRoot() + "airline-employees.fxml"),
     FLIGHTS(Root.AIRLINE.getRoot() + "flights.fxml"), AIRLINES(Root.AIRPORT.getRoot() + "airlines.fxml"),
@@ -22,7 +21,11 @@ public enum Route {
     PROFILE_SETTING(Root.CLIENT.getRoot() + "profile-settings.fxml"),
     INDICATORS(Root.MIGRATION.getRoot() + "indicators.fxml"), NEW_EMPLOYEE(Root.GLOBAL.getRoot() + "new-employee.fxml"),
     PROFILE(Root.USER.getRoot() + "profile.fxml"), CARD(Root.CARD.getRoot() + "flight.fxml"),
-    USER_MODAL(Root.CRUD.getRoot() + "usersModal.fxml"), USER_TABLE(Root.CRUD.getRoot() + "users.fxml");
+    USER_MODAL(Root.CRUD.getRoot() + "usersModal.fxml"), USER_TABLE(Root.CRUD.getRoot() + "users.fxml"),
+    AIRLINE_MODAL(Root.CRUD.getRoot() + "airlinesModal.fxml"), AIRLINE_TABLE(Root.CRUD.getRoot() + "airlines.fxml"),
+    TRACK_MODAL(Root.CRUD.getRoot() + "tracksModal.fxml"), TRACK_TABLE(Root.CRUD.getRoot() + "tracks.fxml"),
+    LUGAGGE_MODAL(Root.CRUD.getRoot() + "lugaggesModal.fxml"), LUGAGGE_TABLE(Root.CRUD.getRoot() + "lugagges.fxml"),
+    AIRCRAFT_MODAL(Root.CRUD.getRoot() + "aircraftsModal.fxml"), AIRCRAFT_TABLE(Root.CRUD.getRoot() + "aircrafts.fxml");
 
     private String route;
 

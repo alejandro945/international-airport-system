@@ -1,6 +1,6 @@
 package model;
 
-public class Luggage implements Weight {
+public class Luggage implements Price {
     private int luggagePrice;
     private double height;
     private double width;
@@ -11,7 +11,7 @@ public class Luggage implements Weight {
         this.height = height;
         this.width = width;
         this.weight = weight;
-        calculateLuggagePrice(25);
+        calculatePrice(0);
     }
 
     /**
@@ -24,7 +24,7 @@ public class Luggage implements Weight {
     /**
      * @param increase
      */
-    public void calculateLuggagePrice(int increase) {
+    public void calculatePrice(int increase) {
         this.luggagePrice = (int) (weight * height) * increase;
     }
 
@@ -89,14 +89,6 @@ public class Luggage implements Weight {
      */
     public void setNextLuggage(Luggage nextLuggage) {
         this.nextLuggage = nextLuggage;
-    }
-
-    /**
-     * @return double
-     */
-    @Override
-    public double calculateWeight() {
-        return 0;
     }
 
 }

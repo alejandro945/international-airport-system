@@ -11,20 +11,15 @@ import controller.DashboardController;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import model.*;
 import route.Route;
@@ -87,6 +82,55 @@ public class UserController implements Initializable {
     public UserController(Airport airport, DashboardController dController) {
         this.airport = airport;
         this.dController = dController;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getData();
+    }
+
+    @FXML
+    public void cancelModal(ActionEvent event) {
+        modal.close();
+    }
+
+    @FXML
+    public void saveUser(ActionEvent event) {
+        userAction(1);
+    }
+
+    @FXML
+    public void editUser(ActionEvent event) {
+        userAction(2);
+    }
+
+    @FXML
+    public void isAirline(ActionEvent event) {
+        if (txtRole.getValue() == UserRole.AIRLINE_ADMIN) {
+            initAirlines();
+            txtAirline.setVisible(true);
+        } else {
+            txtAirline.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void newUser(ActionEvent event) throws IOException {
+        showModal();
+        modalName.setText("Create User");
+        btnEdit.setVisible(false);
+        btnSave.setVisible(true);
+    }
+
+    public void setModal(Stage modal) {
+        this.modal = modal;
+    }
+
+    public void showModal() throws IOException {
+        Stage stage = dController.loadModal(Route.USER_MODAL, this);
+        setModal(stage);
+        stage.show();
+        initRoles();
     }
 
     public void getData() {
@@ -160,21 +204,6 @@ public class UserController implements Initializable {
         }
     }
 
-    @FXML
-    public void cancelModal(ActionEvent event) {
-        modal.close();
-    }
-
-    @FXML
-    public void saveUser(ActionEvent event) {
-        userAction(1);
-    }
-
-    @FXML
-    public void editUser(ActionEvent event) {
-        userAction(2);
-    }
-
     public void userAction(int option) {
         String msg = "";
         if (validateFields() && txtAirline.getSelectionModel().getSelectedItem() != null) {
@@ -233,43 +262,4 @@ public class UserController implements Initializable {
         txtAirline.getItems().addAll(airport.getAirlines());
     }
 
-    public void setModal(Stage modal) {
-        this.modal = modal;
-    }
-
-    @FXML
-    public void isAirline(ActionEvent event) {
-        if (txtRole.getValue() == UserRole.AIRLINE_ADMIN) {
-            initAirlines();
-            txtAirline.setVisible(true);
-        } else {
-            txtAirline.setVisible(false);
-        }
-    }
-
-    @FXML
-    public void newUser(ActionEvent event) throws IOException {
-        showModal();
-        modalName.setText("Create User");
-        btnEdit.setVisible(false);
-        btnSave.setVisible(true);
-    }
-
-    public void showModal() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Route.USER_MODAL.getRoute()));
-        fxmlLoader.setController(this);
-        Parent modal = fxmlLoader.load();
-        Scene scene = new Scene(modal);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-        setModal(stage);
-        initRoles();
-        stage.show();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        getData();
-    }
 }

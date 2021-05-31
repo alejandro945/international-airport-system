@@ -22,6 +22,15 @@ public class AirlineAdminBarController {
 
     @FXML
     private ImageView imgEmployees;
+    @FXML
+    private ImageView imgAircrafts;
+
+    @FXML
+    void showAircrafts(MouseEvent event) throws IOException {
+        resetAllIcons();
+        imgAircrafts.setImage(new Image("/ui/assets/img/icons/active-flights.png"));
+        dController.loadView(Route.AIRCRAFT_TABLE);
+    }
 
     @FXML
     void showFlights(MouseEvent event) throws IOException {
@@ -38,6 +47,7 @@ public class AirlineAdminBarController {
     }
 
     public void resetAllIcons() {
+        imgAircrafts.setImage(new Image("/ui/assets/img/icons/flights.png"));
         imgAirlineFlights.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
         imgEmployees.setImage(new Image("/ui/assets/img/icons/employees.png"));
     }

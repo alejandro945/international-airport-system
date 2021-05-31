@@ -18,6 +18,7 @@
       }
     .table-cell{
         -fx-font: 16px "Century Gothic";
+        -fx-alignment: CENTER;
     }
     .table-row-cell:empty .table-cell {
         -fx-border-width: 0px;

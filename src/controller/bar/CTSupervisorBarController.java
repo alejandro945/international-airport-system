@@ -45,7 +45,7 @@ public class CTSupervisorBarController {
     void showStatus(MouseEvent event) throws IOException {
         resetAllIcons();
         imgStatus.setImage(new Image("/ui/assets/img/icons/active-status.png"));
-        dController.loadView(Route.FLIGHTS_STATUS);
+        dController.loadView(Route.TRACK_TABLE);
     }
 
     @FXML

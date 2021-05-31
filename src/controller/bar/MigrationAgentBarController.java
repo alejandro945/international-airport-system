@@ -20,7 +20,7 @@ public class MigrationAgentBarController {
     @FXML
     void showIndicators(MouseEvent event) throws IOException {
         resetAllIcons();
-        imgIndicators.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
+        imgIndicators.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
         dController.loadView(Route.INDICATORS);
     }
 

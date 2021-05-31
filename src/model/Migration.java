@@ -1,12 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Migration {
+public class Migration implements Supplier {
     private List<Costumer> people;
 
-    public Migration(List<Costumer> people) {
-        this.people = people;
+    public Migration() {
+        people = new ArrayList<>();
     }
 
     public List<Costumer> getPeople() {
@@ -15,6 +16,11 @@ public class Migration {
 
     public void setPeople(List<Costumer> people) {
         this.people = people;
+    }
+
+    @Override
+    public void airportCharges(int investment) {
+
     }
 
 }

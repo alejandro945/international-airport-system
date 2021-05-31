@@ -30,7 +30,7 @@ public class NewMaintenanceController {
 
     @FXML
     void goBack(ActionEvent event) throws IOException {
-        dController.loadView(Route.FLIGHTS_STATUS);
+        dController.loadView(Route.TRACK_TABLE);
     }
 
     @FXML

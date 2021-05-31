@@ -1,18 +1,21 @@
 package controller;
 
 import controller.bar.*;
-import controller.crud.UserController;
+import controller.crud.*;
 import controller.view.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.Airport;
 import route.Route;
@@ -104,7 +107,7 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    void showProfile(MouseEvent event) throws IOException {
+    public void showProfile(MouseEvent event) throws IOException {
         loadView(Route.PROFILE);
     }
 
@@ -120,6 +123,17 @@ public class DashboardController implements Initializable {
         fxmlLoader.setController(setViewController(route));
         Parent view = fxmlLoader.load();
         dashPane.getChildren().setAll(view);
+    }
+
+    public Stage loadModal(Route route, Object controller) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route.getRoute()));
+        fxmlLoader.setController(controller);
+        Parent modal = fxmlLoader.load();
+        Scene scene = new Scene(modal);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        return stage;
     }
 
     public Object setViewController(Route route) {
@@ -138,8 +152,6 @@ public class DashboardController implements Initializable {
                 return new ActiveFlightsController(this);
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this);
-            case FLIGHTS_STATUS:
-                return new StatusController(this);
             case NEW_MAINTENANCE:
                 return new NewMaintenanceController(this);
             case INDICATORS:
@@ -152,6 +164,14 @@ public class DashboardController implements Initializable {
                 return new ProfileController(this);
             case USER_TABLE:
                 return new UserController(airport, this);
+            case AIRLINE_TABLE:
+                return new AirlineController(airport, this);
+            case TRACK_TABLE:
+                return new TrackController(airport, this);
+            case LUGAGGE_TABLE:
+                return new LugaggeController(airport, this);
+            case AIRCRAFT_TABLE:
+                return new AircraftController(airport, this);
             default:
                 return null;
         }

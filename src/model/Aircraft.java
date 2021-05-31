@@ -2,13 +2,20 @@ package model;
 
 import java.util.List;
 
-public class Aircraft implements Weight {
+public class Aircraft implements Maintenance {
     private Seat[][] seat;// Bynary Search
     private Pilot pilot;
     private List<Costumer> costumer; // Bynary Search
     private Track track;
     private int planeWeight;
     private String planeCode;
+    private int capacity;
+
+    public Aircraft(String planeCode, int planeWeight, int capacity) {
+        this.planeCode = planeCode;
+        this.planeWeight = planeWeight;
+        this.capacity = capacity;
+    }
 
     /**
      * @return int
@@ -94,9 +101,17 @@ public class Aircraft implements Weight {
         this.track = track;
     }
 
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     @Override
-    public double calculateWeight() {
-        return 0;
+    public void inMaintenance() {
+
     }
 
 }

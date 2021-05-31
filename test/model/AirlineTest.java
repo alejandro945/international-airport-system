@@ -7,35 +7,35 @@ public class AirlineTest {
 	private Airline airline;
 
 	private void setupScenary1() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary2() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary3() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary4() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary5() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary6() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary7() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	private void setupScenary8() {
-		airline = new Airline("Avianca");
+		airline = new Airline("Avianca", "");
 	}
 
 	// ------------------------------- Cases

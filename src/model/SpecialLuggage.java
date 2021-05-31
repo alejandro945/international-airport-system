@@ -6,7 +6,7 @@ public class SpecialLuggage extends Luggage {
     public SpecialLuggage(double height, double width, double weight, String luggageType) {
         super(height, width, weight);
         this.luggageType = luggageType;
-        calculateLuggagePrice(35);
+        calculatePrice(30);
     }
 
     /**

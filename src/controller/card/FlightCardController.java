@@ -2,7 +2,7 @@ package controller.card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import model.Flight;
+import model.Trip;
 
 public class FlightCardController {
 
@@ -17,15 +17,15 @@ public class FlightCardController {
 
     @FXML
     private Label lblTime;
-    private Flight flight;
+    private Trip flight;
 
-    public FlightCardController(Flight fligth) {
-        this.flight = fligth;
+    public FlightCardController(Trip flight) {
+        this.flight = flight;
     }
 
     public void setData() {
-        lblDeparture.setText("España");
-        lblDestination.setText("China");
+        lblDeparture.setText(String.valueOf(flight.getTicket().getFlight().getOrigin()));
+        lblDestination.setText(String.valueOf(flight.getTicket().getFlight().getDestination()));
         lblDate.setText("11 Junio 2021");
         lblTime.setText("8:00");
     }

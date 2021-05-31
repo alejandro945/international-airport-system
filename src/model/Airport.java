@@ -21,9 +21,9 @@ public class Airport {
         airlines = new ArrayList<>();
         users.add(
                 new User("Alejandro", "Varela", 1006343560, "alejo8677@gmail.com", "1472583", UserRole.AIRPORT_ADMIN));
-        airlines.add(new Airline("Avianca"));
-        airlines.add(new Airline("Spirit"));
-        airlines.add(new Airline("Viva Air"));
+        airlines.add(new Airline("Avianca", ""));
+        airlines.add(new Airline("Spirit", ""));
+        airlines.add(new Airline("Viva Air", ""));
     }
 
     public Track getFirstTrack() {

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="225.0" style="-fx-background-color: #fff;" styleClass="side-bar" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="225.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="770.0" prefWidth="225.0" style="-fx-background-color: #fff;" styleClass="side-bar">
          <children>
@@ -39,6 +39,20 @@
                      </image>
                   </ImageView>
                   <Label text="Employees">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showAircrafts" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgAircrafts" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/flights.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Aircrafts">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>

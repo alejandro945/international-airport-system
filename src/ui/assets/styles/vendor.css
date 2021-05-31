@@ -25,6 +25,11 @@
     -fx-background-color: #651FFF;
     -fx-background-radius: 40 40 0 0;
 }
+.main-side{
+    -fx-background-color: white;
+    -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.2, 0.8, 0.0 );
+    -fx-background-radius: 0 40 40 40;
+}
 .modal{
     -fx-background-color: rgba(255, 255, 255, 0);
 }
@@ -120,12 +125,16 @@
     -fx-background-color: linear-gradient(to right,#a28bff ,#3929E0);
 }
 .jfx-tab-pane .tab-selected-line{
-    -fx-border-color:#c70000 ;
+    -fx-border-color:#b13838 ;
 }
 .jfx-text-field{
 -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
 }
+.jfx-text-area{
+    -fx-font-family: "Century Gothic" ;
+        -fx-font-style: italic;
+    }
 .jfx-password-field{
 -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;

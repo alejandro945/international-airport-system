@@ -1,5 +1,5 @@
 package model;
 
 public interface Price {
-    public int calculatePrice();
+    public void calculatePrice(int increase);
 }

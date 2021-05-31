@@ -1,44 +1,21 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControlTower {
-    private List<Flight> flight;
-    private boolean state;
-    private int maintainceTime;
+    private List<Flight> flights;
 
-    public ControlTower(List<Flight> flight, boolean state, int maintainceTime) {
-        this.flight = flight;
-        this.state = state;
-        this.maintainceTime = maintainceTime;
+    public ControlTower() {
+        flights = new ArrayList<>();
     }
 
-    public List<Flight> getFlight() {
-        return this.flight;
+    public List<Flight> getFlights() {
+        return this.flights;
     }
 
-    public void setFlight(List<Flight> flight) {
-        this.flight = flight;
-    }
-
-    public boolean isState() {
-        return this.state;
-    }
-
-    public boolean getState() {
-        return this.state;
-    }
-
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
-    public int getMaintainceTime() {
-        return this.maintainceTime;
-    }
-
-    public void setMaintainceTime(int maintainceTime) {
-        this.maintainceTime = maintainceTime;
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 
 }
