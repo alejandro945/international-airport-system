@@ -7,7 +7,7 @@
 
 # International Airport System ✈️ ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
 
-This application is the system for Madrid's new international airport. The aim of this software is to manage the main dipendencis of the airport and allow customers buy tickets and check their tickets record. The airlines administrators, migration officers, and tower control operator can access this application to acomplish theirs duties. 
+This application is the system for Madrid's new international airport. The aim of this software is to manage the main dependencies of the airport and allow customers buy tickets and check their tickets record. The airlines administrators, migration officers, and tower control operator can access this application to acomplish theirs duties. 
 
 Airlines adminitrator can create new flys, planes, asssing personal to airplane. Migration officers can see the length of persons in line to go out and some people flow indicators. Finally, tower control operators can check the status of each current fly.
 

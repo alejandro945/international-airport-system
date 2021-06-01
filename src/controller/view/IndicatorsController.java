@@ -1,4 +1,5 @@
 package controller.view;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
@@ -19,11 +20,15 @@ public class IndicatorsController {
 
     @FXML
     private StackedAreaChart<?, ?> stacked;
-    
+
     private final DashboardController dController;
 
     public IndicatorsController(DashboardController dController) {
         this.dController = dController;
+    }
+
+    public DashboardController getDController() {
+        return dController;
     }
 
 }
