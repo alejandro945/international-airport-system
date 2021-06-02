@@ -1,5 +1,6 @@
 package controller.crud;
 
+import controller.Constant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -90,18 +91,26 @@ public class TrackController implements Initializable {
 
     @FXML
     void editTrack(ActionEvent event) {
-        airport.editTrack(selected,txtGate.getText());
-        dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText()), Route.SUCCESS);
-        modal.close();
-        getData();
+        if(validateFields()) {
+            airport.editTrack(selected,txtGate.getText());
+            dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText()), Route.SUCCESS);
+            modal.close();
+            getData();
+        } else {
+            dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
+        }
     }
 
     @FXML
     void saveTrack(ActionEvent event) {
-        airport.addTrack(new Track(Integer.parseInt("12345"), txtGate.getText()));
-        dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
-        modal.close();
-        getData();
+        if(validateFields()) {
+            airport.addTrack(new Track(Integer.parseInt("12345"), txtGate.getText()));
+            dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
+            modal.close();
+            getData();
+        } else {
+            dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
+        }
     }
 
     public void getData() {
