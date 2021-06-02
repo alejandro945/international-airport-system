@@ -18,6 +18,8 @@ public class Airport {
     private User adminLogged;
     private List<Flight> flights;
 
+    private ControlTower controlTower;
+
     public Airport() {
         users = new ArrayList<>();
         airlines = new ArrayList<>();
@@ -27,6 +29,8 @@ public class Airport {
         airlines.add(new Airline("Avianca", ""));
         airlines.add(new Airline("Spirit", ""));
         airlines.add(new Airline("Viva Air", ""));
+
+        controlTower = new ControlTower();
     }
 
     public Track getFirstTrack() {

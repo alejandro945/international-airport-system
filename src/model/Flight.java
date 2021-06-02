@@ -9,8 +9,9 @@ public class Flight {
     private Places destination;
     private Aircraft plane;
     private FlightState flightStatus;
+    private String id;
 
-    public Flight(String departureDate, String departureHour, String arrivalDate, String arrivalHour, Places origin,
+    public Flight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour, Places origin,
             Places destination) {
         this.departureDate = departureDate;
         this.departureHour = departureHour;
@@ -20,6 +21,7 @@ public class Flight {
         this.destination = destination;
         // this.plane = plane;
         this.flightStatus = FlightState.AIRBORNE;
+        this.id = id;
     }
 
     /**
@@ -134,4 +136,19 @@ public class Flight {
         this.flightStatus = flightStatus;
     }
 
+    /**
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
 }

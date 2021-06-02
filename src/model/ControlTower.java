@@ -9,10 +9,10 @@ public class ControlTower {
     private boolean maintenance;
     private int maintenanceTime;
 
-    public ControlTower(int maintenanceTime) {
+    public ControlTower() {
         flights = new ArrayList<>();
         maintenance = false;
-        this.maintenanceTime = maintenanceTime;
+        maintenanceTime = 10;
     }
 
     public List<Flight> getFlights() {

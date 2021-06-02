@@ -16,11 +16,11 @@ public class Costumer extends User {
         super("Tester", "User", 122442, "testerUser@correo.co", "password", UserRole.COSTUMER_USER);
         trip = new ArrayList<>();
         trip.add(new Trip(
-                new Ticket(new Flight("Junio 4 2021", "8:00", "Junio 4 2021", "11:00", Places.BARCELONA, Places.MIAMI),
+                new Ticket(new Flight("V21","Junio 4 2021", "8:00", "Junio 4 2021", "11:00", Places.BARCELONA, Places.MIAMI),
                         new Seat(4, 'A', true), 20000),
                 new Luggage(20, 30, 70), 500000));
         trip.add(new Trip(
-                new Ticket(new Flight("Junio 4 2021", "8:00", "Junio 4 2021", "11:00", Places.BOGOTA, Places.MILAN),
+                new Ticket(new Flight("V22","Junio 4 2021", "8:00", "Junio 4 2021", "11:00", Places.BOGOTA, Places.MILAN),
                         new Seat(4, 'A', true), 20000),
                 new Luggage(20, 30, 70), 500000));
     }
