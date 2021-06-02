@@ -234,9 +234,10 @@ public class Airport {
      * Removes a track from the track's linked list.
      * @param toDelete Track to remove from the linked list.
      */
-    public void remove(Track toDelete) {
-        remove(firstTrack, toDelete);
+    public String removeTrack(Track toDelete) {
+        removeTrack(firstTrack, toDelete);
         trackAmount--;
+        return "Track " + toDelete.getId() + DELETE_SUCCESS;
     }
 
     /**
@@ -244,7 +245,7 @@ public class Airport {
      * @param current The track to be compared with the track to be deleted.
      * @param toDelete The track to be deleted.
      */
-    private void remove(Track current, Track toDelete) {
+    private void removeTrack(Track current, Track toDelete) {
         if(current!=null) {
             if(current==toDelete) {
                 if(current==firstTrack) {
@@ -262,9 +263,33 @@ public class Airport {
                     current.getNext().setPrev(current.getPrev());
                 }
             } else {
-                remove(current.getNext(), toDelete);
+                removeTrack(current.getNext(), toDelete);
             }
         }
+    }
+
+    /**
+     * Creates a list from existing tracks.
+     * @return Returns a list with all the existing tracks.
+     */
+    public List<Track> tracksToList() {
+        return tracksToList(firstTrack);
+    }
+
+    /**
+     * Auxiliar method that creates a list from the existing tracks.
+     * @param current Current track. Receives first track at first.
+     * @return Returns a list with all the existing tracks.
+     */
+    public List<Track> tracksToList(Track current) {
+        List<Track> tracks = new ArrayList<>();
+
+        while (current!=null) {
+            tracks.add(current);
+            current = current.getNext();
+        }
+
+        return tracks;
     }
     
 }
