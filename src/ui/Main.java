@@ -37,7 +37,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setResizable(false);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
         airportController.renderScreen(Route.LOGIN);
     }

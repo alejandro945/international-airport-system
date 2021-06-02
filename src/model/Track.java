@@ -5,10 +5,14 @@ public class Track implements Maintenance {
     private boolean state;
     private String gate;
 
+    private Track next;
+
     public Track(int id, String gate) {
         this.id = id;
         this.gate = gate;
         state = true;
+
+        next =  null;
     }
 
     public int getId() {
@@ -42,6 +46,14 @@ public class Track implements Maintenance {
     @Override
     public void inMaintenance() {
 
+    }
+
+    public Track getNext() {
+        return next;
+    }
+
+    public void setNext(Track next) {
+        this.next = next;
     }
 
 }
