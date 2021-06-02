@@ -5,7 +5,9 @@ public class Luggage implements Price {
     private double height;
     private double width;
     private double weight;
+
     private Luggage nextLuggage;
+    private Luggage previousLuggage;
 
     public Luggage(double height, double width, double weight) {
         this.height = height;
@@ -89,6 +91,20 @@ public class Luggage implements Price {
      */
     public void setNextLuggage(Luggage nextLuggage) {
         this.nextLuggage = nextLuggage;
+    }
+
+    /**
+     * @return Luggage
+     */
+    public Luggage getPreviousLuggage() {
+        return previousLuggage;
+    }
+
+    /**
+     * @param previousLuggage
+     */
+    public void setPreviousLuggage(Luggage previousLuggage) {
+        this.previousLuggage = previousLuggage;
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 public class Airport {
     public static final String USER_SUCCESS = " have been added to our Airport successfully";
     public static final String DELETE_SUCCESS = " have been deleted successfully";
-    public static final String EDIT_SUCCEES = " have been edited  successfully";
+    public static final String EDIT_SUCCESS = " have been edited  successfully";
     public static final String USER_ERROR = " could not been added to our Airport (Already exists)";
     public static final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public static final String OAUTH_MESSAGE = " your account have been rendered successfully";
@@ -82,6 +82,14 @@ public class Airport {
         this.adminLogged = adminLogged;
     }
 
+    public ControlTower getControlTower() {
+        return controlTower;
+    }
+
+    public void setControlTower(ControlTower controlTower) {
+        this.controlTower = controlTower;
+    }
+
     // USER-TOWER-MIGRATION
     public String createUser(String name, String lastName, long id, String email, String password, UserRole role) {
         String msg = "";
@@ -103,7 +111,7 @@ public class Airport {
         user.setEmail(email);
         user.setPassword(password);
         user.setRole(role);
-        return name + EDIT_SUCCEES;
+        return name + EDIT_SUCCESS;
     }
 
     // AIRLINE-ADMIN
@@ -127,7 +135,7 @@ public class Airport {
         user.setEmail(email);
         user.setPassword(password);
         user.setAirline(airline);
-        return name + EDIT_SUCCEES;
+        return name + EDIT_SUCCESS;
     }
 
     // JWT-COSTUMER
@@ -203,7 +211,6 @@ public class Airport {
         }
         return found;
     }
-
     
     
 }

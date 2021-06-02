@@ -10,20 +10,14 @@ public class AirportTest {
         airport = new Airport();
     }
 
-    private void setupScenary2() {
-        airport = new Airport();
-
-    }
-
     private void setupScenary3() { // Two Airline administrators
         airport = new Airport();
 
         User test1 = new User("Test1", "Test1", 567, "test1@gmail.com", "123", UserRole.values()[1]);
         User test2 = new User("Test2", "Test2", 765, "test2@gmail.com", "123", UserRole.values()[1]);
-    }
 
-    private void setupScenary4() {
-        airport = new Airport();
+        airport.getUsers().add(test1);
+        airport.getUsers().add(test2);
     }
 
     private void setupScenary5() { // Tow Tower Controllers
@@ -31,10 +25,9 @@ public class AirportTest {
 
         User test1 = new User("Test1", "Test1", 567, "test1@gmail.com", "123", UserRole.values()[3]);
         User test2 = new User("Test2", "Test2", 765, "test2@gmail.com", "123", UserRole.values()[3]);
-    }
 
-    private void setupScenary6() {
-        airport = new Airport();
+        airport.getUsers().add(test1);
+        airport.getUsers().add(test2);
     }
 
     private void setupScenary7() { // Two Migration Agents
@@ -42,10 +35,9 @@ public class AirportTest {
 
         User test1 = new User("Test1", "Test1", 567, "test1@gmail.com", "123", UserRole.values()[4]);
         User test2 = new User("Test2", "Test2", 765, "test2@gmail.com", "123", UserRole.values()[4]);
-    }
 
-    private void setupScenary8() {
-        airport = new Airport();
+        airport.getUsers().add(test1);
+        airport.getUsers().add(test2);
     }
 
     private void setupScenary9() { // Two Customers
@@ -53,6 +45,9 @@ public class AirportTest {
 
         Costumer test1 = new Costumer("Test2", "Test2", 765, "test2@gmail.com", "123");
         Costumer test2 = new Costumer("Test1", "Test1", 765, "test1@gmail.com", "123");
+
+        airport.getUsers().add(test1);
+        airport.getUsers().add(test2);
     }
 
     private void setupScenary10() {
@@ -81,10 +76,6 @@ public class AirportTest {
         track1.setNext(track2);
     }
 
-    private void setupScenary12() {
-        airport = new Airport();
-    }
-
     private void setupScenary13() {
         airport = new Airport();
 
@@ -97,92 +88,117 @@ public class AirportTest {
 
     private void setupScenary14() {
         airport = new Airport();
+
+        Costumer test2 = new Costumer("Test2", "Test2", 765, "test2@gmail.com", "123");
+        Costumer test1 = new Costumer("Test1", "Test1", 765, "test1@gmail.com", "123");
+        Costumer test3 = new Costumer("Test3", "Test3", 125, "test3@gmail.com", "123");
+
+        airport.getUsers().add(test1);
+        airport.getUsers().add(test2);
+        airport.getUsers().add(test3);
     }
 
     // ----------------------------------------------------------------- cases
 
     @Test
     public void createMainUser() {
+        setupScenary1();
 
     }
 
     @Test
     public void createAirlineManager1() {
-
+        setupScenary1();
+        
     }
 
     @Test
     public void createAirlineManager2() {
-
+        setupScenary3();
+        
     }
 
     @Test
     public void createTowerCntrl1() {
-
+        setupScenary1();
+        
     }
 
     @Test
     public void createTowerCntrl2() {
-
+        setupScenary5();
+        
     }
 
     @Test
     public void createMigrationAgent1() {
-
+        setupScenary1();
+        
     }
 
     @Test
     public void createMigrationAgent2() {
-
+        setupScenary7();
+        
     }
 
     @Test
     public void eliminateAirlineManager() {
-
+        setupScenary3();
+        
     }
 
     @Test
     public void eliminateTowerCntrl() {
-
+        setupScenary5();
+        
     }
 
     @Test
     public void eliminateMigrationAgent() {
-
+        setupScenary7();
+        
     }
 
     @Test
     public void createClient1() {
-
+        setupScenary1();
+        
     }
 
     @Test
     public void createClient2() {
-
+        setupScenary9();
+        
     }
 
     @Test
     public void eliminateClient() {
-
+        setupScenary9();
+        
     }
 
     @Test
     public void assignFlyTrack() {
-
+        setupScenary10();
+        
     }
 
     @Test
     public void maintenance() {
-
+        setupScenary11();
+        
     }
 
     @Test
     public void getActualFlys() {
-
+        setupScenary13();
+        
     }
 
     @Test
     public void validateClientPass() {
-
+        setupScenary14();
+        
     }
 }

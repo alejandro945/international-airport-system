@@ -56,6 +56,6 @@ public class Ticket implements Price {
     @Override
     public void calculatePrice(int increase) {
 
-    }
+    }    
 
 }
