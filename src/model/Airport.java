@@ -120,8 +120,8 @@ public class Airport {
     public String createUser(String name, String lastName, long id, String email, String password, Airline airline) {
         String msg = "";
         if (!searchUserId(id)) {
-            AirlineUser newaAirlineUser = new AirlineUser(name, lastName, id, email, password, airline);
-            users.add(newaAirlineUser);
+            AirlineUser newAirlineUser = new AirlineUser(name, lastName, id, email, password, airline);
+            users.add(newAirlineUser);
             msg = name + USER_SUCCESS;
         } else {
             msg = USER_ERROR;
