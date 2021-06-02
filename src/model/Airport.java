@@ -12,6 +12,8 @@ public class Airport {
     public static final String OAUTH_MESSAGE = " your account have been rendered successfully";
     
     private Track firstTrack;
+    private Track lastTrack;
+    private int trackAmount;
     private List<User> users;
     private List<Airline> airlines;
     private Costumer logged;
@@ -211,6 +213,58 @@ public class Airport {
         }
         return found;
     }
-    
+
+    /**
+     * Adds track to the last position of the track's linked list.
+     * @param track Track to add.
+     */
+    public void addTrack(Track track) {
+        if(firstTrack == null) {
+            firstTrack = track;
+            lastTrack = firstTrack;
+        } else {
+            track.setPrev(lastTrack);
+            lastTrack.setNext(track);
+            lastTrack = track;
+        }
+        trackAmount++;
+    }
+
+    /**
+     * Removes a track from the track's linked list.
+     * @param toDelete Track to remove from the linked list.
+     */
+    public void remove(Track toDelete) {
+        remove(firstTrack, toDelete);
+        trackAmount--;
+    }
+
+    /**
+     * Recursively search for the track to be deleted.
+     * @param current The track to be compared with the track to be deleted.
+     * @param toDelete The track to be deleted.
+     */
+    private void remove(Track current, Track toDelete) {
+        if(current!=null) {
+            if(current==toDelete) {
+                if(current==firstTrack) {
+                    if(trackAmount==1) {
+                        firstTrack = null;
+                        lastTrack = null;
+                    } else {
+                        firstTrack = current.getNext();
+                    }
+                } else if(current==lastTrack) {
+                    current.getPrev().setNext(null);
+                    lastTrack = current.getPrev();
+                } else {
+                    current.getPrev().setNext(current.getNext());
+                    current.getNext().setPrev(current.getPrev());
+                }
+            } else {
+                remove(current.getNext(), toDelete);
+            }
+        }
+    }
     
 }
