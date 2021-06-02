@@ -6,6 +6,7 @@ public class Track implements Maintenance {
     private String gate;
 
     private Track next;
+    private Track prev;
 
     public Track(int id, String gate) {
         this.id = id;
@@ -56,4 +57,11 @@ public class Track implements Maintenance {
         this.next = next;
     }
 
+    public Track getPrev() {
+        return prev;
+    }
+
+    public void setPrev(Track prev) {
+        this.prev = prev;
+    }
 }
