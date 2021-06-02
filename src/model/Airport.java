@@ -291,5 +291,10 @@ public class Airport {
 
         return tracks;
     }
+
+    public String editTrack(Track track, String gate) {
+        track.setGate(gate);
+        return "Track " + track.getId() + EDIT_SUCCESS;
+    }
     
 }

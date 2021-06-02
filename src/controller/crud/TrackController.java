@@ -90,12 +90,18 @@ public class TrackController implements Initializable {
 
     @FXML
     void editTrack(ActionEvent event) {
-
+        airport.editTrack(selected,txtGate.getText());
+        dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText()), Route.SUCCESS);
+        modal.close();
+        getData();
     }
 
     @FXML
     void saveTrack(ActionEvent event) {
-        airport.addTrack(new Track(Integer.parseInt("5912315"), txtGate.getText()));
+        airport.addTrack(new Track(Integer.parseInt("12345"), txtGate.getText()));
+        dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
+        modal.close();
+        getData();
     }
 
     public void getData() {
@@ -105,6 +111,14 @@ public class TrackController implements Initializable {
         stateCol.setCellValueFactory(new PropertyValueFactory<>("state"));
         renderActions();
         trackTbl.setItems(tracks);
+    }
+
+    public boolean validateFields() {
+        boolean render = true;
+        if (txtGate.getText().isEmpty()) {
+            render = false;
+        }
+        return render;
     }
 
     private void renderActions() {
@@ -126,6 +140,7 @@ public class TrackController implements Initializable {
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Track) getTableRow().getItem();
                             dController.geAirportController().createAlert(airport.removeTrack(selected), Route.SUCCESS);
+                            getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
                             selected = (Track) getTableRow().getItem();
