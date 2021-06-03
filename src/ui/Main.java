@@ -6,7 +6,6 @@ import com.sun.javafx.application.LauncherImpl;
 
 import controller.AirportController;
 import javafx.application.Application;
-import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
@@ -26,7 +25,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         LauncherImpl.launchApplication(Main.class, Splash.class, args);
-        //launch(args);
     }
 
     @Override
@@ -37,17 +35,13 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
         airportController.renderScreen(Route.LOGIN);
     }
 
     @Override
-    public void init() throws IOException {
-        for (int i = 0; i < RENDER_COMPONENTES; i++) {
-            double progress = (100 * i) / RENDER_COMPONENTES;
-            LauncherImpl.notifyPreloader(this, new Preloader.ProgressNotification(progress));
-        }
+    public void init() throws IOException, InterruptedException {
+        Thread.sleep(RENDER_COMPONENTES);
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControlTower {
-
     private List<Flight> flights;
     private boolean maintenance;
     private int maintenanceTime;
@@ -38,7 +37,5 @@ public class ControlTower {
     public void setMaintenanceTime(int maintenanceTime) {
         this.maintenanceTime = maintenanceTime;
     }
-
-    
 
 }

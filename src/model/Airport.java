@@ -10,27 +10,34 @@ public class Airport {
     public static final String USER_ERROR = " could not been added to our Airport (Already exists)";
     public static final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public static final String OAUTH_MESSAGE = " your account have been rendered successfully";
-    
+
     private Track firstTrack;
     private List<User> users;
     private List<Airline> airlines;
     private Costumer logged;
     private User adminLogged;
     private List<Flight> flights;
-
     private ControlTower controlTower;
 
     public Airport() {
         users = new ArrayList<>();
         airlines = new ArrayList<>();
-        flights = new ArrayList<>();
-
         users.add(new User("Alejandro", "Varela", 1, "alejo8677@gmail.com", "1", UserRole.AIRPORT_ADMIN));
         airlines.add(new Airline("Avianca", ""));
         airlines.add(new Airline("Spirit", ""));
         airlines.add(new Airline("Viva Air", ""));
 
         controlTower = new ControlTower();
+    }
+
+    public List<Flight> getFlights() {
+        for (Airline airline : airlines) {
+            for (Flight flight : airline.getFlights()) {
+                flights.add(flight);
+            }
+        }
+        controlTower.setFlights(flights);
+        return flights;
     }
 
     public Track getFirstTrack() {
@@ -68,15 +75,6 @@ public class Airport {
     public User getAdminLogged() {
         return this.adminLogged;
     }
-
-    public List<Flight> getFlights() {
-        return flights;
-    }
-
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
-
 
     public void setAdminLogged(User adminLogged) {
         this.adminLogged = adminLogged;
@@ -211,6 +209,5 @@ public class Airport {
         }
         return found;
     }
-    
-    
+
 }

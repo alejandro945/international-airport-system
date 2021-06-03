@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.Airport;
 import route.Route;
+import thread.FlightThread;
 
 import java.io.IOException;
 import java.net.URL;
@@ -80,9 +81,14 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        init();
         startClock();
         devUserType.getItems().addAll(userTypes);
         devUserType.setOnAction(this::changeUserType);
+    }
+
+    public String getTime() {
+        return lblTime.getText();
     }
 
     public void startClock() {
@@ -149,7 +155,7 @@ public class DashboardController implements Initializable {
             case NEW_AIRLINE:
                 return new NewAirlineController(this);
             case ACTIVE_FLIGHTS:
-                return new ActiveFlightsController(this);
+                return new ActiveFlightsController(airport, this);
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this);
             case NEW_MAINTENANCE:
@@ -172,6 +178,8 @@ public class DashboardController implements Initializable {
                 return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
                 return new AircraftController(airport, this);
+            case PROFILE:
+                return this;
             default:
                 return null;
         }

@@ -2,7 +2,7 @@ package model;
 
 public class Trip {
     private Ticket ticket;
-    private Luggage rooLuggage;
+    private Luggage rootLuggage;
     private int tripPrice;
     private String id;
 
@@ -10,10 +10,10 @@ public class Trip {
     private Trip left;
     private Trip right;
 
-    public Trip(String id, Ticket ticket, Luggage rooLuggage, int tripPrice) {
+    public Trip(String id, Ticket ticket, Luggage rootLuggage, int tripPrice) {
         this.id = id;
         this.ticket = ticket;
-        this.rooLuggage = rooLuggage;
+        this.rootLuggage = rootLuggage;
         this.tripPrice = tripPrice;
     }
 
@@ -35,14 +35,14 @@ public class Trip {
      * @return Luggage
      */
     public Luggage getRootLuggage() {
-        return this.rooLuggage;
+        return this.rootLuggage;
     }
 
     /**
      * @param luggage
      */
-    public void setRootLuggage(Luggage rooLuggage) {
-        this.rooLuggage = rooLuggage;
+    public void setRootLuggage(Luggage rootLuggage) {
+        this.rootLuggage = rootLuggage;
     }
 
     /**
@@ -83,14 +83,6 @@ public class Trip {
         this.right = right;
     }
 
-    public Luggage getRooLuggage() {
-        return rooLuggage;
-    }
-
-    public void setRooLuggage(Luggage rooLuggage) {
-        this.rooLuggage = rooLuggage;
-    }
-
     public String getId() {
         return id;
     }
@@ -108,22 +100,19 @@ public class Trip {
     // Add luggage
 
     public void addLuggage(Luggage luggage) {
-        if (rooLuggage == null) {
+        if (rootLuggage == null) {
             setRootLuggage(luggage);
         } else {
-            Luggage next = rooLuggage;
-            do{
-                if(next.getNextLuggage() == null){
+            Luggage next = rootLuggage;
+            do {
+                if (next.getNextLuggage() == null) {
                     next.setNextLuggage(luggage);
                     luggage.setPreviousLuggage(next);
                 } else {
                     next = next.getNextLuggage();
                 }
-            } while(next != null);
+            } while (next != null);
         }
     }
 
-    
-
-    
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="1005.0" styleClass="box" stylesheets="@../../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="error" alignment="CENTER" layoutX="15.0" layoutY="28.0" prefHeight="26.0" prefWidth="139.0" styleClass="label-error" text="Status" />
+      <Label fx:id="suspense" alignment="CENTER" layoutX="15.0" layoutY="28.0" prefHeight="26.0" prefWidth="139.0" styleClass="label-error" text="Status" />
+      <Label fx:id="active" alignment="CENTER" layoutX="15.0" layoutY="28.0" prefHeight="26.0" prefWidth="139.0" styleClass="label-error" text="Status" />
+      <JFXTimePicker fx:id="txtElapsed" defaultColor="#3f00ff" disable="true" layoutX="159.0" layoutY="79.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="139.0" promptText="Elapsed" />
+      <JFXTimePicker fx:id="txtArrival" defaultColor="#3f00ff" disable="true" layoutX="320.0" layoutY="78.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="139.0" promptText="Arrival" />
+      <Label fx:id="lblDeparture" alignment="CENTER" layoutX="475.0" layoutY="8.0" prefHeight="65.0" prefWidth="139.0" styleClass="label-flight" text="Departure" textFill="#b5b5b5" />
+      <Label fx:id="lblDestination" alignment="CENTER" contentDisplay="CENTER" layoutX="632.0" layoutY="7.0" prefHeight="65.0" prefWidth="139.0" styleClass="label-flight" text="Destination" textFill="#b5b5b5" wrapText="true" />
+      <JFXDatePicker fx:id="dateDeparture" defaultColor="#3f00ff" disable="true" layoutX="482.0" layoutY="78.0" prefHeight="29.0" prefWidth="139.0" promptText="Date" />
+      <JFXDatePicker fx:id="dateDestination" defaultColor="#3f00ff" disable="true" layoutX="642.0" layoutY="76.0" prefHeight="29.0" prefWidth="139.0" promptText="Date" />
+      <Label fx:id="lblPlane" alignment="CENTER" layoutX="796.0" layoutY="36.0" prefHeight="73.0" prefWidth="85.0" styleClass="label-flight" text="Plane" textFill="#b5b5b5" wrapText="true" />
+      <Label fx:id="lblAirline" alignment="CENTER" layoutX="906.0" layoutY="36.0" prefHeight="73.0" prefWidth="85.0" styleClass="label-flight" text="Airline" textFill="#b5b5b5" wrapText="true" />
+      <ImageView fitHeight="55.0" fitWidth="139.0" layoutX="241.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/img/aeroplane.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="15.0" layoutY="134.0" prefHeight="5.0" prefWidth="976.0" />
+      <JFXProgressBar fx:id="barProgress" layoutX="153.0" layoutY="162.0" prefHeight="5.0" prefWidth="700.0" progress="0.5" styleClass="pro-bar" />
+      <Label fx:id="lblProgress" layoutX="59.0" layoutY="154.0" text="Progress" />
+      <ImageView fx:id="plane" fitHeight="37.0" fitWidth="55.0" layoutX="485.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/img/plane.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="txtDuration" alignment="CENTER" layoutX="14.0" layoutY="68.0" prefHeight="50.0" prefWidth="124.0" text="Duration" textAlignment="CENTER" textFill="#b5b5b5" wrapText="true" />
+   </children>
+</AnchorPane>

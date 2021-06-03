@@ -1,7 +1,7 @@
 package controller.view;
 
 import controller.DashboardController;
-import controller.card.FlightCardController;
+import controller.node.FlightCardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +35,7 @@ public class ClientFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Trip flight : client.getTrip()) {
+        for (Trip flight : client.getRootTrip()) {
             try {
                 addCard(flight);
             } catch (IOException e) {

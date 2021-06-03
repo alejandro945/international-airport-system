@@ -13,6 +13,7 @@ public enum Route {
     COSTUMER(Root.BAR.getRoot() + "bar-costumer.fxml"), ACTIVE_FLIGHTS(Root.TOWER.getRoot() + "active-flights.fxml"),
     NEW_MAINTENANCE(Root.TOWER.getRoot() + "new-maintenance.fxml"),
     UPCOMING_FLIGHTS(Root.TOWER.getRoot() + "upcoming-flights.fxml"),
+    NODE_FLIGHT(Root.TOWER.getRoot() + "flight-node.fxml"),
     AIRLINE_EMPLOYEES(Root.AIRLINE.getRoot() + "airline-employees.fxml"),
     FLIGHTS(Root.AIRLINE.getRoot() + "flights.fxml"), AIRLINES(Root.AIRPORT.getRoot() + "airlines.fxml"),
     AP_DASH(Root.AIRPORT.getRoot() + "dashboard.fxml"), AP_EMPLOYEES(Root.AIRPORT.getRoot() + "employees.fxml"),

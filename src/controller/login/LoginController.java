@@ -70,7 +70,7 @@ public class LoginController {
         this.airport = airport;
     }
 
-    public void authGoogle(String[] googleUser) throws IOException {
+    public void authGoogle(String[] googleUser) throws Exception {
         airportController.createAlert(
                 airport.createUser(googleUser[1], googleUser[2],
                         Long.parseLong(googleUser[0].substring(0, googleUser[0].length() - 4)), googleUser[3]),
@@ -113,7 +113,7 @@ public class LoginController {
     }
 
     @FXML
-    private void logIn(ActionEvent event) throws IOException {
+    private void logIn(ActionEvent event) throws Exception {
         validateUser();
     }
 
@@ -123,7 +123,7 @@ public class LoginController {
     }
 
     @FXML
-    private void keyPress1(KeyEvent event) throws IOException {
+    private void keyPress1(KeyEvent event) throws Exception {
         if (event.getCode() == KeyCode.ENTER) {
             validateUser();
         }
@@ -136,7 +136,7 @@ public class LoginController {
         }
     }
 
-    public void validateUser() throws IOException {
+    public void validateUser() throws IOException, InterruptedException {
         if (!validateLoginFields()) {
             boolean render = airport.userVerification(Long.parseLong(txtLogin.getText()), txtPass.getText());
             if (render) {

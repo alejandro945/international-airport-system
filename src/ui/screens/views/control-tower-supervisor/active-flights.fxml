@@ -13,33 +13,39 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" stylesheets="@../../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fillWidth="false" layoutX="63.0" layoutY="128.0" prefHeight="658.0" prefWidth="1068.0" spacing="20.0" styleClass="box" stylesheets="@../../../assets/styles/vendor.css">
+      <VBox fillWidth="false" layoutX="66.0" layoutY="125.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="658.0" prefWidth="1063.0" spacing="20.0" styleClass="box" stylesheets="@../../../assets/styles/vendor.css">
          <children>
             <HBox spacing="10.0">
                <children>
-                  <JFXTextField alignment="CENTER" promptText="Flight" unFocusColor="#8103a1" />
-                  <Button mnemonicParsing="false" onAction="#searchFlight" text="Search" />
+                  <Button mnemonicParsing="false" onAction="#searchFlight" prefHeight="35.0" prefWidth="203.0" styleClass="button1" text="Search" textFill="WHITE" />
+                  <JFXTextField fx:id="txtCode" alignment="CENTER" prefHeight="27.0" prefWidth="270.0" promptText="Flight Code" unFocusColor="#8103a1" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="1024.0" styleClass="flight-header">
                <children>
-                  <Label prefHeight="17.0" prefWidth="189.0" text="Airline" />
-                  <Label layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="195.0" text="Aircraft" />
-                  <Label layoutX="349.0" layoutY="10.0" prefHeight="17.0" prefWidth="144.0" text="Departure" />
-                  <Label layoutX="313.0" layoutY="10.0" prefHeight="17.0" prefWidth="146.0" text="Destination" />
-                  <Label layoutX="494.0" layoutY="10.0" prefHeight="17.0" prefWidth="114.0" text="Arrival" />
-                  <Label layoutX="525.0" layoutY="10.0" prefHeight="17.0" prefWidth="126.0" text="Elapsed" />
-                  <Label layoutX="611.0" layoutY="10.0" prefHeight="17.0" prefWidth="86.0" text="Status" />
+                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="147.0" text="Airline" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="135.0" text="Aircraft" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="313.0" layoutY="10.0" prefHeight="20.0" prefWidth="158.0" text="Destination" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="349.0" layoutY="10.0" prefHeight="20.0" prefWidth="162.0" text="Departure" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="494.0" layoutY="10.0" prefHeight="20.0" prefWidth="161.0" text="Arrival" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="525.0" layoutY="10.0" prefHeight="20.0" prefWidth="153.0" text="Elapsed" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="611.0" layoutY="10.0" prefHeight="20.0" prefWidth="197.0" text="Status" textFill="WHITE" />
                </children>
             </HBox>
-            <ScrollPane prefHeight="514.0" prefWidth="1015.0">
+            <ScrollPane prefHeight="497.0" prefWidth="1026.0">
                <content>
-                  <VBox prefHeight="2000.0" prefWidth="0.0" />
+                  <VBox fx:id="activeBox" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1020.0" spacing="10.0">
+                     <opaqueInsets>
+                        <Insets top="10.0" />
+                     </opaqueInsets></VBox>
                </content>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </ScrollPane>
          </children>
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="16.0" left="16.0" right="16.0" top="20.0" />
          </padding>
       </VBox>
       <Label layoutX="41.0" layoutY="22.0" styleClass="menu-label" text="Active Flights">

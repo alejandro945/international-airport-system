@@ -159,7 +159,7 @@ public class OAuthAuthenticator {
                     accessedJsonData = new JSONObject(returnedJson);
                     try {
                         lController.authGoogle(userInfo);
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 import route.Route;
+import ui.Splash;
 import controller.login.*;
 
 import java.io.IOException;
@@ -28,18 +29,10 @@ public class AirportController {
 
     private LoginController loginController;
     private DashboardController dashboardController;
-    private Route recentRoute;
 
     public AirportController(Airport airport) {
         loginController = new LoginController(airport, this);
         dashboardController = new DashboardController(airport, this);
-    }
-
-    /**
-     * @param route
-     */
-    private void setRecentRoute(Route route) {
-        recentRoute = route;
     }
 
     /**
@@ -64,23 +57,13 @@ public class AirportController {
     /**
      * @param route
      * @throws IOException
+     * @throws InterruptedException
      */
-    public void renderScreen(Route route) throws IOException {
+    public void renderScreen(Route route) throws IOException, InterruptedException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(route.getRoute()));
         fxmlloader.setController(setController(route));
         Parent root = fxmlloader.load();
-        setRecentRoute(route);
         mainPane.getChildren().setAll(root);
-        initScreen();
-    }
-
-    /**
-     * @throws IOException
-     */
-    public void initScreen() throws IOException {
-        if (recentRoute == Route.DASHBOARD) {
-            dashboardController.init();
-        }
     }
 
     /**
