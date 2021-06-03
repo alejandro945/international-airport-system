@@ -1,6 +1,8 @@
 package model;
 
-public class Ticket implements Price {
+import java.io.Serializable;
+
+public class Ticket implements Price, Serializable {
     private Flight flight;
     private Seat fligthSeat;
     private int flightPrice;
@@ -56,6 +58,6 @@ public class Ticket implements Price {
     @Override
     public void calculatePrice(int increase) {
 
-    }    
+    }
 
 }

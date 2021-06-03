@@ -1,6 +1,6 @@
 package model;
 
-public class Collaborator extends Person {
+public abstract class Collaborator extends Person {
     private Airline airline;
 
     public Collaborator(String name, String lastName, long id, Airline airline) {

@@ -95,39 +95,39 @@ public class Costumer extends User {
 
     // -------------------- Methods
 
-    // Add trip 
-    public void addTrip(Trip trip){
-        if(rootTrip == null){
+    // Add trip
+    public void addTrip(Trip trip) {
+        if (rootTrip == null) {
             setRootTrip(trip);
-        }else{
+        } else {
             Trip compare = rootTrip;
-            do{
-                if(trip.getTripPrice()>= compare.getTripPrice()){
-                    if(compare.getRight() == null){
+            do {
+                if (trip.getTripPrice() >= compare.getTripPrice()) {
+                    if (compare.getRight() == null) {
                         compare.setRight(trip);
                     } else {
                         compare = compare.getRight();
                     }
                 } else {
-                    if(compare.getLeft() == null){
+                    if (compare.getLeft() == null) {
                         compare.setLeft(trip);
                     } else {
                         compare = compare.getLeft();
                     }
                 }
-            }while(compare != null);
-            
+            } while (compare != null);
+
         }
     }
 
     // Print trips
-    public List<Trip> getTrips(){
+    public List<Trip> getTrips() {
         List<Trip> list = new ArrayList<>();
         rangeTripsAdd(rootTrip, list);
         return list;
     }
 
-    private void rangeTripsAdd (Trip node, List<Trip> list) {
+    private void rangeTripsAdd(Trip node, List<Trip> list) {
         if (node == null) {
             return;
         }
@@ -137,25 +137,25 @@ public class Costumer extends User {
     }
 
     // Return trip by id
-    public Trip getTrips(String id){
+    public Trip getTrips(String id) {
         Trip temp = null;
         rangeTripSearch(rootTrip, id, temp);
         return temp;
     }
 
-    private void rangeTripSearch (Trip node, String id, Trip returnV) {
+    private void rangeTripSearch(Trip node, String id, Trip returnV) {
         if (node == null) {
-            return ;
+            return;
         }
         rangeTripSearch(node.getLeft(), id, returnV);
-        if(id.compareTo(node.getId()) == 0){
+        if (id.compareTo(node.getId()) == 0) {
             returnV = node;
         }
         rangeTripSearch(node.getRight(), id, returnV);
     }
 
     // Add luggage
-    public void addLuggage(Luggage luggage, Trip trip){
+    public void addLuggage(Luggage luggage, Trip trip) {
         trip.addLuggage(luggage);
     }
 }

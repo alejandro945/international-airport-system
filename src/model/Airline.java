@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airline {
+public class Airline implements Serializable {
     private String airlineName;
     private String logo;
     private List<Aircraft> aircraft;

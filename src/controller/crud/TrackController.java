@@ -76,7 +76,7 @@ public class TrackController implements Initializable {
     @FXML
     void newTrack(ActionEvent event) throws IOException {
         showModal();
-        modalName.setText("Create User");
+        modalName.setText("Create Track");
         txtId.setText(airport.getTrackAmount() + 1 + "");
         btnEdit.setVisible(false);
         btnSave.setVisible(true);
@@ -98,6 +98,8 @@ public class TrackController implements Initializable {
             dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText()),
                     Route.SUCCESS);
             modal.close();
+            airport.saveData();
+            airport.loadData();
             getData();
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
@@ -107,12 +109,12 @@ public class TrackController implements Initializable {
     @FXML
     void saveTrack(ActionEvent event) {
         if (validateFields()) {
-            airport.addTrack(new Track(Integer.parseInt("12345"), txtGate.getText()));
+            airport.addTrack(new Track(Integer.parseInt(txtId.getText()), txtGate.getText()));
             dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
-            modal.close();
-            dController.geAirportController().saveData();
-            dController.geAirportController().loadData();
+            airport.saveData();
+            airport.loadData();
             getData();
+            modal.close();
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }

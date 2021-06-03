@@ -1,6 +1,8 @@
 package model;
 
-public class Trip {
+import java.io.Serializable;
+
+public class Trip implements Serializable {
     private Ticket ticket;
     private Luggage rootLuggage;
     private int tripPrice;
