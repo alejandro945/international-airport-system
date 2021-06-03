@@ -53,8 +53,8 @@ public class AirportTest {
     private void setupScenary10() {
         airport = new Airport();
 
-        Flight fly1 = new Flight("V21","02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI);
-        Flight fly2 = new Flight("V12","10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW);
+        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null);
+        Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null);
 
         Track track1 = new Track(1, "A30");
         Track track2 = new Track(2, "A30");
@@ -79,8 +79,8 @@ public class AirportTest {
     private void setupScenary13() {
         airport = new Airport();
 
-        Flight fly1 = new Flight("V21","02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI);
-        Flight fly2 = new Flight("V12","10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW);
+        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null);
+        Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null);
 
         airport.getFlights().add(fly1);
         airport.getFlights().add(fly2);
@@ -109,96 +109,96 @@ public class AirportTest {
     @Test
     public void createAirlineManager1() {
         setupScenary1();
-        
+
     }
 
     @Test
     public void createAirlineManager2() {
         setupScenary3();
-        
+
     }
 
     @Test
     public void createTowerCntrl1() {
         setupScenary1();
-        
+
     }
 
     @Test
     public void createTowerCntrl2() {
         setupScenary5();
-        
+
     }
 
     @Test
     public void createMigrationAgent1() {
         setupScenary1();
-        
+
     }
 
     @Test
     public void createMigrationAgent2() {
         setupScenary7();
-        
+
     }
 
     @Test
     public void eliminateAirlineManager() {
         setupScenary3();
-        
+
     }
 
     @Test
     public void eliminateTowerCntrl() {
         setupScenary5();
-        
+
     }
 
     @Test
     public void eliminateMigrationAgent() {
         setupScenary7();
-        
+
     }
 
     @Test
     public void createClient1() {
         setupScenary1();
-        
+
     }
 
     @Test
     public void createClient2() {
         setupScenary9();
-        
+
     }
 
     @Test
     public void eliminateClient() {
         setupScenary9();
-        
+
     }
 
     @Test
     public void assignFlyTrack() {
         setupScenary10();
-        
+
     }
 
     @Test
     public void maintenance() {
         setupScenary11();
-        
+
     }
 
     @Test
     public void getActualFlys() {
         setupScenary13();
-        
+
     }
 
     @Test
     public void validateClientPass() {
         setupScenary14();
-        
+
     }
 }

@@ -1,20 +1,25 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Aircraft implements Maintenance {
+    private final int AIRCRAFT_COLUMNS = 6;
     private Seat[][] seat;// Bynary Search
     private Pilot pilot;
     private List<Costumer> costumer; // Bynary Search
-    private Track track;
     private int planeWeight;
     private String planeCode;
     private int capacity;
+    private boolean inMaintenance;
 
     public Aircraft(String planeCode, int planeWeight, int capacity) {
         this.planeCode = planeCode;
         this.planeWeight = planeWeight;
         this.capacity = capacity;
+        inMaintenance = false;
+        createSeats();
+        costumer = new ArrayList<>();
     }
 
     /**
@@ -81,6 +86,20 @@ public class Aircraft implements Maintenance {
     }
 
     /**
+     * @return boolean
+     */
+    public boolean isInMaintenance() {
+        return this.inMaintenance;
+    }
+
+    /**
+     * @param inMaintenance
+     */
+    public void setInMaintenance(boolean inMaintenance) {
+        this.inMaintenance = inMaintenance;
+    }
+
+    /**
      * @param costumer
      */
     public void setCostumer(List<Costumer> costumer) {
@@ -88,30 +107,38 @@ public class Aircraft implements Maintenance {
     }
 
     /**
-     * @return Track
+     * @return int
      */
-    public Track getTrack() {
-        return this.track;
-    }
-
-    /**
-     * @param track
-     */
-    public void setTrack(Track track) {
-        this.track = track;
-    }
-
     public int getCapacity() {
         return this.capacity;
     }
 
+    /**
+     * @param capacity
+     */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
+    public void createSeats() {
+        int rows = capacity / AIRCRAFT_COLUMNS;
+        seat = new Seat[rows][AIRCRAFT_COLUMNS];
+        for (int i = 0; i < rows; i++) {
+            char firstLetter = 'A';
+            for (int j = 0; j < AIRCRAFT_COLUMNS; j++) {
+                if (i < 6) {
+                    seat[i][j] = new Seat((i + 1), firstLetter, false);
+                } else {
+                    seat[i][j] = new Seat((i + 1), firstLetter, true);
+                }
+                firstLetter++;
+            }
+        }
+    }
+
     @Override
     public void inMaintenance() {
-
+        inMaintenance = true;
     }
 
 }

@@ -2,7 +2,7 @@ package model;
 
 public class Track implements Maintenance {
     private int id;
-    private boolean state;
+    private boolean inMaintenance;
     private String gate;
 
     private Track next;
@@ -11,56 +11,82 @@ public class Track implements Maintenance {
     public Track(int id, String gate) {
         this.id = id;
         this.gate = gate;
-        state = true;
+        inMaintenance = false;
 
         next = null;
     }
 
+    /**
+     * @return int
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
-    public boolean isState() {
-        return this.state;
+    /**
+     * @return boolean
+     */
+    public boolean isInMaintenance() {
+        return this.inMaintenance;
     }
 
-    public boolean getState() {
-        return this.state;
+    /**
+     * @param state
+     */
+    public void setInMaintenance(boolean inMaintenance) {
+        this.inMaintenance = inMaintenance;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
-
+    /**
+     * @return String
+     */
     public String getGate() {
         return this.gate;
     }
 
+    /**
+     * @param gate
+     */
     public void setGate(String gate) {
         this.gate = gate;
     }
 
     @Override
     public void inMaintenance() {
-
+        inMaintenance = true;
     }
 
+    /**
+     * @return Track
+     */
     public Track getNext() {
         return next;
     }
 
+    /**
+     * @param next
+     */
     public void setNext(Track next) {
         this.next = next;
     }
 
+    /**
+     * @return Track
+     */
     public Track getPrev() {
         return prev;
     }
 
+    /**
+     * @param prev
+     */
     public void setPrev(Track prev) {
         this.prev = prev;
     }

@@ -75,9 +75,11 @@ public class TrackController implements Initializable {
 
     @FXML
     void newTrack(ActionEvent event) throws IOException {
-        Stage stage = dController.loadModal(Route.TRACK_MODAL, this);
-        setModal(stage);
-        stage.show();
+        showModal();
+        modalName.setText("Create User");
+        txtId.setText(airport.getTrackAmount() + 1 + "");
+        btnEdit.setVisible(false);
+        btnSave.setVisible(true);
     }
 
     public void setModal(Stage modal) {
@@ -108,6 +110,8 @@ public class TrackController implements Initializable {
             airport.addTrack(new Track(Integer.parseInt("12345"), txtGate.getText()));
             dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
             modal.close();
+            dController.geAirportController().saveData();
+            dController.geAirportController().loadData();
             getData();
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);

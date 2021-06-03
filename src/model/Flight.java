@@ -12,12 +12,13 @@ public class Flight {
     private Places origin;
     private Places destination;
     private Aircraft plane;
+    private Track track;
     private FlightState flightStatus;
     private long position;
     private long duration;
 
     public Flight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour,
-            Places origin, Places destination) {
+            Places origin, Places destination, Track track) {
         this.id = id;
         this.departureDate = departureDate;
         this.departureHour = departureHour;
@@ -25,6 +26,7 @@ public class Flight {
         this.arrivalHour = arrivalHour;
         this.origin = origin;
         this.destination = destination;
+        this.track = track;
         // this.plane = plane;
         this.flightStatus = FlightState.SCHEDULED;
         this.position = 125;
@@ -129,6 +131,18 @@ public class Flight {
         this.plane = plane;
     }
 
+    public Track getTrack() {
+        return this.track;
+    }
+
+    public void setTrack(Track track) {
+        this.track = track;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
     /**
      * @return FlightStatus
      */
@@ -157,18 +171,30 @@ public class Flight {
         this.id = id;
     }
 
+    /**
+     * @return long
+     */
     public long getDuration() {
         return duration;
     }
 
+    /**
+     * @return long
+     */
     public long getPosition() {
         return this.position;
     }
 
+    /**
+     * @param increase
+     */
     public void setPosition(long increase) {
         position += increase;
     }
 
+    /**
+     * @return int[]
+     */
     public int[] getDateFormat() {
         int[] render = new int[10];
         render[0] = Integer.parseInt(departureDate.split("-")[0]);

@@ -229,6 +229,8 @@ public class UserController implements Initializable {
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
+        dController.geAirportController().saveData();
+        dController.geAirportController().loadData();
         getData();
     }
 

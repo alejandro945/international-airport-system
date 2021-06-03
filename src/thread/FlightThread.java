@@ -26,6 +26,7 @@ public class FlightThread extends Thread {
                         nf.setFlightProgress(flight);
                     } else {
                         flight.setFlightStatus(FlightState.DONE);
+                        nf.initState(flight.getFlightStatus());
                     }
                 }
             });

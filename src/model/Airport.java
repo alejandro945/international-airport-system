@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airport {
-    public static final String USER_SUCCESS = " have been added to our Airport successfully";
-    public static final String DELETE_SUCCESS = " have been deleted successfully";
-    public static final String EDIT_SUCCESS = " have been edited  successfully";
-    public static final String USER_ERROR = " could not been added to our Airport (Already exists)";
-    public static final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
-    public static final String OAUTH_MESSAGE = " your account have been rendered successfully";
+    public final String USER_SUCCESS = " have been added to our Airport successfully";
+    public final String DELETE_SUCCESS = " have been deleted successfully";
+    public final String EDIT_SUCCESS = " have been edited  successfully";
+    public final String USER_ERROR = " could not been added to our Airport (Already exists)";
+    public final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
+    public final String OAUTH_MESSAGE = " your account have been rendered successfully";
 
     private Track firstTrack;
     private Track lastTrack;
@@ -19,7 +19,6 @@ public class Airport {
     private Costumer logged;
     private User adminLogged;
     private List<Flight> flights;
-    private ControlTower controlTower;
 
     public Airport() {
         users = new ArrayList<>();
@@ -28,8 +27,6 @@ public class Airport {
         airlines.add(new Airline("Avianca", ""));
         airlines.add(new Airline("Spirit", ""));
         airlines.add(new Airline("Viva Air", ""));
-
-        controlTower = new ControlTower();
     }
 
     public List<Flight> getFlights() {
@@ -38,7 +35,6 @@ public class Airport {
                 flights.add(flight);
             }
         }
-        controlTower.setFlights(flights);
         return flights;
     }
 
@@ -48,6 +44,10 @@ public class Airport {
 
     public void setFirstTrack(Track firstTrack) {
         this.firstTrack = firstTrack;
+    }
+
+    public int getTrackAmount() {
+        return trackAmount;
     }
 
     public List<User> getUsers() {
@@ -80,14 +80,6 @@ public class Airport {
 
     public void setAdminLogged(User adminLogged) {
         this.adminLogged = adminLogged;
-    }
-
-    public ControlTower getControlTower() {
-        return controlTower;
-    }
-
-    public void setControlTower(ControlTower controlTower) {
-        this.controlTower = controlTower;
     }
 
     // USER-TOWER-MIGRATION
