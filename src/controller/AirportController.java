@@ -2,7 +2,6 @@ package controller;
 
 import model.*;
 import route.Route;
-import ui.Splash;
 import controller.login.*;
 
 import java.io.IOException;

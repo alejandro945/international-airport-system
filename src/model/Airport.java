@@ -12,6 +12,8 @@ public class Airport {
     public static final String OAUTH_MESSAGE = " your account have been rendered successfully";
 
     private Track firstTrack;
+    private Track lastTrack;
+    private int trackAmount;
     private List<User> users;
     private List<Airline> airlines;
     private Costumer logged;
@@ -116,8 +118,8 @@ public class Airport {
     public String createUser(String name, String lastName, long id, String email, String password, Airline airline) {
         String msg = "";
         if (!searchUserId(id)) {
-            AirlineUser newaAirlineUser = new AirlineUser(name, lastName, id, email, password, airline);
-            users.add(newaAirlineUser);
+            AirlineUser newAirlineUser = new AirlineUser(name, lastName, id, email, password, airline);
+            users.add(newAirlineUser);
             msg = name + USER_SUCCESS;
         } else {
             msg = USER_ERROR;
@@ -208,6 +210,94 @@ public class Airport {
             }
         }
         return found;
+    }
+
+    /**
+     * Adds track to the last position of the track's linked list.
+     * 
+     * @param track Track to add.
+     */
+    public void addTrack(Track track) {
+        if (firstTrack == null) {
+            firstTrack = track;
+            lastTrack = firstTrack;
+        } else {
+            track.setPrev(lastTrack);
+            lastTrack.setNext(track);
+            lastTrack = track;
+        }
+        trackAmount++;
+    }
+
+    /**
+     * Removes a track from the track's linked list.
+     * 
+     * @param toDelete Track to remove from the linked list.
+     */
+    public String removeTrack(Track toDelete) {
+        removeTrack(firstTrack, toDelete);
+        trackAmount--;
+        return "Track " + toDelete.getId() + DELETE_SUCCESS;
+    }
+
+    /**
+     * Recursively search for the track to be deleted.
+     * 
+     * @param current  The track to be compared with the track to be deleted.
+     * @param toDelete The track to be deleted.
+     */
+    private void removeTrack(Track current, Track toDelete) {
+        if (current != null) {
+            if (current == toDelete) {
+                if (current == firstTrack) {
+                    if (trackAmount == 1) {
+                        firstTrack = null;
+                        lastTrack = null;
+                    } else {
+                        firstTrack = current.getNext();
+                    }
+                } else if (current == lastTrack) {
+                    current.getPrev().setNext(null);
+                    lastTrack = current.getPrev();
+                } else {
+                    current.getPrev().setNext(current.getNext());
+                    current.getNext().setPrev(current.getPrev());
+                }
+            } else {
+                removeTrack(current.getNext(), toDelete);
+            }
+        }
+    }
+
+    /**
+     * Creates a list from existing tracks.
+     * 
+     * @return Returns a list with all the existing tracks.
+     */
+    public List<Track> tracksToList() {
+        return tracksToList(firstTrack);
+    }
+
+    /**
+     * Auxiliar method that creates a list from the existing tracks.
+     * 
+     * @param current Current track. Receives first track at first.
+     * @return Returns a list with all the existing tracks.
+     */
+    public List<Track> tracksToList(Track current) {
+        List<Track> tracks = new ArrayList<>();
+
+        while (current != null) {
+            tracks.add(current);
+            current = current.getNext();
+        }
+
+        return tracks;
+    }
+
+    public String editTrack(Track track, String gate) {
+        track.setGate(gate);
+        return "Track " + track.getId() + EDIT_SUCCESS;
     }
 
 }

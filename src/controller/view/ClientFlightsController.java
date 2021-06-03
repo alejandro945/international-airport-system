@@ -35,7 +35,11 @@ public class ClientFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+<<<<<<< HEAD
         for (Trip flight : client.getRootTrip()) {
+=======
+        for (Trip flight : client.getTrips()) {
+>>>>>>> cda1ab677ece616db1ab5ebc2cd6f6a826ddc778
             try {
                 addCard(flight);
             } catch (IOException e) {
