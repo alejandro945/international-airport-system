@@ -161,3 +161,10 @@
 -fx-font-family: "Century Gothic" ;
     -fx-font-style: italic;
 }
+
+.grid{
+    /* -fx-grid-lines-visible: true; */
+    -fx-alignment: " center";
+    -fx-hgap: 3px;
+    -fx-hgap: 3px;
+}

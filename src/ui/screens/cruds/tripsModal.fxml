@@ -2,12 +2,12 @@
 
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -29,16 +29,13 @@
       <JFXComboBox fx:id="meal" layoutX="219.0" layoutY="242.0" prefHeight="29.0" prefWidth="173.0" promptText="meal" unFocusColor="#972b97" />
       <AnchorPane layoutX="416.0" layoutY="11.0" prefHeight="430.0" prefWidth="271.0">
          <children>
-            <GridPane fx:id="seatsGreid" gridLinesVisible="true" layoutX="43.0" layoutY="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
+            <GridPane fx:id="seatsGrid" alignment="CENTER" gridLinesVisible="true" layoutX="43.0" layoutY="117.0" onMouseClicked="#clickSeatGrid" styleClass="gird" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
               </rowConstraints>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </GridPane>
          </children>
       </AnchorPane>

@@ -127,9 +127,9 @@ public class Aircraft implements Maintenance {
             char firstLetter = 'A';
             for (int j = 0; j < AIRCRAFT_COLUMNS; j++) {
                 if (i < 6) {
-                    seat[i][j] = new Seat((i + 1), firstLetter, false);
+                    seat[i][j] = new Seat((i + 1), firstLetter, false, 140000);
                 } else {
-                    seat[i][j] = new Seat((i + 1), firstLetter, true);
+                    seat[i][j] = new Seat((i + 1), firstLetter, true , 140000);
                 }
                 firstLetter++;
             }

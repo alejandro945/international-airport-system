@@ -6,11 +6,19 @@ public class Seat {
     private boolean seatState;
     private boolean economic;
 
-    public Seat(int seatNumber, char seatLetter, boolean economic) {
+    private int price;
+
+    public Seat(int seatNumber, char seatLetter, boolean economic, int price) {
         this.seatNumber = seatNumber;
         this.seatLetter = seatLetter;
         this.seatState = false;
         this.economic = economic;
+
+        if(economic){
+            this.price = price;
+        } else {
+            this.price = (int)((price*0.3)+price);
+        }       
     }
 
     /**
@@ -76,4 +84,13 @@ public class Seat {
         this.economic = economic;
     }
 
-}
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    
+}   
