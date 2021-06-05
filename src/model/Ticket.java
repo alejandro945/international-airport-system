@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Ticket implements Price, Serializable {
+public class Ticket implements Serializable {
     private Flight flight;
     private Seat fligthSeat;
     private int flightPrice;
@@ -54,16 +54,6 @@ public class Ticket implements Price, Serializable {
      */
     public void setFlightPrice(int flightPrice) {
         this.flightPrice = flightPrice;
-    }
-
-    @Override
-    public void calculatePrice(int increase) {
-
-    }
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> a854a03ee93864f782cbdd2525062ec52baaf6be
+    }    
 
 }

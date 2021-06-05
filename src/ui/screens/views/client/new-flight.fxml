@@ -65,7 +65,7 @@
       <VBox fx:id="luggagePane" alignment="CENTER_LEFT" fillWidth="false" layoutX="607.0" layoutY="103.0" prefHeight="645.0" prefWidth="529.0" spacing="20.0" styleClass="box">
          <children>
             <Label styleClass="menu-label" text="Luggage Details" />
-            <Button mnemonicParsing="false" onAction="#newLuggage" prefHeight="46.0" prefWidth="198.0" styleClass="button-menu" text="New Luggage" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#newLuggage" prefHeight="46.0" prefWidth="233.0" styleClass="button-menu" text="New Luggage" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>

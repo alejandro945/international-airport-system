@@ -165,6 +165,8 @@
 .grid{
     /* -fx-grid-lines-visible: true; */
     -fx-alignment: " center";
-    -fx-hgap: 3px;
-    -fx-hgap: 3px;
+    -fx-padding: 5;
+    -fx-margin: 5;
+    -fx-hgap: 3;
+    -fx-vgap: 3px;
 }

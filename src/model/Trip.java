@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Trip implements Serializable {
+public class Trip implements  Price, Serializable {
     private Ticket ticket;
     private Luggage rootLuggage;
     private int tripPrice;
@@ -17,7 +17,7 @@ public class Trip implements Serializable {
         this.id = id;
         this.ticket = ticket;
         this.rootLuggage = rootLuggage;
-        tripPrice = ticket.getFlightPrice() + luggagePrice();
+        calculatePrice(1);
     }
 
     public int luggagePrice(){
@@ -128,6 +128,11 @@ public class Trip implements Serializable {
                 }
             } while (next != null);
         }
+    }
+
+    @Override
+    public void calculatePrice(int increase) {
+        tripPrice = ticket.getFlightPrice() + luggagePrice();
     }
 
 }
