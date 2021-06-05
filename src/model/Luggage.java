@@ -15,7 +15,7 @@ public class Luggage implements Price, Serializable {
         this.height = height;
         this.width = width;
         this.weight = weight;
-        calculatePrice(0);
+        calculatePrice(1);
     }
 
     /**
