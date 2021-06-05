@@ -1,9 +1,12 @@
 package model;
 
-public class Track implements Maintenance {
+import java.io.Serializable;
+
+public class Track implements Maintenance, Serializable {
     private int id;
     private boolean inMaintenance;
     private String gate;
+    private String state;
 
     private Track next;
     private Track prev;
@@ -12,8 +15,6 @@ public class Track implements Maintenance {
         this.id = id;
         this.gate = gate;
         inMaintenance = false;
-
-        next = null;
     }
 
     /**
@@ -28,6 +29,11 @@ public class Track implements Maintenance {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getState() {
+        state = (inMaintenance) ? "INACTIVE" : "ACTIVE";
+        return state;
     }
 
     /**

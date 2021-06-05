@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Flight {
+public class Flight implements Serializable {
     private String id;
     private String departureDate;
     private String departureHour;

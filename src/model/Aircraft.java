@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aircraft implements Maintenance {
+public class Aircraft implements Maintenance, Serializable {
     private final int AIRCRAFT_COLUMNS = 6;
     private Seat[][] seat;// Bynary Search
     private Pilot pilot;

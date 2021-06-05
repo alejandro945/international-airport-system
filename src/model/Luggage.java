@@ -1,6 +1,8 @@
 package model;
 
-public class Luggage implements Price {
+import java.io.Serializable;
+
+public class Luggage implements Price, Serializable {
     private int luggagePrice;
     private double height;
     private double width;

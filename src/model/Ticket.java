@@ -1,6 +1,8 @@
 package model;
 
-public class Ticket implements Price {
+import java.io.Serializable;
+
+public class Ticket implements Price, Serializable {
     private Flight flight;
     private Seat fligthSeat;
     private int flightPrice;
@@ -58,7 +60,10 @@ public class Ticket implements Price {
     public void calculatePrice(int increase) {
 
     }
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> a854a03ee93864f782cbdd2525062ec52baaf6be
 
 }

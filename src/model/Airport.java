@@ -1,24 +1,29 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airport {
+public class Airport implements Serializable {
     public final String USER_SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
     public final String EDIT_SUCCESS = " have been edited  successfully";
     public final String USER_ERROR = " could not been added to our Airport (Already exists)";
     public final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public final String OAUTH_MESSAGE = " your account have been rendered successfully";
-
-    private Track firstTrack;
-    private Track lastTrack;
-    private int trackAmount;
+    private final String SAVE_PATH_FILE = "data/Airport.data";
     private List<User> users;
     private List<Airline> airlines;
+    private List<Flight> flights;
+    private Track firstTrack;
     private Costumer logged;
     private User adminLogged;
-    private List<Flight> flights;
 
     public Airport() {
         users = new ArrayList<>();
@@ -28,6 +33,42 @@ public class Airport {
         airlines.add(new Airline("Avianca", ""));
         airlines.add(new Airline("Spirit", ""));
         airlines.add(new Airline("Viva Air", ""));
+        dateRender();
+    }
+
+    public void dateRender() {
+        File file = new File(SAVE_PATH_FILE);
+        if (file.length() > 0) {
+            loadData();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadData() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
+            users = (List<User>) ois.readObject();
+            airlines = (List<Airline>) ois.readObject();
+            flights = (List<Flight>) ois.readObject();
+            firstTrack = (Track) ois.readObject();
+            ois.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveData() {
+        ObjectOutputStream oos;
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
+            oos.writeObject(users);
+            oos.writeObject(airlines);
+            oos.writeObject(flights);
+            oos.writeObject(firstTrack);
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Flight> getFlights() {
@@ -49,6 +90,12 @@ public class Airport {
     }
 
     public int getTrackAmount() {
+        int trackAmount = 0;
+        Track render = firstTrack;
+        while (render != null) {
+            trackAmount++;
+            render = render.getNext();
+        }
         return trackAmount;
     }
 
@@ -206,21 +253,26 @@ public class Airport {
         return found;
     }
 
+    public void addTrack(Track newTrack) {
+        if (firstTrack == null) {
+            firstTrack = newTrack;
+        } else {
+            addTrack(firstTrack, newTrack);
+        }
+    }
+
     /**
      * Adds track to the last position of the track's linked list.
      * 
      * @param track Track to add.
      */
-    public void addTrack(Track track) {
-        if (firstTrack == null) {
-            firstTrack = track;
-            lastTrack = firstTrack;
+    public void addTrack(Track current, Track track) {
+        if (current.getNext() == null) {
+            current.setNext(track);
+            track.setPrev(current);
         } else {
-            track.setPrev(lastTrack);
-            lastTrack.setNext(track);
-            lastTrack = track;
+            addTrack(current.getNext(), track);
         }
-        trackAmount++;
     }
 
     /**
@@ -230,7 +282,6 @@ public class Airport {
      */
     public String removeTrack(Track toDelete) {
         removeTrack(firstTrack, toDelete);
-        trackAmount--;
         return "Track " + toDelete.getId() + DELETE_SUCCESS;
     }
 
@@ -244,22 +295,21 @@ public class Airport {
         if (current != null) {
             if (current == toDelete) {
                 if (current == firstTrack) {
-                    if (trackAmount == 1) {
-                        firstTrack = null;
-                        lastTrack = null;
-                    } else {
-                        firstTrack = current.getNext();
-                    }
-                } else if (current == lastTrack) {
-                    current.getPrev().setNext(null);
-                    lastTrack = current.getPrev();
+                    firstTrack = (current.getNext() != null) ? current.getNext() : null;
                 } else {
                     current.getPrev().setNext(current.getNext());
                     current.getNext().setPrev(current.getPrev());
+                    setTracksId();
                 }
             } else {
                 removeTrack(current.getNext(), toDelete);
             }
+        }
+    }
+
+    private void setTracksId() {
+        for (int i = 0; i < tracksToList().size(); i++) {
+            tracksToList().get(i).setId(i + 1);
         }
     }
 
@@ -280,12 +330,10 @@ public class Airport {
      */
     public List<Track> tracksToList(Track current) {
         List<Track> tracks = new ArrayList<>();
-
         while (current != null) {
             tracks.add(current);
             current = current.getNext();
         }
-
         return tracks;
     }
 
