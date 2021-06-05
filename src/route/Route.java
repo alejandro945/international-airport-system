@@ -26,7 +26,8 @@ public enum Route {
     AIRLINE_MODAL(Root.CRUD.getRoot() + "airlinesModal.fxml"), AIRLINE_TABLE(Root.CRUD.getRoot() + "airlines.fxml"),
     TRACK_MODAL(Root.CRUD.getRoot() + "tracksModal.fxml"), TRACK_TABLE(Root.CRUD.getRoot() + "tracks.fxml"),
     LUGAGGE_MODAL(Root.CRUD.getRoot() + "lugaggesModal.fxml"), LUGAGGE_TABLE(Root.CRUD.getRoot() + "lugagges.fxml"),
-    AIRCRAFT_MODAL(Root.CRUD.getRoot() + "aircraftsModal.fxml"), AIRCRAFT_TABLE(Root.CRUD.getRoot() + "aircrafts.fxml");
+    AIRCRAFT_MODAL(Root.CRUD.getRoot() + "aircraftsModal.fxml"), AIRCRAFT_TABLE(Root.CRUD.getRoot() + "aircrafts.fxml"),
+    TRIP_MODAL(Root.CRUD.getRoot() + "tripsModal.fxml");
 
     private String route;
 

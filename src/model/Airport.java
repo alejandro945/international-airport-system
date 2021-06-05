@@ -23,6 +23,7 @@ public class Airport {
     public Airport() {
         users = new ArrayList<>();
         airlines = new ArrayList<>();
+        flights = new ArrayList<>();
         users.add(new User("Alejandro", "Varela", 1, "alejo8677@gmail.com", "1", UserRole.AIRPORT_ADMIN));
         airlines.add(new Airline("Avianca", ""));
         airlines.add(new Airline("Spirit", ""));
@@ -30,6 +31,7 @@ public class Airport {
     }
 
     public List<Flight> getFlights() {
+        flights.clear();
         for (Airline airline : airlines) {
             for (Flight flight : airline.getFlights()) {
                 flights.add(flight);

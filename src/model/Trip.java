@@ -10,11 +10,24 @@ public class Trip {
     private Trip left;
     private Trip right;
 
-    public Trip(String id, Ticket ticket, Luggage rootLuggage, int tripPrice) {
+
+    public Trip(String id, Ticket ticket, Luggage rootLuggage, Seat fligthSeat) {
         this.id = id;
         this.ticket = ticket;
         this.rootLuggage = rootLuggage;
-        this.tripPrice = tripPrice;
+        tripPrice = ticket.getFlightPrice() + luggagePrice();
+    }
+
+    public int luggagePrice(){
+        int amount = 0; 
+        Luggage temp = rootLuggage;
+        if(temp != null){
+            do{
+                amount += temp.getLuggagePrice();
+                temp = temp.getNextLuggage();
+            } while (temp != null);
+        } 
+        return amount;
     }
 
     /**

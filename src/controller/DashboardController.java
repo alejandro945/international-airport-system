@@ -121,7 +121,9 @@ public class DashboardController implements Initializable {
 
     public void loadView(Route route) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route.getRoute()));
+        //Object obj = setViewController(route);
         fxmlLoader.setController(setViewController(route));
+        //fxmlLoader.setController(obj);
         Parent view = fxmlLoader.load();
         dashPane.getChildren().setAll(view);
     }
@@ -173,6 +175,15 @@ public class DashboardController implements Initializable {
                 return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
                 return new AircraftController(airport, this);
+            case NEW_TRIP:
+                try {
+                    BookFlightController controller =  new BookFlightController(airport, this);
+                    //controller.loadData();
+                    return controller;
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             case PROFILE:
                 return this;
             default:
@@ -245,5 +256,11 @@ public class DashboardController implements Initializable {
                 }
                 break;
         }
+    }
+
+    // --------------------------- Alerts
+
+    public void alert(Route type, String message) {
+       airportController.createAlert(message, type);
     }
 }

@@ -9,6 +9,7 @@ public class Ticket implements Price {
         this.flight = flight;
         this.fligthSeat = fligthSeat;
         this.flightPrice = flightPrice;
+
     }
 
     /**
@@ -56,6 +57,8 @@ public class Ticket implements Price {
     @Override
     public void calculatePrice(int increase) {
 
-    }    
+    }
+
+    
 
 }

@@ -14,11 +14,14 @@ public class Flight {
     private Aircraft plane;
     private Track track;
     private FlightState flightStatus;
+
+    private Airline airline;
+    
     private long position;
     private long duration;
 
     public Flight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour,
-            Places origin, Places destination, Track track) {
+            Places origin, Places destination, Track track, Airline airline, Aircraft aircraft) {
         this.id = id;
         this.departureDate = departureDate;
         this.departureHour = departureHour;
@@ -27,9 +30,10 @@ public class Flight {
         this.origin = origin;
         this.destination = destination;
         this.track = track;
-        // this.plane = plane;
+        this.plane = aircraft;
         this.flightStatus = FlightState.SCHEDULED;
         this.position = 125;
+        this.airline = airline;
         flightDuration();
     }
 
@@ -216,6 +220,14 @@ public class Flight {
         LocalDateTime arr = LocalDateTime.of(render[5], render[6], render[7], render[8], render[9]);
         Duration d = Duration.between(dep, arr);
         duration = Math.abs(d.getSeconds());
+    }
+
+    public Airline getAirline() {
+        return airline;
+    }
+
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
 }
