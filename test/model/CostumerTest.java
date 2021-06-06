@@ -20,7 +20,7 @@ public class CostumerTest {
 
 		Trip test1 = new Trip("T231", ticket1, luggage1, 250000);
 
-		Flight fly2 = new Flight("V23", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null);
+		Flight fly2 = new Flight("V23", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null, null, null);
 		Seat seat2 = new Seat(20, 'B', true);
 		Ticket ticket2 = new Ticket(fly2, seat2, 210000);
 		Luggage luggage2 = new Luggage(70, 20, 20);
