@@ -44,13 +44,12 @@ public class BookFlightController {
     private Seat selectSeat;
     private int tripPrice;
     private List<Luggage> luggages;
-    private List<SpecialLuggage> specialLuggages;
+
 
     public BookFlightController(Airport airport, DashboardController dController) {
         this.airport = airport;
         this.dController = dController;
         luggages = new ArrayList<>();
-        specialLuggages = new ArrayList<>();
     }
 
     public void initialize() {
@@ -257,7 +256,12 @@ public class BookFlightController {
             selectSeat.setSeatState(false);
             calculateTripPrice();
             txtTotalPrice.setText(tripPrice +"");
+            String id =  airport.getLogged().countTrips() + ticket.getFlight().getId();
+            trip = new Trip((id), ticket, selectSeat);
+            idTrip.setText("value " + id );
+            updateLuggageToTrip(trip);
             modalTicket.close();
+            System.out.println(airport.getLogged().countTrips());
             dController.alert(Route.SUCCESS, "Ticket saved");
         } else {
             dController.alert(Route.ERROR, "Please selected a seat by clicking it");
@@ -349,7 +353,7 @@ public class BookFlightController {
             char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)].getSeatLetter();
             int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)].getSeatNumber() ;
             //seatValue.setText(letter + "-" + num);
-            GridPane gp = (GridPane) source;
+            //GridPane gp = (GridPane) source;
             seatValue.setText(String.valueOf(letter)+num);
             clearChildrenStyle(seatsGrid);
             source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
@@ -464,11 +468,24 @@ public class BookFlightController {
                 luggages.add((Luggage)tempSpecialLuggage);
                 initializeTableView();
             }
+            updateLuggageToTrip(trip);
             calculateTripPrice();
             modal.close();
             dController.alert(Route.SUCCESS, "Luggage added to trip");
         } else {
             dController.alert(Route.ERROR, "Fill all fields");
+        }
+    }
+
+    private void updateLuggageToTrip(Trip trip){
+        if(trip != null){
+            for(int i = 0; i < luggages.size(); i++){
+                if(i == 0){
+                    trip.setRootLuggage(luggages.get(i));
+                }else{
+                    trip.addLuggage(luggages.get(i));
+                }
+            }
         }
     }
 
@@ -533,10 +550,6 @@ public class BookFlightController {
 
         for(int i = 0; i < luggages.size(); i++){
             calculate += luggages.get(i).getLuggagePrice();
-        }
-
-        for(int i = 0; i < specialLuggages.size(); i++){
-            calculate += specialLuggages.get(i).getLuggagePrice();
         }
 
         tripPrice = calculate;
