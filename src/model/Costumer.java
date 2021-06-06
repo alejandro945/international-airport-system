@@ -11,7 +11,7 @@ public class Costumer extends User {
     private String state;
 
     public Costumer() { // JUnit Tests
-        super("Tester", "User", 122442, "testerUser@correo.co", "password", UserRole.COSTUMER_USER);
+        super("Tester", "User", 4, "testerUser@correo.co", "4", UserRole.COSTUMER_USER);
 
     }
 
@@ -128,5 +128,17 @@ public class Costumer extends User {
         this.state = CostumerState.values()[state].name();
     }
 
-    
+    private int countTrips(Trip node, int count){
+        if (node == null) {
+            return 0;
+        }
+        countTrips(node.getLeft(), count);
+        count++;
+        countTrips(node.getRight(), count);
+        return count;
+    }
+
+    public int countTrips(){
+       return countTrips(rootTrip, 0);
+    }
 }
