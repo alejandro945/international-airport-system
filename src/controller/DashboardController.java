@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.Airport;
+import model.UserRole;
 import route.Route;
 
 import java.io.IOException;
@@ -34,8 +35,7 @@ public class DashboardController implements Initializable {
     @FXML
     private ChoiceBox<String> devUserType;
     private String activeUser;
-    private final String[] userTypes = { "Client", "Airport Admin", "CT Supervisor", "Migration Agent",
-            "Airline Admin" };
+    private final String[] userTypes = Arrays.toString(UserRole.class.getEnumConstants()).replaceAll("^.|.$", "").split(", ");
     // Delete before release.
 
     @FXML
@@ -72,10 +72,18 @@ public class DashboardController implements Initializable {
             } else {
                 imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             }
+            devUserType.setValue(airport.getLogged().getRole().name());
         } else {
-            lblUser.setText(airport.getAdminLogged().getName());
+            lblUser.setText(airport.getAdminLogged().getName());    
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
+            devUserType.setValue(airport.getAdminLogged().getRole().name());
+            try {
+                changeUserType((ActionEvent) devUserType.getOnAction());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     @Override
@@ -83,7 +91,13 @@ public class DashboardController implements Initializable {
         init();
         startClock();
         devUserType.getItems().addAll(userTypes);
-        devUserType.setOnAction(this::changeUserType);
+        devUserType.setOnAction(event -> {
+            try {
+                changeUserType(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void startClock() {
@@ -121,9 +135,7 @@ public class DashboardController implements Initializable {
 
     public void loadView(Route route) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(route.getRoute()));
-        //Object obj = setViewController(route);
         fxmlLoader.setController(setViewController(route));
-        //fxmlLoader.setController(obj);
         Parent view = fxmlLoader.load();
         dashPane.getChildren().setAll(view);
     }
@@ -176,16 +188,9 @@ public class DashboardController implements Initializable {
             case AIRCRAFT_TABLE:
                 return new AircraftController(airport, this);
             case NEW_TRIP:
-                try {
-                    BookFlightController controller =  new BookFlightController(airport, this);
-                    //controller.loadData();
-                    return controller;
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                return new BookFlightController(airport, this);
             case PROFILE:
-                return this;
+                return new ProfileController(this);
             default:
                 return null;
         }
@@ -212,48 +217,29 @@ public class DashboardController implements Initializable {
         return activeUser;
     }
 
-    public void changeUserType(ActionEvent event) {
+    public void changeUserType(ActionEvent event) throws IOException {
         String type = devUserType.getValue();
+        loadView(Route.HOME);
         switch (type) {
-            case ("Client"):
-                try {
+            case ("COSTUMER_USER"):     
                     loadBar(Route.COSTUMER);
                     activeUser = "Client";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
-            case ("Airport Admin"):
-                try {
+            case ("AIRPORT_ADMIN"):
                     loadBar(Route.AIRPORT_ADMIN);
                     activeUser = "Airport Admin";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
-            case ("CT Supervisor"):
-                try {
+            case ("TOWER_SUPERVISOR"):
                     loadBar(Route.CT_SUPERVISOR);
                     activeUser = "CT Supervisor";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
-            case ("Migration Agent"):
-                try {
+            case ("MIGRATION_AGENT"):
                     loadBar(Route.MIGRATION_AGENT);
                     activeUser = "Migration Agent";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
-            case ("Airline Admin"):
-                try {
+            case ("AIRLINE_ADMIN"):
                     loadBar(Route.AIRLINE_ADMIN);
                     activeUser = "Airline Admin";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
         }
     }

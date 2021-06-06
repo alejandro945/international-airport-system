@@ -13,8 +13,6 @@ public class AirportAdminBarController {
 
     private final DashboardController dController;
 
-    @FXML
-    private ImageView imgTracks;
 
     @FXML
     private ImageView imgUsers;
@@ -25,12 +23,14 @@ public class AirportAdminBarController {
     public AirportAdminBarController(DashboardController dController) {
         this.dController = dController;
     }
-
     @FXML
-    void showTracks(MouseEvent event) throws IOException {
+    private ImageView imgHome;
+    
+    @FXML
+    void showHome(MouseEvent event) throws IOException {
         resetAllIcons();
-        imgTracks.setImage(new Image("/ui/assets/img/icons/active-control-tower.png"));
-        dController.loadView(Route.TRACK_TABLE);
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
+        dController.loadView(Route.HOME);
     }
 
     @FXML
@@ -48,7 +48,7 @@ public class AirportAdminBarController {
     }
 
     public void resetAllIcons() {
-        imgTracks.setImage(new Image("/ui/assets/img/icons/control-tower.png"));
+        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
         imgUsers.setImage(new Image("/ui/assets/img/icons/employees.png"));
         imgAirlines.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
     }

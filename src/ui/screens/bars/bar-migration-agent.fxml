@@ -13,6 +13,20 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="770.0" prefWidth="225.0" stylesheets="@../../assets/styles/dash.css">
          <children>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showHome" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/dashboard.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Home">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" onMouseClicked="#showIndicators" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
                <children>
                   <ImageView fx:id="imgIndicators" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">

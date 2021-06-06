@@ -1,19 +1,26 @@
 package controller;
 
-import model.*;
-import route.Route;
 import controller.login.*;
-
 import java.io.IOException;
+
 import com.jfoenix.controls.*;
-import javafx.fxml.*;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.image.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.stage.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import model.*;
+import route.Route;
+
 
 public class AirportController {
 
@@ -34,7 +41,6 @@ public class AirportController {
         this.airport = airport;
         loginController = new LoginController(airport, this);
         dashboardController = new DashboardController(airport, this);
-
     }
 
     /**

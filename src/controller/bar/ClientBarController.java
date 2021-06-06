@@ -22,32 +22,33 @@ public class ClientBarController {
 
     @FXML
     private ImageView imgNewFlight;
-    @FXML
-    private ImageView imgLuggage;
 
     @FXML
-    void showLugagge(MouseEvent event) throws IOException {
+    private ImageView imgHome;
+    
+    @FXML
+    void showHome(MouseEvent event) throws IOException {
         resetAllIcons();
-        imgLuggage.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
-        dController.loadView(Route.LUGAGGE_TABLE);
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
+        dController.loadView(Route.HOME);
     }
 
     @FXML
-    void showMyFlights(MouseEvent event) throws IOException {
+    void showMyTrips(MouseEvent event) throws IOException {
         resetAllIcons();
         imgMyFlights.setImage(new Image("/ui/assets/img/icons/active-tickets-flat.png"));
         dController.loadView(Route.MY_TRIPS);
     }
 
     @FXML
-    void showNewFlight(MouseEvent event) throws IOException {
+    void showBook(MouseEvent event) throws IOException {
         resetAllIcons();
         imgNewFlight.setImage(new Image("/ui/assets/img/icons/active-plane-flat.png"));
         dController.loadView(Route.NEW_TRIP);
     }
 
     public void resetAllIcons() {
-        imgLuggage.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
+        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
         imgMyFlights.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
         imgNewFlight.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
     }

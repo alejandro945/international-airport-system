@@ -9,6 +9,13 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "ui.Main",
+            "projectName": "international-airport-system_f5132ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "ui.Main",
             "projectName": "international-airport-system_48524e65"
         },
         {

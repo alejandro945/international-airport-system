@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1420.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="mainPane" prefHeight="950.0" prefWidth="1420.0" />
+      <Pane fx:id="mainPane" layoutY="3.0" prefHeight="950.0" prefWidth="1420.0" />
       <HBox layoutX="60.0" layoutY="6.0" prefHeight="21.0" prefWidth="84.0" spacing="10.0">
          <children>
             <Circle fx:id="btnCloseLogin" fill="#f65d57" onMouseClicked="#handleMouseClick" radius="10.0" strokeType="INSIDE">

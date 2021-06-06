@@ -13,14 +13,28 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="770.0" prefWidth="225.0" stylesheets="@../../assets/styles/dash.css">
          <children>
-            <HBox alignment="CENTER_LEFT" onMouseClicked="#showMyFlights" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showHome" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/dashboard.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Home">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showMyTrips" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
                <children>
                   <ImageView fx:id="imgMyFlights" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../assets/img/icons/tickets-flat.png" />
                      </image>
                   </ImageView>
-                  <Label text="My Flights">
+                  <Label text="My Trips">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>
@@ -30,28 +44,14 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" onMouseClicked="#showNewFlight" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" onMouseClicked="#showBook" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
                <children>
                   <ImageView fx:id="imgNewFlight" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../assets/img/icons/plane-flat.png" />
                      </image>
                   </ImageView>
-                  <Label text="New Flight">
-                     <font>
-                        <Font name="Montserrat Regular" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" onMouseClicked="#showLugagge" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
-               <children>
-                  <ImageView fx:id="imgLuggage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../assets/img/icons/dashboard.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Luggage">
+                  <Label text="Book">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>

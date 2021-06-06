@@ -16,6 +16,15 @@ public class MigrationAgentBarController {
     public MigrationAgentBarController(DashboardController dController) {
         this.dController = dController;
     }
+    @FXML
+    private ImageView imgHome;
+    
+    @FXML
+    void showHome(MouseEvent event) throws IOException {
+        resetAllIcons();
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
+        dController.loadView(Route.HOME);
+    }
 
     @FXML
     void showIndicators(MouseEvent event) throws IOException {
@@ -25,6 +34,7 @@ public class MigrationAgentBarController {
     }
 
     public void resetAllIcons() {
+        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
         imgIndicators.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
     }
 

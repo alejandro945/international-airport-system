@@ -1,4 +1,4 @@
-package controller;
+package controller.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.jfoenix.controls.*;
 
+import controller.DashboardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +24,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import model.*;
 import javafx.stage.Stage;
-import route.Root;
 import route.Route;
 
 import javafx.beans.property.ReadOnlyStringWrapper;

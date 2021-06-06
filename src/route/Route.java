@@ -7,7 +7,7 @@ public enum Route {
     CRUD("/ui/assets/styles/table.css"), SPINNER("/ui/screens/spinner.fxml"), SUCCESS("/ui/assets/img/success.gif"),
     ERROR("/ui/assets/img/error.gif"), WARNING("/ui/assets/img/warning.gif"),
     USER_ICON("/ui/assets/img/icons/user.png"), AIRLINE_ADMIN(Root.BAR.getRoot() + "bar-airline.admin.fxml"),
-    AIRPORT_ADMIN(Root.BAR.getRoot() + "bar-airport-admin.fxml"),
+    AIRPORT_ADMIN(Root.BAR.getRoot() + "bar-airport-admin.fxml"),HOME(Root.BAR.getRoot() + "home.fxml"),
     CT_SUPERVISOR(Root.BAR.getRoot() + "bar-ct-supervisor.fxml"),
     MIGRATION_AGENT(Root.BAR.getRoot() + "bar-migration-agent.fxml"),
     COSTUMER(Root.BAR.getRoot() + "bar-costumer.fxml"), ACTIVE_FLIGHTS(Root.TOWER.getRoot() + "active-flights.fxml"),

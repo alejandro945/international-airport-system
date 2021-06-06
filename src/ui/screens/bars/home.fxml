@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" style="-fx-background-color: #fff;" styleClass="main-dash" stylesheets="@../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="87.0" layoutY="113.0" prefHeight="300.0" prefWidth="300.0" styleClass="box" stylesheets="@../../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="135.0" fitWidth="196.0" layoutX="67.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="149.0" prefHeight="135.0" prefWidth="282.0" text="You can check the status of your flights in real time so that you are always aware of possible recommendations" textAlignment="CENTER" wrapText="true" />
+         </children></Pane>
+      <Separator layoutY="57.0" prefHeight="9.0" prefWidth="1195.0" />
+      <Label layoutX="42.0" layoutY="14.0" styleClass="menu-label" text="Airport System Home" />
+      <Pane layoutX="87.0" layoutY="481.0" prefHeight="300.0" prefWidth="300.0" styleClass="box" stylesheets="@../../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="118.0" fitWidth="165.0" layoutX="66.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/2.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="135.0" prefHeight="148.0" prefWidth="282.0" text="Review the measures that we give you to facilitate the qualification to the Premium Pass categories during 2021 so that you can maintain your membership." textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="450.0" layoutY="113.0" prefHeight="300.0" prefWidth="300.0" styleClass="box" stylesheets="@../../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="135.0" fitWidth="196.0" layoutX="81.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/7.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="151.0" prefHeight="135.0" prefWidth="282.0" text="System Airline experience, at all times.When you choose to fly with us, we accompany you at each stage." textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="807.0" layoutY="113.0" prefHeight="300.0" prefWidth="300.0" styleClass="box" stylesheets="@../../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="135.0" fitWidth="196.0" layoutX="72.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/4.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="145.0" prefHeight="148.0" prefWidth="282.0" text="We understand that plans change.If your flight was canceled, rescheduled or if you want to postpone your trip." textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="449.0" layoutY="481.0" prefHeight="300.0" prefWidth="300.0" styleClass="box" stylesheets="@../../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="118.0" fitWidth="175.0" layoutX="62.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/6.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="143.0" prefHeight="148.0" prefWidth="282.0" text="Explore the wide variety of cheap tickets that System Airlines Colombia has for you. Enjoy national and international flights and discover hundreds of incredible destinations." textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="807.0" layoutY="481.0" prefHeight="300.0" prefWidth="300.0" styleClass="box" stylesheets="@../../assets/styles/vendor.css">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="168.0" layoutX="68.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/5.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="150.0" prefHeight="135.0" prefWidth="282.0" text="Your safety is our priority. Visit our COVID-19 Information Center and learn about security measures, flexibility and requirements." textAlignment="CENTER" wrapText="true" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
