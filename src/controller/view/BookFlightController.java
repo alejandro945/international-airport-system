@@ -339,7 +339,7 @@ public class BookFlightController {
         }
 
         boxStyle(seatsGrid, 0, seatsGrid.getChildren().size());
-        seatsGrid.getStyleClass().add("smallGrid");
+        //seatsGrid.getStyleClass().add("smallGrid");
     }
 
     private void onCLickActionSeat(MouseEvent e, Flight flight) {

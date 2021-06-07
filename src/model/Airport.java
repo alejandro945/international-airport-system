@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.relation.Role;
+
 public class Airport implements Serializable {
     public final String USER_SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
@@ -242,10 +244,13 @@ public class Airport implements Serializable {
         boolean found = false;
         for (int i = 0; i < users.size() && !found; i++) {
             if (users.get(i).getId() == (id) && users.get(i).getPassword().equals(password)) {
-                if (users.get(i) instanceof Costumer) {
+                //if (users.get(i) instanceof Costumer) {
+                if (users.get(i).getRole().equals(UserRole.COSTUMER_USER)) {
                     setLogged((Costumer) users.get(i));
+                    //System.out.println("ENTRA como Costumer");
                 } else {
                     setAdminLogged(users.get(i));
+                    //System.out.println("ENTRA como USER");
                 }
                 found = true;
             }

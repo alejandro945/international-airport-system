@@ -35,7 +35,8 @@ public class DashboardController implements Initializable {
     @FXML
     private ChoiceBox<String> devUserType;
     private String activeUser;
-    private final String[] userTypes = Arrays.toString(UserRole.class.getEnumConstants()).replaceAll("^.|.$", "").split(", ");
+    private final String[] userTypes = Arrays.toString(UserRole.class.getEnumConstants()).replaceAll("^.|.$", "")
+            .split(", ");
     // Delete before release.
 
     @FXML
@@ -53,7 +54,8 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Pane mainBar;
-private boolean userType;
+    private boolean userType;
+
     public DashboardController(Airport airport, AirportController airportController) {
         this.airportController = airportController;
         this.airport = airport;
@@ -62,9 +64,11 @@ private boolean userType;
     public AirportController geAirportController() {
         return airportController;
     }
-    public boolean getUserType(){
+
+    public boolean getUserType() {
         return userType;
     }
+
     public void init() {
         if (airport.getLogged() != null) {
             userType = true;
@@ -78,7 +82,7 @@ private boolean userType;
             devUserType.setValue(airport.getLogged().getRole().name());
         } else {
             userType = false;
-            lblUser.setText(airport.getAdminLogged().getName());    
+            lblUser.setText(airport.getAdminLogged().getName());
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             devUserType.setValue(airport.getAdminLogged().getRole().name());
         }
@@ -157,7 +161,7 @@ private boolean userType;
     public Object setViewController(Route route) {
         switch (route) {
             case MY_TRIPS:
-                return new FlightsBookedController(airport,this);
+                return new FlightsBookedController(airport, this);
             case AP_EMPLOYEES:
                 return new AirportEmployeesController(this);
             case NEW_EMPLOYEE:
@@ -189,9 +193,11 @@ private boolean userType;
             case AIRCRAFT_TABLE:
                 return new AircraftController(airport, this);
             case NEW_TRIP:
+                //System.out.println(airport.getLogged());
+                //System.out.println(airport.getLogged().getClass());
                 return new BookFlightController(airport, this);
             case PROFILE:
-                return new ProfileController(this,airport);
+                return new ProfileController(this, airport);
             default:
                 return null;
         }
@@ -222,25 +228,25 @@ private boolean userType;
         String type = devUserType.getValue();
         loadView(Route.HOME);
         switch (type) {
-            case ("COSTUMER_USER"):     
-                    loadBar(Route.COSTUMER);
-                    activeUser = "Client";
+            case ("COSTUMER_USER"):
+                loadBar(Route.COSTUMER);
+                activeUser = "Client";
                 break;
             case ("AIRPORT_ADMIN"):
-                    loadBar(Route.AIRPORT_ADMIN);
-                    activeUser = "Airport Admin";
+                loadBar(Route.AIRPORT_ADMIN);
+                activeUser = "Airport Admin";
                 break;
             case ("TOWER_SUPERVISOR"):
-                    loadBar(Route.CT_SUPERVISOR);
-                    activeUser = "CT Supervisor";
+                loadBar(Route.CT_SUPERVISOR);
+                activeUser = "CT Supervisor";
                 break;
             case ("MIGRATION_AGENT"):
-                    loadBar(Route.MIGRATION_AGENT);
-                    activeUser = "Migration Agent";
+                loadBar(Route.MIGRATION_AGENT);
+                activeUser = "Migration Agent";
                 break;
             case ("AIRLINE_ADMIN"):
-                    loadBar(Route.AIRLINE_ADMIN);
-                    activeUser = "Airline Admin";
+                loadBar(Route.AIRLINE_ADMIN);
+                activeUser = "Airline Admin";
                 break;
         }
     }
@@ -248,6 +254,6 @@ private boolean userType;
     // --------------------------- Alerts
 
     public void alert(Route type, String message) {
-       airportController.createAlert(message, type);
+        airportController.createAlert(message, type);
     }
 }
