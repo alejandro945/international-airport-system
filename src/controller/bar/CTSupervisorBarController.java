@@ -18,6 +18,10 @@ public class CTSupervisorBarController {
 
     @FXML
     private ImageView imgStatus;
+    
+    @FXML
+    private ImageView imgMap;
+
 
     private final DashboardController dController;
 
@@ -54,9 +58,16 @@ public class CTSupervisorBarController {
         imgStatus.setImage(new Image("/ui/assets/img/icons/active-status.png"));
         dController.loadView(Route.TRACK_TABLE);
     }
+    @FXML
+    void showMap(MouseEvent event) throws IOException {
+        resetAllIcons();
+        imgMap.setImage(new Image("/ui/assets/img/icons/active-maintenance.png"));
+        dController.loadView(Route.MAP);
+    }
 
     public void resetAllIcons() {
-        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
+        imgMap.setImage(new Image("/ui/assets/img/icons/maintenance.png"));
+        imgHome.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
         imgActiveFlights.setImage(new Image("/ui/assets/img/icons/flights.png"));
         imgUpcomingFlights.setImage(new Image("/ui/assets/img/icons/upcoming-flights.png"));
         imgStatus.setImage(new Image("/ui/assets/img/icons/status.png"));

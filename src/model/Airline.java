@@ -23,7 +23,7 @@ public class Airline implements Serializable {
         Aircraft plane = new Aircraft("planeCode", 234532, 48);
         flights.add(new Flight("1", "2021-06-04", "08:00", "2021-06-06", "11:00", Places.MADRID, Places.MILAN, null, this, plane));
         flights.add(
-                new Flight("2", "2021-06-08", "09:00", "2021-06-09", "13:00", Places.MADRID, Places.MEDELLIN, null, this, plane));
+                new Flight("2", "2021-06-08", "09:00", "2021-06-09", "13:00", Places.MADRID, Places.MOSCOW, null, this, plane));
         flights.get(0).setFlightStatus(FlightState.AIRBORNE);
         flights.get(1).setFlightStatus(FlightState.AIRBORNE);
     }

@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" style="-fx-background-color: #fff;" stylesheets="@../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" style="-fx-background-color: #fff;" styleClass="main-dash" stylesheets="@../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="70.0" layoutY="83.0" prefHeight="645.0" prefWidth="1055.0" spacing="20.0" styleClass="box">
-         <children>
-            <HBox spacing="10.0">
-               <children>
-                  <JFXTextField alignment="CENTER" promptText="First Name" />
-                  <JFXTextField alignment="CENTER" promptText="Last Name" />
-               </children>
-            </HBox>
-            <JFXTextField alignment="CENTER" promptText="Identification" />
-            <Label layoutX="30.0" layoutY="30.0" text="Credentials">
-               <font>
-                  <Font name="Montserrat Bold" size="20.0" />
-               </font>
-            </Label>
-            <HBox layoutX="30.0" layoutY="76.0" spacing="10.0">
-               <children>
-                  <JFXTextField alignment="CENTER" promptText="Email Address" />
-                  <JFXTextField alignment="CENTER" promptText="Password" />
-                  <JFXTextField alignment="CENTER" promptText="Confirm Password" />
-               </children>
-            </HBox>
-            <Button mnemonicParsing="false" onAction="#closeAccount" styleClass="button2" text="Close Account" />
-            <Button layoutX="30.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveData" prefHeight="35.0" prefWidth="152.0" styleClass="button1" text="Save" />
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <Label layoutX="85.0" layoutY="14.0" styleClass="menu-label" text="My Profile">
+      <Label layoutX="85.0" layoutY="14.0" styleClass="menu-label" text="Account Settings">
          <font>
             <Font name="Montserrat Bold" size="20.0" />
          </font>
       </Label>
       <Separator layoutY="52.0" prefHeight="9.0" prefWidth="1195.0" />
+      <Pane layoutX="136.0" layoutY="89.0" prefHeight="320.0" prefWidth="931.0" styleClass="box">
+         <children>
+            <ImageView fitHeight="244.0" fitWidth="900.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/img/timeline.jpg" />
+               </image>
+            </ImageView>
+            <Pane layoutX="45.0" layoutY="195.0" prefHeight="111.0" prefWidth="107.0" styleClass="box">
+               <children>
+                  <ImageView fx:id="userIcon" fitHeight="94.0" fitWidth="88.0" layoutX="10.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/10.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <JFXButton layoutX="202.0" layoutY="269.0" prefHeight="35.0" prefWidth="141.0" styleClass="button-login" stylesheets="@../../assets/styles/login.css" text="Feed" />
+            <JFXButton layoutX="358.0" layoutY="269.0" prefHeight="35.0" prefWidth="141.0" styleClass="button-login" stylesheets="@../../assets/styles/login.css" text="About" />
+            <Label layoutX="534.0" layoutY="277.0" text="Allowed JPG, GIF or PNG. Max size of 800kB" />
+            <Label fx:id="lblUser" alignment="CENTER" layoutX="203.0" layoutY="217.0" prefHeight="20.0" prefWidth="215.0" text="UserName" textAlignment="CENTER" textFill="WHITE" />
+         </children></Pane>
+      <Button layoutX="830.0" layoutY="516.0" mnemonicParsing="false" onAction="#closeAccount" prefHeight="35.0" prefWidth="188.0" styleClass="button2" text="Close Account" />
+      <Button layoutX="831.0" layoutY="453.0" mnemonicParsing="false" onAction="#saveData" prefHeight="35.0" prefWidth="188.0" styleClass="button1" text="Save" />
+      <JFXTextField fx:id="txtId" alignment="CENTER" layoutX="175.0" layoutY="533.0" promptText="Identification" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtName" alignment="CENTER" layoutX="175.0" layoutY="444.0" promptText="First Name" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtLast" alignment="CENTER" layoutX="375.0" layoutY="444.0" promptText="Last Name" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtEmail" alignment="CENTER" layoutX="583.0" layoutY="445.0" promptText="Email Address" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtPass" alignment="CENTER" layoutX="375.0" layoutY="538.0" promptText="New Password" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtPassC" alignment="CENTER" layoutX="583.0" layoutY="538.0" promptText="Confirm Password" unFocusColor="#3100ae" />
+      <Label layoutX="175.0" layoutY="619.0" text="Notifications" />
+      <JFXToggleButton layoutX="242.0" layoutY="656.0" selected="true" text="News and announcements" toggleColor="#370094" toggleLineColor="#a859f8">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font>
+      </JFXToggleButton>
+      <JFXToggleButton layoutX="242.0" layoutY="729.0" selected="true" text="Email me when someone comments on my article" toggleColor="#240094" toggleLineColor="#7643c3">
+         <font>
+            <Font name="Century Gothic" size="13.0" />
+         </font>
+      </JFXToggleButton>
    </children>
 </Pane>

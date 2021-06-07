@@ -53,7 +53,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Pane mainBar;
-
+private boolean userType;
     public DashboardController(Airport airport, AirportController airportController) {
         this.airportController = airportController;
         this.airport = airport;
@@ -62,9 +62,12 @@ public class DashboardController implements Initializable {
     public AirportController geAirportController() {
         return airportController;
     }
-
+    public boolean getUserType(){
+        return userType;
+    }
     public void init() {
         if (airport.getLogged() != null) {
+            userType = true;
             lblUser.setText(airport.getLogged().getName());
             String path = airport.getLogged().getIconPath();
             if (path != null) {
@@ -74,16 +77,16 @@ public class DashboardController implements Initializable {
             }
             devUserType.setValue(airport.getLogged().getRole().name());
         } else {
+            userType = false;
             lblUser.setText(airport.getAdminLogged().getName());    
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             devUserType.setValue(airport.getAdminLogged().getRole().name());
-            try {
-                changeUserType((ActionEvent) devUserType.getOnAction());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-
+        try {
+            changeUserType((ActionEvent) devUserType.getOnAction());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -167,16 +170,14 @@ public class DashboardController implements Initializable {
                 return new ActiveFlightsController(airport, this);
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this);
-            case NEW_MAINTENANCE:
-                return new NewMaintenanceController(this);
+            case MAP:
+                return new MapController(this);
             case INDICATORS:
                 return new IndicatorsController(this);
             case FLIGHTS:
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:
                 return new AirlineEmployeesController(this);
-            case PROFILE_SETTING:
-                return new ProfileController(this);
             case USER_TABLE:
                 return new UserController(airport, this);
             case AIRLINE_TABLE:
@@ -190,7 +191,7 @@ public class DashboardController implements Initializable {
             case NEW_TRIP:
                 return new BookFlightController(airport, this);
             case PROFILE:
-                return new ProfileController(this);
+                return new ProfileController(this,airport);
             default:
                 return null;
         }

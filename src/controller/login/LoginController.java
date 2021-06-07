@@ -76,6 +76,8 @@ public class LoginController {
                         Long.parseLong(googleUser[0].substring(0, googleUser[0].length() - 4)), googleUser[3]),
                 Route.SUCCESS);
         airportController.renderScreen(Route.DASHBOARD);
+        airport.saveData();
+        airport.loadData();
     }
 
     /**
@@ -156,6 +158,8 @@ public class LoginController {
                     lblEmail.getText(), lblPass.getText());
             airportController.createAlert(msg, Route.SUCCESS);
             trimFields();
+            airport.saveData();
+            airport.loadData();
         } else {
             airportController.createAlert(render, Route.WARNING);
         }
