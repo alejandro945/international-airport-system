@@ -18,14 +18,13 @@ public class Airport implements Serializable {
     public final String USER_ERROR = " could not been added to our Airport (Already exists)";
     public final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public final String OAUTH_MESSAGE = " your account have been rendered successfully";
-    private final String[] SAVE_PATH_FILE = {"data/AirportW.data","data/AirportL.data","data/AirportM.data"};
+    private final String SAVE_PATH_FILE = "data/AirportM.data";
     private List<User> users;
     private List<Airline> airlines;
     private List<Flight> flights;
     private Track firstTrack;
     private Costumer logged;
     private User adminLogged;
-    private int operative;
 
     public Airport() {
         users = new ArrayList<>();
@@ -39,18 +38,7 @@ public class Airport implements Serializable {
     }
 
     public void dateRender() {
-        File file = null;
-        String osName = System.getProperty("os.name");
-        if (osName.contains("Windows")){
-            operative = 0;
-            file = new File(SAVE_PATH_FILE[operative]);
-        }else if (osName.contains("Linux")){
-            operative = 1;
-            file = new File(SAVE_PATH_FILE[operative]);
-        }else if (osName.contains("Mac OS X")){
-            operative = 2;
-            file = new File(SAVE_PATH_FILE[operative]);
-        }
+        File file = new File(SAVE_PATH_FILE);
         if (file.length() > 0) {
             loadData();
         }
@@ -59,7 +47,7 @@ public class Airport implements Serializable {
     @SuppressWarnings("unchecked")
     public void loadData() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE[operative])));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
             users = (List<User>) ois.readObject();
             airlines = (List<Airline>) ois.readObject();
             flights = (List<Flight>) ois.readObject();
@@ -73,7 +61,7 @@ public class Airport implements Serializable {
     public void saveData() {
         ObjectOutputStream oos;
         try {
-            oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE[operative]));
+            oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
             oos.writeObject(users);
             oos.writeObject(airlines);
             oos.writeObject(flights);
