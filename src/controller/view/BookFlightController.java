@@ -43,6 +43,7 @@ public class BookFlightController {
     private Trip trip;
     private Flight selectedFlight;
     private Seat selectSeat;
+    private Seat previousSeat;
     private int tripPrice;
     private List<Luggage> luggages;
 
@@ -253,7 +254,7 @@ public class BookFlightController {
             txtSelctedSeat.setText(String.valueOf(selectSeat.getSeatLetter()) + selectSeat.getSeatNumber() + "");
             // System.out.println(String.valueOf(selectSeat.getSeatLetter()) +
             // selectSeat.getSeatNumber());
-            selectSeat.setSeatState(true);
+
             calculateTripPrice();
             txtTotalPrice.setText(tripPrice + "");
             idTrip.setText("T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId());
@@ -309,22 +310,28 @@ public class BookFlightController {
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < 6; j++) {
 
-                String letter = String.valueOf(flight.getPlane().getSeat()[i][j].getSeatLetter());
-                int number = flight.getPlane().getSeat()[i][j].getSeatNumber();
+                Seat tempSeat = flight.getPlane().getSeat()[i][j];
+
+                String letter = String.valueOf(tempSeat.getSeatLetter());
+                int number = tempSeat.getSeatNumber();
                 Label temp = new Label(letter + " " + number);
 
                 GridPane tempGrid = new GridPane();
 
                 tempGrid.setAlignment(Pos.CENTER);
                 tempGrid.add(temp, 0, 0);
-                tempGrid.setStyle(
-                        "-fx-font-size:8; -fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5px;");
+                if (tempSeat.getSeatState()) {
+                    tempGrid.setStyle(
+                            "-fx-background-color: rgb(179, 176, 176); -fx-border-color: gray; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+                } else {
+                    tempGrid.setStyle("-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5px;");
+                }
 
                 // System.out.println(Root.STYLE_GRID.getRoot());
-                
-                 //tempGrid.getStylesheets().add(Root.STYLE_GRID.getRoot());
-                 //tempGrid.getParent().getStyleClass().add("smallGrid");
-                 //((Node) tempGrid.getChildren()).getStyleClass().add("smallGrid");
+
+                // tempGrid.getStylesheets().add(Root.STYLE_GRID.getRoot());
+                // tempGrid.getParent().getStyleClass().add("smallGrid");
+                // ((Node) tempGrid.getChildren()).getStyleClass().add("smallGrid");
 
                 tempGrid.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
@@ -339,7 +346,7 @@ public class BookFlightController {
         }
 
         boxStyle(seatsGrid, 0, seatsGrid.getChildren().size());
-        seatsGrid.getStyleClass().add("smallGrid");
+        // seatsGrid.getStyleClass().add("smallGrid");
     }
 
     private void onCLickActionSeat(MouseEvent e, Flight flight) {
@@ -347,31 +354,37 @@ public class BookFlightController {
 
         if (source instanceof GridPane) {
 
-            char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
-                    .getSeatLetter();
-            int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
-                    .getSeatNumber();
+            Seat tempSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
+            if (tempSeat.getSeatState()) {
+                dController.alert(Route.ERROR, "Seat is already taken, try other seat");
+            } else {
+                char letter = tempSeat.getSeatLetter();
+                int num = tempSeat.getSeatNumber();
 
-            seatValue.setText(String.valueOf(letter) + num);
-            clearChildrenStyle(seatsGrid);
-            source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
-            setPrice(GridPane.getColumnIndex(source), GridPane.getRowIndex(source), flight);
-            selectSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
-            System.out.println(String.valueOf(letter) + num);
+                seatValue.setText(String.valueOf(letter) + num);
+                clearChildrenStyle(seatsGrid, flight);
+                source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
+                setPrice(GridPane.getColumnIndex(source), GridPane.getRowIndex(source), flight);
+                selectSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
+                // System.out.println(String.valueOf(letter) + num);
+            }
+
         } else {
             source = source.getParent().getParent();
-            char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
-                    .getSeatLetter();
-            int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
-                    .getSeatNumber();
+            Seat tempSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
+            if (tempSeat.getSeatState()) {
+                dController.alert(Route.ERROR, "Seat is already taken, try other seat");
+            } else {
+                char letter = tempSeat.getSeatLetter();
+                int num = tempSeat.getSeatNumber();
 
-            // seatValue.setText(letter + "-" + num);
-            seatValue.setText(String.valueOf(letter) + num);
-            clearChildrenStyle(seatsGrid);
-            source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
-            setPrice(GridPane.getColumnIndex(source), GridPane.getRowIndex(source), flight);
-            selectSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
-            System.out.println(String.valueOf(letter) + num);
+                seatValue.setText(String.valueOf(letter) + num);
+                clearChildrenStyle(seatsGrid, flight);
+                source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
+                setPrice(GridPane.getColumnIndex(source), GridPane.getRowIndex(source), flight);
+                selectSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
+                // System.out.println(String.valueOf(letter) + num);
+            }
         }
     }
 
@@ -389,10 +402,19 @@ public class BookFlightController {
 
     }
 
-    private void clearChildrenStyle(GridPane gp) {
+    private void clearChildrenStyle(GridPane gp, Flight flight) {
         for (int i = 0; i < gp.getChildren().size(); i++) {
-            gp.getChildren().get(i)
-                    .setStyle("-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5px;");
+
+            Seat tempSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(gp.getChildren().get(i))][GridPane
+                    .getColumnIndex(gp.getChildren().get(i))];
+            if (tempSeat.getSeatState()) {
+                gp.getChildren().get(i).setStyle(
+                        "-fx-background-color: rgb(179, 176, 176); -fx-border-color: gray; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            } else {
+                gp.getChildren().get(i)
+                        .setStyle("-fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5px;");
+            }
+
             // gp.setGridLinesVisible(true);
         }
 
@@ -572,6 +594,8 @@ public class BookFlightController {
             for (int i = 0; i < luggages.size(); i++) {
                 airport.getLogged().addLuggage(luggages.get(i), trip);
             }
+            previousSeat.setSeatState(false);
+            selectSeat.setSeatState(true);
             airport.getLogged().addTrip(trip);
             dController.loadView(Route.NEW_TRIP);
             dController.alert(Route.SUCCESS, "Trip booked");
@@ -579,6 +603,7 @@ public class BookFlightController {
             selectSeat = null;
             trip = null;
             luggages.clear();
+            airport.saveData();
         } else {
             dController.alert(Route.ERROR, "Select a seat and try again");
         }
@@ -590,6 +615,17 @@ public class BookFlightController {
         } else {
             return true;
         }
+    }
+
+    // Load previous trip data
+    public void prepareEdition(Trip trip){
+    this.ticket  = trip.getTicket();
+    this.trip =  trip;
+    this.selectedFlight  = trip.getTicket().getFlight();
+    this.selectSeat =  trip.getTicket().getFligthSeat();
+    previousSeat = trip.getTicket().getFligthSeat();
+    this.tripPrice  = trip.getTripPrice();
+    this.luggages =  trip.getLuggages();
     }
 
 }

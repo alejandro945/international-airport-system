@@ -95,12 +95,14 @@ public class ProfileController implements Initializable {
             if (path != null) {
                 userIcon.setImage(new Image(path));
             }
+            //System.out.println("LLAMA CLIENTE");
         } else {
             lblUser.setText(airport.getAdminLogged().getName() + " " + airport.getAdminLogged().getLastName());
             txtName.setText(airport.getAdminLogged().getName());
             txtLast.setText(airport.getAdminLogged().getLastName());
             txtEmail.setText(airport.getAdminLogged().getEmail());
             txtId.setText(String.valueOf(airport.getAdminLogged().getId()));
+            //System.out.println("LLAMA USER");
         }
         render = airport.searchUser(Long.parseLong(txtId.getText()));
     }
