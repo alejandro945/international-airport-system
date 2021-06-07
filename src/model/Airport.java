@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airport implements Serializable {
+    private static final long serialVersionUID = 1L;
     public final String USER_SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
     public final String EDIT_SUCCESS = " have been edited  successfully";
@@ -31,8 +32,8 @@ public class Airport implements Serializable {
         flights = new ArrayList<>();
         users.add(new User("Alejandro", "Varela", 1, "alejo8677@gmail.com", "1", UserRole.AIRPORT_ADMIN));
         airlines.add(new Airline("Avianca", ""));
-        airlines.add(new Airline("Spirit", ""));
-        airlines.add(new Airline("Viva Air", ""));
+        // airlines.add(new Airline("Spirit", ""));
+        // airlines.add(new Airline("Viva Air", ""));
         dateRender();
     }
 
@@ -242,9 +243,9 @@ public class Airport implements Serializable {
         boolean found = false;
         for (int i = 0; i < users.size() && !found; i++) {
             if (users.get(i).getId() == (id) && users.get(i).getPassword().equals(password)) {
-                    if(users.get(i) instanceof Costumer){
-                        setLogged((Costumer) users.get(i));
-                    } else {
+                if (users.get(i) instanceof Costumer) {
+                    setLogged((Costumer) users.get(i));
+                } else {
                     setAdminLogged(users.get(i));
                 }
                 found = true;

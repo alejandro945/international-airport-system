@@ -175,7 +175,7 @@ public class DashboardController implements Initializable {
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this);
             case MAP:
-                return new MapController(this);
+                return new MapController(this,airport);
             case INDICATORS:
                 return new IndicatorsController(this);
             case FLIGHTS:

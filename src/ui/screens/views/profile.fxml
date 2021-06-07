@@ -46,8 +46,8 @@
       <JFXTextField fx:id="txtName" alignment="CENTER" layoutX="175.0" layoutY="444.0" promptText="First Name" unFocusColor="#3100ae" />
       <JFXTextField fx:id="txtLast" alignment="CENTER" layoutX="375.0" layoutY="444.0" promptText="Last Name" unFocusColor="#3100ae" />
       <JFXTextField fx:id="txtEmail" alignment="CENTER" layoutX="583.0" layoutY="445.0" promptText="Email Address" unFocusColor="#3100ae" />
-      <JFXTextField fx:id="txtPass" alignment="CENTER" layoutX="375.0" layoutY="538.0" promptText="New Password" unFocusColor="#3100ae" />
-      <JFXTextField fx:id="txtPassC" alignment="CENTER" layoutX="583.0" layoutY="538.0" promptText="Confirm Password" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtPass" alignment="CENTER" layoutX="375.0" layoutY="534.0" promptText="New Password" unFocusColor="#3100ae" />
+      <JFXTextField fx:id="txtPassC" alignment="CENTER" layoutX="583.0" layoutY="534.0" promptText="Confirm Password" unFocusColor="#3100ae" />
       <Label layoutX="175.0" layoutY="619.0" text="Notifications" />
       <JFXToggleButton layoutX="242.0" layoutY="656.0" selected="true" text="News and announcements" toggleColor="#370094" toggleLineColor="#a859f8">
          <font>

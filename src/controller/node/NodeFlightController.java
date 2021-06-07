@@ -104,6 +104,7 @@ public class NodeFlightController {
     public void setFlightProgress(Flight flight) {
         plane.setLayoutX(flight.getPosition());
         barProgress.setProgress((flight.getPosition() - 125) / 700.0);
-        lblProgress.setText(Math.round(barProgress.getProgress() * 100.0) + " %");
+        flight.setProgress((int)Math.round(barProgress.getProgress() * 100.0));
+        lblProgress.setText(flight.getProgress() + " %");
     }
 }

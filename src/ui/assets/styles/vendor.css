@@ -8,6 +8,10 @@
     -fx-padding: 10;
     -fx-background-color: white;
 }
+.shape{
+    -fx-stroke: linear-gradient(to left,#fff ,#3929E0);
+    -fx-stroke-width: 2;
+}
 .box{
     -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.8, 0.0, 0.0 );
     -fx-background-radius: 20;

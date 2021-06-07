@@ -21,7 +21,7 @@ public class MigrationThread extends Thread {
         try {
             Thread.sleep(PERSON_DURATION);
         } catch (InterruptedException e) {
-            iController.getDController().geAirportController().createAlert(ERROR_MESSAGE, Route.ERROR);
+            iController.getDController().alert(Route.ERROR, ERROR_MESSAGE);
         }
         Platform.runLater(new Runnable() {
             @Override

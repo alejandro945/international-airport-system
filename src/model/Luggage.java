@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Luggage implements Price, Serializable {
+    private static final long serialVersionUID = 1L;
     private int luggagePrice;
     private double height;
     private double width;

@@ -42,16 +42,13 @@ public class ActiveFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Airline airline : airport.getAirlines()) {
-            for (Flight flight : airline.getFlights()) {
+            for (Flight flight : airport.getFlights()) {
                 try {
-                    addNode(flight, airline);
+                    addNode(flight, flight.getAirline());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-
-        }
     }
 
     public void addNode(Flight flight, Airline airline) throws IOException {

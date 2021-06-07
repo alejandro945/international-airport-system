@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Migration implements Supplier, Serializable {
+    private static final long serialVersionUID = 1L;
     private List<Costumer> people;
 
     public Migration() {

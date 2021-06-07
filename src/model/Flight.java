@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Flight implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String departureDate;
     private String departureHour;
@@ -17,8 +18,11 @@ public class Flight implements Serializable {
     private FlightState flightStatus;
 
     private Airline airline;
-    
+
     private long position;
+    private int progress;
+    private double slope;
+    private double journey;
     private long duration;
 
     public Flight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour,
@@ -34,6 +38,7 @@ public class Flight implements Serializable {
         this.plane = aircraft;
         this.flightStatus = FlightState.SCHEDULED;
         this.position = 125;
+        this.progress = 0;
         this.airline = airline;
         flightDuration();
     }
@@ -148,6 +153,14 @@ public class Flight implements Serializable {
         this.duration = duration;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
     /**
      * @return FlightStatus
      */
@@ -195,6 +208,22 @@ public class Flight implements Serializable {
      */
     public void setPosition(long increase) {
         position += increase;
+    }
+
+    public double getSlope() {
+        return this.slope;
+    }
+
+    public void setSlope(double slope) {
+        this.slope = slope;
+    }
+
+    public double getJourney() {
+        return this.journey;
+    }
+
+    public void setJourney(double journey) {
+        this.journey = journey;
     }
 
     /**

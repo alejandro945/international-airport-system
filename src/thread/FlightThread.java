@@ -6,7 +6,8 @@ import model.Flight;
 import model.FlightState;
 
 public class FlightThread extends Thread {
-    private final int SIZE_BAR = 825;
+    private final int LIMIT_JOURNEY = 100;
+    private final int SCALE = 1000000;
     private Flight flight;
     private NodeFlightController nf;
 
@@ -18,11 +19,11 @@ public class FlightThread extends Thread {
     @Override
     public void run() {
         while (flight.getFlightStatus() == FlightState.AIRBORNE) {
-            flight.setPosition((1000000 / flight.getDuration()));
+            flight.setPosition(( SCALE/ flight.getDuration()));
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (flight.getPosition() <= SIZE_BAR) {
+                    if (flight.getProgress() <= LIMIT_JOURNEY) {
                         nf.setFlightProgress(flight);
                     } else {
                         flight.setFlightStatus(FlightState.DONE);

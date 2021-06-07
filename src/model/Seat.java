@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Seat implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int seatNumber;
     private char seatLetter;
     private boolean seatState;
