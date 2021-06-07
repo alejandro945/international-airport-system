@@ -7,21 +7,24 @@ public class Trip implements Price, Serializable {
     private Luggage rootLuggage;
     private int tripPrice;
     private String id;
+    private Seat flightSeat;
 
     private Trip father;
     private Trip left;
     private Trip right;
 
-    public Trip(String id, Ticket ticket, Luggage rootLuggage, Seat fligthSeat) {
+    public Trip(String id, Ticket ticket, Luggage rootLuggage, Seat flightSeat) {
         this.id = id;
         this.ticket = ticket;
         this.rootLuggage = rootLuggage;
+        this.flightSeat = flightSeat;
         calculatePrice(1);
     }
 
-    public Trip(String id, Ticket ticket, Seat fligthSeat) {
+    public Trip(String id, Ticket ticket, Seat flightSeat) {
         this.id = id;
         this.ticket = ticket;
+        this.flightSeat = flightSeat;
         rootLuggage = null;
         calculatePrice(1);
     }
@@ -132,13 +135,20 @@ public class Trip implements Price, Serializable {
                 } else {
                     next = next.getNextLuggage();
                 }
-            } while (next != null);
+            } while (next == null);
         }
     }
 
     @Override
     public void calculatePrice(int increase) {
         tripPrice = ticket.getFlightPrice() + luggagePrice();
+    }
+
+    public String seatToString(){
+        String letter = String.valueOf(flightSeat.getSeatLetter());
+        int num = flightSeat.getSeatNumber();
+        String ms = letter+num;
+        return ms;
     }
 
 }

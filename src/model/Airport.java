@@ -28,15 +28,13 @@ public class Airport implements Serializable {
     public Airport() {
         users = new ArrayList<>();
         airlines = new ArrayList<>();
-        flights = new ArrayList<>(); 
+        flights = new ArrayList<>();
         users.add(new User("Alejandro", "Varela", 1, "alejo8677@gmail.com", "1", UserRole.AIRPORT_ADMIN));
         Costumer tempCostumer = new Costumer("name", "lastName", 3, "email", "3");
-        users.add((User)tempCostumer);
-        users.add(new Costumer());
-        System.out.println(users.size());
-        /* if(logged.equals(null)){
-            setLogged();
-        } */
+        users.add((User) tempCostumer);
+        // users.add(new Costumer());
+        // System.out.println(users.size());
+
         airlines.add(new Airline("Avianca", ""));
         airlines.add(new Airline("Spirit", ""));
         airlines.add(new Airline("Viva Air", ""));
