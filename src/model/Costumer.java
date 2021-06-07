@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import controller.crud.LugaggeController;
+
 public class Costumer extends User {
     Random r = new Random();
     private String iconPath;
@@ -100,22 +102,73 @@ public class Costumer extends User {
         rangeTripsAdd(node.getRight(), list);
     }
 
-    // Return trip by id
-    public Trip getTrips(String id) {
+    // Return trip by object
+    public Trip getTrip(Trip toFind) {
         Trip temp = null;
-        rangeTripSearch(rootTrip, id, temp);
+        rangeTripSearch(rootTrip, toFind, temp);
         return temp;
     }
 
-    private void rangeTripSearch(Trip node, String id, Trip returnV) {
+    private void rangeTripSearch(Trip node, Trip toFind, Trip returnV) {
         if (node == null) {
             return;
         }
-        rangeTripSearch(node.getLeft(), id, returnV);
-        if (id.compareTo(node.getId()) == 0) {
+        rangeTripSearch(node.getLeft(), toFind, returnV);
+        if (node.equals(toFind)) {
             returnV = node;
         }
-        rangeTripSearch(node.getRight(), id, returnV);
+        rangeTripSearch(node.getRight(), toFind, returnV);
+    }
+
+    // Delete trip
+    public String deleteTrip(Trip trip){
+        Trip temp = getTrip(trip);
+
+        Trip parent = temp.getFather() ;
+        Trip right = temp.getRight();
+        Trip left = temp.getLeft();
+
+        // no children case
+        if(right == null && left == null){
+            if(parent.getLeft().equals(temp)){
+                parent.setLeft(null);
+            } else {
+                parent.setRight(null);
+            }
+        } 
+
+        // One children case
+        if(right == null && left != null ){
+            if(parent.getLeft().equals(temp)){
+                parent.setLeft(left);
+            } else {
+                parent.setRight(left);
+            }
+        }
+
+        if(right != null && left == null ){
+            if(parent.getLeft().equals(temp)){
+                parent.setLeft(right);
+            } else {
+                parent.setRight(right);
+            }
+        }
+
+        // Two children case
+        if(right != null && left != null ){
+            if(parent.getLeft().equals(temp)){
+                parent.setLeft(right);
+            } else {
+                parent.setRight(right);
+            }
+            addTrip(right, left);
+        }
+
+        temp.setFather(null);
+        temp.setLeft(null);
+        temp.setRight(null);
+
+        return temp.getId();
     }
 
     // Add luggage
@@ -144,4 +197,6 @@ public class Costumer extends User {
     public int countTrips(){
        return countTrips(rootTrip, 0);
     }
+
+    
 }

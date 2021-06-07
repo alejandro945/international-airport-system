@@ -1,5 +1,6 @@
 package controller.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,22 +15,30 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
 import model.*;
 import route.Route;
 
+
+
 public class FlightsBookedController {
     private Airport airport;
     private DashboardController dController;
+
+    private Stage modal;
+    private Trip selected;
 
     public FlightsBookedController(Airport airport, DashboardController dController) {
         this.airport = airport;
@@ -83,6 +92,7 @@ public class FlightsBookedController {
         filterInfo.setText("");
         loadData();
         initializeTableView();
+        
     }
 
     public void loadData() {
@@ -100,6 +110,8 @@ public class FlightsBookedController {
         ObservableList<String> optionsComboBox1 = FXCollections.observableArrayList(types1);
         destiny.setValue("Countries");
         destiny.setItems(optionsComboBox1);
+
+        renderActions();
     }
 
     public void initializeTableView() {
@@ -108,30 +120,24 @@ public class FlightsBookedController {
         ObservableList<Trip> userTrips = FXCollections.observableList(airport.getLogged().getTrips());
 
         idT.setCellValueFactory(new PropertyValueFactory<Trip, String>("id"));
-
         airlineT.setCellValueFactory(new Callback<CellDataFeatures<Trip, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Trip, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().getTicket().getFlight().getAirline().getAirlineName());
             }
-        });
-        
+        });     
         dateT.setCellValueFactory(new Callback<CellDataFeatures<Trip, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Trip, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().getTicket().getFlight().getDepartureDate().toString());
             }
         });
-
-
         placeT.setCellValueFactory(new Callback<CellDataFeatures<Trip, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Trip, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().getTicket().getFlight().getDestination().name());
             }
         });
-
-
         /* idT.setCellValueFactory(new Callback<CellDataFeatures<Trip, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<Trip, String> data) {
@@ -145,14 +151,70 @@ public class FlightsBookedController {
                 return new ReadOnlyStringWrapper(data.getValue().seatToString());
             }
         });
-
-
         costT.setCellValueFactory(new PropertyValueFactory<Trip, String>("tripPrice"));
 
-        
         actionT.setCellValueFactory(new PropertyValueFactory<Trip, String>(""));
 
         bookingsTable.setItems(userTrips);
+    }
+
+    private void renderActions() {
+        Callback<TableColumn<Trip, String>, TableCell<Trip, String>> cellFact = (TableColumn<Trip, String> param) -> {
+            final TableCell<Trip, String> cell = new TableCell<Trip, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        Button delete = new Button("Delete");
+                        delete.setId("delete");
+                        Button edit = new Button("Edit");
+                        edit.setId("edit");
+                        delete.getStylesheets().add(Route.CRUD.getRoute());
+                        edit.getStylesheets().add(Route.CRUD.getRoute());
+                        delete.setOnAction((ActionEvent event) -> {
+                            selected = (Trip) getTableRow().getItem();
+                            dController.geAirportController().createAlert(airport.getLogged().deleteTrip(selected), Route.SUCCESS);
+                            loadData();
+                        });
+                        edit.setOnAction((ActionEvent event) -> {
+                            selected = (Trip) getTableRow().getItem();
+                            try {
+                                showModal(selected);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            
+                            
+                        });
+                        HBox managebtn = new HBox(edit, delete);
+                        managebtn.setStyle("-fx-alignment:center");
+                        HBox.setMargin(delete, new Insets(2, 2, 0, 3));
+                        HBox.setMargin(edit, new Insets(2, 3, 0, 2));
+                        setGraphic(managebtn);
+                        setText(null);
+                    }
+                }
+
+                
+            };
+            return cell;
+        };
+        actionT.setCellFactory(cellFact);
+    }
+
+    public void setModal(Stage modal) {
+        this.modal = modal;
+    }
+
+    private void showModal(Trip trip) throws IOException {
+        BookFlightController modalController = new BookFlightController(airport, dController);
+        Stage stage = dController.loadModal(Route.NEW_TRIP, modalController );
+        setModal(stage);
+        stage.show();
+        modalController.prepareEdition(trip);
     }
 
 }

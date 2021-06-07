@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Trip implements Price, Serializable {
     private Ticket ticket;
@@ -151,4 +153,13 @@ public class Trip implements Price, Serializable {
         return ms;
     }
 
+    public List<Luggage> getLuggages(){
+        List<Luggage> tempList = new ArrayList<>();
+        Luggage temp = getRootLuggage();
+        while(temp != null){
+            tempList.add(temp);
+            temp = temp.getNextLuggage();
+        }
+        return tempList;
+    }
 }

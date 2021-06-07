@@ -130,7 +130,7 @@ public class Aircraft implements Maintenance, Serializable {
                 if (i < 6) {
                     seat[i][j] = new Seat((i + 1), firstLetter, false, 140000);
                 } else {
-                    seat[i][j] = new Seat((i + 1), firstLetter, true , 140000);
+                    seat[i][j] = new Seat((i + 1), firstLetter, false , 140000);
                 }
                 firstLetter++;
             }
