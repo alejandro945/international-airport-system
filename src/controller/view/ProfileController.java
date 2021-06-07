@@ -69,6 +69,8 @@ public class ProfileController implements Initializable {
         } else {
             dController.alert(Route.SUCCESS, airport.editUser(render, txtName.getText(), txtLast.getText(),
                     Long.parseLong(txtId.getText()), txtEmail.getText(), txtPass.getText(), render.getRole()));
+                    txtPass.clear();
+                    txtPassC.clear();
         }
     }
 
