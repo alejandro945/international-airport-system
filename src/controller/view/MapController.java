@@ -40,9 +40,6 @@ public class MapController implements Initializable {
 
     public void setAircraft(Flight flight, int index) {
         double advance = (flight.getJourney() * flight.getProgress()) / 100;
-        System.out.println(flight.getJourney());
-        System.out.println(flight.getSlope());
-        System.out.println(advance);
         Node plane = paneMap.getChildren().get(index);
         plane.setVisible(true);
         double render = 0;
