@@ -174,8 +174,6 @@ public class DashboardController implements Initializable {
                 return new ActiveFlightsController(airport, this);
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this);
-            case MAP:
-                return new MapController(this,airport);
             case INDICATORS:
                 return new IndicatorsController(this);
             case FLIGHTS:
@@ -193,8 +191,6 @@ public class DashboardController implements Initializable {
             case AIRCRAFT_TABLE:
                 return new AircraftController(airport, this);
             case NEW_TRIP:
-                //System.out.println(airport.getLogged());
-                //System.out.println(airport.getLogged().getClass());
                 return new BookFlightController(airport, this);
             case PROFILE:
                 return new ProfileController(this, airport);
