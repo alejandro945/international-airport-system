@@ -177,10 +177,11 @@
     -fx-vgap: 3px;
 }
 
-.smallgrid :hover{
-    -fx-font-size:8; 
-    -fx-background-color: rgb(146, 192, 242); 
+.smallGrid :hover{
+    -fx-font-size:12;
+    -fx-font-weight: bold; 
+    /* -fx-background-color: rgb(146, 192, 242); 
     -fx-background-radius: 5px;
     -fx-border-color: gray; 
-    -fx-border-radius: 5px;
+    -fx-border-radius: 5px; */
 }

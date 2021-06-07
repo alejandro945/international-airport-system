@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import model.*;
 import javafx.stage.Stage;
+import route.Root;
 import route.Route;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -44,7 +45,6 @@ public class BookFlightController {
     private Seat selectSeat;
     private int tripPrice;
     private List<Luggage> luggages;
-
 
     public BookFlightController(Airport airport, DashboardController dController) {
         this.airport = airport;
@@ -204,7 +204,6 @@ public class BookFlightController {
             return row;
         });
 
-
         // Table Luggage
 
         ObservableList<Luggage> luggagesTrip = FXCollections.observableList(this.luggages);
@@ -213,7 +212,7 @@ public class BookFlightController {
         heightCol.setCellValueFactory(new PropertyValueFactory<Luggage, String>("height"));
         WeightCol.setCellValueFactory(new PropertyValueFactory<Luggage, String>("weight"));
         priceCol.setCellValueFactory(new PropertyValueFactory<Luggage, String>("luggagePrice"));
-        
+
         luggageTbl.setItems(luggagesTrip);
     }
 
@@ -251,17 +250,16 @@ public class BookFlightController {
             ticket = new Ticket(selectedFlight, selectSeat, Integer.parseInt(ticketPrice.getText()));
             txtFlightId.setText(selectedFlight.getId());
             txtTo.setText(selectedFlight.getDestination().name());
-            txtSelctedSeat.setText(String.valueOf(selectSeat.getSeatLetter())+selectSeat.getSeatNumber()+"");
-            System.out.println(String.valueOf(selectSeat.getSeatLetter()) + selectSeat.getSeatNumber());
-            selectSeat.setSeatState(false);
+            txtSelctedSeat.setText(String.valueOf(selectSeat.getSeatLetter()) + selectSeat.getSeatNumber() + "");
+            // System.out.println(String.valueOf(selectSeat.getSeatLetter()) +
+            // selectSeat.getSeatNumber());
+            selectSeat.setSeatState(true);
             calculateTripPrice();
-            txtTotalPrice.setText(tripPrice +"");
-            String id =  airport.getLogged().countTrips() + ticket.getFlight().getId();
-            trip = new Trip((id), ticket, selectSeat);
-            idTrip.setText("value " + id );
+            txtTotalPrice.setText(tripPrice + "");
+            idTrip.setText("T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId());
             updateLuggageToTrip(trip);
             modalTicket.close();
-            System.out.println(airport.getLogged().countTrips());
+            // System.out.println(airport.getLogged().countTrips());
             dController.alert(Route.SUCCESS, "Ticket saved");
         } else {
             dController.alert(Route.ERROR, "Please selected a seat by clicking it");
@@ -289,7 +287,7 @@ public class BookFlightController {
         } while (i < Meal.values().length);
 
         ObservableList<String> optionsComboBox1 = FXCollections.observableArrayList(types1);
-        // meal.setValue("Meals");
+
         meal.setItems(optionsComboBox1);
 
         // ---------------------
@@ -300,14 +298,14 @@ public class BookFlightController {
         types2.add("Premium");
 
         ObservableList<String> optionsComboBox2 = FXCollections.observableArrayList(types2);
-        // tickedType.setValue("Type");
+
         tickedType.setItems(optionsComboBox2);
     }
 
     public void planeSize(Flight flight) {
         seatsGrid.getChildren().clear();
-        int y = flight.getPlane().getCapacity()/6;
-        // System.out.println(y + "Value");
+        int y = flight.getPlane().getCapacity() / 6;
+
         for (int i = 0; i < y; i++) {
             for (int j = 0; j < 6; j++) {
 
@@ -317,15 +315,16 @@ public class BookFlightController {
 
                 GridPane tempGrid = new GridPane();
 
-                // tempGrid.setHgap(5);
                 tempGrid.setAlignment(Pos.CENTER);
                 tempGrid.add(temp, 0, 0);
                 tempGrid.setStyle(
                         "-fx-font-size:8; -fx-background-color: none; -fx-border-color: gray; -fx-border-radius: 5px;");
+
+                // System.out.println(Root.STYLE_GRID.getRoot());
                 
-                        //System.out.println(Root.STYLE_GRID.getRoot());
-                /* tempGrid.getStylesheets().add(Root.STYLE_GRID.getRoot());
-                tempGrid.getStyleClass().add(".smallgrid"); */
+                 //tempGrid.getStylesheets().add(Root.STYLE_GRID.getRoot());
+                 //tempGrid.getParent().getStyleClass().add("smallGrid");
+                 //((Node) tempGrid.getChildren()).getStyleClass().add("smallGrid");
 
                 tempGrid.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
@@ -335,41 +334,44 @@ public class BookFlightController {
                 });
 
                 seatsGrid.add(tempGrid, j, i);
-                // System.out.println(i + "-" + j);
+
             }
         }
-        // addMiddleLine(y);
-        // seatsGrid.setGridLinesVisible(true);
+
         boxStyle(seatsGrid, 0, seatsGrid.getChildren().size());
+        seatsGrid.getStyleClass().add("smallGrid");
     }
 
     private void onCLickActionSeat(MouseEvent e, Flight flight) {
-        // System.out.println("entra");
         Node source = (Node) e.getTarget();
-        // System.out.println(e.getTarget().getClass());
+
         if (source instanceof GridPane) {
-            // System.out.println(GridPane.getColumnIndex(source) + " " +
-            // GridPane.getRowIndex(source));
-            char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)].getSeatLetter();
-            int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)].getSeatNumber() ;
-            //seatValue.setText(letter + "-" + num);
-            //GridPane gp = (GridPane) source;
-            seatValue.setText(String.valueOf(letter)+num);
+
+            char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
+                    .getSeatLetter();
+            int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
+                    .getSeatNumber();
+
+            seatValue.setText(String.valueOf(letter) + num);
             clearChildrenStyle(seatsGrid);
             source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
             setPrice(GridPane.getColumnIndex(source), GridPane.getRowIndex(source), flight);
-            selectSeat = flight.getPlane().getSeat()[GridPane.getColumnIndex(source)][GridPane.getRowIndex(source)];
+            selectSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
+            System.out.println(String.valueOf(letter) + num);
         } else {
             source = source.getParent().getParent();
-            char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)].getSeatLetter();
-            int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)].getSeatNumber() ;
-            
-            //seatValue.setText(letter + "-" + num);
-            seatValue.setText(String.valueOf(letter)+num);
+            char letter = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
+                    .getSeatLetter();
+            int num = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)]
+                    .getSeatNumber();
+
+            // seatValue.setText(letter + "-" + num);
+            seatValue.setText(String.valueOf(letter) + num);
             clearChildrenStyle(seatsGrid);
             source.setStyle("-fx-background-color: rgb(100,100,250); -fx-background-radius: 5px;");
             setPrice(GridPane.getColumnIndex(source), GridPane.getRowIndex(source), flight);
-            selectSeat = flight.getPlane().getSeat()[GridPane.getColumnIndex(source)][GridPane.getRowIndex(source)];
+            selectSeat = flight.getPlane().getSeat()[GridPane.getRowIndex(source)][GridPane.getColumnIndex(source)];
+            System.out.println(String.valueOf(letter) + num);
         }
     }
 
@@ -465,7 +467,7 @@ public class BookFlightController {
             } else {
                 SpecialLuggage tempSpecialLuggage = new SpecialLuggage(Integer.parseInt(txtHeight.getText()),
                         Integer.parseInt(txtWidth.getText()), Integer.parseInt(txtWeight.getText()), cbType.getValue());
-                luggages.add((Luggage)tempSpecialLuggage);
+                luggages.add((Luggage) tempSpecialLuggage);
                 initializeTableView();
             }
             updateLuggageToTrip(trip);
@@ -474,18 +476,6 @@ public class BookFlightController {
             dController.alert(Route.SUCCESS, "Luggage added to trip");
         } else {
             dController.alert(Route.ERROR, "Fill all fields");
-        }
-    }
-
-    private void updateLuggageToTrip(Trip trip){
-        if(trip != null){
-            for(int i = 0; i < luggages.size(); i++){
-                if(i == 0){
-                    trip.setRootLuggage(luggages.get(i));
-                }else{
-                    trip.addLuggage(luggages.get(i));
-                }
-            }
         }
     }
 
@@ -541,18 +531,65 @@ public class BookFlightController {
     @FXML
     private Label txtTo;
 
-    private void calculateTripPrice(){
+    private void calculateTripPrice() {
         int calculate = 0;
 
-        if(ticket != null ){
+        if (ticket != null) {
             calculate += ticket.getFlightPrice();
-        } 
+        }
 
-        for(int i = 0; i < luggages.size(); i++){
+        for (int i = 0; i < luggages.size(); i++) {
             calculate += luggages.get(i).getLuggagePrice();
         }
 
         tripPrice = calculate;
+        // System.out.println(tripPrice);
+    }
+
+    private void updateLuggageToTrip(Trip trip) {
+        if (trip != null) {
+            for (int i = 0; i < luggages.size(); i++) {
+                if (i == 0) {
+                    trip.setRootLuggage(luggages.get(i));
+                } else {
+                    trip.addLuggage(luggages.get(i));
+                }
+            }
+        }
+
+    }
+
+    /// Trip creation
+
+    @FXML
+    void buy(ActionEvent event) throws IOException {
+        if (tripValidation()) {
+            String id = "T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId();
+            trip = new Trip((id), ticket, selectSeat);
+            idTrip.setText("value " + id);
+
+            trip = new Trip(id, ticket, selectSeat);
+            for (int i = 0; i < luggages.size(); i++) {
+                airport.getLogged().addLuggage(luggages.get(i), trip);
+            }
+            airport.getLogged().addTrip(trip);
+            dController.loadView(Route.NEW_TRIP);
+            dController.alert(Route.SUCCESS, "Trip booked");
+            selectedFlight = null;
+            selectSeat = null;
+            trip = null;
+            luggages.clear();
+        } else {
+            dController.alert(Route.ERROR, "Select a seat and try again");
+        }
+    }
+
+    private boolean tripValidation() {
+        if (ticket == null || selectSeat == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

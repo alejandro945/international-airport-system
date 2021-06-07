@@ -57,27 +57,30 @@ public class Costumer extends User {
     // -------------------- Methods
 
     // Add trip
-    public void addTrip(Trip trip) {
-        if (rootTrip == null) {
-            setRootTrip(trip);
-        } else {
-            Trip compare = rootTrip;
-            do {
-                if (trip.getTripPrice() >= compare.getTripPrice()) {
-                    if (compare.getRight() == null) {
-                        compare.setRight(trip);
-                    } else {
-                        compare = compare.getRight();
-                    }
-                } else {
-                    if (compare.getLeft() == null) {
-                        compare.setLeft(trip);
-                    } else {
-                        compare = compare.getLeft();
-                    }
-                }
-            } while (compare != null);
 
+    public void addTrip(Trip newPNode) {
+        
+        if (rootTrip == null) {
+            rootTrip = newPNode;
+        } else {
+            addTrip(rootTrip, newPNode);
+        }
+        
+    }
+
+    private void addTrip(Trip parent, Trip newTrip) {
+        if (newTrip.getTripPrice() <= parent.getTripPrice()) {
+            if (parent.getLeft() == null) {
+                parent.setLeft(newTrip);
+            } else {
+                addTrip(parent.getLeft(), newTrip);
+            }
+        } else {
+            if (parent.getRight() == null) {
+                parent.setRight(newTrip);
+            } else {
+                addTrip(parent.getRight(), newTrip);
+            }
         }
     }
 

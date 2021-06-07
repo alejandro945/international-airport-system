@@ -157,7 +157,7 @@ private boolean userType;
     public Object setViewController(Route route) {
         switch (route) {
             case MY_TRIPS:
-                return new ClientFlightsController(this);
+                return new FlightsBookedController(airport,this);
             case AP_EMPLOYEES:
                 return new AirportEmployeesController(this);
             case NEW_EMPLOYEE:
