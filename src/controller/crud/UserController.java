@@ -163,6 +163,7 @@ public class UserController implements Initializable {
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (User) getTableRow().getItem();
                             dController.geAirportController().createAlert(airport.deleteUser(selected), Route.SUCCESS);
+                            renderData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
                             selected = (User) getTableRow().getItem();
@@ -186,6 +187,12 @@ public class UserController implements Initializable {
             return cell;
         };
         actionsCol.setCellFactory(cellFact);
+    }
+
+    private void renderData(){
+        airport.saveData();
+        airport.loadData();
+        getData();
     }
 
     public void prepareEdition(User selected) {
@@ -218,8 +225,13 @@ public class UserController implements Initializable {
             trimFileds();
         } else if (validateFields()) {
             if (option == 1) {
-                msg = airport.createUser(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
-                        txtEmail.getText(), txtPass.getText(), txtRole.getValue());
+                if (txtRole.getValue() == UserRole.COSTUMER_USER) {
+                    msg = airport.createUser(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
+                            txtEmail.getText(), txtPass.getText());
+                } else {
+                    msg = airport.createUser(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
+                            txtEmail.getText(), txtPass.getText(), txtRole.getValue());
+                }
             } else {
                 msg = airport.editUser(selected, txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()),
                         txtEmail.getText(), txtPass.getText(), txtRole.getValue());
@@ -229,9 +241,7 @@ public class UserController implements Initializable {
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
-        airport.saveData();
-        airport.loadData();
-        getData();
+        renderData();
     }
 
     public boolean validateFields() {

@@ -108,7 +108,7 @@ public class Airport implements Serializable {
     }
 
     public Costumer getLogged() {
-        return this.logged;
+        return logged;
     }
 
     public void setLogged(Costumer logged) {
@@ -124,7 +124,7 @@ public class Airport implements Serializable {
     }
 
     public User getAdminLogged() {
-        return this.adminLogged;
+        return adminLogged;
     }
 
     public void setAdminLogged(User adminLogged) {
@@ -242,9 +242,9 @@ public class Airport implements Serializable {
         boolean found = false;
         for (int i = 0; i < users.size() && !found; i++) {
             if (users.get(i).getId() == (id) && users.get(i).getPassword().equals(password)) {
-                if (users.get(i) instanceof Costumer) {
-                    setLogged((Costumer) users.get(i));
-                } else {
+                    if(users.get(i) instanceof Costumer){
+                        setLogged((Costumer) users.get(i));
+                    } else {
                     setAdminLogged(users.get(i));
                 }
                 found = true;
