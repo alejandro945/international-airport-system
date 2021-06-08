@@ -36,5 +36,10 @@
          </image>
       </ImageView>
       <Label fx:id="txtDuration" alignment="CENTER" layoutX="14.0" layoutY="68.0" prefHeight="50.0" prefWidth="124.0" text="Duration" textAlignment="CENTER" textFill="#b5b5b5" wrapText="true" />
+      <ImageView fx:id="warning" fitHeight="43.0" fitWidth="47.0" layoutX="906.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../assets/img/warning.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,7 +1,5 @@
 package thread;
 
-import java.io.IOException;
-
 import controller.view.ActiveFlightsController;
 import javafx.application.Platform;
 import model.Flight;
@@ -13,7 +11,6 @@ public class MapThread extends Thread {
     private ActiveFlightsController aController;
     private int node;
     private final String INTERRUPTED_MESSAGE = "Hey an interrupted exception happened, dont worry";
-    private final String IO_MESSAGE = "Hey an IO exception happened, dont worry";
     private final int LIMIT_JOURNEY = 100;
 
     public MapThread(Flight flight, ActiveFlightsController aController,int node) {
@@ -26,7 +23,7 @@ public class MapThread extends Thread {
     public void run() {
         if (flight.getFlightStatus() == FlightState.AIRBORNE) {
             try {
-                Thread.sleep(2300);
+                Thread.sleep(2003);
             } catch (InterruptedException e) {
                 aController.getDController().alert(Route.ERROR, INTERRUPTED_MESSAGE);
             }
@@ -37,11 +34,6 @@ public class MapThread extends Thread {
                         aController.setAircraft(flight,node);
                     } else {
                         flight.setFlightStatus(FlightState.DONE);
-                        try {
-                            aController.getDController().loadView(Route.ACTIVE_FLIGHTS);
-                        } catch (IOException e) {
-                            aController.getDController().alert(Route.ERROR, IO_MESSAGE);
-                        }
                     }
                 }
             });

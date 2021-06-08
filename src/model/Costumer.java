@@ -11,6 +11,7 @@ public class Costumer extends User {
     private String iconPath;
     private Trip rootTrip;
     private String state;
+    private String notifications;
 
     public Costumer() { // JUnit Tests
         super("Tester", "User", 4, "testerUser@correo.co", "4", UserRole.COSTUMER_USER);
@@ -46,6 +47,14 @@ public class Costumer extends User {
 
     public void setR(Random r) {
         this.r = r;
+    }
+
+    public String getNotifications() {
+        return this.notifications;
+    }
+
+    public void setNotifications(String notifications) {
+        this.notifications = notifications;
     }
 
     public Trip getRootTrip() {

@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airport implements Serializable {
+public class Airport implements Serializable, Supplier {
     private static final long serialVersionUID = 1L;
     public final String USER_SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
@@ -19,12 +19,14 @@ public class Airport implements Serializable {
     public final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public final String OAUTH_MESSAGE = " your account have been rendered successfully";
     private final String SAVE_PATH_FILE = "data/AirportM.data";
+    private int capital;
     private List<User> users;
     private List<Airline> airlines;
     private List<Flight> flights;
     private Track firstTrack;
     private Costumer logged;
     private User adminLogged;
+    private Migration migration;
 
     public Airport() {
         users = new ArrayList<>();
@@ -32,8 +34,7 @@ public class Airport implements Serializable {
         flights = new ArrayList<>();
         users.add(new User("Alejandro", "Varela", 1, "alejo8677@gmail.com", "1", UserRole.AIRPORT_ADMIN));
         airlines.add(new Airline("Avianca", ""));
-        // airlines.add(new Airline("Spirit", ""));
-        // airlines.add(new Airline("Viva Air", ""));
+        migration = new Migration();
         dateRender();
     }
 
@@ -114,6 +115,14 @@ public class Airport implements Serializable {
 
     public void setLogged(Costumer logged) {
         this.logged = logged;
+    }
+
+    public int getCapital() {
+        return this.capital;
+    }
+
+    public void setCapital(int capital) {
+        this.capital = capital;
     }
 
     public List<Airline> getAirlines() {
@@ -342,6 +351,11 @@ public class Airport implements Serializable {
     public String editTrack(Track track, String gate) {
         track.setGate(gate);
         return "Track " + track.getId() + EDIT_SUCCESS;
+    }
+
+    @Override
+    public void airportCharges() {
+        capital -= (migration.getFlights().size() * 20);
     }
 
 }

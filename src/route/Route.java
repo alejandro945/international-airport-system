@@ -12,7 +12,7 @@ public enum Route {
     MIGRATION_AGENT(Root.BAR.getRoot() + "bar-migration-agent.fxml"),
     COSTUMER(Root.BAR.getRoot() + "bar-costumer.fxml"), ACTIVE_FLIGHTS(Root.TOWER.getRoot() + "active-flights.fxml"),
     UPCOMING_FLIGHTS(Root.TOWER.getRoot() + "upcoming-flights.fxml"),
-    NODE_FLIGHT(Root.TOWER.getRoot() + "flight-node.fxml"),
+    NODE_FLIGHT(Root.TOWER.getRoot() + "flight-node.fxml"),NODE_UPCOMING_FLIGHT(Root.TOWER.getRoot() + "upcoming-node.fxml"),
     AIRLINE_EMPLOYEES(Root.AIRLINE.getRoot() + "airline-employees.fxml"),
     FLIGHTS(Root.AIRLINE.getRoot() + "flights.fxml"), AIRLINES(Root.AIRPORT.getRoot() + "airlines.fxml"),
     AP_DASH(Root.AIRPORT.getRoot() + "dashboard.fxml"), AP_EMPLOYEES(Root.AIRPORT.getRoot() + "employees.fxml"),
