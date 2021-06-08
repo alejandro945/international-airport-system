@@ -63,14 +63,12 @@ public class AircraftController implements Initializable {
     private JFXTextField txtCapacity;
     private Airport airport;
     private DashboardController dController;
-    private Airline airline;
     private Aircraft selected;
     private Stage modal;
 
-    public AircraftController(Airport airport, DashboardController dController, Airline airline) {
+    public AircraftController(Airport airport, DashboardController dController) {
         this.airport = airport;
         this.dController = dController;
-        this.airline = airline;
     }
 
     @FXML
@@ -108,7 +106,6 @@ public class AircraftController implements Initializable {
     @FXML
     void saveAircraft(ActionEvent event) {
         if (validateFields()) {
-            airline.getAircraft().add(new Aircraft(txtCode.getText(), Integer.parseInt(txtWeight.getText()), Integer.parseInt(txtCapacity.getText())));
             dController.geAirportController().createAlert("Aircraft was successfully added.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
@@ -160,7 +157,7 @@ public class AircraftController implements Initializable {
                         edit.getStylesheets().add(Route.CRUD.getRoute());
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Aircraft) getTableRow().getItem();
-                            airline.getAircraft().remove(selected);
+                            selected.getAirline().getAircraft().remove(selected);
                             dController.geAirportController().createAlert("Aircraft was removed successfully.", Route.SUCCESS);
                             getData();
                         });

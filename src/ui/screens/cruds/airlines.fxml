@@ -16,7 +16,6 @@
          <children>
             <TableView fx:id="airlineTbl" layoutX="81.0" layoutY="81.0" prefHeight="577.0" prefWidth="848.0" stylesheets="@../../assets/styles/table.css">
                <columns>
-                  <TableColumn fx:id="idCol" prefWidth="147.0" text="Id" />
                   <TableColumn fx:id="nameCol" prefWidth="281.0" text="Airline Name" />
                   <TableColumn fx:id="logoCol" minWidth="0.0" prefWidth="228.0" text="Airline Logo" />
                   <TableColumn fx:id="actionsCol" prefWidth="190.0" text="Actions" />

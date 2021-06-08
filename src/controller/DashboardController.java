@@ -59,12 +59,10 @@ public class DashboardController implements Initializable {
     @FXML
     private Pane mainBar;
     private boolean userType;
-    private Airline testAirline;
 
     public DashboardController(Airport airport, AirportController airportController) {
         this.airportController = airportController;
         this.airport = airport;
-        this.testAirline = new Airline("Test Airline", "Logo");
     }
 
     public AirportController geAirportController() {
@@ -142,14 +140,16 @@ public class DashboardController implements Initializable {
         String dateRender = formatDate.format(date);
         dateRender = dateRender.replaceAll("/", "-");
         String time = lblTime.getText().substring(0, 5);
-       
+
         for (Flight flight : airport.getFlights()) {
             if (flight.getFlightStatus() != FlightState.DONE) {
                 if (dateRender.equals(flight.getDepartureDate()) && time.compareTo(flight.getDepartureHour()) < 0) {
                     flight.setFlightStatus(FlightState.BOARD);
-                } else if (dateRender.compareTo(flight.getDepartureDate()) == 0
+                } else if (dateRender.equals(flight.getDepartureDate())
                         && time.compareTo(flight.getDepartureHour()) >= 0) {
                     flight.setFlightStatus(FlightState.AIRBORNE);
+                } else if (dateRender.compareTo(flight.getArrivalDate()) > 0) {
+                    flight.setFlightStatus(FlightState.DONE);
                 }
             }
         }
@@ -206,7 +206,7 @@ public class DashboardController implements Initializable {
             case FLIGHTS:
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:
-                return new AirlineEmployeesController(airport, this, testAirline);
+                return new AirlineEmployeesController(airport, this);
             case USER_TABLE:
                 return new UserController(airport, this);
             case AIRLINE_TABLE:
@@ -216,7 +216,7 @@ public class DashboardController implements Initializable {
             case LUGAGGE_TABLE:
                 return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
-                return new AircraftController(airport, this, testAirline);
+                return new AircraftController(airport, this);
             case NEW_TRIP:
                 return new BookFlightController(airport, this);
             case PROFILE:

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXTextField;
 
@@ -17,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -41,9 +43,6 @@ public class AirlineController implements Initializable {
     private JFXTextField txtName;
 
     @FXML
-    private JFXTextField txtId;
-
-    @FXML
     private ImageView logo;
 
     @FXML
@@ -53,13 +52,10 @@ public class AirlineController implements Initializable {
     private TableView<Airline> airlineTbl;
 
     @FXML
-    private TableColumn<?, ?> idCol;
+    private TableColumn<Airline, String> nameCol;
 
     @FXML
-    private TableColumn<?, ?> nameCol;
-
-    @FXML
-    private TableColumn<?, ?> logoCol;
+    private TableColumn<Airline, String> logoCol;
 
     @FXML
     private TableColumn<Airline, String> actionsCol;
@@ -68,10 +64,12 @@ public class AirlineController implements Initializable {
     private DashboardController dController;
     private Airline selected;
     private Stage modal;
+    private String pathRender;
 
     public AirlineController(Airport airport, DashboardController dController) {
         this.airport = airport;
         this.dController = dController;
+        pathRender = "";
     }
 
     @FXML
@@ -86,10 +84,33 @@ public class AirlineController implements Initializable {
     }
 
     @FXML
-    void addLogo(ActionEvent event) {
+    public void addLogo(ActionEvent event) {
+        pathRender = "";
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar Archivo");
-        File file = fileChooser.showOpenDialog(txtName.getScene().getWindow());
+        fileChooser.setTitle("Open Resource File");
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            logo.setImage(new Image(selectedFile.toURI().toString()));
+            String path = selectedFile.getPath();
+            String[] parts = path.split(Pattern.quote(File.separator));
+            for (int i = 0; i < parts.length; i++) {
+                int render = (parts.length) - (i + 1);
+                if (render < 5) {
+                    pathRender += parts[i] + getRegex();
+                }
+            }
+        }
+    }
+
+    public String getRegex() {
+        String regex = "";
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Windows")) {
+            regex = "\\";
+        } else {
+            regex = "/";
+        }
+        return regex;
     }
 
     @FXML
@@ -101,6 +122,7 @@ public class AirlineController implements Initializable {
     void editAirline(ActionEvent event) {
         if (validateFields()) {
             selected.setAirlineName(txtName.getText());
+            selected.setLogo(pathRender);
             dController.geAirportController().createAlert("Airline was successfully edited.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
@@ -113,9 +135,11 @@ public class AirlineController implements Initializable {
 
     @FXML
     void saveAirline(ActionEvent event) {
+        pathRender = "";
         if (validateFields()) {
-            airport.getAirlines().add(new Airline(txtName.getText(), "RUTA DEL LOGO"));
-            dController.geAirportController().createAlert("Airline was successfully added.", Route.SUCCESS);
+            dController.geAirportController().createAlert(
+                    airport.createAirline(txtName.getText(), pathRender),
+                    Route.SUCCESS);
             airport.saveData();
             airport.loadData();
             getData();
@@ -126,9 +150,10 @@ public class AirlineController implements Initializable {
     }
 
     private void getData() {
+        airlineTbl.setFixedCellSize(50);
         ObservableList<Airline> airlines = FXCollections.observableArrayList(airport.getAirlines());
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("airlineName"));
+        logoCol.setMinWidth(320);
         logoCol.setCellValueFactory(new PropertyValueFactory<>("logo"));
         renderActions();
         airlineTbl.setItems(airlines);
@@ -154,7 +179,8 @@ public class AirlineController implements Initializable {
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Airline) getTableRow().getItem();
                             airport.getAirlines().remove(selected);
-                            dController.geAirportController().createAlert("Airline was deleted successfully.", Route.SUCCESS);
+                            dController.geAirportController().createAlert("Airline was deleted successfully.",
+                                    Route.SUCCESS);
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
@@ -186,17 +212,20 @@ public class AirlineController implements Initializable {
         setModal(stage);
         stage.show();
     }
-    
+
     private boolean validateFields() {
         boolean render = true;
-        if (txtName.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || pathRender.equals("")) {
             render = false;
         }
         return render;
     }
-    
+
     public void prepareEdition(Airline selected) {
         txtName.setText(selected.getAirlineName());
+        File file = new File(selected.getIcon());
+        logo.setImage(new Image(("file:///" + file.getAbsolutePath())));
+        pathRender = selected.getIcon();
         btnEdit.setVisible(true);
         btnSave.setVisible(false);
     }

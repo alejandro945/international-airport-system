@@ -56,7 +56,7 @@ public class AirlineEmployeesController implements Initializable {
     private Collaborator selected;
     private Stage modal;
 
-    public AirlineEmployeesController(Airport airport, DashboardController dController, Airline airline) {
+    public AirlineEmployeesController(Airport airport, DashboardController dController) {
         this.airport = airport;
         this.dController = dController;
         this.airline = airline;
