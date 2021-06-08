@@ -163,4 +163,14 @@ public class Trip implements Price, Serializable {
         }
         return tempList;
     }
+
+    public Seat getFlightSeat() {
+        return flightSeat;
+    }
+
+    public void setFlightSeat(Seat flightSeat) {
+        this.flightSeat = flightSeat;
+    }
+
+    
 }

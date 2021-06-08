@@ -178,6 +178,8 @@ public class FlightsBookedController {
                             selected = (Trip) getTableRow().getItem();
                             dController.geAirportController().createAlert(airport.getLogged().deleteTrip(selected), Route.SUCCESS);
                             loadData();
+                            airport.saveData();
+                            initialize();
                         });
                         edit.setOnAction((ActionEvent event) -> {
                             selected = (Trip) getTableRow().getItem();
@@ -205,16 +207,17 @@ public class FlightsBookedController {
         actionT.setCellFactory(cellFact);
     }
 
-    public void setModal(Stage modal) {
+    public Stage setModal(Stage modal) {
         this.modal = modal;
+        return modal;
     }
 
     private void showModal(Trip trip) throws IOException {
         BookFlightController modalController = new BookFlightController(airport, dController);
         Stage stage = dController.loadModal(Route.NEW_TRIP, modalController );
-        setModal(stage);
+        Stage modal = setModal(stage);
         stage.show();
-        modalController.prepareEdition(trip);
+        modalController.prepareEdition(trip, modal);
     }
 
 }
