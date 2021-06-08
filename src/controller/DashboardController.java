@@ -2,6 +2,7 @@ package controller;
 
 import controller.bar.*;
 import controller.crud.*;
+import controller.crud.AirlineEmployeesController;
 import controller.view.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -17,12 +18,12 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import model.Airport;
-import model.UserRole;
+import model.*;
 import route.Route;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -53,6 +54,9 @@ public class DashboardController implements Initializable {
     private Pane dashPane;
 
     @FXML
+    private Label notifications;
+
+    @FXML
     private Pane mainBar;
     private boolean userType;
 
@@ -74,6 +78,7 @@ public class DashboardController implements Initializable {
             userType = true;
             lblUser.setText(airport.getLogged().getName());
             String path = airport.getLogged().getIconPath();
+            notifications.setText(airport.getLogged().getNotifications());
             if (path != null) {
                 imgUser.setFill(new ImagePattern(new Image(path)));
             } else {
@@ -123,9 +128,31 @@ public class DashboardController implements Initializable {
             } else {
                 lblTime.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
             }
+            validateFlights();
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+    }
+
+    public void validateFlights() {
+        Date date = new Date();
+        SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/dd/MM");
+        String dateRender = formatDate.format(date);
+        dateRender = dateRender.replaceAll("/", "-");
+        String time = lblTime.getText().substring(0, 5);
+
+        for (Flight flight : airport.getFlights()) {
+            if (flight.getFlightStatus() != FlightState.DONE) {
+                if (dateRender.equals(flight.getDepartureDate()) && time.compareTo(flight.getDepartureHour()) < 0) {
+                    flight.setFlightStatus(FlightState.BOARD);
+                } else if (dateRender.equals(flight.getDepartureDate())
+                        && time.compareTo(flight.getDepartureHour()) >= 0) {
+                    flight.setFlightStatus(FlightState.AIRBORNE);
+                } else if (dateRender.compareTo(flight.getArrivalDate()) > 0) {
+                    flight.setFlightStatus(FlightState.DONE);
+                }
+            }
+        }
     }
 
     @FXML
@@ -173,13 +200,13 @@ public class DashboardController implements Initializable {
             case ACTIVE_FLIGHTS:
                 return new ActiveFlightsController(airport, this);
             case UPCOMING_FLIGHTS:
-                return new UpcomingFlightsController(this);
+                return new UpcomingFlightsController(this, airport);
             case INDICATORS:
                 return new IndicatorsController(this);
             case FLIGHTS:
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:
-                return new AirlineEmployeesController(this);
+                return new AirlineEmployeesController(airport, this);
             case USER_TABLE:
                 return new UserController(airport, this);
             case AIRLINE_TABLE:

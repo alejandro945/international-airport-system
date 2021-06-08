@@ -8,6 +8,7 @@ public class Aircraft implements Maintenance, Serializable {
     private static final long serialVersionUID = 1L;
     private final int AIRCRAFT_COLUMNS = 6;
     private Seat[][] seat;// Bynary Search
+    private Airline airline;
     private Pilot pilot;
     private List<Costumer> costumer; // Bynary Search
     private int planeWeight;
@@ -15,8 +16,9 @@ public class Aircraft implements Maintenance, Serializable {
     private int capacity;
     private boolean inMaintenance;
 
-    public Aircraft(String planeCode, int planeWeight, int capacity) {
+    public Aircraft(String planeCode, int planeWeight, int capacity,Airline airline) {
         this.planeCode = planeCode;
+        this.airline = airline;
         this.planeWeight = planeWeight;
         this.capacity = capacity;
         inMaintenance = false;
@@ -36,6 +38,14 @@ public class Aircraft implements Maintenance, Serializable {
      */
     public void setPlaneWeight(int planeWeight) {
         this.planeWeight = planeWeight;
+    }
+
+    public Airline getAirline() {
+        return this.airline;
+    }
+
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
     /**

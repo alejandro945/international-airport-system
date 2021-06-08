@@ -1,10 +1,14 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airline implements Serializable {
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class Airline implements Serializable, Comparable<Airline> {
     private static final long serialVersionUID = 1L;
     private String airlineName;
     private String logo;
@@ -14,19 +18,17 @@ public class Airline implements Serializable {
     private List<User> users;
     private Ticket ticket; // Binary Tree
     private List<Flight> flights;
-    private List<Luggage> luggages;
 
     public Airline(String airlineName, String logo) {
         flights = new ArrayList<>();
+        aircraft = new ArrayList<>();
         this.airlineName = airlineName;
         this.logo = logo;
-
-        Aircraft plane = new Aircraft("planeCode", 234532, 48);
-        flights.add(new Flight("1", "2021-06-04", "08:00", "2021-06-06", "11:00", Places.MADRID, Places.BOGOTA, null, this, plane));
-        flights.add(
-                new Flight("2", "2021-06-08", "09:00", "2021-06-09", "13:00", Places.SYDNEY, Places.MOSCOW, null, this, plane));
-        flights.get(0).setFlightStatus(FlightState.AIRBORNE);
-        flights.get(1).setFlightStatus(FlightState.AIRBORNE);
+        Aircraft plane = new Aircraft("planeCode", 234532, 48, this);
+        flights.add(new Flight("1", "2021-07-06", "18:45", "2021-08-06", "17:00", Places.BOGOTA, Places.TOKIO, null,
+                this, plane));
+        flights.add(new Flight("2", "2021-08-06", "09:00", "2021-09-06", "13:00", Places.SYDNEY, Places.MOSCOW, null,
+                this, plane));
     }
 
     /**
@@ -51,8 +53,16 @@ public class Airline implements Serializable {
         this.airlineName = airlineName;
     }
 
-    public String getLogo() {
-        return this.logo;
+    public ImageView getLogo() {
+        File file = new File(logo);
+        ImageView icon = new ImageView(new Image(("file:///" + file.getAbsolutePath())));
+        icon.setFitHeight(50);
+        icon.setFitWidth(200);
+        return icon;
+    }
+
+    public String getIcon() {
+        return logo;
     }
 
     public void setLogo(String logo) {
@@ -99,18 +109,41 @@ public class Airline implements Serializable {
         this.flights = flights;
     }
 
-    public List<Luggage> getLuggages() {
-        return this.luggages;
-    }
-
-    public void setLuggages(List<Luggage> luggages) {
-        this.luggages = luggages;
-    }
-
     @Override
     public String toString() {
         return airlineName;
     }
 
-    
+    /**
+     * Makes a list from the advisors binary tree.
+     * 
+     * @return Returns a list with all the airline advisors.
+     */
+    public List<Advisor> advisorsToArray() {
+        ArrayList<Advisor> advisors = new ArrayList<>();
+
+        // Código para recorrer árbol binario y agregar advisors al arraylist.
+
+        return advisors;
+    }
+
+    /**
+     * Merges all pilots and advisors into a single list.
+     * 
+     * @return Returns a list with all the airline employees.
+     */
+    public List<Collaborator> getEmployees() {
+        ArrayList<Collaborator> employees = new ArrayList<>(pilots);
+        employees.addAll(advisorsToArray());
+        return new ArrayList<>(employees);
+    }
+
+    @Override
+    public int compareTo(Airline a) {
+        if(a.getAirlineName().equalsIgnoreCase(airlineName)){
+            return 0;
+        }else{
+            return airlineName.compareTo(a.getAirlineName());
+        }
+    }
 }

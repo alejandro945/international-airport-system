@@ -4,25 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Migration implements Supplier, Serializable {
+public class Migration implements Serializable {
     private static final long serialVersionUID = 1L;
-    private List<Costumer> people;
+    private List<Flight> flights;
 
     public Migration() {
-        people = new ArrayList<>();
+        flights = new ArrayList<>();
     }
 
-    public List<Costumer> getPeople() {
-        return this.people;
+    public List<Flight> getFlights() {
+        return this.flights;
     }
 
-    public void setPeople(List<Costumer> people) {
-        this.people = people;
-    }
-
-    @Override
-    public void airportCharges(int investment) {
-
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 
 }

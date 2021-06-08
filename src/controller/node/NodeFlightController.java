@@ -6,10 +6,11 @@ import java.time.LocalTime;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTimePicker;
+
+import controller.DashboardController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import model.Airline;
 import model.Flight;
 import model.FlightState;
 import thread.FlightThread;
@@ -29,7 +30,8 @@ public class NodeFlightController {
 
     @FXML
     private JFXTimePicker txtElapsed;
-
+    @FXML
+    private ImageView warning;
     @FXML
     private JFXTimePicker txtArrival;
 
@@ -59,12 +61,17 @@ public class NodeFlightController {
 
     @FXML
     private ImageView plane;
+    private DashboardController dController;
 
-    public NodeFlightController() {
-
+    public NodeFlightController(DashboardController dController) {
+        this.dController = dController;
     }
 
-    public void getData(Flight flight, Airline airline) {
+    public DashboardController getDController(){
+        return dController;
+    }
+
+    public void getData(Flight flight) {
         initState(flight.getFlightStatus());
         txtElapsed.setValue(LocalTime.parse(flight.getDepartureHour()));
         txtArrival.setValue(LocalTime.parse(flight.getArrivalHour()));
@@ -72,7 +79,7 @@ public class NodeFlightController {
         dateDestination.setValue(LocalDate.parse(flight.getArrivalDate()));
         lblDeparture.setText(flight.getOrigin().toString());
         lblDestination.setText(flight.getDestination().toString());
-        lblAirline.setText(airline.toString());
+        lblAirline.setText(flight.getAirline().toString());
         lblPlane.setText("A385");
         setFlightProgress(flight);
         isActive(flight);
@@ -91,12 +98,15 @@ public class NodeFlightController {
     public void initState(FlightState state) {
         if (state == FlightState.CANCELED || state == FlightState.DELAYED) {
             error.toFront();
+            warning.setVisible(false);
             error.setText(state.toString());
         } else if (state == FlightState.DONE || state == FlightState.AIRBORNE) {
             active.toFront();
+            warning.setVisible(false);
             active.setText(state.toString());
         } else {
             suspense.toFront();
+            warning.setVisible(true);
             suspense.setText(state.toString());
         }
     }
@@ -104,7 +114,10 @@ public class NodeFlightController {
     public void setFlightProgress(Flight flight) {
         plane.setLayoutX(flight.getPosition());
         barProgress.setProgress((flight.getPosition() - 125) / 700.0);
-        flight.setProgress((int)Math.round(barProgress.getProgress() * 100.0));
+        flight.setProgress((int) Math.round(barProgress.getProgress() * 100.0));
+        if (flight.getProgress() > 100) {
+            flight.setProgress(100);
+        }
         lblProgress.setText(flight.getProgress() + " %");
     }
 }

@@ -23,7 +23,6 @@ import thread.MapThread;
 import controller.node.NodeFlightController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;
-import model.Airline;
 
 public class ActiveFlightsController implements Initializable {
     private int nodeIndex;
@@ -57,22 +56,25 @@ public class ActiveFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        activeBox.getChildren().clear();
         for (Flight flight : airport.getFlights()) {
-            try {
-                addNode(flight, flight.getAirline());
-                initMap(flight);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (flight.getFlightStatus() == FlightState.AIRBORNE) {
+                try {
+                    addNode(flight);
+                    initMap(flight);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public void addNode(Flight flight, Airline airline) throws IOException {
+    public void addNode(Flight flight) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Route.NODE_FLIGHT.getRoute()));
-        NodeFlightController controller = new NodeFlightController();
+        NodeFlightController controller = new NodeFlightController(dController);
         fxmlLoader.setController(controller);
         Pane pane = fxmlLoader.load();
-        controller.getData(flight, airline);
+        controller.getData(flight);
         activeBox.getChildren().add(pane);
     }
 
