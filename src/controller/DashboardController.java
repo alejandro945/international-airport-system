@@ -138,15 +138,17 @@ public class DashboardController implements Initializable {
 
     public void validateFlights() {
         Date date = new Date();
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/dd/MM");
         String dateRender = formatDate.format(date);
+        dateRender = dateRender.replaceAll("/", "-");
         String time = lblTime.getText().substring(0, 5);
+       
         for (Flight flight : airport.getFlights()) {
-            if(flight.getFlightStatus()!=FlightState.DONE){
+            if (flight.getFlightStatus() != FlightState.DONE) {
                 if (dateRender.equals(flight.getDepartureDate()) && time.compareTo(flight.getDepartureHour()) < 0) {
                     flight.setFlightStatus(FlightState.BOARD);
-                } else if (dateRender.compareTo(flight.getArrivalDate()) <= 0
-                        && time.compareTo(flight.getDepartureHour()) >= 0 && time.compareTo(flight.getArrivalHour()) <= 0) {
+                } else if (dateRender.compareTo(flight.getDepartureDate()) == 0
+                        && time.compareTo(flight.getDepartureHour()) >= 0) {
                     flight.setFlightStatus(FlightState.AIRBORNE);
                 }
             }

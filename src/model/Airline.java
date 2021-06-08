@@ -21,9 +21,9 @@ public class Airline implements Serializable {
         this.airlineName = airlineName;
         this.logo = logo;
         Aircraft plane = new Aircraft("planeCode", 234532, 48);
-        flights.add(new Flight("1", "2021-06-07", "18:45", "2021-06-08", "17:00", Places.BOGOTA, Places.TOKIO, null, this, plane));
+        flights.add(new Flight("1", "2021-07-06", "18:45", "2021-08-06", "17:00", Places.BOGOTA, Places.TOKIO, null, this, plane));
         flights.add(
-                new Flight("2", "2021-06-08", "09:00", "2021-06-09", "13:00", Places.SYDNEY, Places.MOSCOW, null, this, plane));
+                new Flight("2", "2021-08-06", "09:00", "2021-09-06", "13:00", Places.SYDNEY, Places.MOSCOW, null, this, plane));
     }
 
     /**
