@@ -18,6 +18,7 @@ public class Airline implements Serializable {
 
     public Airline(String airlineName, String logo) {
         flights = new ArrayList<>();
+        aircraft = new ArrayList<>();
         this.airlineName = airlineName;
         this.logo = logo;
         Aircraft plane = new Aircraft("planeCode", 234532, 48);

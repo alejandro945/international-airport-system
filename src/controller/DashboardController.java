@@ -17,10 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import model.Airport;
-import model.Flight;
-import model.FlightState;
-import model.UserRole;
+import model.*;
 import route.Route;
 
 import java.io.IOException;
@@ -216,7 +213,9 @@ public class DashboardController implements Initializable {
             case LUGAGGE_TABLE:
                 return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
-                return new AircraftController(airport, this);
+                Airline testAirline = new Airline("Test Airline", "Logo");
+                airport.getAirlines().add(testAirline);
+                return new AircraftController(airport, this, testAirline);
             case NEW_TRIP:
                 return new BookFlightController(airport, this);
             case PROFILE:
