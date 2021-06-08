@@ -41,13 +41,6 @@ public class UpcomingFlightsController implements Initializable{
 
     }
 
-<<<<<<< HEAD
-    public DashboardController getdController() {
-        return dController;
-    }
-
-    
-=======
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (Flight flight : airport.getFlights()) {
@@ -67,6 +60,5 @@ public class UpcomingFlightsController implements Initializable{
         controller.getData(flight);
         activeBox.getChildren().add(pane);
     }
->>>>>>> 2cd929604537c962612dfb68f0622cbba176b2f1
 
 }
