@@ -2,6 +2,7 @@ package controller;
 
 import controller.bar.*;
 import controller.crud.*;
+import controller.crud.AirlineEmployeesController;
 import controller.view.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -58,10 +59,12 @@ public class DashboardController implements Initializable {
     @FXML
     private Pane mainBar;
     private boolean userType;
+    private Airline testAirline;
 
     public DashboardController(Airport airport, AirportController airportController) {
         this.airportController = airportController;
         this.airport = airport;
+        this.testAirline = new Airline("Test Airline", "Logo");
     }
 
     public AirportController geAirportController() {
@@ -203,7 +206,7 @@ public class DashboardController implements Initializable {
             case FLIGHTS:
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:
-                return new AirlineEmployeesController(this);
+                return new AirlineEmployeesController(airport, this, testAirline);
             case USER_TABLE:
                 return new UserController(airport, this);
             case AIRLINE_TABLE:
@@ -213,8 +216,6 @@ public class DashboardController implements Initializable {
             case LUGAGGE_TABLE:
                 return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
-                Airline testAirline = new Airline("Test Airline", "Logo");
-                airport.getAirlines().add(testAirline);
                 return new AircraftController(airport, this, testAirline);
             case NEW_TRIP:
                 return new BookFlightController(airport, this);

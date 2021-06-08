@@ -110,5 +110,25 @@ public class Airline implements Serializable {
         return airlineName;
     }
 
-    
+    /**
+     * Makes a list from the advisors binary tree.
+     * @return Returns a list with all the airline advisors.
+     */
+    public List<Advisor> advisorsToArray() {
+        ArrayList<Advisor> advisors = new ArrayList<>();
+
+        // Código para recorrer árbol binario y agregar advisors al arraylist.
+
+        return advisors;
+    }
+
+    /**
+     * Merges all pilots and advisors into a single list.
+     * @return Returns a list with all the airline employees.
+     */
+    public List<Collaborator> getEmployees() {
+        ArrayList<Collaborator> employees = new ArrayList<>(pilots);
+        employees.addAll(advisorsToArray());
+        return new ArrayList<>(employees);
+    }
 }
