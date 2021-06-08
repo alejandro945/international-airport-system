@@ -21,7 +21,7 @@ public class Costumer extends User {
     public Costumer(String name, String lastName, long id, String email, String password) {
         super(name, lastName, id, email, password, UserRole.COSTUMER_USER);
         rootTrip = null;
-        int value = (int) Math.random()*3+1;
+        int value = (int) Math.random() * 3 + 1;
         state = CostumerState.values()[value].name();
     }
 
@@ -29,7 +29,7 @@ public class Costumer extends User {
         super(name, lastName, id, "", "", UserRole.COSTUMER_USER);
         this.iconPath = iconPath;
         rootTrip = null;
-        int value = (int) Math.random()*3+1;
+        int value = (int) Math.random() * 3 + 1;
         state = CostumerState.values()[value].name();
     }
 
@@ -70,13 +70,13 @@ public class Costumer extends User {
     // Add trip
 
     public void addTrip(Trip newPNode) {
-        
+
         if (rootTrip == null) {
             rootTrip = newPNode;
         } else {
             addTrip(rootTrip, newPNode);
         }
-        
+
     }
 
     private void addTrip(Trip parent, Trip newTrip) {
@@ -130,54 +130,77 @@ public class Costumer extends User {
     }
 
     // Delete trip
-    public String deleteTrip(Trip trip){
-        Trip temp = getTrip(trip);
+    public String deleteTrip(Trip trip) {
+        Trip temp = trip;
 
-        Trip parent = temp.getFather() ;
-        Trip right = temp.getRight();
-        Trip left = temp.getLeft();
+        //System.out.println(trip);
 
-        // no children case
-        if(right == null && left == null){
-            if(parent.getLeft().equals(temp)){
-                parent.setLeft(null);
-            } else {
-                parent.setRight(null);
+        if (temp != null) {
+            Trip parent = temp.getFather() == null ? null : temp.getFather();
+            Trip right = temp.getRight() == null ? null : temp.getRight();
+            Trip left = temp.getLeft() == null ? null : temp.getLeft();
+            
+            if (right == null && left == null) {    // no children case
+                if (parent == null) {
+                    rootTrip = null;
+                } else {
+                    if (parent.getLeft() == (temp)) {
+                        parent.setLeft(null);
+                    } else {
+                        parent.setRight(null);
+                    }
+                }
+            } else if (right == null || left != null) { // One children case
+
+                Trip tempSon = null;
+
+                if (right == null) {
+                    tempSon = left;                  
+                } else {
+                    tempSon = right;
+                }
+                tempSon.setFather(parent);
+
+                if (parent == null) {
+                    rootTrip = tempSon;
+                } else {
+                    if (parent.getLeft() == (temp)) {
+                        parent.setLeft(tempSon);
+                    } else {
+                        parent.setRight(tempSon);
+                    }
+                }
+            } else { // Two children case
+                Trip minTrip = minTrip(right);
+
+                deleteTrip(minTrip);
+
+                temp.setRootLuggage(minTrip.getRootLuggage());
+                temp.setTicket(minTrip.getTicket());
+                temp.setTripPrice(minTrip.getTripPrice());
+                temp.setId(minTrip.getId());
+                temp.setFlightSeat(minTrip.getFlightSeat());                
             }
-        } 
 
-        // One children case
-        if(right == null && left != null ){
-            if(parent.getLeft().equals(temp)){
-                parent.setLeft(left);
-            } else {
-                parent.setRight(left);
-            }
+            temp.getFlightSeat().setSeatState(false);
+            temp.setFather(null);
+            temp.setLeft(null);
+            temp.setRight(null);
+
+            return temp.getId();
+
+        } else {
+            return "No se pudo eliminar";
         }
 
-        if(right != null && left == null ){
-            if(parent.getLeft().equals(temp)){
-                parent.setLeft(right);
-            } else {
-                parent.setRight(right);
-            }
+    }
+
+    private Trip minTrip (Trip starTrip){
+        if(starTrip.getLeft() == null ){
+            return starTrip;
+        }else{
+            return minTrip(starTrip.getLeft());
         }
-
-        // Two children case
-        if(right != null && left != null ){
-            if(parent.getLeft().equals(temp)){
-                parent.setLeft(right);
-            } else {
-                parent.setRight(right);
-            }
-            addTrip(right, left);
-        }
-
-        temp.setFather(null);
-        temp.setLeft(null);
-        temp.setRight(null);
-
-        return temp.getId();
     }
 
     // Add luggage
@@ -193,7 +216,7 @@ public class Costumer extends User {
         this.state = CostumerState.values()[state].name();
     }
 
-    private int countTrips(Trip node, int count){
+    private int countTrips(Trip node, int count) {
         if (node == null) {
             return 0;
         }
@@ -203,9 +226,10 @@ public class Costumer extends User {
         return count;
     }
 
-    public int countTrips(){
-       return countTrips(rootTrip, 0);
+    public int countTrips() {
+        return countTrips(rootTrip, 0);
     }
 
-    
+    // Update Trip
+
 }

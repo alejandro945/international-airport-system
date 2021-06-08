@@ -144,6 +144,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <Button layoutX="1017.0" layoutY="19.0" mnemonicParsing="false" onAction="#buy" text="Book Now" />
+      <Button fx:id="buyBtn" layoutX="1017.0" layoutY="19.0" mnemonicParsing="false" onAction="#buy" text="Book Now" />
+      <Button fx:id="cancelBtn" layoutX="912.0" layoutY="19.0" mnemonicParsing="false" onAction="#cancelModalUpdate" styleClass="button2" text="cancel" visible="false" />
    </children>
 </Pane>

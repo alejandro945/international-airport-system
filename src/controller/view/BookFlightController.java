@@ -38,6 +38,7 @@ public class BookFlightController {
 
     private Stage modal;
     private Stage modalTicket;
+    private Stage modalUpdate;
 
     private Ticket ticket;
     private Trip trip;
@@ -46,6 +47,7 @@ public class BookFlightController {
     private Seat previousSeat;
     private int tripPrice;
     private List<Luggage> luggages;
+    private boolean isUpdateMode;
 
     public BookFlightController(Airport airport, DashboardController dController) {
         this.airport = airport;
@@ -215,6 +217,18 @@ public class BookFlightController {
         priceCol.setCellValueFactory(new PropertyValueFactory<Luggage, String>("luggagePrice"));
 
         luggageTbl.setItems(luggagesTrip);
+
+        luggageTbl.setRowFactory( tv -> {
+            TableRow<Luggage> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Luggage temp = row.getItem();
+                    luggages.remove(temp);
+                    initializeTableView();
+                }
+            });
+            return row;
+        });
     }
 
     // Ticket creation
@@ -586,22 +600,30 @@ public class BookFlightController {
     @FXML
     void buy(ActionEvent event) throws IOException {
         if (tripValidation()) {
-            String id = "T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId();
-            trip = new Trip((id), ticket, selectSeat);
-            idTrip.setText("value " + id);
 
-            trip = new Trip(id, ticket, selectSeat);
-            for (int i = 0; i < luggages.size(); i++) {
-                airport.getLogged().addLuggage(luggages.get(i), trip);
+            if (isUpdateMode) {
+                modalUpdate.close();
+
+            } else {
+                String id = "T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId();
+                trip = new Trip((id), ticket, selectSeat);
+                idTrip.setText("value " + id);
+
+                trip = new Trip(id, ticket, selectSeat);
+                for (int i = 0; i < luggages.size(); i++) {
+                    airport.getLogged().addLuggage(luggages.get(i), trip);
+                }
+                if (previousSeat != null) {
+                    previousSeat.setSeatState(false);
+                }
+                selectSeat.setSeatState(true);
+                airport.getLogged().addTrip(trip);
+                dController.loadView(Route.NEW_TRIP);
+                dController.alert(Route.SUCCESS, "Trip booked");
+                selectedFlight = null;
+                selectSeat = null;
+                trip = null;
             }
-            previousSeat.setSeatState(false);
-            selectSeat.setSeatState(true);
-            airport.getLogged().addTrip(trip);
-            dController.loadView(Route.NEW_TRIP);
-            dController.alert(Route.SUCCESS, "Trip booked");
-            selectedFlight = null;
-            selectSeat = null;
-            trip = null;
             luggages.clear();
             airport.saveData();
         } else {
@@ -618,14 +640,35 @@ public class BookFlightController {
     }
 
     // Load previous trip data
-    public void prepareEdition(Trip trip){
-    this.ticket  = trip.getTicket();
-    this.trip =  trip;
-    this.selectedFlight  = trip.getTicket().getFlight();
-    this.selectSeat =  trip.getTicket().getFligthSeat();
-    previousSeat = trip.getTicket().getFligthSeat();
-    this.tripPrice  = trip.getTripPrice();
-    this.luggages =  trip.getLuggages();
+    public void prepareEdition(Trip trip, Stage modal) {
+        this.ticket = trip.getTicket();
+        this.trip = trip;
+        this.selectedFlight = trip.getTicket().getFlight();
+        this.selectSeat = trip.getTicket().getFligthSeat();
+        previousSeat = trip.getTicket().getFligthSeat();
+        this.tripPrice = trip.getTripPrice();
+        this.luggages = trip.getLuggages();
+        isUpdateMode = true;
+        modalUpdate = modal;
+        updateValidation();
+    }
+
+    private void updateValidation() {
+        if (isUpdateMode) {
+            cancelBtn.setVisible(true);
+            buyBtn.setText("Update");
+        }
+    }
+
+    @FXML
+    private Button buyBtn;
+
+    @FXML
+    private Button cancelBtn;
+
+    @FXML
+    void cancelModalUpdate(ActionEvent event) {
+        modalUpdate.close();
     }
 
 }
