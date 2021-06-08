@@ -21,4 +21,10 @@ public class UpcomingFlightsController {
 
     }
 
+    public DashboardController getdController() {
+        return dController;
+    }
+
+    
+
 }
