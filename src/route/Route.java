@@ -11,7 +11,7 @@ public enum Route {
     CT_SUPERVISOR(Root.BAR.getRoot() + "bar-ct-supervisor.fxml"),
     MIGRATION_AGENT(Root.BAR.getRoot() + "bar-migration-agent.fxml"),
     COSTUMER(Root.BAR.getRoot() + "bar-costumer.fxml"), ACTIVE_FLIGHTS(Root.TOWER.getRoot() + "active-flights.fxml"),
-    MAP(Root.TOWER.getRoot() + "map.fxml"), UPCOMING_FLIGHTS(Root.TOWER.getRoot() + "upcoming-flights.fxml"),
+    UPCOMING_FLIGHTS(Root.TOWER.getRoot() + "upcoming-flights.fxml"),
     NODE_FLIGHT(Root.TOWER.getRoot() + "flight-node.fxml"),
     AIRLINE_EMPLOYEES(Root.AIRLINE.getRoot() + "airline-employees.fxml"),
     FLIGHTS(Root.AIRLINE.getRoot() + "flights.fxml"), AIRLINES(Root.AIRPORT.getRoot() + "airlines.fxml"),

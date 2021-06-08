@@ -6,6 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,7 +16,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" stylesheets="@../../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fillWidth="false" layoutX="66.0" layoutY="125.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="658.0" prefWidth="1063.0" spacing="20.0" styleClass="box" stylesheets="@../../../assets/styles/vendor.css">
+      <VBox fillWidth="false" layoutX="66.0" layoutY="69.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="348.0" prefWidth="1063.0" spacing="20.0" styleClass="box" stylesheets="@../../../assets/styles/vendor.css">
          <children>
             <HBox spacing="10.0">
                <children>
@@ -21,7 +24,7 @@
                   <JFXTextField fx:id="txtCode" alignment="CENTER" prefHeight="27.0" prefWidth="270.0" promptText="Flight Code" unFocusColor="#8103a1" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="1024.0" styleClass="flight-header">
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="1024.0" styleClass="flight-header">
                <children>
                   <Label alignment="CENTER" prefHeight="20.0" prefWidth="147.0" text="Airline" textFill="WHITE" />
                   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="135.0" text="Aircraft" textFill="WHITE" />
@@ -32,7 +35,7 @@
                   <Label alignment="CENTER" layoutX="611.0" layoutY="10.0" prefHeight="20.0" prefWidth="197.0" text="Status" textFill="WHITE" />
                </children>
             </HBox>
-            <ScrollPane prefHeight="497.0" prefWidth="1026.0">
+            <ScrollPane prefHeight="198.0" prefWidth="1026.0">
                <content>
                   <VBox fx:id="activeBox" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1020.0" spacing="10.0">
                      <opaqueInsets>
@@ -48,11 +51,30 @@
             <Insets bottom="16.0" left="16.0" right="16.0" top="20.0" />
          </padding>
       </VBox>
-      <Label layoutX="41.0" layoutY="22.0" styleClass="menu-label" text="Active Flights">
+      <Label layoutX="41.0" layoutY="14.0" styleClass="menu-label" text="Active Flights">
          <font>
             <Font name="Montserrat Bold" size="20.0" />
          </font>
       </Label>
-      <Separator layoutY="67.0" prefHeight="9.0" prefWidth="1195.0" />
+      <ScrollPane layoutX="70.0" layoutY="485.0" prefHeight="337.0" prefWidth="1063.0" styleClass="box">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="1024.0">
+               <children>
+                  <Pane fx:id="paneMap" prefHeight="566.0" prefWidth="1024.0" styleClass="box">
+                     <children>
+                        <ImageView fx:id="map" fitHeight="518.0" fitWidth="1024.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/img/world.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="60.0" layoutY="429.0" styleClass="menu-label" text="Map View" />
+      <Separator layoutY="50.0" prefHeight="9.0" prefWidth="1195.0" />
+      <Separator layoutY="466.0" prefHeight="9.0" prefWidth="1195.0" />
    </children>
 </Pane>
