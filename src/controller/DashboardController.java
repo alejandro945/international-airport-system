@@ -191,6 +191,7 @@ public class DashboardController implements Initializable {
     }
 
     public Object setViewController(Route route) {
+        Airline testArline = new Airline("Test Airline", "Logo");
         this.route = route;
         switch (route) {
             case MY_TRIPS:
@@ -204,7 +205,7 @@ public class DashboardController implements Initializable {
             case FLIGHTS:
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:
-                return new AirlineEmployeesController(airport, this);
+                return new AirlineEmployeesController(airport, this, testArline);
             case USER_TABLE:
                 return new UserController(airport, this);
             case AIRLINE_TABLE:
@@ -212,7 +213,7 @@ public class DashboardController implements Initializable {
             case TRACK_TABLE:
                 return new TrackController(airport, this);
             case AIRCRAFT_TABLE:
-                return new AircraftController(airport, this);
+                return new AircraftController(airport, this, testArline);
             case NEW_TRIP:
                 return new BookFlightController(airport, this);
             case PROFILE:

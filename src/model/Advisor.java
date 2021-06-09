@@ -10,7 +10,7 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
     private Advisor left;
 
     public Advisor(String name, String lastName, long id, Airline airline) {
-        super(name, lastName, id, airline);
+        super(name, lastName, id, airline, "Advisor");
         costumers = new ArrayList<>();
     }
 

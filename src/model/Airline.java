@@ -73,6 +73,7 @@ public class Airline implements Serializable, Comparable<Airline> {
         this.logo = logo;
     }
 
+
     public List<Aircraft> getAircraft() {
         return this.aircraft;
     }
