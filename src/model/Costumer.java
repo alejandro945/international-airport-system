@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 public class Costumer extends User {
     Random r = new Random();
     private String iconPath;
