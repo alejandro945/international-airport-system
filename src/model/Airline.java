@@ -23,6 +23,7 @@ public class Airline implements Serializable, Comparable<Airline> {
     private final int TWO_ADVISORS = 3;
 
     public Airline(String airlineName, String logo) {
+        pilots = new ArrayList<>();
         flights = new ArrayList<>();
         aircraft = new ArrayList<>();
         this.airlineName = airlineName;
