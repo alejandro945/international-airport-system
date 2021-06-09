@@ -122,12 +122,12 @@ public class AircraftController implements Initializable {
     }
 
     private void getData() {
-        ObservableList<Aircraft> aircrafts = FXCollections.observableArrayList(airline.getAircraft());
+        //ObservableList<Aircraft> aircrafts = FXCollections.observableArrayList(airline.getAircraft());
         codeCol.setCellValueFactory(new PropertyValueFactory<>("planeCode"));
         weightCol.setCellValueFactory(new PropertyValueFactory<>("planeWeight"));
         capacityCol.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         renderActions();
-        aircraftTbl.setItems(aircrafts);
+        //aircraftTbl.setItems(aircrafts);
     }
 
     public boolean validateFields() {
