@@ -137,8 +137,7 @@ public class AirlineController implements Initializable {
     void saveAirline(ActionEvent event) {
         pathRender = "";
         if (validateFields()) {
-            dController.geAirportController().createAlert(
-                    airport.createAirline(txtName.getText(), pathRender),
+            dController.geAirportController().createAlert(airport.createAirline(txtName.getText(), pathRender),
                     Route.SUCCESS);
             airport.saveData();
             airport.loadData();

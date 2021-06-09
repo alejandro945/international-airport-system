@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 
 import controller.DashboardController;
@@ -57,6 +58,8 @@ public class TrackController implements Initializable {
 
     @FXML
     private JFXTextField txtId;
+    @FXML
+    private JFXCheckBox cbMaintenance;
 
     private Airport airport;
     private DashboardController dController;
@@ -78,6 +81,7 @@ public class TrackController implements Initializable {
         showModal();
         modalName.setText("Create Track");
         txtId.setText(airport.getTrackAmount() + 1 + "");
+        cbMaintenance.setDisable(true);
         btnEdit.setVisible(false);
         btnSave.setVisible(true);
     }
@@ -94,8 +98,7 @@ public class TrackController implements Initializable {
     @FXML
     void editTrack(ActionEvent event) {
         if (validateFields()) {
-            airport.editTrack(selected, txtGate.getText());
-            dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText()),
+            dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText(),cbMaintenance.isSelected()),
                     Route.SUCCESS);
             modal.close();
             airport.saveData();
@@ -192,6 +195,8 @@ public class TrackController implements Initializable {
     public void prepareEdition(Track selected) {
         txtId.setText(String.valueOf(selected.getId()));
         txtGate.setText(selected.getGate());
+        cbMaintenance.setSelected(selected.isInMaintenance());
+        cbMaintenance.setDisable(false);
         btnEdit.setVisible(true);
         btnSave.setVisible(false);
     }

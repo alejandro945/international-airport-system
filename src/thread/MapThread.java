@@ -39,6 +39,5 @@ public class MapThread extends Thread {
             });
             run();
         }
-
     }
 }

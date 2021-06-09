@@ -23,17 +23,19 @@ public class FlightThread extends Thread {
     @Override
     public void run() {
         while (flight.getFlightStatus() == FlightState.AIRBORNE) {
-            flight.setPosition(( SCALE/ flight.getDuration()));
+            flight.setPosition((SCALE / flight.getDuration()));
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     if (flight.getProgress() < LIMIT_JOURNEY) {
                         nf.setFlightProgress(flight);
                     } else {
-                        try {
-                            nf.getDController().loadView(Route.ACTIVE_FLIGHTS);
-                        } catch (IOException e) {
-                            nf.getDController().alert(Route.ERROR, IO_MESSAGE);
+                        if (nf.getDController().getRoute() == Route.ACTIVE_FLIGHTS) {
+                            try {
+                                nf.getDController().loadView(Route.ACTIVE_FLIGHTS);
+                            } catch (IOException e) {
+                                nf.getDController().alert(Route.ERROR, IO_MESSAGE);
+                            }
                         }
                         flight.setFlightStatus(FlightState.DONE);
                     }

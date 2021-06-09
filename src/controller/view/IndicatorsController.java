@@ -1,10 +1,11 @@
 package controller.view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.StackedAreaChart;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
 import controller.DashboardController;
 
 public class IndicatorsController {
@@ -13,13 +14,25 @@ public class IndicatorsController {
     private BarChart<?, ?> bar;
 
     @FXML
-    private LineChart<?, ?> line;
+    private TableView<?> migrationTbl;
 
     @FXML
-    private AreaChart<?, ?> Area;
+    private TableColumn<?, ?> idCol;
 
     @FXML
-    private StackedAreaChart<?, ?> stacked;
+    private TableColumn<?, ?> aprprovedCol;
+
+    @FXML
+    private TableColumn<?, ?> wantedCol;
+
+    @FXML
+    private TableColumn<?, ?> minorCol;
+
+    @FXML
+    private TableColumn<?, ?> covidCol;
+
+    @FXML
+    private TableColumn<?, ?> actionCol;
 
     private final DashboardController dController;
 
@@ -29,6 +42,16 @@ public class IndicatorsController {
 
     public DashboardController getDController() {
         return dController;
+    }
+
+    @FXML
+    void exportInfo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void importInfo(ActionEvent event) {
+
     }
 
 }

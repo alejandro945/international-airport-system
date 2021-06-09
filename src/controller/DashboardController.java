@@ -58,6 +58,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Pane mainBar;
+    private Route route;
     private boolean userType;
 
     public DashboardController(Airport airport, AirportController airportController) {
@@ -71,6 +72,10 @@ public class DashboardController implements Initializable {
 
     public boolean getUserType() {
         return userType;
+    }
+
+    public Route getRoute(){
+        return route;
     }
 
     public void init() {
@@ -186,17 +191,10 @@ public class DashboardController implements Initializable {
     }
 
     public Object setViewController(Route route) {
+        this.route = route;
         switch (route) {
             case MY_TRIPS:
                 return new FlightsBookedController(airport, this);
-            case AP_EMPLOYEES:
-                return new AirportEmployeesController(this);
-            case NEW_EMPLOYEE:
-                return new NewEmployeeController(this);
-            case AIRLINES:
-                return new AirportAirlinesController(this);
-            case NEW_AIRLINE:
-                return new NewAirlineController(this);
             case ACTIVE_FLIGHTS:
                 return new ActiveFlightsController(airport, this);
             case UPCOMING_FLIGHTS:
@@ -213,8 +211,6 @@ public class DashboardController implements Initializable {
                 return new AirlineController(airport, this);
             case TRACK_TABLE:
                 return new TrackController(airport, this);
-            case LUGAGGE_TABLE:
-                return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
                 return new AircraftController(airport, this);
             case NEW_TRIP:

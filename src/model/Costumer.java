@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import controller.crud.LugaggeController;
 
 public class Costumer extends User {
     Random r = new Random();

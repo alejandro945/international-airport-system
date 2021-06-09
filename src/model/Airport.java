@@ -388,8 +388,13 @@ public class Airport implements Serializable, Supplier {
         return tracks;
     }
 
-    public String editTrack(Track track, String gate) {
+    public String editTrack(Track track, String gate, boolean state) {
         track.setGate(gate);
+        if (state) {
+            track.inMaintenance();
+        } else {
+            track.setInMaintenance(state);
+        }
         return "Track " + track.getId() + EDIT_SUCCESS;
     }
 

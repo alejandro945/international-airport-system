@@ -12,6 +12,23 @@
     -fx-stroke: linear-gradient(to left,#fff ,#3929E0);
     -fx-stroke-width: 2;
 }
+.bar-chart {
+    -fx-bar-gap: 6;
+    -fx-category-gap: 10;
+}
+
+.chart-bar.default-color0 {
+    -fx-bar-fill: blue;
+}
+
+.chart-bar.default-color1 {
+    -fx-bar-fill: green;
+}
+
+.chart-bar.default-color2 {
+    -fx-bar-fill: red;
+}
+/*https://programmerclick.com/article/8501142955/*/
 .box{
     -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.8, 0.0, 0.0 );
     -fx-background-radius: 20;
