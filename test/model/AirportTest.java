@@ -53,8 +53,12 @@ public class AirportTest {
     private void setupScenary10() {
         airport = new Airport();
 
-        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null, null, null);
-       // Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null, null, null);
+        Airline line = new Airline("Viva air", null);
+
+        Aircraft plane =  new Aircraft("AI32342", 4000, 300, line);
+
+        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.MIAMI, null, line, plane);
+        Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null, line, plane);
 
         Track track1 = new Track(1, "A30");
         Track track2 = new Track(2, "A30");
@@ -78,9 +82,12 @@ public class AirportTest {
 
     private void setupScenary13() {
         airport = new Airport();
+        Airline line = new Airline("Viva air", null);
 
-       // Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null, null, null);
-     //   Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null, null, null);
+        Aircraft plane =  new Aircraft("AI32342", 4000, 300, line);
+
+        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.MIAMI, null, line, plane);
+        Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null, line, plane);
 
         airport.getFlights().add(fly1);
         airport.getFlights().add(fly2);
