@@ -93,7 +93,7 @@ public class IndicatorsController implements Initializable {
     }
 
     @FXML
-    void cancelModal(ActionEvent event) {
+    public void cancelModal(ActionEvent event) {
         modal.close();
     }
 

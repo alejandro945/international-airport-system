@@ -31,11 +31,11 @@
                         <TableColumn fx:id="actionCol" prefWidth="182.0" text="Actions" />
                      </columns>
                   </TableView>
-                  <Button layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#importInfo" prefHeight="46.0" prefWidth="183.0" styleClass="button1" text="Import" textFill="WHITE">
+                  <Button layoutX="157.0" layoutY="30.0" mnemonicParsing="false" onAction="#importInfo" prefHeight="46.0" prefWidth="183.0" styleClass="button2" text="Import" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../assets/img/credit_card_contactless_80px.png" />
+                              <Image url="@../../../assets/img/protect_80px.png" />
                            </image>
                         </ImageView>
                      </graphic>

@@ -78,12 +78,14 @@ public class TrackController implements Initializable {
 
     @FXML
     void newTrack(ActionEvent event) throws IOException {
+        if(modal==null){
         showModal();
         modalName.setText("Create Track");
         txtId.setText(airport.getTrackAmount() + 1 + "");
         cbMaintenance.setDisable(true);
         btnEdit.setVisible(false);
         btnSave.setVisible(true);
+        }
     }
 
     public void setModal(Stage modal) {
@@ -93,8 +95,17 @@ public class TrackController implements Initializable {
     @FXML
     void cancelModal(ActionEvent event) {
         modal.close();
+        setModal(null);
+    }
+    @FXML
+    public void exportInfo(ActionEvent event) {
+
     }
 
+    @FXML
+    public void importInfo(ActionEvent event) {
+
+    }
     @FXML
     void editTrack(ActionEvent event) {
         if (validateFields()) {

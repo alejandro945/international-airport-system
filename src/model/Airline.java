@@ -1,6 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +33,6 @@ public class Airline implements Serializable, Comparable<Airline> {
         aircraft = new ArrayList<>();
         this.airlineName = airlineName;
         this.logo = logo;
-        Aircraft plane1 = new Aircraft("A988", 234532, 48, this);
-        Aircraft plane2 = new Aircraft("B456", 234532, 48, this);
-        flights.add(new Flight("K940", "2021-09-06", "23:45", "2021-10-06", "17:00", Places.BOGOTA, Places.TOKIO, null,
-                this, plane1));
-        flights.add(new Flight("G546", "2021-09-06", "23:00", "2021-11-06", "13:00", Places.SYDNEY, Places.MOSCOW, null,
-                this, plane2));
     }
 
     /**
@@ -73,7 +72,6 @@ public class Airline implements Serializable, Comparable<Airline> {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-
 
     public List<Aircraft> getAircraft() {
         return this.aircraft;
@@ -122,8 +120,10 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Verifies if an advisor is the root of the tree.
+     * 
      * @param advisor Advisor to be checked.
-     * @return Returns true if the advisor is the root of the tree. Else returns false.
+     * @return Returns true if the advisor is the root of the tree. Else returns
+     *         false.
      */
     public boolean isRoot(Advisor advisor) {
         return assistantRoot == advisor;
@@ -131,8 +131,10 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Verifies if an advisor is a leaf of the tree.
+     * 
      * @param advisor Advisor to be checked.
-     * @return Returns true if the advisor is a leaf of the tree. Else returns false.
+     * @return Returns true if the advisor is a leaf of the tree. Else returns
+     *         false.
      */
     public boolean isLeaf(Advisor advisor) {
         return advisor.getLeft() == null && advisor.getRight() == null;
@@ -140,8 +142,10 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Verifies if an advisor is an internal of the tree.
+     * 
      * @param advisor Advisor to be checked.
-     * @return Returns true if the advisor is an internal of the tree. Else returns false.
+     * @return Returns true if the advisor is an internal of the tree. Else returns
+     *         false.
      */
     public boolean isInternal(Advisor advisor) {
         return !isLeaf(advisor);
@@ -149,7 +153,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     // For development purposes. Delete. ------------------------------------------
     public String inorder() {
-        if(assistantRoot==null) {
+        if (assistantRoot == null) {
             return "There are no advisors yet.";
         } else {
             return inorder(assistantRoot);
@@ -158,11 +162,11 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     private String inorder(Advisor advisor) {
         String msg = "";
-        if(advisor.getLeft()!=null) {
+        if (advisor.getLeft() != null) {
             msg += inorder(advisor.getLeft());
         }
         msg += advisor.getName() + " " + advisor.getLastName() + "\n";
-        if(advisor.getRight()!=null) {
+        if (advisor.getRight() != null) {
             msg += inorder(advisor.getRight());
         }
         return msg;
@@ -171,6 +175,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Adds an advisor to the binary tree.
+     * 
      * @param advisor Advisor to be added.
      */
     public void addAdvisor(Advisor advisor) {
@@ -179,22 +184,23 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Auxiliar method to add an advisor to the binary tree.
-     * @param origin Reference to origin advisor. Starts with root.
+     * 
+     * @param origin  Reference to origin advisor. Starts with root.
      * @param current Reference to current advisor.
      */
     private void addAdvisor(Advisor origin, Advisor current) {
-        if(assistantRoot == null) {
+        if (assistantRoot == null) {
             assistantRoot = current;
         } else {
-            if(origin.compareTo(current) > 0) {
-                if(origin.getLeft()!=null) {
+            if (origin.compareTo(current) > 0) {
+                if (origin.getLeft() != null) {
                     addAdvisor(origin.getLeft(), current);
                 } else {
                     current.setParent(origin);
                     origin.setLeft(current);
                 }
             } else {
-                if(origin.getRight()!=null) {
+                if (origin.getRight() != null) {
                     addAdvisor(origin.getRight(), current);
                 } else {
                     current.setParent(origin);
@@ -205,13 +211,13 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     public void removeAdvisor(Advisor advisor) {
-        if(assistantRoot==null) {
+        if (assistantRoot == null) {
             System.out.println("There are no advisors to delete.");
-        } else if(isLeaf(advisor)) {
+        } else if (isLeaf(advisor)) {
             removeLeaf(advisor);
-        } else if(advisor.getRight()!=null && advisor.getLeft()==null) {
+        } else if (advisor.getRight() != null && advisor.getLeft() == null) {
             removeWithChild(advisor, RIGHT_ADVISOR);
-        } else if(advisor.getRight()==null && advisor.getLeft()!=null){
+        } else if (advisor.getRight() == null && advisor.getLeft() != null) {
             removeWithChild(advisor, LEFT_ADVISOR);
         } else {
             removeWithChild(advisor, TWO_ADVISORS);
@@ -219,16 +225,16 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     private void removeLeaf(Advisor advisor) {
-        if(isRoot(advisor)) {
+        if (isRoot(advisor)) {
             assistantRoot = null;
         } else {
             Advisor parent = advisor.getParent();
 
-            if(parent.getLeft() == advisor) {
+            if (parent.getLeft() == advisor) {
                 parent.setLeft(null);
             }
 
-            if(parent.getRight() == advisor) {
+            if (parent.getRight() == advisor) {
                 parent.setRight(null);
             }
 
@@ -248,12 +254,12 @@ public class Airline implements Serializable, Comparable<Airline> {
                 break;
             case TWO_ADVISORS:
                 nextAdvisor = minSubTree(advisor.getRight());
-                if(!isRoot(nextAdvisor.getParent())) {
+                if (!isRoot(nextAdvisor.getParent())) {
                     advisor.getLeft().setParent(nextAdvisor);
                     advisor.getRight().setParent(nextAdvisor);
-                    if(nextAdvisor.getParent().getLeft()==nextAdvisor) {
+                    if (nextAdvisor.getParent().getLeft() == nextAdvisor) {
                         nextAdvisor.getParent().setLeft(null);
-                    } else if(nextAdvisor.getParent().getRight()==nextAdvisor) {
+                    } else if (nextAdvisor.getParent().getRight() == nextAdvisor) {
                         nextAdvisor.getParent().setRight(null);
                     }
                 }
@@ -262,21 +268,21 @@ public class Airline implements Serializable, Comparable<Airline> {
 
         nextAdvisor.setParent(advisor.getParent());
 
-        if(!isRoot(advisor)) {
-            if(advisor.getParent().getLeft()==advisor) {
+        if (!isRoot(advisor)) {
+            if (advisor.getParent().getLeft() == advisor) {
                 advisor.getParent().setLeft(nextAdvisor);
-            } else if(advisor.getParent().getRight()==advisor) {
+            } else if (advisor.getParent().getRight() == advisor) {
                 advisor.getParent().setRight(nextAdvisor);
             }
         } else {
             assistantRoot = nextAdvisor;
         }
 
-        if(advisor.getRight()!=null && advisor.getRight()!=nextAdvisor) {
+        if (advisor.getRight() != null && advisor.getRight() != nextAdvisor) {
             nextAdvisor.setRight(advisor.getRight());
         }
 
-        if(advisor.getLeft()!=null && advisor.getLeft()!=nextAdvisor) {
+        if (advisor.getLeft() != null && advisor.getLeft() != nextAdvisor) {
             nextAdvisor.setLeft(advisor.getRight());
         }
 
@@ -284,8 +290,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     private Advisor minSubTree(Advisor advisor) {
-        if(advisor!=null && advisor.getLeft()!=null) {
-            while(!isLeaf(advisor)) {
+        if (advisor != null && advisor.getLeft() != null) {
+            while (!isLeaf(advisor)) {
                 advisor = minSubTree(advisor.getLeft());
             }
         }
@@ -294,6 +300,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Makes a list from the advisors binary tree.
+     * 
      * @return Returns a list with all the airline advisors.
      */
     public ArrayList<Advisor> advisorsToArray() {
@@ -304,8 +311,9 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Auxiliar method to create a list from a binary tree.
+     * 
      * @param current Reference to current advisor.
-     * @param result Arraylist with advisors.
+     * @param result  Arraylist with advisors.
      */
     private void advisorsToArray(Advisor current, ArrayList<Advisor> result) {
         if (current == null) {
@@ -329,10 +337,37 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     @Override
     public int compareTo(Airline a) {
-        if(a.getAirlineName().equalsIgnoreCase(airlineName)){
+        if (a.getAirlineName().equalsIgnoreCase(airlineName)) {
             return 0;
-        }else{
+        } else {
             return airlineName.compareTo(a.getAirlineName());
         }
+    }
+
+    public void importDataEmployees(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(",");
+            String name = parts[0];
+            String lastName = parts[1];
+            int id = Integer.parseInt(parts[2]);
+            String type = parts[3];
+            line = br.readLine();
+            addPerson(name, lastName, id, getLoggedUser(userIndex));
+        }
+        br.close();
+    }
+
+    public void exportDataEmployees(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("AIRPORT SYSTEM EMPLOYEES REPORT");
+        pw.println("Name,Last name,Id,Status");
+        for (int i = 0; i < getEmployees().size(); i++) {
+            Collaborator e = getEmployees().get(i);
+            pw.println(
+                    e.getName() + "," + e.getLastName() + "," + e.getId() + "," + e.getAirline() + "," + e.getType());
+        }
+        pw.close();
     }
 }

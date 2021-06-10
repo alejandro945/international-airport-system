@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import javafx.util.converter.LocalDateStringConverter;
 import model.*;
 import route.Route;
 
@@ -27,7 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class FlightController implements Initializable {
@@ -124,11 +122,12 @@ public class FlightController implements Initializable {
 
     @FXML
     public void newFlight(ActionEvent event) throws IOException {
-        showModal();
-        modalName.setText("Create Flight");
-        dateFormat();
-        btnEdit.setVisible(false);
-        btnSave.setVisible(true);
+        if (modal == null) {
+            showModal();
+            modalName.setText("Create Flight");
+            btnEdit.setVisible(false);
+            btnSave.setVisible(true);
+        }
     }
 
     public void setModal(Stage modal) {
@@ -138,12 +137,7 @@ public class FlightController implements Initializable {
     @FXML
     public void cancelModal(ActionEvent event) {
         modal.close();
-    }
-
-    private void dateFormat() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
-        txtTakesOffDate.setConverter(new LocalDateStringConverter(formatter, null));
-        txtArrivalDate.setConverter(new LocalDateStringConverter(formatter, null));
+        setModal(null);
     }
 
     public void initComboBoxes() {
@@ -177,7 +171,6 @@ public class FlightController implements Initializable {
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
-        dateFormat();
     }
 
     @FXML
@@ -294,7 +287,6 @@ public class FlightController implements Initializable {
     }
 
     public void prepareEdition(Flight selected) {
-        dateFormat();
         txtID.setText(selected.getId());
         cbAircraft.setValue(selected.getPlane());
         cbPilot.setValue(selected.getPilot());

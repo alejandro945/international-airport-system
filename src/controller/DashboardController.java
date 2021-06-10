@@ -102,6 +102,9 @@ public class DashboardController implements Initializable {
             lblUser.setText(airport.getAdminLogged().getName());
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             devUserType.setValue(airport.getAdminLogged().getRole().name());
+            if (airport.getAdminLogged().getRole() == UserRole.MIGRATION_AGENT) {
+                notifications.setText("Costos del aeropuerto por persona" + airport.getExpenses());
+            }
         }
         try {
             changeUserType((ActionEvent) devUserType.getOnAction());
@@ -148,7 +151,7 @@ public class DashboardController implements Initializable {
 
     public void validateFlights() {
         Date date = new Date();
-        SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/dd/MM");
+        SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/MM/dd");
         String dateRender = formatDate.format(date);
         dateRender = dateRender.replaceAll("/", "-");
         String time = lblTime.getText().substring(0, 5);
@@ -184,6 +187,8 @@ public class DashboardController implements Initializable {
         airport.setLogged(null);
         airport.setAdminLogged(null);
         airport.setAirlineLogged(null);
+        airlineLogo.setImage(null);
+        notifications.setText("");
         geAirportController().renderScreen(Route.LOGIN);
     }
 

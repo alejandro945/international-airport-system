@@ -1,5 +1,8 @@
 package model;
 
+import exeption.CovidException;
+import exeption.MinorException;
+import exeption.WantedException;
 import java.io.Serializable;
 
 public class Migration implements Serializable, Supplier {
@@ -86,6 +89,25 @@ public class Migration implements Serializable, Supplier {
 
     public int getReport() {
         return wanted + covid + minor + approved;
+    }
+
+    public void costumerTypes(Costumer c) throws WantedException, CovidException, MinorException {
+        switch (c.getState()) {
+            case "WANTED":
+                setWanted();
+                throw new WantedException();
+            case "APPROVED":
+                setApproved();
+                break;
+            case "COVID":
+                setCovid();
+                throw new CovidException();
+            case "MINOR":
+                setCovid();
+                throw new MinorException();
+            default:
+                break;
+        }
     }
 
     @Override

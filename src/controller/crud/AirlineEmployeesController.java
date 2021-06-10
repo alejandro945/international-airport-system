@@ -82,19 +82,33 @@ public class AirlineEmployeesController implements Initializable {
 
     @FXML
     void newEmployee(ActionEvent event) throws IOException {
-        showModal();
-        modalName.setText("Create Employee");
-        btnEdit.setVisible(false);
-        btnSave.setVisible(true);
+        if (modal == null) {
+            showModal();
+            modalName.setText("Create Employee");
+            btnEdit.setVisible(false);
+            btnSave.setVisible(true);
+        }
     }
 
     public void setModal(Stage modal) {
         this.modal = modal;
+
     }
 
     @FXML
     void cancelModal(ActionEvent event) {
         modal.close();
+        setModal(null);
+    }
+
+    @FXML
+    public void exportInfo(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void importInfo(ActionEvent event) {
+
     }
 
     @Override
@@ -109,7 +123,7 @@ public class AirlineEmployeesController implements Initializable {
             selected.setName(txtName.getText());
             selected.setLastName(txtLast.getText());
             selected.setId(Long.parseLong(txtId.getText()));
-            if(selected instanceof Pilot) {
+            if (selected instanceof Pilot) {
                 type = "Pilot";
             } else {
                 type = "Advisor";
@@ -128,11 +142,13 @@ public class AirlineEmployeesController implements Initializable {
     void saveEmployee(ActionEvent event) {
         String type = "";
         if (validateFields()) {
-            if(cbType.getValue().equals("Pilot")) {
-                airline.getPilots().add(new Pilot(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()), airline));
+            if (cbType.getValue().equals("Pilot")) {
+                airline.getPilots()
+                        .add(new Pilot(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()), airline));
                 type = "Pilot";
             } else {
-                airline.addAdvisor(new Advisor(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()), airline));
+                airline.addAdvisor(
+                        new Advisor(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()), airline));
                 type = "Advisor";
             }
             dController.geAirportController().createAlert(type + " was successfully added.", Route.SUCCESS);
@@ -157,7 +173,8 @@ public class AirlineEmployeesController implements Initializable {
 
     public boolean validateFields() {
         boolean render = true;
-        if (txtName.getText().isEmpty() || txtLast.getText().isEmpty() || txtId.getText().isEmpty() || cbType.getSelectionModel().getSelectedItem() == null){
+        if (txtName.getText().isEmpty() || txtLast.getText().isEmpty() || txtId.getText().isEmpty()
+                || cbType.getSelectionModel().getSelectedItem() == null) {
             render = false;
         }
         return render;
@@ -188,14 +205,15 @@ public class AirlineEmployeesController implements Initializable {
                         delete.setOnAction((ActionEvent event) -> {
                             String type = "";
                             selected = (Collaborator) getTableRow().getItem();
-                            if(selected instanceof Pilot) {
+                            if (selected instanceof Pilot) {
                                 airline.getPilots().remove((Pilot) selected);
                                 type = "Pilot";
-                            } else if(selected instanceof Advisor) {
+                            } else if (selected instanceof Advisor) {
                                 airline.removeAdvisor((Advisor) selected);
                                 type = "Advisor";
                             }
-                            dController.geAirportController().createAlert(type + " was removed successfully.", Route.SUCCESS);
+                            dController.geAirportController().createAlert(type + " was removed successfully.",
+                                    Route.SUCCESS);
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
@@ -205,7 +223,7 @@ public class AirlineEmployeesController implements Initializable {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            //modalName.setText("Edit User");
+                            // modalName.setText("Edit User");
                             prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
