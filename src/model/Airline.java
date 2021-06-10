@@ -354,7 +354,7 @@ public class Airline implements Serializable, Comparable<Airline> {
             int id = Integer.parseInt(parts[2]);
             String type = parts[3];
             line = br.readLine();
-            addPerson(name, lastName, id, getLoggedUser(userIndex));
+            ;
         }
         br.close();
     }
