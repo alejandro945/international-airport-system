@@ -11,16 +11,15 @@ public class Costumer extends User {
     private String state;
     private String notifications;
 
-    public Costumer() { // JUnit Tests
+    public Costumer(int nState) { // JUnit Tests
         super("Tester", "User", 4, "testerUser@correo.co", "4", UserRole.COSTUMER_USER);
-        int value = (int) ((Math.random() * 3) + 1);
-        state = CostumerState.values()[value].name();
+        state = CostumerState.values()[nState].name();
     }
 
     public Costumer(String name, String lastName, long id, String email, String password) {
         super(name, lastName, id, email, password, UserRole.COSTUMER_USER);
         rootTrip = null;
-        int value = (int) Math.random() * 3 + 1;
+        int value = (int) Math.random() * 3 ;
         state = CostumerState.values()[value].name();
     }
 
@@ -28,7 +27,7 @@ public class Costumer extends User {
         super(name, lastName, id, "", "", UserRole.COSTUMER_USER);
         this.iconPath = iconPath;
         rootTrip = null;
-        int value = (int) Math.random() * 3 + 1;
+        int value = (int) Math.random() * 3 ;
         state = CostumerState.values()[value].name();
     }
 

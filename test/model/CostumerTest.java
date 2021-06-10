@@ -7,21 +7,21 @@ public class CostumerTest {
 	private Costumer costumer;
 
 	private void setupScenary1() { // Empty
-		costumer = new Costumer();
+		costumer = new Costumer(2);
 	}
 
 	private void setupScenary2() { // Two rootTicket
-		costumer = new Costumer();
+		costumer = new Costumer(2);
 
 		Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null);
-		Seat seat1 = new Seat(23, 'C', true);
+		Seat seat1 = new Seat(23, 'C', true, 150000);
 		Ticket ticket1 = new Ticket(fly1, seat1, 200000);
 		Luggage luggage1 = new Luggage(70, 20, 20);
 
 		Trip test1 = new Trip("T231", ticket1, luggage1, 250000);
 
 		Flight fly2 = new Flight("V23", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.CALI, null, null, null);
-		Seat seat2 = new Seat(20, 'B', true);
+		Seat seat2 = new Seat(20, 'B', true, 150000);
 		Ticket ticket2 = new Ticket(fly2, seat2, 210000);
 		Luggage luggage2 = new Luggage(70, 20, 20);
 
@@ -60,12 +60,6 @@ public class CostumerTest {
 	@Test
 	public void eliminateTicket() {
 		setupScenary2();
-
-	}
-
-	@Test
-	public void addLuggage() {
-		setupScenary3();
 
 	}
 

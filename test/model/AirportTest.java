@@ -1,5 +1,9 @@
 package model;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.junit.Test;
 
 public class AirportTest {
@@ -50,25 +54,24 @@ public class AirportTest {
         airport.getUsers().add(test2);
     }
 
-    private void setupScenary10() {
-        airport = new Airport();
-
-        Airline line = new Airline("Viva air", null);
-
-        Aircraft plane =  new Aircraft("AI32342", 4000, 300, line);
-
-        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.MIAMI, null, line, plane);
-        Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null, line, plane);
-
-        Track track1 = new Track(1, "A30");
-        Track track2 = new Track(2, "A30");
-
-        airport.getFlights().add(fly1);
-        airport.getFlights().add(fly2);
-
-        airport.setFirstTrack(track1);
-        track1.setNext(track2);
-    }
+    /*
+     * private void setupScenary10() { airport = new Airport();
+     * 
+     * Airline line = new Airline("Viva air", null);
+     * 
+     * Aircraft plane = new Aircraft("AI32342", 4000, 300, line);
+     * 
+     * Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00",
+     * Places.MADRID, Places.MIAMI, null, line, plane); Flight fly2 = new
+     * Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID,
+     * Places.MOSCOW, null, line, plane);
+     * 
+     * Track track1 = new Track(1, "A30"); Track track2 = new Track(2, "A30");
+     * 
+     * airport.getFlights().add(fly1); airport.getFlights().add(fly2);
+     * 
+     * airport.setFirstTrack(track1); track1.setNext(track2); }
+     */
 
     private void setupScenary11() {
         airport = new Airport();
@@ -82,15 +85,22 @@ public class AirportTest {
 
     private void setupScenary13() {
         airport = new Airport();
-        Airline line = new Airline("Viva air", null);
+        Airline viva = new Airline("viva", null);
+        Airline avianca = new Airline("avianca", null);
 
-        Aircraft plane =  new Aircraft("AI32342", 4000, 300, line);
+        airport.getAirlines().add(viva);
+        airport.getAirlines().add(avianca);
 
-        Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00", Places.MADRID, Places.MIAMI, null, line, plane);
-        Flight fly2 = new Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID, Places.MOSCOW, null, line, plane);
+        Flight fly1 = new Flight("K940", "2021-09-06", "23:45", "2021-10-06", "17:00", Places.MADRID, Places.MIAMI,
+                null, avianca, null);
+        Flight fly2 = new Flight("G940", "2021-09-06", "19:45", "2021-10-06", "10:00", Places.MADRID, Places.MOSCOW,
+                null, viva, null);
 
-        airport.getFlights().add(fly1);
-        airport.getFlights().add(fly2);
+        viva.getFlights().add(fly1);
+        avianca.getFlights().add(fly2);
+
+        /* airport.getFlights().add(fly1);
+        airport.getFlights().add(fly2); */
     }
 
     private void setupScenary14() {
@@ -111,23 +121,87 @@ public class AirportTest {
     public void createMainUser() {
         setupScenary1();
 
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.AIRPORT_ADMIN);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.AIRPORT_ADMIN, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
+
     }
 
     @Test
     public void createAirlineManager1() {
         setupScenary1();
 
+        int previousSize = airport.getUsers().size();
+
+        Airline testAir = new Airline("Test Air", null);
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", testAir);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.AIRLINE_ADMIN, temp.getRole());
+        AirlineUser tem = (AirlineUser) temp;
+        assertEquals(testAir, tem.getAirline());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
     }
 
     @Test
     public void createAirlineManager2() {
         setupScenary3();
 
+        int previousSize = airport.getUsers().size();
+
+        Airline testAir = new Airline("Test Air", null);
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", testAir);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.AIRLINE_ADMIN, temp.getRole());
+        AirlineUser tem = (AirlineUser) temp;
+        assertEquals(testAir, tem.getAirline());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
     }
 
     @Test
     public void createTowerCntrl1() {
         setupScenary1();
+
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.TOWER_SUPERVISOR);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.TOWER_SUPERVISOR, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
 
     }
 
@@ -135,11 +209,41 @@ public class AirportTest {
     public void createTowerCntrl2() {
         setupScenary5();
 
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.TOWER_SUPERVISOR);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.TOWER_SUPERVISOR, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
+
     }
 
     @Test
     public void createMigrationAgent1() {
         setupScenary1();
+
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.MIGRATION_AGENT);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.MIGRATION_AGENT, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
 
     }
 
@@ -147,11 +251,33 @@ public class AirportTest {
     public void createMigrationAgent2() {
         setupScenary7();
 
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.MIGRATION_AGENT);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.MIGRATION_AGENT, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
+
     }
 
     @Test
     public void eliminateAirlineManager() {
         setupScenary3();
+        int initialSize = airport.getUsers().size();
+        int lastPos = initialSize - 1;
+        User user = airport.getUsers().get(lastPos);
+
+        airport.deleteUser(user);
+
+        assertEquals(initialSize - 1, airport.getUsers().size());
 
     }
 
@@ -159,17 +285,46 @@ public class AirportTest {
     public void eliminateTowerCntrl() {
         setupScenary5();
 
+        int initialSize = airport.getUsers().size();
+        int lastPos = initialSize - 1;
+        User user = airport.getUsers().get(lastPos);
+
+        airport.deleteUser(user);
+
+        assertEquals(initialSize - 1, airport.getUsers().size());
     }
 
     @Test
     public void eliminateMigrationAgent() {
         setupScenary7();
 
+        int initialSize = airport.getUsers().size();
+        int lastPos = initialSize - 1;
+        User user = airport.getUsers().get(lastPos);
+
+        airport.deleteUser(user);
+
+        assertEquals(initialSize - 1, airport.getUsers().size());
     }
 
     @Test
     public void createClient1() {
         setupScenary1();
+
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.COSTUMER_USER);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.COSTUMER_USER, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
 
     }
 
@@ -177,29 +332,52 @@ public class AirportTest {
     public void createClient2() {
         setupScenary9();
 
+        int previousSize = airport.getUsers().size();
+
+        airport.createUser("test", "testL", 1234, "test@test.com", "1234", UserRole.COSTUMER_USER);
+        int last = airport.getUsers().size() - 1;
+        User temp = airport.getUsers().get(last);
+
+        assertEquals("test", temp.getName());
+        assertEquals("testL", temp.getLastName());
+        assertEquals(1234, temp.getId());
+        assertEquals("test@test.com", temp.getEmail());
+        assertEquals("1234", temp.getPassword());
+        assertEquals(UserRole.COSTUMER_USER, temp.getRole());
+
+        assertEquals(previousSize + 1, airport.getUsers().size());
+
     }
 
     @Test
     public void eliminateClient() {
         setupScenary9();
 
-    }
+        int initialSize = airport.getUsers().size();
+        int lastPos = initialSize - 1;
+        User user = airport.getUsers().get(lastPos);
 
-    @Test
-    public void assignFlyTrack() {
-        setupScenary10();
+        airport.deleteUser(user);
 
+        assertEquals(initialSize - 1, airport.getUsers().size());
     }
 
     @Test
     public void maintenance() {
         setupScenary11();
+        List<Track> tempList = airport.tracksToList();
+
+        tempList.get(tempList.size() - 1).inMaintenance();
+
+        assertEquals(true, tempList.get(tempList.size() - 1).isInMaintenance());
 
     }
 
     @Test
     public void getActualFlys() {
         setupScenary13();
+
+        assertEquals(2, airport.getFlights().size());
 
     }
 

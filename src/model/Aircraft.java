@@ -24,12 +24,12 @@ public class Aircraft implements Maintenance, Serializable {
         inMaintenance = false;
         createSeats();
         costumer = new ArrayList<>();
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
+        costumer.add(new Costumer(0));
+        costumer.add(new Costumer(1));
+        costumer.add(new Costumer(2));
+        costumer.add(new Costumer(3));
+        costumer.add(new Costumer(0));
+        costumer.add(new Costumer(1));
     }
 
     @Override
