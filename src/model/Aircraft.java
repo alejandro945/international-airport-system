@@ -26,6 +26,11 @@ public class Aircraft implements Maintenance, Serializable {
         costumer = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return planeCode;
+    }
+
     /**
      * @return int
      */

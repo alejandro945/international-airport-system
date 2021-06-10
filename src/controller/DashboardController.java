@@ -203,7 +203,7 @@ public class DashboardController implements Initializable {
             case INDICATORS:
                 return new IndicatorsController(this);
             case FLIGHTS:
-                return new AirlineFlightsController(this);
+                return new FlightController(airport, this, testArline);
             case AIRLINE_EMPLOYEES:
                 return new AirlineEmployeesController(airport, this, testArline);
             case USER_TABLE:
