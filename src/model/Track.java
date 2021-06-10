@@ -97,4 +97,8 @@ public class Track implements Maintenance, Serializable {
     public void setPrev(Track prev) {
         this.prev = prev;
     }
+
+    public String toString() {
+        return gate;
+    }
 }

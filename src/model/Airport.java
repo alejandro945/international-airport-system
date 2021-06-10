@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Airport implements Serializable, Supplier {
+public class Airport implements Serializable {
     private static final long serialVersionUID = 1L;
     public final String SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
@@ -20,22 +20,21 @@ public class Airport implements Serializable, Supplier {
     public final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public final String OAUTH_MESSAGE = " your account have been rendered successfully";
     private final String SAVE_PATH_FILE = "data/Airport.data";
-    private int capital;
     private List<User> users;
     private List<Airline> airlines;
     private List<Flight> flights;
     private Track firstTrack;
+    private AirlineUser airlineLogged;
     private Costumer logged;
     private User adminLogged;
-    private Migration migration;
+    private List<Migration> migration;
 
     public Airport() {
         users = new ArrayList<>();
         airlines = new ArrayList<>();
         flights = new ArrayList<>();
         users.add(new User("Alejandro", "Varela", 1, "alejo8677@gmail.com", "1", UserRole.AIRPORT_ADMIN));
-        // airlines.add(new Airline(1,"Avianca", ""));
-        migration = new Migration();
+        migration = new ArrayList<>();
         dateRender();
     }
 
@@ -110,6 +109,10 @@ public class Airport implements Serializable, Supplier {
         this.users = users;
     }
 
+    public List<Migration> getMigration() {
+        return migration;
+    }
+
     public Costumer getLogged() {
         return logged;
     }
@@ -118,12 +121,20 @@ public class Airport implements Serializable, Supplier {
         this.logged = logged;
     }
 
-    public int getCapital() {
-        return this.capital;
+    public User getAdminLogged() {
+        return adminLogged;
     }
 
-    public void setCapital(int capital) {
-        this.capital = capital;
+    public void setAdminLogged(User adminLogged) {
+        this.adminLogged = adminLogged;
+    }
+
+    public AirlineUser getAirlineLogged() {
+        return this.airlineLogged;
+    }
+
+    public void setAirlineLogged(AirlineUser airlineLogged) {
+        this.airlineLogged = airlineLogged;
     }
 
     public List<Airline> getAirlines() {
@@ -134,12 +145,37 @@ public class Airport implements Serializable, Supplier {
         this.airlines = airlines;
     }
 
-    public User getAdminLogged() {
-        return adminLogged;
+    public Migration createMigrationZone(Flight flight) {
+        Migration render = null;
+        if (!searchMigrationFlight(flight.getId())) {
+            render = new Migration(flight);
+            migration.add(render);
+        }
+        return render;
     }
 
-    public void setAdminLogged(User adminLogged) {
-        this.adminLogged = adminLogged;
+    public boolean searchMigrationFlight(String id) {
+        boolean render = false;
+        for (Migration m : getMigration()) {
+            if (m.getFlight().getId() == id) {
+                render = true;
+            }
+        }
+        return render;
+    }
+
+    public String editMigration(Migration m, Flight flight, int a, int c, int w, int mn) {
+        m.setFlight(flight);
+        m.setapp(a);
+        m.setcov(c);
+        m.setwant(w);
+        m.setmin(mn);
+        return "MIGRATION" + EDIT_SUCCESS;
+    }
+
+    public String deleteMigration(Migration m) {
+        migration.remove(m);
+        return "MIGRATION" + DELETE_SUCCESS;
     }
 
     public String createAirline(String airlineName, String logo) {
@@ -189,7 +225,7 @@ public class Airport implements Serializable, Supplier {
             users.add(newUser);
             msg = name + SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = name + USER_ERROR;
         }
         return msg;
     }
@@ -213,7 +249,7 @@ public class Airport implements Serializable, Supplier {
             users.add(newAirlineUser);
             msg = name + SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = name + USER_ERROR;
         }
         return msg;
     }
@@ -237,7 +273,7 @@ public class Airport implements Serializable, Supplier {
             users.add(newCostumer);
             msg = name + SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = name + USER_ERROR;
         }
         return msg;
     }
@@ -294,9 +330,10 @@ public class Airport implements Serializable, Supplier {
             if (users.get(i).getId() == (id) && users.get(i).getPassword().equals(password)) {
                 if (users.get(i) instanceof Costumer) {
                     setLogged((Costumer) users.get(i));
+                } else if (users.get(i) instanceof AirlineUser) {
+                    setAirlineLogged((AirlineUser) users.get(i));
                 } else {
                     setAdminLogged(users.get(i));
-                    // System.out.println("ENTRA como USER");
                 }
                 found = true;
             }
@@ -388,14 +425,14 @@ public class Airport implements Serializable, Supplier {
         return tracks;
     }
 
-    public String editTrack(Track track, String gate) {
+    public String editTrack(Track track, String gate, boolean state) {
         track.setGate(gate);
+        if (state) {
+            track.inMaintenance();
+        } else {
+            track.setInMaintenance(state);
+        }
         return "Track " + track.getId() + EDIT_SUCCESS;
-    }
-
-    @Override
-    public void airportCharges() {
-        capital -= (migration.getFlights().size() * 20);
     }
 
 }

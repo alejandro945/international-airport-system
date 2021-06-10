@@ -14,6 +14,6 @@
          </image>
       </ImageView>
       <JFXSpinner layoutX="599.0" layoutY="332.0" prefHeight="183.0" prefWidth="223.0" />
-      <Label layoutX="631.0" layoutY="529.0" styleClass="label-spinner" text="Aiport System" />
+      <Label layoutX="631.0" layoutY="529.0" styleClass="label-spinner" text="Airport System" />
    </children>
 </Pane>

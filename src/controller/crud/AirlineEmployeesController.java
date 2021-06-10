@@ -1,5 +1,7 @@
 package controller.crud;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import controller.Constant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,14 +16,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Airline;
-import model.Airport;
-import model.Collaborator;
-import model.Pilot;
+import model.*;
 import route.Route;
 
 public class AirlineEmployeesController implements Initializable {
@@ -45,7 +45,25 @@ public class AirlineEmployeesController implements Initializable {
     private TableColumn<?, ?> typeCol;
 
     @FXML
-    private TableColumn<?, ?> statusCol;
+    private Button btnEdit;
+
+    @FXML
+    private Label modalName;
+
+    @FXML
+    private Button btnSave;
+
+    @FXML
+    private JFXTextField txtName;
+
+    @FXML
+    private JFXTextField txtLast;
+
+    @FXML
+    private JFXTextField txtId;
+
+    @FXML
+    private JFXComboBox<String> cbType;
 
     @FXML
     private TableColumn<Collaborator, String> actionsCol;
@@ -56,7 +74,7 @@ public class AirlineEmployeesController implements Initializable {
     private Collaborator selected;
     private Stage modal;
 
-    public AirlineEmployeesController(Airport airport, DashboardController dController) {
+    public AirlineEmployeesController(Airport airport, DashboardController dController, Airline airline) {
         this.airport = airport;
         this.dController = dController;
         this.airline = airline;
@@ -64,9 +82,10 @@ public class AirlineEmployeesController implements Initializable {
 
     @FXML
     void newEmployee(ActionEvent event) throws IOException {
-        Stage stage = dController.loadModal(Route.AL_EMPLOYEES, this);
-        setModal(stage);
-        stage.show();
+        showModal();
+        modalName.setText("Create Employee");
+        btnEdit.setVisible(false);
+        btnSave.setVisible(true);
     }
 
     public void setModal(Stage modal) {
@@ -85,11 +104,17 @@ public class AirlineEmployeesController implements Initializable {
 
     @FXML
     void editEmployee(ActionEvent event) {
+        String type = "";
         if (validateFields()) {
-            /*selected.setName(txt.getText());
-            selected.setPlaneWeight(Integer.parseInt(txtWeight.getText()));
-            selected.setCapacity(Integer.parseInt(txtCapacity.getText()));*/
-            dController.geAirportController().createAlert("Employee was successfully edited.", Route.SUCCESS);
+            selected.setName(txtName.getText());
+            selected.setLastName(txtLast.getText());
+            selected.setId(Long.parseLong(txtId.getText()));
+            if(selected instanceof Pilot) {
+                type = "Pilot";
+            } else {
+                type = "Advisor";
+            }
+            dController.geAirportController().createAlert(type + " was successfully edited.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
             getData();
@@ -101,9 +126,16 @@ public class AirlineEmployeesController implements Initializable {
 
     @FXML
     void saveEmployee(ActionEvent event) {
+        String type = "";
         if (validateFields()) {
-            //airline.getAircraft().add(new Collaborator(txtCode.getText(), Integer.parseInt(txtWeight.getText()), Integer.parseInt(txtCapacity.getText())));
-            dController.geAirportController().createAlert("Collaborator was successfully added.", Route.SUCCESS);
+            if(cbType.getValue().equals("Pilot")) {
+                airline.getPilots().add(new Pilot(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()), airline));
+                type = "Pilot";
+            } else {
+                airline.addAdvisor(new Advisor(txtName.getText(), txtLast.getText(), Long.parseLong(txtId.getText()), airline));
+                type = "Advisor";
+            }
+            dController.geAirportController().createAlert(type + " was successfully added.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
             getData();
@@ -115,19 +147,25 @@ public class AirlineEmployeesController implements Initializable {
 
     private void getData() {
         ObservableList<Collaborator> employees = FXCollections.observableArrayList(airline.getEmployees());
-        /*codeCol.setCellValueFactory(new PropertyValueFactory<>("planeCode"));
-        weightCol.setCellValueFactory(new PropertyValueFactory<>("planeWeight"));
-        capacityCol.setCellValueFactory(new PropertyValueFactory<>("capacity"));*/
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         renderActions();
         employeesTbl.setItems(employees);
     }
 
     public boolean validateFields() {
         boolean render = true;
-        /*if (txtCapacity.getText().isEmpty() || txtWeight.getText().isEmpty() || txtCode.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || txtLast.getText().isEmpty() || txtId.getText().isEmpty() || cbType.getSelectionModel().getSelectedItem() == null){
             render = false;
-        }*/
+        }
         return render;
+    }
+
+    public void initTypes() {
+        cbType.getItems().clear();
+        cbType.getItems().addAll("Pilot", "Advisor");
     }
 
     private void renderActions() {
@@ -148,13 +186,16 @@ public class AirlineEmployeesController implements Initializable {
                         delete.getStylesheets().add(Route.CRUD.getRoute());
                         edit.getStylesheets().add(Route.CRUD.getRoute());
                         delete.setOnAction((ActionEvent event) -> {
+                            String type = "";
                             selected = (Collaborator) getTableRow().getItem();
                             if(selected instanceof Pilot) {
-                                airline.getPilots().remove(selected);
-                            } else {
-                                // Remove advisor from binary tree.
+                                airline.getPilots().remove((Pilot) selected);
+                                type = "Pilot";
+                            } else if(selected instanceof Advisor) {
+                                airline.removeAdvisor((Advisor) selected);
+                                type = "Advisor";
                             }
-                            dController.geAirportController().createAlert("Employee was removed successfully.", Route.SUCCESS);
+                            dController.geAirportController().createAlert(type + " was removed successfully.", Route.SUCCESS);
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
@@ -182,16 +223,19 @@ public class AirlineEmployeesController implements Initializable {
     }
 
     public void showModal() throws IOException {
-        Stage stage = dController.loadModal(Route.AIRCRAFT_MODAL, this);
+        Stage stage = dController.loadModal(Route.AL_EMPLOYEES_MODAL, this);
         setModal(stage);
         stage.show();
+        initTypes();
     }
 
     public void prepareEdition(Collaborator selected) {
-        /*txtCode.setText(selected.getPlaneCode());
-        txtWeight.setText(String.valueOf(selected.getPlaneWeight()));
-        txtCapacity.setText(String.valueOf(selected.getCapacity()));
+        txtName.setText(selected.getName());
+        txtLast.setText(selected.getLastName());
+        txtId.setText(String.valueOf(selected.getId()));
+        cbType.setValue(selected.getType());
+        cbType.setDisable(true);
         btnEdit.setVisible(true);
-        btnSave.setVisible(false);*/
+        btnSave.setVisible(false);
     }
 }

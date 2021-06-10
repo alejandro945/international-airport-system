@@ -16,12 +16,12 @@
          <children>
             <TableView fx:id="employeesTbl" layoutX="11.0" layoutY="81.0" prefHeight="577.0" prefWidth="987.0" stylesheets="@../../assets/styles/table.css">
                <columns>
-                  <TableColumn fx:id="firstNameCol" prefWidth="146.0" text="First Name" />
-                  <TableColumn fx:id="lastNameCol" prefWidth="146.0" text="Last Name" />
-                  <TableColumn fx:id="idCol" prefWidth="179.0" text="Identification" />
-                  <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="151.0" text="Type" />
-                  <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="131.0" text="Status" />
-                  <TableColumn fx:id="actionsCol" prefWidth="228.0" text="Actions" />
+                  <TableColumn fx:id="firstNameCol" prefWidth="184.0" text="First Name" />
+                  <TableColumn fx:id="lastNameCol" prefWidth="190.0" text="Last Name" />
+                  <TableColumn fx:id="idCol" prefWidth="172.0" text="Identification" />
+                  <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="163.0" text="Type" />
+                  <TableColumn fx:id="reportCol" minWidth="0.0" prefWidth="114.0" text="Report" />
+                  <TableColumn fx:id="actionsCol" prefWidth="200.0" text="Actions" />
                </columns>
             </TableView>
             <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#newEmployee" prefHeight="46.0" prefWidth="205.0" styleClass="button-menu" text="New Employee" textFill="WHITE">

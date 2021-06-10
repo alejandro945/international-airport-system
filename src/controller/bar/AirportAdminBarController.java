@@ -2,17 +2,19 @@ package controller.bar;
 
 import controller.DashboardController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import route.Route;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AirportAdminBarController {
+public class AirportAdminBarController implements Initializable {
 
     private final DashboardController dController;
-
 
     @FXML
     private ImageView imgUsers;
@@ -23,9 +25,10 @@ public class AirportAdminBarController {
     public AirportAdminBarController(DashboardController dController) {
         this.dController = dController;
     }
+
     @FXML
     private ImageView imgHome;
-    
+
     @FXML
     void showHome(MouseEvent event) throws IOException {
         resetAllIcons();
@@ -48,9 +51,15 @@ public class AirportAdminBarController {
     }
 
     public void resetAllIcons() {
-        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
+        imgHome.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
         imgUsers.setImage(new Image("/ui/assets/img/icons/employees.png"));
         imgAirlines.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        resetAllIcons();
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
     }
 
 }

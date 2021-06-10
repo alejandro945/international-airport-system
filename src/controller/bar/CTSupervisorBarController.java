@@ -2,14 +2,17 @@ package controller.bar;
 
 import controller.DashboardController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import route.Route;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CTSupervisorBarController {
+public class CTSupervisorBarController implements Initializable{
     @FXML
     private ImageView imgActiveFlights;
 
@@ -60,6 +63,12 @@ public class CTSupervisorBarController {
         imgActiveFlights.setImage(new Image("/ui/assets/img/icons/flights.png"));
         imgUpcomingFlights.setImage(new Image("/ui/assets/img/icons/upcoming-flights.png"));
         imgStatus.setImage(new Image("/ui/assets/img/icons/status.png"));
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        resetAllIcons();
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
     }
 
 }

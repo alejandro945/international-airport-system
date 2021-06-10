@@ -2,13 +2,16 @@ package controller.bar;
 
 import controller.DashboardController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import route.Route;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MigrationAgentBarController {
+public class MigrationAgentBarController implements Initializable {
     @FXML
     private ImageView imgIndicators;
     private final DashboardController dController;
@@ -16,9 +19,10 @@ public class MigrationAgentBarController {
     public MigrationAgentBarController(DashboardController dController) {
         this.dController = dController;
     }
+
     @FXML
     private ImageView imgHome;
-    
+
     @FXML
     void showHome(MouseEvent event) throws IOException {
         resetAllIcons();
@@ -34,8 +38,14 @@ public class MigrationAgentBarController {
     }
 
     public void resetAllIcons() {
-        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
+        imgHome.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
         imgIndicators.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        resetAllIcons();
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
     }
 
 }

@@ -57,6 +57,7 @@ public class ProfileController implements Initializable {
     public void closeAccount(ActionEvent event) throws IOException, InterruptedException {
         airport.setLogged(null);
         airport.setAdminLogged(null);
+        airport.setAirlineLogged(null);
         dController.geAirportController().renderScreen(Route.LOGIN);
     }
 
@@ -85,7 +86,7 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (dController.getUserType()) {
+        if (dController.getActiveUser()==1) {
             lblUser.setText(airport.getLogged().getName() + " " + airport.getLogged().getLastName());
             txtName.setText(airport.getLogged().getName());
             txtLast.setText(airport.getLogged().getLastName());
@@ -95,14 +96,18 @@ public class ProfileController implements Initializable {
             if (path != null) {
                 userIcon.setImage(new Image(path));
             }
-            //System.out.println("LLAMA CLIENTE");
+        }else if(dController.getActiveUser()==2){
+            lblUser.setText(airport.getAirlineLogged().getName() + " " + airport.getAirlineLogged().getLastName());
+            txtName.setText(airport.getAirlineLogged().getName());
+            txtLast.setText(airport.getAirlineLogged().getLastName());
+            txtEmail.setText(airport.getAirlineLogged().getEmail());
+            txtId.setText(String.valueOf(airport.getAirlineLogged().getId()));
         } else {
             lblUser.setText(airport.getAdminLogged().getName() + " " + airport.getAdminLogged().getLastName());
             txtName.setText(airport.getAdminLogged().getName());
             txtLast.setText(airport.getAdminLogged().getLastName());
             txtEmail.setText(airport.getAdminLogged().getEmail());
             txtId.setText(String.valueOf(airport.getAdminLogged().getId()));
-            //System.out.println("LLAMA USER");
         }
         render = airport.searchUser(Long.parseLong(txtId.getText()));
     }

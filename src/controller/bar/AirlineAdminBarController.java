@@ -2,14 +2,17 @@ package controller.bar;
 
 import controller.DashboardController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import route.Route;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AirlineAdminBarController {
+public class AirlineAdminBarController implements Initializable {
 
     private final DashboardController dController;
 
@@ -26,13 +29,14 @@ public class AirlineAdminBarController {
     private ImageView imgAircrafts;
     @FXML
     private ImageView imgHome;
-    
+
     @FXML
     void showHome(MouseEvent event) throws IOException {
         resetAllIcons();
         imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
         dController.loadView(Route.HOME);
     }
+
     @FXML
     void showAircrafts(MouseEvent event) throws IOException {
         resetAllIcons();
@@ -55,10 +59,16 @@ public class AirlineAdminBarController {
     }
 
     public void resetAllIcons() {
-        imgHome.setImage(new Image("/ui/assets/img/icons/tickets-flat.png"));
+        imgHome.setImage(new Image("/ui/assets/img/icons/dashboard.png"));
         imgAircrafts.setImage(new Image("/ui/assets/img/icons/flights.png"));
         imgAirlineFlights.setImage(new Image("/ui/assets/img/icons/plane-flat.png"));
         imgEmployees.setImage(new Image("/ui/assets/img/icons/employees.png"));
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        resetAllIcons();
+        imgHome.setImage(new Image("/ui/assets/img/icons/active-dashboard.png"));
     }
 
 }

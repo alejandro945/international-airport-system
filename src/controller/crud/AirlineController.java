@@ -135,10 +135,8 @@ public class AirlineController implements Initializable {
 
     @FXML
     void saveAirline(ActionEvent event) {
-        pathRender = "";
         if (validateFields()) {
-            dController.geAirportController().createAlert(
-                    airport.createAirline(txtName.getText(), pathRender),
+            dController.geAirportController().createAlert(airport.createAirline(txtName.getText(), pathRender),
                     Route.SUCCESS);
             airport.saveData();
             airport.loadData();
@@ -147,6 +145,7 @@ public class AirlineController implements Initializable {
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
+        pathRender = "";
     }
 
     private void getData() {

@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -21,6 +22,7 @@ import javafx.util.Duration;
 import model.*;
 import route.Route;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -35,7 +37,7 @@ public class DashboardController implements Initializable {
     // For development purposes only.
     @FXML
     private ChoiceBox<String> devUserType;
-    private String activeUser;
+    private int activeUser;
     private final String[] userTypes = Arrays.toString(UserRole.class.getEnumConstants()).replaceAll("^.|.$", "")
             .split(", ");
     // Delete before release.
@@ -58,7 +60,10 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Pane mainBar;
-    private boolean userType;
+    @FXML
+    private ImageView airlineLogo;
+
+    private Route route;
 
     public DashboardController(Airport airport, AirportController airportController) {
         this.airportController = airportController;
@@ -69,13 +74,13 @@ public class DashboardController implements Initializable {
         return airportController;
     }
 
-    public boolean getUserType() {
-        return userType;
+    public Route getRoute() {
+        return route;
     }
 
     public void init() {
         if (airport.getLogged() != null) {
-            userType = true;
+            activeUser = 1;
             lblUser.setText(airport.getLogged().getName());
             String path = airport.getLogged().getIconPath();
             notifications.setText(airport.getLogged().getNotifications());
@@ -85,8 +90,15 @@ public class DashboardController implements Initializable {
                 imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             }
             devUserType.setValue(airport.getLogged().getRole().name());
+        } else if (airport.getAirlineLogged() != null) {
+            activeUser = 2;
+            lblUser.setText(airport.getAirlineLogged().getName());
+            File file = new File(airport.getAirlineLogged().getAirline().getIcon());
+            airlineLogo.setImage(new Image("file:///" + file.getAbsolutePath()));
+            imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
+            devUserType.setValue(airport.getAirlineLogged().getRole().name());
         } else {
-            userType = false;
+            activeUser = 3;
             lblUser.setText(airport.getAdminLogged().getName());
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             devUserType.setValue(airport.getAdminLogged().getRole().name());
@@ -140,15 +152,22 @@ public class DashboardController implements Initializable {
         String dateRender = formatDate.format(date);
         dateRender = dateRender.replaceAll("/", "-");
         String time = lblTime.getText().substring(0, 5);
-
         for (Flight flight : airport.getFlights()) {
-            if (flight.getFlightStatus() != FlightState.DONE) {
+            FlightState state = flight.getFlightStatus();
+            if (state == FlightState.SCHEDULED) {
                 if (dateRender.equals(flight.getDepartureDate()) && time.compareTo(flight.getDepartureHour()) < 0) {
                     flight.setFlightStatus(FlightState.BOARD);
+                } else if (dateRender.equals(flight.getArrivalDate())
+                        && time.compareTo(flight.getDepartureHour()) < 0) {
+                    flight.setFlightStatus(FlightState.AIRBORNE);
+                } else if (dateRender.compareTo(flight.getDepartureDate()) > 0
+                        && dateRender.compareTo(flight.getArrivalDate()) < 0) {
+                    flight.setFlightStatus(FlightState.AIRBORNE);
                 } else if (dateRender.equals(flight.getDepartureDate())
                         && time.compareTo(flight.getDepartureHour()) >= 0) {
                     flight.setFlightStatus(FlightState.AIRBORNE);
-                } else if (dateRender.compareTo(flight.getArrivalDate()) > 0) {
+                } else if (dateRender.compareTo(flight.getArrivalDate()) > 0
+                        && time.compareTo(flight.getArrivalHour()) > 0) {
                     flight.setFlightStatus(FlightState.DONE);
                 }
             }
@@ -158,6 +177,14 @@ public class DashboardController implements Initializable {
     @FXML
     public void showProfile(MouseEvent event) throws IOException {
         loadView(Route.PROFILE);
+    }
+
+    @FXML
+    public void logout(MouseEvent event) throws IOException, InterruptedException {
+        airport.setLogged(null);
+        airport.setAdminLogged(null);
+        airport.setAirlineLogged(null);
+        geAirportController().renderScreen(Route.LOGIN);
     }
 
     public void loadBar(Route route) throws IOException {
@@ -179,44 +206,36 @@ public class DashboardController implements Initializable {
         fxmlLoader.setController(controller);
         Parent modal = fxmlLoader.load();
         Scene scene = new Scene(modal);
+        scene.setFill(Color.TRANSPARENT);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         return stage;
     }
 
     public Object setViewController(Route route) {
+        this.route = route;
         switch (route) {
             case MY_TRIPS:
                 return new FlightsBookedController(airport, this);
-            case AP_EMPLOYEES:
-                return new AirportEmployeesController(this);
-            case NEW_EMPLOYEE:
-                return new NewEmployeeController(this);
-            case AIRLINES:
-                return new AirportAirlinesController(this);
-            case NEW_AIRLINE:
-                return new NewAirlineController(this);
             case ACTIVE_FLIGHTS:
                 return new ActiveFlightsController(airport, this);
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this, airport);
             case INDICATORS:
-                return new IndicatorsController(this);
+                return new IndicatorsController(this, airport);
             case FLIGHTS:
-                return new AirlineFlightsController(this);
+                return new FlightController(airport, this, airport.getAirlineLogged().getAirline());
             case AIRLINE_EMPLOYEES:
-                return new AirlineEmployeesController(airport, this);
+                return new AirlineEmployeesController(airport, this, airport.getAirlineLogged().getAirline());
             case USER_TABLE:
                 return new UserController(airport, this);
             case AIRLINE_TABLE:
                 return new AirlineController(airport, this);
             case TRACK_TABLE:
                 return new TrackController(airport, this);
-            case LUGAGGE_TABLE:
-                return new LugaggeController(airport, this);
             case AIRCRAFT_TABLE:
-                return new AircraftController(airport, this);
+                return new AircraftController(airport, this, airport.getAirlineLogged().getAirline());
             case NEW_TRIP:
                 return new BookFlightController(airport, this);
             case PROFILE:
@@ -243,7 +262,7 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public String getActiveUser() {
+    public int getActiveUser() {
         return activeUser;
     }
 
@@ -253,23 +272,18 @@ public class DashboardController implements Initializable {
         switch (type) {
             case ("COSTUMER_USER"):
                 loadBar(Route.COSTUMER);
-                activeUser = "Client";
                 break;
             case ("AIRPORT_ADMIN"):
                 loadBar(Route.AIRPORT_ADMIN);
-                activeUser = "Airport Admin";
                 break;
             case ("TOWER_SUPERVISOR"):
                 loadBar(Route.CT_SUPERVISOR);
-                activeUser = "CT Supervisor";
                 break;
             case ("MIGRATION_AGENT"):
                 loadBar(Route.MIGRATION_AGENT);
-                activeUser = "Migration Agent";
                 break;
             case ("AIRLINE_ADMIN"):
                 loadBar(Route.AIRLINE_ADMIN);
-                activeUser = "Airline Admin";
                 break;
         }
     }

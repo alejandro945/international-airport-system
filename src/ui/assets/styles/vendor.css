@@ -12,6 +12,34 @@
     -fx-stroke: linear-gradient(to left,#fff ,#3929E0);
     -fx-stroke-width: 2;
 }
+.bar-chart {
+    -fx-background-radius: 10;
+    -fx-background-position: left center;
+}
+.chart-legend {
+    -fx-background-color:  #fafad2;
+    -fx-stroke: #daa520;
+ }
+.chart-bar.default-color0 {
+    -fx-bar-fill: green;
+    -fx-bar-background-radius: 10;
+
+}
+
+.chart-bar.default-color1 {
+    -fx-bar-fill: purple;
+    -fx-bar-fill-radius: 10;
+
+}
+
+.chart-bar.default-color2 {
+    -fx-bar-fill: red;
+    -fx-background-radius: 10;
+}
+.chart-bar.default-color3 {
+    -fx-bar-fill: yellow;
+    -fx-background-radius: 10;
+}
 .box{
     -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.8, 0.0, 0.0 );
     -fx-background-radius: 20;
