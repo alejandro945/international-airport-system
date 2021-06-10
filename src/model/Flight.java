@@ -65,6 +65,10 @@ public class Flight implements Serializable {
         updateFullDates();
     }
 
+    public Pilot getPilot() {
+        return plane.getPilot();
+    }
+
     /**
      * @return String
      */

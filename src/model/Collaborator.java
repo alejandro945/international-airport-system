@@ -25,4 +25,6 @@ public abstract class Collaborator extends Person {
     public void setType(String type) {
         this.type = type;
     }
+
+    public abstract String toString();
 }

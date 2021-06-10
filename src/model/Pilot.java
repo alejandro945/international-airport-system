@@ -25,4 +25,10 @@ public class Pilot extends Collaborator {
         this.flight = flight;
     }
 
+    @Override
+    public String toString() {
+        return super.getName();
+    }
+    
+
 }

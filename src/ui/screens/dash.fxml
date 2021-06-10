@@ -43,6 +43,7 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" styleClass="main-top" stylesheets="@../assets/styles/vendor.css" HBox.hgrow="ALWAYS">
                <children>
+                  <ImageView fx:id="airlineLogo" fitHeight="52.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="notifications" prefHeight="61.0" prefWidth="281.0" textAlignment="CENTER" wrapText="true" />
                   <Label layoutX="929.0" layoutY="40.0" text="Test User Type:" textFill="WHITE">
                      <font>
@@ -87,7 +88,7 @@
       <VBox prefHeight="820.0" prefWidth="225.0" styleClass="main-side" stylesheets="@../assets/styles/vendor.css" BorderPane.alignment="CENTER">
          <children>
             <Pane fx:id="mainBar" prefHeight="795.0" prefWidth="225.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../assets/styles/dash.css">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#logout" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover" stylesheets="@../assets/styles/dash.css">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -34,10 +34,8 @@ public class AirportController {
 
     private LoginController loginController;
     private DashboardController dashboardController;
-    private Airport airport;
 
     public AirportController(Airport airport) {
-        this.airport = airport;
         loginController = new LoginController(airport, this);
         dashboardController = new DashboardController(airport, this);
     }

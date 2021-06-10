@@ -99,6 +99,6 @@ public class Track implements Maintenance, Serializable {
     }
 
     public String toString() {
-        return id + gate;
+        return gate;
     }
 }

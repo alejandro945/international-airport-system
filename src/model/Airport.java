@@ -20,11 +20,11 @@ public class Airport implements Serializable {
     public final String DELETE_ERROR = " Hey! is your account (Could not been deleted it)";
     public final String OAUTH_MESSAGE = " your account have been rendered successfully";
     private final String SAVE_PATH_FILE = "data/Airport.data";
-    private int capital;
     private List<User> users;
     private List<Airline> airlines;
     private List<Flight> flights;
     private Track firstTrack;
+    private AirlineUser airlineLogged;
     private Costumer logged;
     private User adminLogged;
     private List<Migration> migration;
@@ -121,12 +121,20 @@ public class Airport implements Serializable {
         this.logged = logged;
     }
 
-    public int getCapital() {
-        return this.capital;
+    public User getAdminLogged() {
+        return adminLogged;
     }
 
-    public void setCapital(int capital) {
-        this.capital = capital;
+    public void setAdminLogged(User adminLogged) {
+        this.adminLogged = adminLogged;
+    }
+
+    public AirlineUser getAirlineLogged() {
+        return this.airlineLogged;
+    }
+
+    public void setAirlineLogged(AirlineUser airlineLogged) {
+        this.airlineLogged = airlineLogged;
     }
 
     public List<Airline> getAirlines() {
@@ -137,31 +145,25 @@ public class Airport implements Serializable {
         this.airlines = airlines;
     }
 
-    public User getAdminLogged() {
-        return adminLogged;
-    }
-
-    public void setAdminLogged(User adminLogged) {
-        this.adminLogged = adminLogged;
-    }
-
     public Migration createMigrationZone(Flight flight) {
         Migration render = null;
-        if(!searchMigrationFlight(flight.getId())){
+        if (!searchMigrationFlight(flight.getId())) {
             render = new Migration(flight);
             migration.add(render);
         }
         return render;
     }
+
     public boolean searchMigrationFlight(String id) {
         boolean render = false;
         for (Migration m : getMigration()) {
-            if(m.getFlight().getId()==id){
+            if (m.getFlight().getId() == id) {
                 render = true;
             }
         }
         return render;
     }
+
     public String editMigration(Migration m, Flight flight, int a, int c, int w, int mn) {
         m.setFlight(flight);
         m.setapp(a);
@@ -223,7 +225,7 @@ public class Airport implements Serializable {
             users.add(newUser);
             msg = name + SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = name + USER_ERROR;
         }
         return msg;
     }
@@ -247,7 +249,7 @@ public class Airport implements Serializable {
             users.add(newAirlineUser);
             msg = name + SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = name + USER_ERROR;
         }
         return msg;
     }
@@ -271,7 +273,7 @@ public class Airport implements Serializable {
             users.add(newCostumer);
             msg = name + SUCCESS;
         } else {
-            msg = USER_ERROR;
+            msg = name + USER_ERROR;
         }
         return msg;
     }
@@ -328,6 +330,8 @@ public class Airport implements Serializable {
             if (users.get(i).getId() == (id) && users.get(i).getPassword().equals(password)) {
                 if (users.get(i) instanceof Costumer) {
                     setLogged((Costumer) users.get(i));
+                } else if (users.get(i) instanceof AirlineUser) {
+                    setAirlineLogged((AirlineUser) users.get(i));
                 } else {
                     setAdminLogged(users.get(i));
                 }

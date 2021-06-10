@@ -231,20 +231,28 @@ public class IndicatorsController implements Initializable {
         bc.setTitle("Flight: " + m.getFlight().getId());
         xAxis.setLabel("Type");
         yAxis.setLabel("Value");
-        bc.setLegendVisible(false);
         chart.getChildren().add(bc);
         MigrationThread mt = new MigrationThread(this, m, bc);
         mt.start();
     }
 
+    @SuppressWarnings("unchecked")
     public void setChart(Migration migration, BarChart<String, Number> bc) {
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>("Approved", migration.getApproved()));
-        series.getData().add(new XYChart.Data<>("Covid", migration.getCovid()));
-        series.getData().add(new XYChart.Data<>("Minor", migration.getMinor()));
-        series.getData().add(new XYChart.Data<>("Wanted", migration.getWanted()));
+        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
+        series1.setName("Approved");
+        series1.getData().add(new XYChart.Data<>("Approved", migration.getApproved()));
+        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+        series2.setName("Covid");
+        series2.getData().add(new XYChart.Data<>("Covid", migration.getCovid()));
+        XYChart.Series<String, Number> series3 = new XYChart.Series<>();
+        series3.setName("Minor");
+        series3.getData().add(new XYChart.Data<>("Minor", migration.getMinor()));
+        XYChart.Series<String, Number> series4 = new XYChart.Series<>();
+        series4.setName("Wanted");
+        series4.getData().add(new XYChart.Data<>("Wanted", migration.getWanted()));
+        bc.setAnimated(false);
         bc.getData().clear();
-        bc.getData().add(series);
+        bc.getData().addAll(series1, series2, series3, series4);
         getData();
     }
 }

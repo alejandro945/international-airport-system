@@ -55,11 +55,16 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
     @Override
     public int compareTo(Advisor advisor) {
         int result = -1;
-        if(this.getId() == advisor.getId()) {
+        if (this.getId() == advisor.getId()) {
             result = 0;
-        } else if(this.getId() > advisor.getId()) {
+        } else if (this.getId() > advisor.getId()) {
             result = 1;
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return super.getName();
     }
 }
