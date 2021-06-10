@@ -17,7 +17,7 @@ public enum Route {
     AIRLINE_EMPLOYEES(Root.AIRLINE.getRoot() + "airline-employees.fxml"),
     FLIGHTS(Root.AIRLINE.getRoot() + "flights.fxml"), MY_TRIPS(Root.CLIENT.getRoot() + "my-flights.fxml"),
     NEW_TRIP(Root.CLIENT.getRoot() + "new-flight.fxml"), PLAN_FLIGHT(Root.CLIENT.getRoot() + "plan-flight.fxml"),
-    INDICATORS(Root.MIGRATION.getRoot() + "indicators.fxml"), NEW_EMPLOYEE(Root.GLOBAL.getRoot() + "new-employee.fxml"),
+    INDICATORS(Root.MIGRATION.getRoot() + "indicators.fxml"),INDICATORS_MODAL(Root.MIGRATION.getRoot() + "modalIndicators.fxml"), NEW_EMPLOYEE(Root.GLOBAL.getRoot() + "new-employee.fxml"),
     PROFILE(Root.USER.getRoot() + "profile.fxml"), CARD(Root.CARD.getRoot() + "flight.fxml"),
     USER_MODAL(Root.CRUD.getRoot() + "usersModal.fxml"), USER_TABLE(Root.CRUD.getRoot() + "users.fxml"),
     AIRLINE_MODAL(Root.CRUD.getRoot() + "airlinesModal.fxml"), AIRLINE_TABLE(Root.CRUD.getRoot() + "airlines.fxml"),

@@ -16,7 +16,7 @@
             <Font name="Century Gothic" size="15.0" />
          </font>
       </JFXCheckBox>
-      <Button fx:id="btnEdit" layoutX="235.0" layoutY="324.0" mnemonicParsing="false" onAction="#editTrack" prefHeight="35.0" prefWidth="106.0" styleClass="button1" text="Edit" visible="false" />
+      <Button fx:id="btnEdit" layoutX="235.0" layoutY="325.0" mnemonicParsing="false" onAction="#editTrack" prefHeight="35.0" prefWidth="106.0" styleClass="button1" text="Edit" visible="false" />
       <Label fx:id="modalName" alignment="CENTER" layoutX="90.0" layoutY="123.0" prefHeight="20.0" prefWidth="221.0" />
       <Button layoutX="62.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelModal" prefHeight="35.0" prefWidth="106.0" styleClass="button2" text="Cancel" />
       <Button fx:id="btnSave" layoutX="235.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveTrack" prefHeight="35.0" prefWidth="106.0" text="Save" />

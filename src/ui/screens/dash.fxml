@@ -24,9 +24,9 @@
                   <Insets top="20.0" />
                </HBox.margin>
             </ImageView>
-            <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="179.0" stylesheets="@../assets/styles/vendor.css">
+            <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="228.0" stylesheets="@../assets/styles/vendor.css">
                <children>
-                  <Label fx:id="lblDate" text="Monday, May 23, 2021" textFill="WHITE">
+                  <Label fx:id="lblDate" prefHeight="20.0" prefWidth="224.0" text="Monday, May 23, 2021" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />
                      </font>

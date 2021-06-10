@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -63,13 +63,14 @@
          </font>
       </Label>
       <Separator layoutY="57.0" prefHeight="9.0" prefWidth="1195.0" />
-      <BarChart fx:id="bar" layoutX="312.0" layoutY="71.0" prefHeight="289.0" prefWidth="572.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
+      <ScrollPane layoutX="25.0" layoutY="71.0" prefHeight="289.0" prefWidth="1128.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="286.0" prefWidth="1128.0" styleClass="box">
+               <children>
+                  <HBox fx:id="chart" layoutX="6.0" prefHeight="272.0" prefWidth="1128.0" spacing="15.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </Pane>

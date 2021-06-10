@@ -24,11 +24,12 @@ public class Airline implements Serializable, Comparable<Airline> {
         aircraft = new ArrayList<>();
         this.airlineName = airlineName;
         this.logo = logo;
-        Aircraft plane = new Aircraft("planeCode", 234532, 48, this);
-        flights.add(new Flight("1", "2021-07-06", "18:45", "2021-08-06", "17:00", Places.BOGOTA, Places.TOKIO, null,
-                this, plane));
-        flights.add(new Flight("2", "2021-08-06", "09:00", "2021-09-06", "13:00", Places.SYDNEY, Places.MOSCOW, null,
-                this, plane));
+        Aircraft plane1 = new Aircraft("A988", 234532, 48, this);
+        Aircraft plane2 = new Aircraft("B456", 234532, 48, this);
+        flights.add(new Flight("K940", "2021-09-06", "23:45", "2021-10-06", "17:00", Places.BOGOTA, Places.TOKIO, null,
+                this, plane1));
+        flights.add(new Flight("G546", "2021-09-06", "23:00", "2021-11-06", "13:00", Places.SYDNEY, Places.MOSCOW, null,
+                this, plane2));
     }
 
     /**

@@ -74,7 +74,7 @@ public class DashboardController implements Initializable {
         return userType;
     }
 
-    public Route getRoute(){
+    public Route getRoute() {
         return route;
     }
 
@@ -145,15 +145,22 @@ public class DashboardController implements Initializable {
         String dateRender = formatDate.format(date);
         dateRender = dateRender.replaceAll("/", "-");
         String time = lblTime.getText().substring(0, 5);
-
         for (Flight flight : airport.getFlights()) {
-            if (flight.getFlightStatus() != FlightState.DONE) {
+            FlightState state = flight.getFlightStatus();
+            if (state == FlightState.SCHEDULED) {
                 if (dateRender.equals(flight.getDepartureDate()) && time.compareTo(flight.getDepartureHour()) < 0) {
                     flight.setFlightStatus(FlightState.BOARD);
+                } else if (dateRender.equals(flight.getArrivalDate())
+                        && time.compareTo(flight.getDepartureHour()) < 0) {
+                    flight.setFlightStatus(FlightState.AIRBORNE);
+                } else if (dateRender.compareTo(flight.getDepartureDate()) > 0
+                        && dateRender.compareTo(flight.getArrivalDate()) < 0) {
+                    flight.setFlightStatus(FlightState.AIRBORNE);
                 } else if (dateRender.equals(flight.getDepartureDate())
                         && time.compareTo(flight.getDepartureHour()) >= 0) {
                     flight.setFlightStatus(FlightState.AIRBORNE);
-                } else if (dateRender.compareTo(flight.getArrivalDate()) > 0) {
+                } else if (dateRender.compareTo(flight.getArrivalDate()) > 0
+                        && time.compareTo(flight.getArrivalHour()) > 0) {
                     flight.setFlightStatus(FlightState.DONE);
                 }
             }
@@ -200,7 +207,7 @@ public class DashboardController implements Initializable {
             case UPCOMING_FLIGHTS:
                 return new UpcomingFlightsController(this, airport);
             case INDICATORS:
-                return new IndicatorsController(this);
+                return new IndicatorsController(this, airport);
             case FLIGHTS:
                 return new AirlineFlightsController(this);
             case AIRLINE_EMPLOYEES:

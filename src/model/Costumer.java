@@ -13,7 +13,8 @@ public class Costumer extends User {
 
     public Costumer() { // JUnit Tests
         super("Tester", "User", 4, "testerUser@correo.co", "4", UserRole.COSTUMER_USER);
-
+        int value = (int) ((Math.random() * 3) + 1);
+        state = CostumerState.values()[value].name();
     }
 
     public Costumer(String name, String lastName, long id, String email, String password) {
