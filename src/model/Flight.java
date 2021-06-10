@@ -16,7 +16,8 @@ public class Flight implements Serializable {
     private Aircraft plane;
     private Track track;
     private FlightState flightStatus;
-
+    private String takesOff; // Joins departure date and hour. For table view purposes.
+    private String arrives; // Joins arrival date and hour. For table view purposes.
     private Airline airline;
 
     private long position;
@@ -40,7 +41,13 @@ public class Flight implements Serializable {
         this.position = 125;
         this.progress = 0;
         this.airline = airline;
+        updateFullDates();
         flightDuration();
+    }
+
+    private void updateFullDates() {
+        takesOff = departureDate + " - " + departureHour;
+        arrives = arrivalDate + " - " + arrivalHour;
     }
 
     /**
@@ -55,6 +62,7 @@ public class Flight implements Serializable {
      */
     public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
+        updateFullDates();
     }
 
     /**
@@ -69,6 +77,7 @@ public class Flight implements Serializable {
      */
     public void setDepartureHour(String departureHour) {
         this.departureHour = departureHour;
+        updateFullDates();
     }
 
     /**
@@ -83,6 +92,7 @@ public class Flight implements Serializable {
      */
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
+        updateFullDates();
     }
 
     /**
@@ -97,6 +107,7 @@ public class Flight implements Serializable {
      */
     public void setArrivalHour(String arrivalHour) {
         this.arrivalHour = arrivalHour;
+        updateFullDates();
     }
 
     /**
@@ -224,6 +235,22 @@ public class Flight implements Serializable {
 
     public void setJourney(double journey) {
         this.journey = journey;
+    }
+
+    public String getTakesOff() {
+        return takesOff;
+    }
+
+    public void setTakesOff(String takesOff) {
+        this.takesOff = takesOff;
+    }
+
+    public String getArrives() {
+        return arrives;
+    }
+
+    public void setArrives(String arrives) {
+        this.arrives = arrives;
     }
 
     /**

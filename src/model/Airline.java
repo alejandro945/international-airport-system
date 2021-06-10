@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -19,7 +18,12 @@ public class Airline implements Serializable, Comparable<Airline> {
     private Ticket ticket; // Binary Tree
     private List<Flight> flights;
 
+    private final int LEFT_ADVISOR = 1;
+    private final int RIGHT_ADVISOR = 2;
+    private final int TWO_ADVISORS = 3;
+
     public Airline(String airlineName, String logo) {
+        pilots = new ArrayList<>();
         flights = new ArrayList<>();
         aircraft = new ArrayList<>();
         this.airlineName = airlineName;
@@ -70,6 +74,7 @@ public class Airline implements Serializable, Comparable<Airline> {
         this.logo = logo;
     }
 
+
     public List<Aircraft> getAircraft() {
         return this.aircraft;
     }
@@ -116,16 +121,199 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
+     * Verifies if an advisor is the root of the tree.
+     * @param advisor Advisor to be checked.
+     * @return Returns true if the advisor is the root of the tree. Else returns false.
+     */
+    public boolean isRoot(Advisor advisor) {
+        return assistantRoot == advisor;
+    }
+
+    /**
+     * Verifies if an advisor is a leaf of the tree.
+     * @param advisor Advisor to be checked.
+     * @return Returns true if the advisor is a leaf of the tree. Else returns false.
+     */
+    public boolean isLeaf(Advisor advisor) {
+        return advisor.getLeft() == null && advisor.getRight() == null;
+    }
+
+    /**
+     * Verifies if an advisor is an internal of the tree.
+     * @param advisor Advisor to be checked.
+     * @return Returns true if the advisor is an internal of the tree. Else returns false.
+     */
+    public boolean isInternal(Advisor advisor) {
+        return !isLeaf(advisor);
+    }
+
+    // For development purposes. Delete. ------------------------------------------
+    public String inorder() {
+        if(assistantRoot==null) {
+            return "There are no advisors yet.";
+        } else {
+            return inorder(assistantRoot);
+        }
+    }
+
+    private String inorder(Advisor advisor) {
+        String msg = "";
+        if(advisor.getLeft()!=null) {
+            msg += inorder(advisor.getLeft());
+        }
+        msg += advisor.getName() + " " + advisor.getLastName() + "\n";
+        if(advisor.getRight()!=null) {
+            msg += inorder(advisor.getRight());
+        }
+        return msg;
+    }
+    // For development purposes. Delete. ------------------------------------------
+
+    /**
+     * Adds an advisor to the binary tree.
+     * @param advisor Advisor to be added.
+     */
+    public void addAdvisor(Advisor advisor) {
+        addAdvisor(assistantRoot, advisor);
+    }
+
+    /**
+     * Auxiliar method to add an advisor to the binary tree.
+     * @param origin Reference to origin advisor. Starts with root.
+     * @param current Reference to current advisor.
+     */
+    private void addAdvisor(Advisor origin, Advisor current) {
+        if(assistantRoot == null) {
+            assistantRoot = current;
+        } else {
+            if(origin.compareTo(current) > 0) {
+                if(origin.getLeft()!=null) {
+                    addAdvisor(origin.getLeft(), current);
+                } else {
+                    current.setParent(origin);
+                    origin.setLeft(current);
+                }
+            } else {
+                if(origin.getRight()!=null) {
+                    addAdvisor(origin.getRight(), current);
+                } else {
+                    current.setParent(origin);
+                    origin.setRight(current);
+                }
+            }
+        }
+    }
+
+    public void removeAdvisor(Advisor advisor) {
+        if(assistantRoot==null) {
+            System.out.println("There are no advisors to delete.");
+        } else if(isLeaf(advisor)) {
+            removeLeaf(advisor);
+        } else if(advisor.getRight()!=null && advisor.getLeft()==null) {
+            removeWithChild(advisor, RIGHT_ADVISOR);
+        } else if(advisor.getRight()==null && advisor.getLeft()!=null){
+            removeWithChild(advisor, LEFT_ADVISOR);
+        } else {
+            removeWithChild(advisor, TWO_ADVISORS);
+        }
+    }
+
+    private void removeLeaf(Advisor advisor) {
+        if(isRoot(advisor)) {
+            assistantRoot = null;
+        } else {
+            Advisor parent = advisor.getParent();
+
+            if(parent.getLeft() == advisor) {
+                parent.setLeft(null);
+            }
+
+            if(parent.getRight() == advisor) {
+                parent.setRight(null);
+            }
+
+            advisor = null;
+        }
+    }
+
+    private void removeWithChild(Advisor advisor, int advisorType) {
+        Advisor nextAdvisor = null;
+
+        switch (advisorType) {
+            case LEFT_ADVISOR:
+                nextAdvisor = advisor.getLeft();
+                break;
+            case RIGHT_ADVISOR:
+                nextAdvisor = minSubTree(advisor.getRight());
+                break;
+            case TWO_ADVISORS:
+                nextAdvisor = minSubTree(advisor.getRight());
+                if(!isRoot(nextAdvisor.getParent())) {
+                    advisor.getLeft().setParent(nextAdvisor);
+                    advisor.getRight().setParent(nextAdvisor);
+                    if(nextAdvisor.getParent().getLeft()==nextAdvisor) {
+                        nextAdvisor.getParent().setLeft(null);
+                    } else if(nextAdvisor.getParent().getRight()==nextAdvisor) {
+                        nextAdvisor.getParent().setRight(null);
+                    }
+                }
+                break;
+        }
+
+        nextAdvisor.setParent(advisor.getParent());
+
+        if(!isRoot(advisor)) {
+            if(advisor.getParent().getLeft()==advisor) {
+                advisor.getParent().setLeft(nextAdvisor);
+            } else if(advisor.getParent().getRight()==advisor) {
+                advisor.getParent().setRight(nextAdvisor);
+            }
+        } else {
+            assistantRoot = nextAdvisor;
+        }
+
+        if(advisor.getRight()!=null && advisor.getRight()!=nextAdvisor) {
+            nextAdvisor.setRight(advisor.getRight());
+        }
+
+        if(advisor.getLeft()!=null && advisor.getLeft()!=nextAdvisor) {
+            nextAdvisor.setLeft(advisor.getRight());
+        }
+
+        advisor = null;
+    }
+
+    private Advisor minSubTree(Advisor advisor) {
+        if(advisor!=null && advisor.getLeft()!=null) {
+            while(!isLeaf(advisor)) {
+                advisor = minSubTree(advisor.getLeft());
+            }
+        }
+        return advisor;
+    }
+
+    /**
      * Makes a list from the advisors binary tree.
-     * 
      * @return Returns a list with all the airline advisors.
      */
-    public List<Advisor> advisorsToArray() {
+    public ArrayList<Advisor> advisorsToArray() {
         ArrayList<Advisor> advisors = new ArrayList<>();
-
-        // Código para recorrer árbol binario y agregar advisors al arraylist.
-
+        advisorsToArray(assistantRoot, advisors);
         return advisors;
+    }
+
+    /**
+     * Auxiliar method to create a list from a binary tree.
+     * @param current Reference to current advisor.
+     * @param result Arraylist with advisors.
+     */
+    private void advisorsToArray(Advisor current, ArrayList<Advisor> result) {
+        if (current == null) {
+            return;
+        }
+        advisorsToArray(current.getLeft(), result);
+        result.add(current);
+        advisorsToArray(current.getRight(), result);
     }
 
     /**

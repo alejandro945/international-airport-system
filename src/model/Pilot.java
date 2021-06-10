@@ -7,7 +7,7 @@ public class Pilot extends Collaborator {
     private List<Flight> flight;
 
     public Pilot(String name, String lastName, long id, Airline airline) {
-        super(name, lastName, id, airline);
+        super(name, lastName, id, airline, "Pilot");
         flight = new ArrayList<>();
     }
 
