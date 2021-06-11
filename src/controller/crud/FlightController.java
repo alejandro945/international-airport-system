@@ -143,7 +143,7 @@ public class FlightController implements Initializable {
     public void initComboBoxes() {
         cbAircraft.getItems().addAll(airline.getAircraft());
         cbPilot.getItems().addAll(airline.getPilots());
-        cbTrack.getItems().addAll(airport.tracksToList());
+        cbTrack.getItems().addAll(airport.getActiveTracks());
         cbDeparture.getItems().addAll(Places.values());
         cbDestination.getItems().addAll(Places.values());
         cbStatus.getItems().addAll(FlightState.values());

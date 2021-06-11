@@ -26,11 +26,6 @@
                   <Button mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="121.0" styleClass="button2" text="Search" />
                </children>
             </HBox>
-            <Label fx:id="filterInfo" text="Double click to delete or create">
-               <font>
-                  <Font name="Montserrat Bold" size="20.0" />
-               </font>
-            </Label>
             <TableView fx:id="flightsT" prefHeight="257.0" prefWidth="481.0" stylesheets="@../../../assets/styles/table.css">
                <columns>
                   <TableColumn fx:id="airlineT" minWidth="0.0" prefWidth="142.0" text="Airline" />
@@ -42,6 +37,11 @@
                </columnResizePolicy>
             </TableView>
             <Separator prefHeight="6.0" prefWidth="507.0" />
+            <Label fx:id="filterInfo" text="Double click to delete or create">
+               <font>
+                  <Font name="Montserrat Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -96,11 +96,11 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Label alignment="CENTER" layoutX="25.0" layoutY="116.0" prefHeight="20.0" prefWidth="205.0" text="Flight Code:" />
-            <Label layoutX="282.0" layoutY="90.0" prefHeight="20.0" prefWidth="110.0" text="Destination:" />
-            <Label layoutX="283.0" layoutY="69.0" text="Select Seat : " />
-            <Label layoutX="37.0" layoutY="246.0" prefHeight="20.0" prefWidth="158.0" text="Total:         $" />
-            <Button fx:id="buyBtn" layoutX="300.0" layoutY="233.0" mnemonicParsing="false" onAction="#buy" styleClass="button1" text="Book Now">
+            <Label fx:id="txtFlightId" alignment="CENTER" layoutX="25.0" layoutY="116.0" prefHeight="20.0" prefWidth="205.0" text="Flight Code:" />
+            <Label fx:id="txtTo" layoutX="282.0" layoutY="90.0" prefHeight="20.0" prefWidth="200.0" text="Destination:" />
+            <Label fx:id="txtSelctedSeat" layoutX="283.0" layoutY="69.0" prefHeight="20.0" prefWidth="200.0" text="Select Seat : " />
+            <Label fx:id="txtTotalPrice" layoutX="37.0" layoutY="246.0" prefHeight="20.0" prefWidth="158.0" text="Total:         $" />
+            <Button fx:id="buyBtn" layoutX="300.0" layoutY="233.0" mnemonicParsing="false" onAction="#buy" text="Book Now">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -119,10 +119,10 @@
             <Separator layoutX="491.0" layoutY="22.0" orientation="VERTICAL" prefHeight="96.0" prefWidth="7.0" />
             <Separator layoutX="271.0" layoutY="114.0" prefHeight="8.0" prefWidth="222.0" />
             <Separator layoutX="271.0" layoutY="19.0" prefHeight="8.0" prefWidth="222.0" />
-            <Label layoutX="283.0" layoutY="49.0" text="Date:" />
-            <Label layoutX="38.0" layoutY="199.0" prefHeight="20.0" prefWidth="158.0" text="Flight:        $" />
-            <Label layoutX="38.0" layoutY="167.0" prefHeight="20.0" prefWidth="158.0" text="Luggage: $" />
-            <Label fx:id="idTrip1" alignment="CENTER" layoutX="25.0" layoutY="23.0" prefHeight="32.0" prefWidth="222.0" styleClass="label-spinner" text="Summary Receipt">
+            <Label fx:id="txtDate" layoutX="283.0" layoutY="49.0" prefHeight="20.0" prefWidth="200.0" text="Date:" />
+            <Label fx:id="txtPriceflight" layoutX="38.0" layoutY="199.0" prefHeight="20.0" prefWidth="158.0" text="Flight:        $" />
+            <Label fx:id="txtPriceLuggage" layoutX="38.0" layoutY="167.0" prefHeight="20.0" prefWidth="158.0" text="Luggage: $" />
+            <Label alignment="CENTER" layoutX="25.0" layoutY="23.0" prefHeight="32.0" prefWidth="222.0" styleClass="label-spinner" text="Summary Receipt">
                <font>
                   <Font name="Montserrat Bold" size="20.0" />
                </font>

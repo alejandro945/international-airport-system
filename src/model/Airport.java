@@ -554,6 +554,16 @@ public class Airport implements Serializable {
         }
     }
 
+    public List<Track> getActiveTracks() {
+        List<Track> actives = new ArrayList<>();
+        for (Track t : tracksToList()) {
+            if (t.getState().equalsIgnoreCase("ACTIVE")) {
+                actives.add(t);
+            }
+        }
+        return actives;
+    }
+
     /**
      * Removes a track from the tracks linked list.
      * 

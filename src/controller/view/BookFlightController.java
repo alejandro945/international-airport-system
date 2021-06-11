@@ -198,7 +198,6 @@ public class BookFlightController {
                         seatsGrid.setPadding(new Insets(5, 5, 5, 5));
 
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
@@ -217,7 +216,7 @@ public class BookFlightController {
 
         luggageTbl.setItems(luggagesTrip);
 
-        luggageTbl.setRowFactory( tv -> {
+        luggageTbl.setRowFactory(tv -> {
             TableRow<Luggage> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
@@ -262,18 +261,17 @@ public class BookFlightController {
     void saveTicket(ActionEvent event) {
         if (validationTicket()) {
             ticket = new Ticket(selectedFlight, selectSeat, Integer.parseInt(ticketPrice.getText()));
-            txtFlightId.setText(selectedFlight.getId());
-            txtTo.setText(selectedFlight.getDestination().name());
-            txtSelctedSeat.setText(String.valueOf(selectSeat.getSeatLetter()) + selectSeat.getSeatNumber() + "");
-            // System.out.println(String.valueOf(selectSeat.getSeatLetter()) +
-            // selectSeat.getSeatNumber());
+            txtFlightId.setText("Flight Code: " + selectedFlight.getId());
+            txtTo.setText("Destination: " + selectedFlight.getDestination().name());
+            txtSelctedSeat.setText(
+                    "Select Seat : " + String.valueOf(selectSeat.getSeatLetter()) + selectSeat.getSeatNumber() + "");
 
             calculateTripPrice();
-            txtTotalPrice.setText(tripPrice + "");
-            idTrip.setText("T" + airport.getLogged().getTrips().size() + "-" + ticket.getFlight().getId()); 
+            txtTotalPrice.setText("Total:         $" + tripPrice);
+            idTrip.setText(
+                    "Trip Id: " + "T" + airport.getLogged().getTrips().size() + "-" + ticket.getFlight().getId());
             updateLuggageToTrip(trip);
             modalTicket.close();
-            // System.out.println(airport.getLogged().getTrips().size());
             dController.alert(Route.SUCCESS, "Ticket saved");
         } else {
             dController.alert(Route.ERROR, "Please selected a seat by clicking it");
@@ -476,7 +474,7 @@ public class BookFlightController {
     private JFXTextField txtPrice;
 
     @FXML
-    private JFXComboBox<String> cbType;
+    private JFXComboBox<SpecialLuggageType> cbType;
 
     @FXML
     private JFXTextField txtCharge;
@@ -494,14 +492,14 @@ public class BookFlightController {
     @FXML
     void saveLuggage(ActionEvent event) {
         if (luggageValidation()) {
-            if (cbType.getValue().equals("STANDARD")) {
+            if (cbType.getValue()==SpecialLuggageType.STANDARD) {
                 Luggage tempLuggage = new Luggage(Integer.parseInt(txtHeight.getText()),
                         Integer.parseInt(txtWidth.getText()), Integer.parseInt(txtWeight.getText()));
                 luggages.add(tempLuggage);
                 initializeTableView();
             } else {
                 SpecialLuggage tempSpecialLuggage = new SpecialLuggage(Integer.parseInt(txtHeight.getText()),
-                        Integer.parseInt(txtWidth.getText()), Integer.parseInt(txtWeight.getText()), cbType.getValue());
+                        Integer.parseInt(txtWidth.getText()), Integer.parseInt(txtWeight.getText()), cbType.getValue().name());
                 luggages.add((Luggage) tempSpecialLuggage);
                 initializeTableView();
             }
@@ -536,26 +534,21 @@ public class BookFlightController {
     }
 
     private void cbTypeData() {
-        List<String> types = new ArrayList<>();
-        int i = 0;
-
-        do {
-            if (SpecialLuggageType.values()[i].name() != null) {
-                types.add(SpecialLuggageType.values()[i].name());
-                i++;
-            }
-
-        } while (i < SpecialLuggageType.values().length);
-
-        ObservableList<String> optionsComboBox1 = FXCollections.observableArrayList(types);
-        cbType.setItems(optionsComboBox1);
-
+        cbType.getItems().addAll(SpecialLuggageType.values());
     }
 
     // Trip info panel
 
     @FXML
     private Label txtFlightId;
+
+    @FXML
+    private Label txtDate;
+    @FXML
+    private Label txtPriceflight;
+
+    @FXML
+    private Label txtPriceLuggage;
 
     @FXML
     private Label txtSelctedSeat;
@@ -568,17 +561,16 @@ public class BookFlightController {
 
     private void calculateTripPrice() {
         int calculate = 0;
-
         if (ticket != null) {
+            txtDate.setText("Date: " + ticket.getFlight().getArrivalDate());
+            txtPriceflight.setText("Flight:        $" + ticket.getFlightPrice());
             calculate += ticket.getFlightPrice();
         }
-
-        for (int i = 0; i < luggages.size(); i++) {
+        for (int i = 0; i < luggages.size(); i++) {     
             calculate += luggages.get(i).getLuggagePrice();
         }
-
+        txtPriceLuggage.setText("Luggage: $"+(calculate-ticket.getFlightPrice()));
         tripPrice = calculate;
-        // System.out.println(tripPrice);
     }
 
     private void updateLuggageToTrip(Trip trip) {
@@ -606,7 +598,7 @@ public class BookFlightController {
             } else {
                 String id = "T" + airport.getLogged().getTrips().size() + "-" + ticket.getFlight().getId();
                 trip = new Trip((id), ticket, selectSeat);
-                idTrip.setText("value " + id);
+                idTrip.setText("Trip Id:" +"value " + id);
 
                 trip = new Trip(id, ticket, selectSeat);
                 for (int i = 0; i < luggages.size(); i++) {
