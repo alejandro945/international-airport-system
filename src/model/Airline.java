@@ -344,7 +344,6 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
     }
 
-<<<<<<< HEAD
     //Get advisor
     public List<Advisor> getAdvisor() {
         List<Advisor> list = new ArrayList<>();
@@ -387,7 +386,6 @@ public class Airline implements Serializable, Comparable<Airline> {
         aircraft.remove(plane);
     }
 
-=======
     public void importDataEmployees(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -414,5 +412,4 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
         pw.close();
     }
->>>>>>> 3776fef97d886a2cb4d2e36cf7e54528c99a39d0
 }
