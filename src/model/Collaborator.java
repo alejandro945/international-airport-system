@@ -26,5 +26,5 @@ public abstract class Collaborator extends Person {
         this.type = type;
     }
 
-    public abstract String toString();
+    public abstract int getReport();
 }

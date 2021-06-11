@@ -1,6 +1,5 @@
 package controller.view;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
@@ -36,8 +34,6 @@ import route.Route;
 public class FlightsBookedController {
     private Airport airport;
     private DashboardController dController;
-
-    private Stage modal;
     private Trip selected;
 
     public FlightsBookedController(Airport airport, DashboardController dController) {
@@ -79,7 +75,7 @@ public class FlightsBookedController {
     private TableColumn<Trip, String> actionT;
 
     @FXML
-    void filter(ActionEvent event) {
+    public void filter(ActionEvent event) {
         if (date.getValue() == null || destiny.getValue().equals("Countries")) {
             dController.geAirportController().createAlert("Please fill the country and start date field", Route.ERROR);
         } else {
@@ -91,8 +87,7 @@ public class FlightsBookedController {
     public void initialize() {
         filterInfo.setText("");
         loadData();
-        initializeTableView();
-        
+        initializeTableView();     
     }
 
     public void loadData() {
@@ -115,8 +110,6 @@ public class FlightsBookedController {
     }
 
     public void initializeTableView() {
-        // Table Luggage
-
         ObservableList<Trip> userTrips = FXCollections.observableList(airport.getLogged().getTrips());
 
         idT.setCellValueFactory(new PropertyValueFactory<Trip, String>("id"));
@@ -138,12 +131,6 @@ public class FlightsBookedController {
                 return new ReadOnlyStringWrapper(data.getValue().getTicket().getFlight().getDestination().name());
             }
         });
-        /* idT.setCellValueFactory(new Callback<CellDataFeatures<Trip, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Trip, String> data) {
-                return new ReadOnlyStringWrapper(data.getValue().getId());
-            }
-        }); */
 
         seatT.setCellValueFactory(new Callback<CellDataFeatures<Trip, String>, ObservableValue<String>>() {
             @Override
@@ -170,10 +157,7 @@ public class FlightsBookedController {
                     } else {
                         Button delete = new Button("Delete");
                         delete.setId("delete");
-                        //Button edit = new Button("Edit");
-                        //edit.setId("edit");
                         delete.getStylesheets().add(Route.CRUD.getRoute());
-                        //edit.getStylesheets().add(Route.CRUD.getRoute());
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Trip) getTableRow().getItem();
                             dController.geAirportController().createAlert(airport.getLogged().deleteTrip(selected), Route.SUCCESS);
@@ -181,44 +165,17 @@ public class FlightsBookedController {
                             airport.saveData();
                             initialize();
                         });
-                        /* edit.setOnAction((ActionEvent event) -> {
-                            selected = (Trip) getTableRow().getItem();
-                            try {
-                                showModal(selected);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            
-                            
-                        }); */
-                        //HBox managebtn = new HBox(edit, delete);
                         HBox managebtn = new HBox(delete);
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(delete, new Insets(2, 2, 0, 3));
-                        //HBox.setMargin(edit, new Insets(2, 3, 0, 2));
                         setGraphic(managebtn);
                         setText(null);
                     }
-                }
-
-                
+                }                
             };
             return cell;
         };
         actionT.setCellFactory(cellFact);
-    }
-
-    public Stage setModal(Stage modal) {
-        this.modal = modal;
-        return modal;
-    }
-
-    private void showModal(Trip trip) throws IOException {
-        BookFlightController modalController = new BookFlightController(airport, dController);
-        Stage stage = dController.loadModal(Route.NEW_TRIP, modalController );
-        Stage modal = setModal(stage);
-        stage.show();
-        modalController.prepareEdition(trip, modal);
     }
 
 }

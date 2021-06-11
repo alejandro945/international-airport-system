@@ -24,29 +24,21 @@ public class Aircraft implements Maintenance, Serializable {
         inMaintenance = false;
         createSeats();
         costumer = new ArrayList<>();
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
-        costumer.add(new Costumer());
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return planeCode;
     }
 
-    /**
-     * @return int
-     */
     public int getPlaneWeight() {
         return this.planeWeight;
     }
 
-    /**
-     * @param planeWeight
-     */
     public void setPlaneWeight(int planeWeight) {
         this.planeWeight = planeWeight;
     }
@@ -59,16 +51,10 @@ public class Aircraft implements Maintenance, Serializable {
         this.airline = airline;
     }
 
-    /**
-     * @return String
-     */
     public String getPlaneCode() {
         return this.planeCode;
     }
 
-    /**
-     * @param planeCode
-     */
     public void setPlaneCode(String planeCode) {
         this.planeCode = planeCode;
     }

@@ -177,6 +177,7 @@ public class IndicatorsController implements Initializable {
         covidCol.setCellValueFactory(new PropertyValueFactory<>("covid"));
         renderActions();
         migrationTbl.setItems(data);
+        dController.renderToast();
     }
 
     public void showModal() throws IOException {

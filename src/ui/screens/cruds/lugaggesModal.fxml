@@ -23,7 +23,7 @@
       <JFXTextField fx:id="txtWidth" alignment="CENTER" layoutX="23.0" layoutY="171.0" promptText="Width" unFocusColor="#a80294" />
       <JFXTextField fx:id="txtWeight" alignment="CENTER" layoutX="26.0" layoutY="287.0" promptText="Weight" unFocusColor="#a80294" />
       <JFXTextField fx:id="txtPrice" alignment="CENTER" disable="true" layoutX="211.0" layoutY="287.0" promptText="Price $" unFocusColor="#a80294" />
-      <JFXComboBox fx:id="cbType" layoutX="20.0" layoutY="232.0" prefHeight="29.0" prefWidth="173.0" promptText="Standard" unFocusColor="#ae0d94" />
+      <JFXComboBox fx:id="cbType" layoutX="20.0" layoutY="232.0" prefHeight="29.0" prefWidth="173.0" promptText="Choose" unFocusColor="#ae0d94" />
       <JFXTextField fx:id="txtCharge" alignment="CENTER" disable="true" layoutX="207.0" layoutY="232.0" promptText="Charge" unFocusColor="#a80294" />
    </children>
 </AnchorPane>

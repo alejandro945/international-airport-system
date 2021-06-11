@@ -10,6 +10,7 @@ public class Pilot extends Collaborator {
         super(name, lastName, id, airline, "Pilot");
         flight = new ArrayList<>();
     }
+    @Override
     public int getReport() {
         return flight.size();
     }

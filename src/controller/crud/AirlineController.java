@@ -1,6 +1,7 @@
 package controller.crud;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -119,6 +120,42 @@ public class AirlineController implements Initializable {
     public void cancelModal(ActionEvent event) {
         modal.close();
         setModal(null);
+    }
+
+    @FXML
+    public void exportInfo(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.EXPORT_SUCCESS);
+            try {
+                airport.exportDataAirlines(selectedFile.getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                dController.alert(Route.ERROR, Constant.FILE_NOT_FOUND);
+            }
+        }
+    }
+
+    @FXML
+    public void importInfo(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Resource File");
+        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.IMPORT_SUCCESS);
+            try {
+                airport.importDataAirlines(selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                dController.alert(Route.WARNING, Constant.IOEXCEPTION);
+            }
+            airport.saveData();
+            airport.loadData();
+            getData();
+        }
     }
 
     @FXML

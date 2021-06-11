@@ -58,6 +58,7 @@ public class Airport implements Serializable {
             airlines = (List<Airline>) ois.readObject();
             flights = (List<Flight>) ois.readObject();
             firstTrack = (Track) ois.readObject();
+            migration = (List<Migration>) ois.readObject();
             ois.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,6 +73,7 @@ public class Airport implements Serializable {
             oos.writeObject(airlines);
             oos.writeObject(flights);
             oos.writeObject(firstTrack);
+            oos.writeObject(migration);
             oos.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -148,6 +150,30 @@ public class Airport implements Serializable {
 
     public void setAirlines(List<Airline> airlines) {
         this.airlines = airlines;
+    }
+
+    public void importDataAirlines(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String airlineName = parts[1];
+            String logo = parts[2];
+            line = br.readLine();
+            createAirline(airlineName, logo);
+        }
+        br.close();
+    }
+
+    public void exportDataAirlines(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("AIRPORT SYSTEM AIRLINES REPORT");
+        pw.println("Airline;Icon Path");
+        for (int i = 0; i < airlines.size(); i++) {
+            Airline a = airlines.get(i);
+            pw.println(a.getAirlineName() + FILE_SEPARATOR + a.getIcon());
+        }
+        pw.close();
     }
 
     public void importDataTracks(String fileName) throws IOException {
@@ -304,7 +330,7 @@ public class Airport implements Serializable {
         } else {
             int i = 0;
             Airline newAirline = new Airline(airlineName, logo);
-            while (i < airlines.size() && newAirline.compareTo(getAirlines().get(i)) > 0) {
+            while (i < airlines.size() && newAirline.compareTo(airlines.get(i)) > 0) {
                 i++;
             }
             if (searchBynaryAirline(airlineName) == null) {
@@ -321,9 +347,9 @@ public class Airport implements Serializable {
         Airline render = null;
         int i = 0;
         int j = airlines.size() - 1;
-        while (i <= j && render != null) {
+        while (i <= j && render == null) {
             int m = (i + j) / 2;
-            if (airlines.get(m).getAirlineName().equals(airlineName)) {
+            if (airlines.get(m).getAirlineName().equalsIgnoreCase(airlineName)) {
                 render = airlines.get(m);
             } else if (airlines.get(m).getAirlineName().compareTo(airlineName) > 0) {
                 j = m - 1;
@@ -427,6 +453,12 @@ public class Airport implements Serializable {
         return msg;
     }
 
+    /**
+     * Deletes a user from the users list.
+     * 
+     * @param user User to be removed.
+     * @return Returns a String with the result of the operation.
+     */
     public String deleteUser(User user) {
         String msg = "";
         if (getAdminLogged().getId() != user.getId()) {
@@ -438,6 +470,12 @@ public class Airport implements Serializable {
         return msg;
     }
 
+    /**
+     * Searches if a new identification number already exists.
+     * 
+     * @param newId Identification number entered by the user.
+     * @return Returns true if the id already exists. Else returns false.
+     */
     public boolean searchUserId(long newId) {
         boolean render = false;
         for (int i = 0; i < users.size() && !render; i++) {
@@ -448,6 +486,12 @@ public class Airport implements Serializable {
         return render;
     }
 
+    /**
+     * Searches for a user based on an identification number.
+     * 
+     * @param id Identification number to be searched.
+     * @return Returns the user if founded. Else returns null.
+     */
     public User searchUser(long id) {
         User user = null;
         for (User u : users) {
@@ -458,6 +502,14 @@ public class Airport implements Serializable {
         return user;
     }
 
+    /**
+     * Verifies the id and the password entered by the user and sets the active user
+     * depending on the user type.
+     * 
+     * @param id       Identification number entered by the user.
+     * @param password Password entered by the user.
+     * @return Returns true if the credentials are correct. Else returns false.
+     */
     public boolean userVerification(long id, String password) {
         boolean found = false;
         for (int i = 0; i < users.size() && !found; i++) {
@@ -475,6 +527,11 @@ public class Airport implements Serializable {
         return found;
     }
 
+    /**
+     * Adds a track from the tracks linked list.
+     * 
+     * @param newTrack Track to be added.
+     */
     public void addTrack(Track newTrack) {
         if (firstTrack == null) {
             firstTrack = newTrack;
@@ -484,7 +541,7 @@ public class Airport implements Serializable {
     }
 
     /**
-     * Adds track to the last position of the track's linked list.
+     * Adds track to the last position of the tracks linked list.
      * 
      * @param track Track to add.
      */
@@ -497,8 +554,18 @@ public class Airport implements Serializable {
         }
     }
 
+    public List<Track> getActiveTracks() {
+        List<Track> actives = new ArrayList<>();
+        for (Track t : tracksToList()) {
+            if (t.getState().equalsIgnoreCase("ACTIVE")) {
+                actives.add(t);
+            }
+        }
+        return actives;
+    }
+
     /**
-     * Removes a track from the track's linked list.
+     * Removes a track from the tracks linked list.
      * 
      * @param toDelete Track to remove from the linked list.
      */
@@ -529,6 +596,9 @@ public class Airport implements Serializable {
         }
     }
 
+    /**
+     * Sets the id for each track.
+     */
     private void setTracksId() {
         for (int i = 0; i < tracksToList().size(); i++) {
             tracksToList().get(i).setId(i + 1);
@@ -559,6 +629,14 @@ public class Airport implements Serializable {
         return tracks;
     }
 
+    /**
+     * Edits the information of a track.
+     * 
+     * @param track Track to be edited.
+     * @param gate  Updated gate information.
+     * @param state Updated state information.
+     * @return Returns String with the result of the edit.
+     */
     public String editTrack(Track track, String gate, boolean state) {
         track.setGate(gate);
         if (state) {

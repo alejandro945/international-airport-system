@@ -55,10 +55,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     public void closeAccount(ActionEvent event) throws IOException, InterruptedException {
-        airport.setLogged(null);
-        airport.setAdminLogged(null);
-        airport.setAirlineLogged(null);
-        dController.geAirportController().renderScreen(Route.LOGIN);
+        dController.closeAccount();
     }
 
     @FXML
@@ -70,8 +67,8 @@ public class ProfileController implements Initializable {
         } else {
             dController.alert(Route.SUCCESS, airport.editUser(render, txtName.getText(), txtLast.getText(),
                     Long.parseLong(txtId.getText()), txtEmail.getText(), txtPass.getText(), render.getRole()));
-                    txtPass.clear();
-                    txtPassC.clear();
+            txtPass.clear();
+            txtPassC.clear();
         }
     }
 
@@ -86,7 +83,7 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (dController.getActiveUser()==1) {
+        if (dController.getActiveUser() == 1) {
             lblUser.setText(airport.getLogged().getName() + " " + airport.getLogged().getLastName());
             txtName.setText(airport.getLogged().getName());
             txtLast.setText(airport.getLogged().getLastName());
@@ -96,7 +93,7 @@ public class ProfileController implements Initializable {
             if (path != null) {
                 userIcon.setImage(new Image(path));
             }
-        }else if(dController.getActiveUser()==2){
+        } else if (dController.getActiveUser() == 2) {
             lblUser.setText(airport.getAirlineLogged().getName() + " " + airport.getAirlineLogged().getLastName());
             txtName.setText(airport.getAirlineLogged().getName());
             txtLast.setText(airport.getAirlineLogged().getLastName());
