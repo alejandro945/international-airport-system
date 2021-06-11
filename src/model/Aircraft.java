@@ -101,7 +101,7 @@ public class Aircraft implements Maintenance, Serializable {
     }
 
     /**
-     *
+     * Creates all aircraft seats.
      */
     public void createSeats() {
         int rows = capacity / AIRCRAFT_COLUMNS;
@@ -120,7 +120,7 @@ public class Aircraft implements Maintenance, Serializable {
     }
 
     /**
-     *
+     * Puts the aircraft in maintenance mode.
      */
     @Override
     public void inMaintenance() {
