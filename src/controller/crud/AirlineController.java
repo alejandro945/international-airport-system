@@ -74,9 +74,11 @@ public class AirlineController implements Initializable {
 
     @FXML
     void newAirline(ActionEvent event) throws IOException {
-        Stage stage = dController.loadModal(Route.AIRLINE_MODAL, this);
-        setModal(stage);
-        stage.show();
+        if (modal == null) {
+            Stage stage = dController.loadModal(Route.AIRLINE_MODAL, this);
+            setModal(stage);
+            stage.show();
+        }
     }
 
     public void setModal(Stage modal) {
@@ -116,6 +118,7 @@ public class AirlineController implements Initializable {
     @FXML
     void cancelModal(ActionEvent event) {
         modal.close();
+        setModal(null);
     }
 
     @FXML

@@ -92,6 +92,17 @@ public class UserController implements Initializable {
     @FXML
     public void cancelModal(ActionEvent event) {
         modal.close();
+        setModal(null);
+    }
+
+    @FXML
+    public void exportInfo(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void importInfo(ActionEvent event) {
+
     }
 
     @FXML
@@ -116,10 +127,12 @@ public class UserController implements Initializable {
 
     @FXML
     public void newUser(ActionEvent event) throws IOException {
-        showModal();
-        modalName.setText("Create User");
-        btnEdit.setVisible(false);
-        btnSave.setVisible(true);
+        if (modal == null) {
+            showModal();
+            modalName.setText("Create User");
+            btnEdit.setVisible(false);
+            btnSave.setVisible(true);
+        }
     }
 
     public void setModal(Stage modal) {
@@ -189,7 +202,7 @@ public class UserController implements Initializable {
         actionsCol.setCellFactory(cellFact);
     }
 
-    private void renderData(){
+    private void renderData() {
         airport.saveData();
         airport.loadData();
         getData();

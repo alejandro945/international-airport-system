@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Airline;
@@ -75,9 +77,11 @@ public class AircraftController implements Initializable {
 
     @FXML
     void newAircraft(ActionEvent event) throws IOException {
-        Stage stage = dController.loadModal(Route.AIRCRAFT_MODAL, this);
-        setModal(stage);
-        stage.show();
+        if (modal == null) {
+            Stage stage = dController.loadModal(Route.AIRCRAFT_MODAL, this);
+            setModal(stage);
+            stage.show();
+        }
     }
 
     public void setModal(Stage modal) {
@@ -87,6 +91,35 @@ public class AircraftController implements Initializable {
     @FXML
     void cancelModal(ActionEvent event) {
         modal.close();
+        setModal(null);
+    }
+
+    @FXML
+    public void exportInfo(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+        if (selectedFile != null) {
+        //    alert.setTitle("Export employees");
+        //    restaurant.exportDataEmployees(selectedFile.getAbsolutePath(), separator.getText());
+        }
+    }
+
+    @FXML
+    public void importInfo(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Resource File");
+        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        if (selectedFile != null) {
+         //   alert.setTitle("Import employees");
+          //  airline.importDataEmployees(selectedFile.getAbsolutePath());
+            airport.saveData();
+            airport.loadData();
+            getData();
+        } 
     }
 
     @FXML
@@ -108,7 +141,8 @@ public class AircraftController implements Initializable {
     @FXML
     void saveAircraft(ActionEvent event) {
         if (validateFields()) {
-            airline.getAircraft().add(new Aircraft(txtCode.getText(), Integer.parseInt(txtWeight.getText()), Integer.parseInt(txtCapacity.getText()), airline));
+            airline.getAircraft().add(new Aircraft(txtCode.getText(), Integer.parseInt(txtWeight.getText()),
+                    Integer.parseInt(txtCapacity.getText()), airline));
             dController.geAirportController().createAlert("Aircraft was successfully added.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
@@ -161,7 +195,8 @@ public class AircraftController implements Initializable {
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Aircraft) getTableRow().getItem();
                             selected.getAirline().getAircraft().remove(selected);
-                            dController.geAirportController().createAlert("Aircraft was removed successfully.", Route.SUCCESS);
+                            dController.geAirportController().createAlert("Aircraft was removed successfully.",
+                                    Route.SUCCESS);
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {

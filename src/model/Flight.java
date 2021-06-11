@@ -277,8 +277,8 @@ public class Flight implements Serializable {
 
     public void flightDuration() {
         int[] render = getDateFormat();
-        LocalDateTime dep = LocalDateTime.of(render[0], render[2], render[1], render[3], render[4]);
-        LocalDateTime arr = LocalDateTime.of(render[5], render[7], render[6], render[8], render[9]);
+        LocalDateTime dep = LocalDateTime.of(render[0], render[1], render[2], render[3], render[4]);
+        LocalDateTime arr = LocalDateTime.of(render[5], render[6], render[7], render[8], render[9]);
         Duration d = Duration.between(dep, arr);
         duration = Math.abs(d.getSeconds());
     }

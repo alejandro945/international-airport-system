@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Airport implements Serializable {
     private static final long serialVersionUID = 1L;
+    public final String FILE_SEPARATOR = ",";
     public final String SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
     public final String EDIT_SUCCESS = " have been edited  successfully";
@@ -152,6 +153,16 @@ public class Airport implements Serializable {
             migration.add(render);
         }
         return render;
+    }
+
+    public int getExpenses() {
+        int i = 0;
+        int amount = 0;
+        while (i < migration.size()) {
+            amount += migration.get(i).getCapital();
+            i++;
+        }
+        return amount;
     }
 
     public boolean searchMigrationFlight(String id) {
@@ -295,7 +306,7 @@ public class Airport implements Serializable {
 
     public String deleteUser(User user) {
         String msg = "";
-        if (getAdminLogged() != user) {
+        if (getAdminLogged().getId() != user.getId()) {
             users.remove(user);
             msg = user.getName() + DELETE_SUCCESS;
         } else {

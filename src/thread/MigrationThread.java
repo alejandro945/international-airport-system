@@ -17,29 +17,12 @@ public class MigrationThread extends Thread {
     private Migration migration;
     private BarChart<String, Number> bc;
 
-    public MigrationThread(IndicatorsController iController, Migration migration,BarChart<String, Number> bc) {
+    public MigrationThread(IndicatorsController iController, Migration migration, BarChart<String, Number> bc) {
         this.iController = iController;
         this.migration = migration;
         this.bc = bc;
     }
-public void costumerTypes(Costumer c) throws WantedException, CovidException, MinorException{
-    switch (c.getState()) {
-        case "WANTED":
-            migration.setWanted();
-            throw new WantedException();
-        case "APPROVED":
-            migration.setApproved();
-            break;
-        case "COVID":
-            migration.setCovid();
-            throw new CovidException();
-        case "MINOR":
-            migration.setCovid();
-            throw new MinorException();
-        default:
-            break;
-    }
-}
+
     @Override
     public void run() {
         for (Costumer c : migration.getFlight().getPlane().getCostumer()) {
@@ -52,7 +35,7 @@ public void costumerTypes(Costumer c) throws WantedException, CovidException, Mi
                 @Override
                 public void run() {
                     try {
-                        costumerTypes(c);
+                        migration.costumerTypes(c);
                     } catch (WantedException e) {
                         c.setNotifications(e.getMessage());
                     } catch (CovidException e) {
