@@ -48,7 +48,6 @@ public class AirportController {
     public void handleMouseClick(MouseEvent event) {
         if (event.getSource() == btnCloseLogin) {
             airport.saveData();
-            airport.loadData();
             System.exit(0);
         } else if (event.getSource() == btnMinimize) {
             getWindow().setIconified(true);

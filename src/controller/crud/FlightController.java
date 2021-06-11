@@ -125,6 +125,8 @@ public class FlightController implements Initializable {
         if (modal == null) {
             showModal();
             modalName.setText("Create Flight");
+            cbStatus.setValue(FlightState.SCHEDULED);
+            cbStatus.setDisable(true);
             btnEdit.setVisible(false);
             btnSave.setVisible(true);
         }
@@ -151,6 +153,7 @@ public class FlightController implements Initializable {
 
     @FXML
     public void editFlight(ActionEvent event) {
+        cbStatus.setDisable(false);
         if (validateFields()) {
             selected.setId(txtID.getText());
             selected.setDepartureDate(txtTakesOffDate.getValue().toString());
@@ -188,8 +191,10 @@ public class FlightController implements Initializable {
             Track track = cbTrack.getValue();
             Aircraft aircraft = cbAircraft.getValue();
             aircraft.setPilot(cbPilot.getValue());
-            airline.getFlights().add(new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, departure,
-                    destination, track, airline, aircraft));
+            Flight f = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, departure,
+            destination, track, airline, aircraft);
+            aircraft.getPilot().setFlight(f);
+            airline.getFlights().add(f);
             dController.geAirportController().createAlert("Flight was successfully added.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
