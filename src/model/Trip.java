@@ -140,6 +140,7 @@ public class Trip implements Price, Serializable {
                 }
             } while (next == null);
         }
+        calculatePrice(1);
     }
 
     @Override

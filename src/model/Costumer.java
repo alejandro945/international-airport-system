@@ -82,12 +82,14 @@ public class Costumer extends User {
         if (newTrip.getTripPrice() <= parent.getTripPrice()) {
             if (parent.getLeft() == null) {
                 parent.setLeft(newTrip);
+                newTrip.setFather(parent);
             } else {
                 addTrip(parent.getLeft(), newTrip);
             }
         } else {
             if (parent.getRight() == null) {
                 parent.setRight(newTrip);
+                newTrip.setFather(parent);
             } else {
                 addTrip(parent.getRight(), newTrip);
             }
@@ -135,12 +137,14 @@ public class Costumer extends User {
         //System.out.println(trip);
 
         if (temp != null) {
-            Trip parent = temp.getFather() == null ? null : temp.getFather();
-            Trip right = temp.getRight() == null ? null : temp.getRight();
-            Trip left = temp.getLeft() == null ? null : temp.getLeft();
+            
+
+            Trip parent = temp.getFather();
+            Trip right = temp.getRight();
+            Trip left = temp.getLeft();
             
             if (right == null && left == null) {    // no children case
-                if (parent == null) {
+                if (rootTrip == temp) {
                     rootTrip = null;
                 } else {
                     if (parent.getLeft() == (temp)) {
@@ -149,7 +153,7 @@ public class Costumer extends User {
                         parent.setRight(null);
                     }
                 }
-            } else if (right == null || left != null) { // One children case
+            } else if (right == null || left == null) { // One children case
 
                 Trip tempSon = null;
 
@@ -185,6 +189,7 @@ public class Costumer extends User {
             temp.setFather(null);
             temp.setLeft(null);
             temp.setRight(null);
+            
 
             return temp.getId();
 
@@ -200,6 +205,114 @@ public class Costumer extends User {
         }else{
             return minTrip(starTrip.getLeft());
         }
+    }
+
+    // Remove Trip
+    public String removeTrip(Trip trip) {
+        if(rootTrip==null) {
+            System.out.println("There are no trips to delete.");
+        } else if(isLeaf(trip)) {
+            removeLeaf(trip);
+        } else if(trip.getRight()!=null && trip.getLeft()==null) {
+            removeWithChild(trip, 2);
+        } else if(trip.getRight()==null && trip.getLeft()!=null){
+            removeWithChild(trip, 1);
+        } else {
+            removeWithChild(trip, 3);
+        }
+        return "Trip removed";
+    }
+
+    private void removeLeaf(Trip trip) {
+        if(trip == rootTrip) {
+            rootTrip = null;
+        } else {
+            Trip parent = trip.getFather();
+
+            if(parent.getLeft() == trip) {
+                parent.setLeft(null);
+            }
+
+            if(parent.getRight() == trip) {
+                parent.setRight(null);
+            }
+
+            trip = null;
+        }
+    }
+
+    private void removeWithChild(Trip trip, int tripType) {
+        Trip nextTrip = null;
+
+        switch (tripType) {
+            case 1:
+                nextTrip = trip.getLeft();
+                break;
+            case 2:
+                nextTrip = minSubTree(trip.getRight());
+                break;
+            case 3:
+                nextTrip = minSubTree(trip.getRight());
+                if(!isRoot(nextTrip.getFather())) {
+                    trip.getLeft().setFather(nextTrip);
+                    trip.getRight().setFather(nextTrip);
+                    if(nextTrip.getFather().getLeft()==nextTrip) {
+                        nextTrip.getFather().setLeft(null);
+                    } else if(nextTrip.getFather().getRight()==nextTrip) {
+                        nextTrip.getFather().setRight(null);
+                    }
+                }
+                break;
+        }
+
+        nextTrip.setFather(trip.getFather());
+
+        if(!(trip.getFather() == null)) {
+        //if(!isRoot(trip)) {
+            if(trip.getFather().getLeft()==trip) {
+                trip.getFather().setLeft(nextTrip);
+            } else if(trip.getFather().getRight()==trip) {
+                trip.getFather().setRight(nextTrip);
+            }
+        } else {
+            rootTrip = nextTrip;
+        }
+
+        if(trip.getRight()!=null && trip.getRight()!=nextTrip) {
+            nextTrip.setRight(trip.getRight());
+        }
+
+        if(trip.getLeft()!=null && trip.getLeft()!=nextTrip) {
+            nextTrip.setLeft(trip.getRight());
+        }
+
+        trip = null;
+    }
+
+    private Trip minSubTree(Trip trip) {
+        if(trip!=null && trip.getLeft()!=null) {
+            while(!isLeaf(trip)) {
+                trip = minSubTree(trip.getLeft());
+            }
+        }
+        return trip;
+    }
+    /**
+     * Verifies if an trip is the root of the tree.
+     * @param trip trip to be checked.
+     * @return Returns true if the trip is the root of the tree. Else returns false.
+     */
+    public boolean isRoot(Trip trip) {
+        return rootTrip == trip;
+    }
+
+    /**
+     * Verifies if a trip is a leaf of the tree.
+     * @param trip Trip to be checked.
+     * @return Returns true if the advisor is a leaf of the tree. Else returns false.
+     */
+    public boolean isLeaf(Trip trip) {
+        return trip.getLeft() == null && trip.getRight() == null;
     }
 
     // Add luggage

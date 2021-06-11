@@ -270,10 +270,10 @@ public class BookFlightController {
 
             calculateTripPrice();
             txtTotalPrice.setText(tripPrice + "");
-            idTrip.setText("T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId());
+            idTrip.setText("T" + airport.getLogged().getTrips().size() + "-" + ticket.getFlight().getId()); 
             updateLuggageToTrip(trip);
             modalTicket.close();
-            // System.out.println(airport.getLogged().countTrips());
+            // System.out.println(airport.getLogged().getTrips().size());
             dController.alert(Route.SUCCESS, "Ticket saved");
         } else {
             dController.alert(Route.ERROR, "Please selected a seat by clicking it");
@@ -604,7 +604,7 @@ public class BookFlightController {
                 modalUpdate.close();
 
             } else {
-                String id = "T" + airport.getLogged().countTrips() + "-" + ticket.getFlight().getId();
+                String id = "T" + airport.getLogged().getTrips().size() + "-" + ticket.getFlight().getId();
                 trip = new Trip((id), ticket, selectSeat);
                 idTrip.setText("value " + id);
 
