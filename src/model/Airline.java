@@ -335,4 +335,47 @@ public class Airline implements Serializable, Comparable<Airline> {
             return airlineName.compareTo(a.getAirlineName());
         }
     }
+
+    //Get advisor
+    public List<Advisor> getAdvisor() {
+        List<Advisor> list = new ArrayList<>();
+        rangeAdvisorsAdd( assistantRoot, list);
+        return list;
+    }
+
+    private void rangeAdvisorsAdd(Advisor node, List<Advisor> list) {
+        if (node == null) {
+            return;
+        }
+        rangeAdvisorsAdd(node.getLeft(), list);
+        list.add(node);
+        rangeAdvisorsAdd(node.getRight(), list);
+    }
+
+    public void addPilot(String name, String lastName, int id, Airline airline){
+        Pilot temp = new Pilot(name, lastName, id, airline);
+        pilots.add(temp);
+    }
+
+    public void addFlight(String id,String departureDate,String departureHour,String arrivalDate,String arrivalHour,Places origin, Places destination,Track track,Airline airline, Aircraft aircraft){
+        Flight temp = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, origin, destination, track, airline, aircraft);
+        flights.add(temp);
+    }
+
+    public void addAircraft(Aircraft plane){
+        aircraft.add(plane);
+    }
+
+    public void removePilot(Pilot pilot){
+        pilots.remove(pilot);
+    }
+
+    public void removeFlight(Flight flight){
+        flights.remove(flight);
+    }
+
+    public void removeAircraft(Aircraft plane){
+        aircraft.remove(plane);
+    }
+
 }

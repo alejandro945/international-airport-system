@@ -54,25 +54,6 @@ public class AirportTest {
         airport.getUsers().add(test2);
     }
 
-    /*
-     * private void setupScenary10() { airport = new Airport();
-     * 
-     * Airline line = new Airline("Viva air", null);
-     * 
-     * Aircraft plane = new Aircraft("AI32342", 4000, 300, line);
-     * 
-     * Flight fly1 = new Flight("V21", "02/07/21", "4:00", "02/07/21", "14:00",
-     * Places.MADRID, Places.MIAMI, null, line, plane); Flight fly2 = new
-     * Flight("V12", "10/07/21", "3:00", "02/07/21", "14:00", Places.MADRID,
-     * Places.MOSCOW, null, line, plane);
-     * 
-     * Track track1 = new Track(1, "A30"); Track track2 = new Track(2, "A30");
-     * 
-     * airport.getFlights().add(fly1); airport.getFlights().add(fly2);
-     * 
-     * airport.setFirstTrack(track1); track1.setNext(track2); }
-     */
-
     private void setupScenary11() {
         airport = new Airport();
 
@@ -99,8 +80,6 @@ public class AirportTest {
         viva.getFlights().add(fly1);
         avianca.getFlights().add(fly2);
 
-        /* airport.getFlights().add(fly1);
-        airport.getFlights().add(fly2); */
     }
 
     private void setupScenary14() {

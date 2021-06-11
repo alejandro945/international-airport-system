@@ -170,10 +170,10 @@ public class FlightsBookedController {
                     } else {
                         Button delete = new Button("Delete");
                         delete.setId("delete");
-                        Button edit = new Button("Edit");
-                        edit.setId("edit");
+                        //Button edit = new Button("Edit");
+                        //edit.setId("edit");
                         delete.getStylesheets().add(Route.CRUD.getRoute());
-                        edit.getStylesheets().add(Route.CRUD.getRoute());
+                        //edit.getStylesheets().add(Route.CRUD.getRoute());
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Trip) getTableRow().getItem();
                             dController.geAirportController().createAlert(airport.getLogged().deleteTrip(selected), Route.SUCCESS);
@@ -181,7 +181,7 @@ public class FlightsBookedController {
                             airport.saveData();
                             initialize();
                         });
-                        edit.setOnAction((ActionEvent event) -> {
+                        /* edit.setOnAction((ActionEvent event) -> {
                             selected = (Trip) getTableRow().getItem();
                             try {
                                 showModal(selected);
@@ -190,11 +190,12 @@ public class FlightsBookedController {
                             }
                             
                             
-                        });
-                        HBox managebtn = new HBox(edit, delete);
+                        }); */
+                        //HBox managebtn = new HBox(edit, delete);
+                        HBox managebtn = new HBox(delete);
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(delete, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(edit, new Insets(2, 3, 0, 2));
+                        //HBox.setMargin(edit, new Insets(2, 3, 0, 2));
                         setGraphic(managebtn);
                         setText(null);
                     }

@@ -24,7 +24,7 @@ public class ClientFlightsController implements Initializable {
     private Costumer client;
 
     public ClientFlightsController(DashboardController dController) {
-        client = new Costumer();
+        client = new Costumer(2);
         this.dController = dController;
     }
 
