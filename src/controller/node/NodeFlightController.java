@@ -1,12 +1,8 @@
 package controller.node;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTimePicker;
-
 import controller.DashboardController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,6 +10,9 @@ import javafx.scene.image.ImageView;
 import model.Flight;
 import model.FlightState;
 import thread.FlightThread;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class NodeFlightController {
     @FXML

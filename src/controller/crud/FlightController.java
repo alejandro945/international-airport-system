@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
-
 import controller.Constant;
 import controller.DashboardController;
 import javafx.collections.FXCollections;
@@ -171,7 +170,6 @@ public class FlightController implements Initializable {
             selected.setFlightStatus(cbStatus.getValue());
             dController.geAirportController().createAlert("Flight was successfully edited.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);

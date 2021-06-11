@@ -5,17 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 public class Costumer extends User {
+
     Random r = new Random();
     private String iconPath;
     private Trip rootTrip;
     private String state;
     private String notifications;
 
-    public Costumer() { 
-        super("Tester", "User", 8, "testerUser@correo.co", "8", UserRole.COSTUMER_USER);
-        int value = (int) ((Math.random() * 4));
-        state = CostumerState.values()[value].name();
-    }
     public Costumer(int value) { // JUnit Tests
         super("Tester", "User", 8, "testerUser@correo.co", "8", UserRole.COSTUMER_USER);
         state = CostumerState.values()[value].name();
@@ -68,10 +64,10 @@ public class Costumer extends User {
         this.rootTrip = rootTrip;
     }
 
-    // -------------------- Methods
-
-    // Add trip
-
+    /**
+     *
+     * @param newPNode
+     */
     public void addTrip(Trip newPNode) {
 
         if (rootTrip == null) {
@@ -82,6 +78,11 @@ public class Costumer extends User {
 
     }
 
+    /**
+     *
+     * @param parent
+     * @param newTrip
+     */
     private void addTrip(Trip parent, Trip newTrip) {
         if (newTrip.getTripPrice() <= parent.getTripPrice()) {
             if (parent.getLeft() == null) {
@@ -100,13 +101,49 @@ public class Costumer extends User {
         }
     }
 
-    // Print trips
+    /**
+     *
+     * @return
+     */
     public List<Trip> getTrips() {
         List<Trip> list = new ArrayList<>();
         rangeTripsAdd(rootTrip, list);
+        bubbleSorting(list);
         return list;
     }
 
+    /**
+     *
+     * @param list
+     */
+    private void bubbleSorting(List<Trip> list) {
+
+        for (int i = list.size() - 1; i > 0; i--) {
+
+            for (int j = 0; j < list.size() - 1; j++) {
+
+                if (list.get(j).compareByDate(list.get(j + 1)) > 0) {
+
+                    Trip temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set((j + 1), temp);
+
+                } else if (list.get(j).compareByDate(list.get(j + 1)) == 0) {
+                    if (list.get(j).compareTo(list.get(j + 1)) > 0) {
+                        Trip temp = list.get(j);
+                        list.set(j, list.get(j + 1));
+                        list.set((j + 1), temp);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param node
+     * @param list
+     */
     private void rangeTripsAdd(Trip node, List<Trip> list) {
         if (node == null) {
             return;
@@ -116,13 +153,23 @@ public class Costumer extends User {
         rangeTripsAdd(node.getRight(), list);
     }
 
-    // Return trip by object
+    /**
+     *
+     * @param toFind
+     * @return
+     */
     public Trip getTrip(Trip toFind) {
         Trip temp = null;
         rangeTripSearch(rootTrip, toFind, temp);
         return temp;
     }
 
+    /**
+     *
+     * @param node
+     * @param toFind
+     * @param returnV
+     */
     private void rangeTripSearch(Trip node, Trip toFind, Trip returnV) {
         if (node == null) {
             return;
@@ -134,20 +181,23 @@ public class Costumer extends User {
         rangeTripSearch(node.getRight(), toFind, returnV);
     }
 
-    // Delete trip
+    /**
+     *
+     * @param trip
+     * @return
+     */
     public String deleteTrip(Trip trip) {
         Trip temp = trip;
 
-        //System.out.println(trip);
+        // System.out.println(trip);
 
         if (temp != null) {
-            
 
             Trip parent = temp.getFather();
             Trip right = temp.getRight();
             Trip left = temp.getLeft();
-            
-            if (right == null && left == null) {    // no children case
+
+            if (right == null && left == null) { // no children case
                 if (rootTrip == temp) {
                     rootTrip = null;
                 } else {
@@ -162,7 +212,7 @@ public class Costumer extends User {
                 Trip tempSon = null;
 
                 if (right == null) {
-                    tempSon = left;                  
+                    tempSon = left;
                 } else {
                     tempSon = right;
                 }
@@ -186,14 +236,13 @@ public class Costumer extends User {
                 temp.setTicket(minTrip.getTicket());
                 temp.setTripPrice(minTrip.getTripPrice());
                 temp.setId(minTrip.getId());
-                temp.setFlightSeat(minTrip.getFlightSeat());                
+                temp.setFlightSeat(minTrip.getFlightSeat());
             }
 
             temp.getFlightSeat().setSeatState(false);
             temp.setFather(null);
             temp.setLeft(null);
             temp.setRight(null);
-            
 
             return temp.getId();
 
@@ -203,23 +252,32 @@ public class Costumer extends User {
 
     }
 
-    private Trip minTrip (Trip starTrip){
-        if(starTrip.getLeft() == null ){
+    /**
+     *
+     * @param starTrip
+     * @return
+     */
+    private Trip minTrip(Trip starTrip) {
+        if (starTrip.getLeft() == null) {
             return starTrip;
-        }else{
+        } else {
             return minTrip(starTrip.getLeft());
         }
     }
 
-    // Remove Trip
+    /**
+     *
+     * @param trip
+     * @return
+     */
     public String removeTrip(Trip trip) {
-        if(rootTrip==null) {
+        if (rootTrip == null) {
             System.out.println("There are no trips to delete.");
-        } else if(isLeaf(trip)) {
+        } else if (isLeaf(trip)) {
             removeLeaf(trip);
-        } else if(trip.getRight()!=null && trip.getLeft()==null) {
+        } else if (trip.getRight() != null && trip.getLeft() == null) {
             removeWithChild(trip, 2);
-        } else if(trip.getRight()==null && trip.getLeft()!=null){
+        } else if (trip.getRight() == null && trip.getLeft() != null) {
             removeWithChild(trip, 1);
         } else {
             removeWithChild(trip, 3);
@@ -227,17 +285,21 @@ public class Costumer extends User {
         return "Trip removed";
     }
 
+    /**
+     *
+     * @param trip
+     */
     private void removeLeaf(Trip trip) {
-        if(trip == rootTrip) {
+        if (trip == rootTrip) {
             rootTrip = null;
         } else {
             Trip parent = trip.getFather();
 
-            if(parent.getLeft() == trip) {
+            if (parent.getLeft() == trip) {
                 parent.setLeft(null);
             }
 
-            if(parent.getRight() == trip) {
+            if (parent.getRight() == trip) {
                 parent.setRight(null);
             }
 
@@ -245,6 +307,11 @@ public class Costumer extends User {
         }
     }
 
+    /**
+     *
+     * @param trip
+     * @param tripType
+     */
     private void removeWithChild(Trip trip, int tripType) {
         Trip nextTrip = null;
 
@@ -257,12 +324,12 @@ public class Costumer extends User {
                 break;
             case 3:
                 nextTrip = minSubTree(trip.getRight());
-                if(!isRoot(nextTrip.getFather())) {
+                if (!isRoot(nextTrip.getFather())) {
                     trip.getLeft().setFather(nextTrip);
                     trip.getRight().setFather(nextTrip);
-                    if(nextTrip.getFather().getLeft()==nextTrip) {
+                    if (nextTrip.getFather().getLeft() == nextTrip) {
                         nextTrip.getFather().setLeft(null);
-                    } else if(nextTrip.getFather().getRight()==nextTrip) {
+                    } else if (nextTrip.getFather().getRight() == nextTrip) {
                         nextTrip.getFather().setRight(null);
                     }
                 }
@@ -271,38 +338,45 @@ public class Costumer extends User {
 
         nextTrip.setFather(trip.getFather());
 
-        if(!(trip.getFather() == null)) {
-        //if(!isRoot(trip)) {
-            if(trip.getFather().getLeft()==trip) {
+        if (!(trip.getFather() == null)) {
+            // if(!isRoot(trip)) {
+            if (trip.getFather().getLeft() == trip) {
                 trip.getFather().setLeft(nextTrip);
-            } else if(trip.getFather().getRight()==trip) {
+            } else if (trip.getFather().getRight() == trip) {
                 trip.getFather().setRight(nextTrip);
             }
         } else {
             rootTrip = nextTrip;
         }
 
-        if(trip.getRight()!=null && trip.getRight()!=nextTrip) {
+        if (trip.getRight() != null && trip.getRight() != nextTrip) {
             nextTrip.setRight(trip.getRight());
         }
 
-        if(trip.getLeft()!=null && trip.getLeft()!=nextTrip) {
+        if (trip.getLeft() != null && trip.getLeft() != nextTrip) {
             nextTrip.setLeft(trip.getRight());
         }
 
         trip = null;
     }
 
+    /**
+     *
+     * @param trip
+     * @return
+     */
     private Trip minSubTree(Trip trip) {
-        if(trip!=null && trip.getLeft()!=null) {
-            while(!isLeaf(trip)) {
+        if (trip != null && trip.getLeft() != null) {
+            while (!isLeaf(trip)) {
                 trip = minSubTree(trip.getLeft());
             }
         }
         return trip;
     }
+
     /**
      * Verifies if an trip is the root of the tree.
+     * 
      * @param trip trip to be checked.
      * @return Returns true if the trip is the root of the tree. Else returns false.
      */
@@ -312,14 +386,20 @@ public class Costumer extends User {
 
     /**
      * Verifies if a trip is a leaf of the tree.
+     * 
      * @param trip Trip to be checked.
-     * @return Returns true if the advisor is a leaf of the tree. Else returns false.
+     * @return Returns true if the advisor is a leaf of the tree. Else returns
+     *         false.
      */
     public boolean isLeaf(Trip trip) {
         return trip.getLeft() == null && trip.getRight() == null;
     }
 
-    // Add luggage
+    /**
+     *
+     * @param luggage
+     * @param trip
+     */
     public void addLuggage(Luggage luggage, Trip trip) {
         trip.addLuggage(luggage);
     }
@@ -332,6 +412,12 @@ public class Costumer extends User {
         this.state = CostumerState.values()[state].name();
     }
 
+    /**
+     *
+     * @param node
+     * @param count
+     * @return
+     */
     private int countTrips(Trip node, int count) {
         if (node == null) {
             return 0;
@@ -342,10 +428,12 @@ public class Costumer extends User {
         return count;
     }
 
+    /**
+     *
+     * @return
+     */
     public int countTrips() {
         return countTrips(rootTrip, 0);
     }
-
-    // Update Trip
 
 }

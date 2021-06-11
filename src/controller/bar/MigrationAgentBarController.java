@@ -3,7 +3,8 @@ package controller.bar;
 import controller.DashboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import route.Route;
 

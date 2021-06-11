@@ -1,11 +1,7 @@
 package controller.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
+import controller.node.NodeFlightController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,20 +10,20 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import model.Airport;
 import model.Flight;
 import model.FlightState;
 import route.Route;
 import thread.MapThread;
-import controller.node.NodeFlightController;
-import javafx.event.ActionEvent;
-import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ActiveFlightsController implements Initializable {
     private int nodeIndex;
-    @FXML
-    private JFXTextField txtCode;
 
     @FXML
     private VBox activeBox;
@@ -49,15 +45,10 @@ public class ActiveFlightsController implements Initializable {
         return dController;
     }
 
-    @FXML
-    public void searchFlight(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         activeBox.getChildren().clear();
-        for (Flight flight : airport.getFlights()) {
+        for (Flight flight : airport.flightList()) {
             if (flight.getFlightStatus() == FlightState.AIRBORNE) {
                 try {
                     addNode(flight);

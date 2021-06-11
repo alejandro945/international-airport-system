@@ -1,6 +1,7 @@
 package model;
 
 public abstract class Collaborator extends Person {
+
     private Airline airline;
     private String type;
 
@@ -27,4 +28,5 @@ public abstract class Collaborator extends Person {
     }
 
     public abstract int getReport();
+
 }

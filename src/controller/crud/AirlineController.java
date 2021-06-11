@@ -1,14 +1,6 @@
 package controller.crud;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.regex.Pattern;
-
 import com.jfoenix.controls.JFXTextField;
-
 import controller.Constant;
 import controller.DashboardController;
 import javafx.collections.FXCollections;
@@ -29,6 +21,13 @@ import javafx.util.Callback;
 import model.Airline;
 import model.Airport;
 import route.Route;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class AirlineController implements Initializable {
     @FXML

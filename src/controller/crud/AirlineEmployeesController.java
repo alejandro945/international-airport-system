@@ -3,17 +3,10 @@ package controller.crud;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Constant;
+import controller.DashboardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import controller.DashboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -26,6 +19,12 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.*;
 import route.Route;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class AirlineEmployeesController implements Initializable {
 
@@ -161,7 +160,6 @@ public class AirlineEmployeesController implements Initializable {
             }
             dController.geAirportController().createAlert(type + " was successfully edited.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -185,7 +183,6 @@ public class AirlineEmployeesController implements Initializable {
             }
             dController.geAirportController().createAlert(type + " was successfully added.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -248,6 +245,7 @@ public class AirlineEmployeesController implements Initializable {
                             }
                             dController.geAirportController().createAlert(type + " was removed successfully.",
                                     Route.SUCCESS);
+                                    airport.saveData();
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {

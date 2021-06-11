@@ -1,14 +1,14 @@
 package controller.node;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import model.Flight;
 import model.FlightState;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class NodeUpcomingController {
 

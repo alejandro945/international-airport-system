@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flight implements Serializable {
+public class Flight implements  Comparable<Flight>, Serializable {
+
     private static final long serialVersionUID = 1L;
     private String id;
     private String departureDate;
@@ -53,21 +54,18 @@ public class Flight implements Serializable {
         flightDuration();
     }
 
+    /**
+     *
+     */
     private void updateFullDates() {
         takesOff = departureDate + " - " + departureHour;
         arrives = arrivalDate + " - " + arrivalHour;
     }
 
-    /**
-     * @return String
-     */
     public String getDepartureDate() {
         return this.departureDate;
     }
 
-    /**
-     * @param departureDate
-     */
     public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
         updateFullDates();
@@ -98,82 +96,49 @@ public class Flight implements Serializable {
         return this.departureHour;
     }
 
-    /**
-     * @param departureHour
-     */
     public void setDepartureHour(String departureHour) {
         this.departureHour = departureHour;
         updateFullDates();
     }
 
-    /**
-     * @return String
-     */
     public String getArrivalDate() {
         return this.arrivalDate;
     }
 
-    /**
-     * @param arrivalDate
-     */
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
         updateFullDates();
     }
 
-    /**
-     * @return String
-     */
     public String getArrivalHour() {
         return this.arrivalHour;
     }
 
-    /**
-     * @param arrivalHour
-     */
     public void setArrivalHour(String arrivalHour) {
         this.arrivalHour = arrivalHour;
         updateFullDates();
     }
 
-    /**
-     * @return Places
-     */
     public Places getOrigin() {
         return this.origin;
     }
 
-    /**
-     * @param origin
-     */
     public void setOrigin(Places origin) {
         this.origin = origin;
     }
 
-    /**
-     * @return Places
-     */
     public Places getDestination() {
         return this.destination;
     }
 
-    /**
-     * @param destination
-     */
     public void setDestination(Places destination) {
         this.destination = destination;
     }
 
-    /**
-     * @return Aircraft
-     */
     public Aircraft getPlane() {
         return this.plane;
     }
 
-    /**
-     * @param plane
-     */
     public void setPlane(Aircraft plane) {
         this.plane = plane;
     }
@@ -198,51 +163,30 @@ public class Flight implements Serializable {
         this.progress = progress;
     }
 
-    /**
-     * @return FlightStatus
-     */
     public FlightState getFlightStatus() {
         return this.flightStatus;
     }
 
-    /**
-     * @param flightStatus
-     */
     public void setFlightStatus(FlightState flightStatus) {
         this.flightStatus = flightStatus;
     }
 
-    /**
-     * @return id
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     * @return long
-     */
     public long getDuration() {
         return duration;
     }
 
-    /**
-     * @return long
-     */
     public long getPosition() {
         return this.position;
     }
 
-    /**
-     * @param increase
-     */
     public void setPosition(long increase) {
         position += increase;
     }
@@ -280,7 +224,8 @@ public class Flight implements Serializable {
     }
 
     /**
-     * @return int[]
+     *
+     * @return
      */
     public int[] getDateFormat() {
         int[] render = new int[10];
@@ -297,6 +242,9 @@ public class Flight implements Serializable {
         return render;
     }
 
+    /**
+     *
+     */
     public void flightDuration() {
         int[] render = getDateFormat();
         LocalDateTime dep = LocalDateTime.of(render[0], render[1], render[2], render[3], render[4]);
@@ -311,6 +259,25 @@ public class Flight implements Serializable {
 
     public void setAirline(Airline airline) {
         this.airline = airline;
+    }
+
+    /**
+     *
+     * @param other
+     * @return
+     */
+    @Override
+    public int compareTo(Flight other) {
+        return departureDate.compareTo(other.getDepartureDate());
+    }
+
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public int compareById(Flight other){
+        return id.compareTo(other.getId());
     }
 
 }

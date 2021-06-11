@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pilot extends Collaborator {
+
     private List<Flight> flight;
 
     public Pilot(String name, String lastName, long id, Airline airline) {
@@ -16,9 +17,6 @@ public class Pilot extends Collaborator {
         return flight.size();
     }
 
-    /**
-     * @return List<Flight>
-     */
     public List<Flight> getFlight() {
         return this.flight;
     }
@@ -41,6 +39,10 @@ public class Pilot extends Collaborator {
         flight.remove(f);
     }
 
+    /**
+     * Returns a string representation of the object.
+     * @return Returns a string representation of the object.
+     */
     @Override
     public String toString() {
         return super.getName();

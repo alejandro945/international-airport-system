@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Aircraft implements Maintenance, Serializable {
+
     private static final long serialVersionUID = 1L;
     private final int AIRCRAFT_COLUMNS = 6;
     private Seat[][] seat;// Bynary Search
@@ -13,7 +14,7 @@ public class Aircraft implements Maintenance, Serializable {
     private int capacity;
     private boolean inMaintenance;
 
-    public Aircraft(String planeCode, int planeWeight, int capacity,Airline airline) {
+    public Aircraft(String planeCode, int planeWeight, int capacity, Airline airline) {
         this.planeCode = planeCode;
         this.airline = airline;
         this.planeWeight = planeWeight;
@@ -23,8 +24,9 @@ public class Aircraft implements Maintenance, Serializable {
     }
 
     /**
-     *
-     * @return
+     * Returns a string representation of the object.
+     * 
+     * @return Returns a string representation of the object.
      */
     @Override
     public String toString() {
@@ -55,66 +57,41 @@ public class Aircraft implements Maintenance, Serializable {
         this.planeCode = planeCode;
     }
 
-    /**
-     * @return Seat[][]
-     */
     public Seat[][] getSeat() {
         return this.seat;
     }
 
-    /**
-     * @param seat
-     */
     public void setSeat(Seat[][] seat) {
         this.seat = seat;
     }
 
-    /**
-     * @return Pilot
-     */
     public Pilot getPilot() {
         return this.pilot;
     }
 
-    /**
-     * @param pilot
-     */
     public void setPilot(Pilot pilot) {
         this.pilot = pilot;
     }
 
-   
-
-    /**
-     * @return boolean
-     */
     public boolean isInMaintenance() {
         return this.inMaintenance;
     }
 
-    /**
-     * @param inMaintenance
-     */
     public void setInMaintenance(boolean inMaintenance) {
         this.inMaintenance = inMaintenance;
     }
 
-    
-
-    /**
-     * @return int
-     */
     public int getCapacity() {
         return this.capacity;
     }
 
-    /**
-     * @param capacity
-     */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
+    /**
+     * Creates all aircraft seats.
+     */
     public void createSeats() {
         int rows = capacity / AIRCRAFT_COLUMNS;
         seat = new Seat[rows][AIRCRAFT_COLUMNS];
@@ -125,7 +102,7 @@ public class Aircraft implements Maintenance, Serializable {
                 if (i < 6) {
                     seat[i][j] = new Seat((render), firstLetter, false, 140000);
                 } else {
-                    seat[i][j] = new Seat((render), firstLetter, true , 140000);
+                    seat[i][j] = new Seat((render), firstLetter, true, 140000);
                 }
                 render++;
             }
@@ -133,6 +110,9 @@ public class Aircraft implements Maintenance, Serializable {
         }
     }
 
+    /**
+     * Puts the aircraft in maintenance mode.
+     */
     @Override
     public void inMaintenance() {
         inMaintenance = true;

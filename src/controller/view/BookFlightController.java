@@ -1,12 +1,11 @@
 package controller.view;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.jfoenix.controls.*;
-
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,14 +20,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import model.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import model.*;
 import route.Route;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
-import javafx.util.Callback;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookFlightController {
 

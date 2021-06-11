@@ -1,12 +1,12 @@
 package thread;
 
-import java.io.IOException;
-
 import controller.node.NodeFlightController;
 import javafx.application.Platform;
 import model.Flight;
 import model.FlightState;
 import route.Route;
+
+import java.io.IOException;
 
 public class FlightThread extends Thread {
     private final String IO_MESSAGE = "Hey an IO exception happened, dont worry";

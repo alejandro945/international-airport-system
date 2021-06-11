@@ -1,18 +1,14 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Airline implements Serializable, Comparable<Airline> {
+
     private static final long serialVersionUID = 1L;
     private String airlineName;
     private String logo;
@@ -35,16 +31,10 @@ public class Airline implements Serializable, Comparable<Airline> {
         this.logo = logo;
     }
 
-    /**
-     * @return Assistant
-     */
     public Advisor getAssistantRoot() {
         return this.assistantRoot;
     }
 
-    /**
-     * @param assistantRoot
-     */
     public void setAssistantRoot(Advisor assistantRoot) {
         this.assistantRoot = assistantRoot;
     }
@@ -113,11 +103,20 @@ public class Airline implements Serializable, Comparable<Airline> {
         this.flights = flights;
     }
 
+    /**
+     * Returns a string representation of the object.
+     * @return Returns a string representation of the object.
+     */
     @Override
     public String toString() {
         return airlineName;
     }
 
+    /**
+     *
+     * @param code
+     * @return
+     */
     public Aircraft searchAircraft(String code){
         Aircraft a = null;
         for (Aircraft ac : aircraft) {
@@ -161,28 +160,6 @@ public class Airline implements Serializable, Comparable<Airline> {
         return !isLeaf(advisor);
     }
 
-    // For development purposes. Delete. ------------------------------------------
-    public String inorder() {
-        if (assistantRoot == null) {
-            return "There are no advisors yet.";
-        } else {
-            return inorder(assistantRoot);
-        }
-    }
-
-    private String inorder(Advisor advisor) {
-        String msg = "";
-        if (advisor.getLeft() != null) {
-            msg += inorder(advisor.getLeft());
-        }
-        msg += advisor.getName() + " " + advisor.getLastName() + "\n";
-        if (advisor.getRight() != null) {
-            msg += inorder(advisor.getRight());
-        }
-        return msg;
-    }
-    // For development purposes. Delete. ------------------------------------------
-
     /**
      * Adds an advisor to the binary tree.
      * 
@@ -220,6 +197,10 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
     }
 
+    /**
+     * Removes advisor from the binary tree.
+     * @param advisor Advisor to be removed.
+     */
     public void removeAdvisor(Advisor advisor) {
         if (assistantRoot == null) {
             System.out.println("There are no advisors to delete.");
@@ -234,6 +215,10 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
     }
 
+    /**
+     * Removes leaf from binary tree.
+     * @param advisor Advisor to be removed.
+     */
     private void removeLeaf(Advisor advisor) {
         if (isRoot(advisor)) {
             assistantRoot = null;
@@ -252,6 +237,11 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
     }
 
+    /**
+     * Removes advisor when it has child.
+     * @param advisor Advisor to be removed.
+     * @param advisorType Integer representing if it has a child on its left, right or both. Linked with constants.
+     */
     private void removeWithChild(Advisor advisor, int advisorType) {
         Advisor nextAdvisor = null;
 
@@ -299,6 +289,11 @@ public class Airline implements Serializable, Comparable<Airline> {
         advisor = null;
     }
 
+    /**
+     * Gets minimum value from a binary sub tree.
+     * @param advisor Head advisor from sub tree.
+     * @return Returns minimum advisor from sub tree.
+     */
     private Advisor minSubTree(Advisor advisor) {
         if (advisor != null && advisor.getLeft() != null) {
             while (!isLeaf(advisor)) {
@@ -345,6 +340,11 @@ public class Airline implements Serializable, Comparable<Airline> {
         return new ArrayList<>(employees);
     }
 
+    /**
+     * Compares two airline names.
+     * @param a Airline to be compared with.
+     * @return Returns -1 if the name is least than the other one. Returns 1 if this name is greater. Returns 0 if both names are the same.
+     */
     @Override
     public int compareTo(Airline a) {
         if (a.getAirlineName().equalsIgnoreCase(airlineName)) {
@@ -354,48 +354,97 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
     }
 
-    //Get advisor
+    /**
+     * Creates a list from advisors linked list.
+     * @return Returns list with all advisors.
+     */
     public List<Advisor> getAdvisor() {
         List<Advisor> list = new ArrayList<>();
-        rangeAdvisorsAdd( assistantRoot, list);
+        rangeAdvisorsAdd(assistantRoot, list);
         return list;
     }
 
-    private void rangeAdvisorsAdd(Advisor node, List<Advisor> list) {
-        if (node == null) {
+    /**
+     * Auxiliar method to create list from advisors linked list.
+     * @param advisor Actual advisor.
+     * @param list List containing advisors.
+     */
+    private void rangeAdvisorsAdd(Advisor advisor, List<Advisor> list) {
+        if (advisor == null) {
             return;
         }
-        rangeAdvisorsAdd(node.getLeft(), list);
-        list.add(node);
-        rangeAdvisorsAdd(node.getRight(), list);
+        rangeAdvisorsAdd(advisor.getLeft(), list);
+        list.add(advisor);
+        rangeAdvisorsAdd(advisor.getRight(), list);
     }
 
+    /**
+     * Adds pilot to the airline.
+     * @param name String containing the pilot's name.
+     * @param lastName String containing the pilot's lastname.
+     * @param id Integer containing the pilot's identification number.
+     * @param airline Airline linked with the pilot.
+     */
     public void addPilot(String name, String lastName, int id, Airline airline){
         Pilot temp = new Pilot(name, lastName, id, airline);
         pilots.add(temp);
     }
 
+    /**
+     * Adds flight to the airline.
+     * @param id Identification number of the flight.
+     * @param departureDate Departure date of the flight.
+     * @param departureHour Departure hour of the flight.
+     * @param arrivalDate Arrival date of the flight.
+     * @param arrivalHour Arrival hour of the flight.
+     * @param origin Origin place of the flight.
+     * @param destination Destination of the flight.
+     * @param track Track the flight will use.
+     * @param airline Airline linked with the flight.
+     * @param aircraft Aircraft linked with the flight.
+     */
     public void addFlight(String id,String departureDate,String departureHour,String arrivalDate,String arrivalHour,Places origin, Places destination,Track track,Airline airline, Aircraft aircraft){
         Flight temp = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, origin, destination, track, airline, aircraft);
         flights.add(temp);
     }
 
+    /**
+     * Adds a new aircraft to the airline.
+     * @param plane Aircraft to be added.
+     */
     public void addAircraft(Aircraft plane){
         aircraft.add(plane);
     }
 
+    /**
+     * Removes pilot from airline.
+     * @param pilot Pilot to be removed.
+     */
     public void removePilot(Pilot pilot){
         pilots.remove(pilot);
     }
 
+    /**
+     * Removes flight from airline.
+     * @param flight Flight to be removed.
+     */
     public void removeFlight(Flight flight){
         flights.remove(flight);
     }
 
+    /**
+     * Removes aircraft from airline.
+     * @param plane Aircraft to be removed.
+     */
     public void removeAircraft(Aircraft plane){
         aircraft.remove(plane);
     }
 
+    /**
+     * Imports employee data from file.
+     * @param fileName Name of the file containing all the data.
+     * @throws IOException
+     */
     public void importDataEmployees(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -415,6 +464,11 @@ public class Airline implements Serializable, Comparable<Airline> {
         br.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public void exportDataEmployees(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM EMPLOYEES REPORT");
@@ -426,6 +480,12 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
         pw.close();
     }
+
+    /**
+     *
+     * @param fileName
+     * @throws IOException
+     */
     public void importDataAircraft(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -442,6 +502,11 @@ public class Airline implements Serializable, Comparable<Airline> {
         br.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public void exportDataAircraft(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM AIRCRAFT REPORT");
@@ -453,4 +518,5 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
         pw.close();
     }
+
 }

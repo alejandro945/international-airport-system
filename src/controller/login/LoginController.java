@@ -1,18 +1,21 @@
 package controller.login;
 
-import java.io.IOException;
-
-import com.jfoenix.controls.*;
-
 import animatefx.animation.FadeIn;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import controller.AirportController;
+import controller.Constant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.web.*;
-import controller.*;
+import javafx.scene.web.WebView;
 import model.Airport;
 import route.Route;
+
+import java.io.IOException;
 
 public class LoginController {
 

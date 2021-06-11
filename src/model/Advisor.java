@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Advisor extends Collaborator implements Comparable<Advisor> {
+
     private List<Costumer> costumers;
     private Advisor parent;
     private Advisor right;
@@ -13,6 +14,7 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         super(name, lastName, id, airline, "Advisor");
         costumers = new ArrayList<>();
     }
+
     @Override
     public int getReport() {
         return costumers.size();
@@ -51,9 +53,9 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
     }
 
     /**
-     *
-     * @param advisor
-     * @return
+     * Compares two advisors ids.
+     * @param advisor Advisor to be compared with.
+     * @return Returns -1 if this id is least than the other one. Returns 1 if this id is greater. Returns 0 if both ids are the same.
      */
     @Override
     public int compareTo(Advisor advisor) {
@@ -67,8 +69,8 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
     }
 
     /**
-     *
-     * @return
+     * Returns a string representation of the object.
+     * @return Returns a string representation of the object.
      */
     @Override
     public String toString() {
