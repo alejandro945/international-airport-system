@@ -18,16 +18,10 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         return costumers.size();
     }
 
-    /**
-     * @return List<Costumer>
-     */
     public List<Costumer> getCostumers() {
         return this.costumers;
     }
 
-    /**
-     * @param costumers
-     */
     public void setCostumers(Costumer c) {
         this.costumers.add(c);
     }
@@ -56,6 +50,11 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         this.parent = parent;
     }
 
+    /**
+     *
+     * @param advisor
+     * @return
+     */
     @Override
     public int compareTo(Advisor advisor) {
         int result = -1;
@@ -67,6 +66,10 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return super.getName();
