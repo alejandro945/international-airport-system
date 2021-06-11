@@ -2,8 +2,9 @@ package model;
 
 import java.io.Serializable;
 
-public class Ticket implements Serializable {
+public class Ticket implements Serializable, Price {
     private static final long serialVersionUID = 1L;
+    private final int STANDAR_PRICE = 3000;
     private Flight flight;
     private Seat fligthSeat;
     private int flightPrice;
@@ -12,7 +13,6 @@ public class Ticket implements Serializable {
         this.flight = flight;
         this.fligthSeat = fligthSeat;
         this.flightPrice = flightPrice;
-
     }
 
     /**
@@ -47,7 +47,7 @@ public class Ticket implements Serializable {
      * @return int
      */
     public int getFlightPrice() {
-        return this.flightPrice;
+        return flightPrice;
     }
 
     /**
@@ -55,6 +55,11 @@ public class Ticket implements Serializable {
      */
     public void setFlightPrice(int flightPrice) {
         this.flightPrice = flightPrice;
-    }    
+    }
+
+    @Override
+    public void calculatePrice(int increase) {
+        flightPrice = STANDAR_PRICE * (increase / 100) + fligthSeat.getPrice();
+    }
 
 }

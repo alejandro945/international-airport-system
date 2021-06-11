@@ -26,10 +26,10 @@
       <JFXTextField fx:id="seatValue" alignment="CENTER" layoutX="36.0" layoutY="297.0" promptText="Weight" text="Seat" unFocusColor="#a80294" />
       <JFXTextField fx:id="ticketPrice" alignment="CENTER" disable="true" layoutX="221.0" layoutY="297.0" promptText="Price $" unFocusColor="#a80294" />
       <JFXComboBox fx:id="tickedType" layoutX="30.0" layoutY="242.0" prefHeight="29.0" prefWidth="173.0" promptText="Type" unFocusColor="#972b97" />
-      <JFXComboBox fx:id="meal" layoutX="219.0" layoutY="242.0" prefHeight="29.0" prefWidth="173.0" promptText="meal" unFocusColor="#972b97" />
+      <JFXComboBox fx:id="meal" layoutX="219.0" layoutY="242.0" prefHeight="29.0" prefWidth="173.0" promptText="Choose your Meal" unFocusColor="#972b97" />
       <AnchorPane layoutX="416.0" layoutY="11.0" prefHeight="430.0" prefWidth="271.0">
          <children>
-            <GridPane fx:id="seatsGrid" alignment="CENTER" gridLinesVisible="true" layoutX="43.0" layoutY="117.0" onMouseClicked="#clickSeatGrid" styleClass="gird" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <GridPane fx:id="seatsGrid" alignment="CENTER" gridLinesVisible="true" layoutX="43.0" layoutY="117.0" styleClass="gird" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
               </rowConstraints>

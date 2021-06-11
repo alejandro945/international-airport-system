@@ -126,6 +126,7 @@ public class FlightController implements Initializable {
             showModal();
             modalName.setText("Create Flight");
             cbStatus.setValue(FlightState.SCHEDULED);
+            txtID.setDisable(false);
             cbStatus.setDisable(true);
             btnEdit.setVisible(false);
             btnSave.setVisible(true);
@@ -153,6 +154,7 @@ public class FlightController implements Initializable {
 
     @FXML
     public void editFlight(ActionEvent event) {
+        txtID.setDisable(true);
         cbStatus.setDisable(false);
         if (validateFields()) {
             selected.setId(txtID.getText());
@@ -179,7 +181,7 @@ public class FlightController implements Initializable {
     }
 
     @FXML
-    void saveFlight(ActionEvent event) {
+   public void saveFlight(ActionEvent event) {
         if (validateFields()) {
             String id = txtID.getText();
             String departureDate = txtTakesOffDate.getValue().toString();
@@ -197,7 +199,6 @@ public class FlightController implements Initializable {
             airline.getFlights().add(f);
             dController.geAirportController().createAlert("Flight was successfully added.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -258,6 +259,7 @@ public class FlightController implements Initializable {
                         edit.getStylesheets().add(Route.CRUD.getRoute());
                         delete.setOnAction((ActionEvent event) -> {
                             selected = (Flight) getTableRow().getItem();
+                            selected.getPilot().removeFlight(selected);
                             selected.getAirline().getFlights().remove(selected);
                             dController.geAirportController().createAlert("Flight was removed successfully.",
                                     Route.SUCCESS);

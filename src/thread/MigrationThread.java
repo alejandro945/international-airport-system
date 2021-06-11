@@ -25,7 +25,7 @@ public class MigrationThread extends Thread {
 
     @Override
     public void run() {
-        for (Costumer c : migration.getFlight().getPlane().getCostumer()) {
+        for (Costumer c : migration.getFlight().getCostumer()) {
             try {
                 Thread.sleep(PERSON_DURATION);
             } catch (InterruptedException e) {

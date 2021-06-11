@@ -10,10 +10,12 @@ public class Pilot extends Collaborator {
         super(name, lastName, id, airline, "Pilot");
         flight = new ArrayList<>();
     }
+
     @Override
     public int getReport() {
         return flight.size();
     }
+
     /**
      * @return List<Flight>
      */
@@ -24,14 +26,24 @@ public class Pilot extends Collaborator {
     /**
      * @param flight
      */
-    public void setFlight(Flight flight) {
-        this.flight.add(flight);
+    public void setFlight(Flight fl) {
+        if(flight.isEmpty()){
+            flight.add(fl);
+        }
+        for (Flight f : flight) {
+            if (!f.getId().equals(fl.getId())) {
+                flight.add(fl);
+            }
+        }
+    }
+
+    public void removeFlight(Flight f) {
+        flight.remove(f);
     }
 
     @Override
     public String toString() {
         return super.getName();
     }
-    
 
 }

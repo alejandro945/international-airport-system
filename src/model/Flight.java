@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Flight implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -15,6 +17,7 @@ public class Flight implements Serializable {
     private Places destination;
     private Aircraft plane;
     private Track track;
+    private List<Costumer> costumer; // Bynary Search
     private FlightState flightStatus;
     private String takesOff; // Joins departure date and hour. For table view purposes.
     private String arrives; // Joins arrival date and hour. For table view purposes.
@@ -40,6 +43,7 @@ public class Flight implements Serializable {
         this.origin = origin;
         this.destination = destination;
         this.track = track;
+        costumer = new ArrayList<>();
         this.plane = aircraft;
         this.flightStatus = FlightState.SCHEDULED;
         this.position = 125;
@@ -71,6 +75,20 @@ public class Flight implements Serializable {
 
     public Pilot getPilot() {
         return plane.getPilot();
+    }
+
+    /**
+     * @return ArrayList<Costumer>
+     */
+    public List<Costumer> getCostumer() {
+        return this.costumer;
+    }
+
+    /**
+     * @param costumer
+     */
+    public void setCostumer(Costumer c) {
+        costumer.add(c);
     }
 
     /**

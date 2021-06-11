@@ -1,8 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Aircraft implements Maintenance, Serializable {
     private static final long serialVersionUID = 1L;
@@ -10,7 +8,6 @@ public class Aircraft implements Maintenance, Serializable {
     private Seat[][] seat;// Bynary Search
     private Airline airline;
     private Pilot pilot;
-    private List<Costumer> costumer; // Bynary Search
     private int planeWeight;
     private String planeCode;
     private int capacity;
@@ -23,7 +20,6 @@ public class Aircraft implements Maintenance, Serializable {
         this.capacity = capacity;
         inMaintenance = false;
         createSeats();
-        costumer = new ArrayList<>();
     }
 
     /**
@@ -87,12 +83,7 @@ public class Aircraft implements Maintenance, Serializable {
         this.pilot = pilot;
     }
 
-    /**
-     * @return ArrayList<Costumer>
-     */
-    public List<Costumer> getCostumer() {
-        return this.costumer;
-    }
+   
 
     /**
      * @return boolean
@@ -108,12 +99,7 @@ public class Aircraft implements Maintenance, Serializable {
         this.inMaintenance = inMaintenance;
     }
 
-    /**
-     * @param costumer
-     */
-    public void setCostumer(List<Costumer> costumer) {
-        this.costumer = costumer;
-    }
+    
 
     /**
      * @return int
@@ -132,16 +118,18 @@ public class Aircraft implements Maintenance, Serializable {
     public void createSeats() {
         int rows = capacity / AIRCRAFT_COLUMNS;
         seat = new Seat[rows][AIRCRAFT_COLUMNS];
+        char firstLetter = 'A';
         for (int i = 0; i < rows; i++) {
-            char firstLetter = 'A';
+            int render = 1;
             for (int j = 0; j < AIRCRAFT_COLUMNS; j++) {
                 if (i < 6) {
-                    seat[i][j] = new Seat((i + 1), firstLetter, false, 140000);
+                    seat[i][j] = new Seat((render), firstLetter, false, 140000);
                 } else {
-                    seat[i][j] = new Seat((i + 1), firstLetter, false , 140000);
+                    seat[i][j] = new Seat((render), firstLetter, true , 140000);
                 }
-                firstLetter++;
+                render++;
             }
+            firstLetter++;
         }
     }
 

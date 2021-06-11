@@ -25,7 +25,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="1015.0" spacing="20.0">
                <children>
                   <JFXComboBox fx:id="destiny" prefHeight="26.0" prefWidth="146.0" promptText="Country" unFocusColor="#5b8652" />
-                  <JFXDatePicker fx:id="date" />
+                  <JFXDatePicker fx:id="date" defaultColor="#3a0094" />
                   <Button mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="121.0" styleClass="button2" text="Search" />
                   <ImageView fitHeight="81.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +54,7 @@
             </TableView>
          </children>
       </VBox>
-      <Label layoutX="84.0" layoutY="14.0" styleClass="menu-label" text="Upcoming flights">
+      <Label layoutX="84.0" layoutY="14.0" styleClass="menu-label" text="My Trips">
          <font>
             <Font name="Montserrat Bold" size="20.0" />
          </font>
