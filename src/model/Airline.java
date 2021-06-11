@@ -16,7 +16,6 @@ public class Airline implements Serializable, Comparable<Airline> {
     private Advisor assistantRoot; // Bynary Tree
     private List<Pilot> pilots;
     private List<User> users;
-    private Ticket ticket; // Binary Tree
     private List<Flight> flights;
 
     private final int LEFT_ADVISOR = 1;
@@ -85,14 +84,6 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public Ticket getTicket() {
-        return this.ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
     }
 
     public List<Flight> getFlights() {

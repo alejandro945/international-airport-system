@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trip implements  Comparable<Trip>, Price, Serializable {
+public class Trip implements Comparable<Trip>, Price, Serializable {
 
     private static final long serialVersionUID = 1L;
     private Ticket ticket;
@@ -16,6 +16,9 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
     private Trip left;
     private Trip right;
 
+    /**
+     * The constructor method use for test<br>
+     */
     public Trip(String id, Ticket ticket, Luggage rootLuggage, Seat flightSeat) {
         this.id = id;
         this.ticket = ticket;
@@ -24,6 +27,9 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         calculatePrice(1);
     }
 
+    /**
+     * The constructor method of a Trip Object<br>
+     */
     public Trip(String id, Ticket ticket, Seat flightSeat) {
         this.id = id;
         this.ticket = ticket;
@@ -147,10 +153,10 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
      *
      * @return
      */
-    public String seatToString(){
+    public String seatToString() {
         String letter = String.valueOf(flightSeat.getSeatLetter());
         int num = flightSeat.getSeatNumber();
-        String ms = letter+num;
+        String ms = letter + num;
         return ms;
     }
 
@@ -158,10 +164,10 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
      *
      * @return
      */
-    public List<Luggage> getLuggages(){
+    public List<Luggage> getLuggages() {
         List<Luggage> tempList = new ArrayList<>();
         Luggage temp = getRootLuggage();
-        while(temp != null){
+        while (temp != null) {
             tempList.add(temp);
             temp = temp.getNextLuggage();
         }
@@ -183,7 +189,7 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
      */
     @Override
     public int compareTo(Trip other) {
-        return tripPrice-other.getTripPrice();
+        return tripPrice - other.getTripPrice();
     }
 
     /**
@@ -191,8 +197,8 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
      * @param other
      * @return
      */
-    public int compareByDate(Trip other){
+    public int compareByDate(Trip other) {
         return ticket.getFlight().getDepartureDate().compareTo(other.getTicket().getFlight().getDepartureDate());
     }
-    
+
 }
