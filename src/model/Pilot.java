@@ -25,8 +25,8 @@ public class Pilot extends Collaborator {
     }
 
     /**
-     *
-     * @return
+     * Returns a string representation of the object.
+     * @return Returns a string representation of the object.
      */
     @Override
     public String toString() {

@@ -108,8 +108,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @return
+     * Returns a string representation of the object.
+     * @return Returns a string representation of the object.
      */
     @Override
     public String toString() {

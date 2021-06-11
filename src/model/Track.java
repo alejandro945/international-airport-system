@@ -69,8 +69,8 @@ public class Track implements Maintenance, Serializable {
     }
 
     /**
-     *
-     * @return
+     * Returns a string representation of the object.
+     * @return Returns a string representation of the object.
      */
     public String toString() {
         return gate;
