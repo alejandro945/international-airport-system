@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import com.jfoenix.controls.JFXTextField;
@@ -27,6 +28,8 @@ import model.Migration;
 import route.Route;
 import thread.MigrationThread;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -127,12 +130,38 @@ public class IndicatorsController implements Initializable {
 
     @FXML
     public void exportInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.EXPORT_SUCCESS);
+            try {
+                airport.exportDataMigration(selectedFile.getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                dController.alert(Route.ERROR, Constant.FILE_NOT_FOUND);
+            }
+        }
     }
 
     @FXML
     public void importInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Resource File");
+        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.IMPORT_SUCCESS);
+            try {
+                airport.importDataMigration(selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                dController.alert(Route.WARNING, Constant.IOEXCEPTION);
+            }
+            airport.saveData();
+            airport.loadData();
+            getData();
+        }
     }
 
     public void setModal(Stage modal) {

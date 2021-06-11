@@ -118,6 +118,16 @@ public class Airline implements Serializable, Comparable<Airline> {
         return airlineName;
     }
 
+    public Aircraft searchAircraft(String code){
+        Aircraft a = null;
+        for (Aircraft ac : aircraft) {
+            if(ac.getPlaneCode().equalsIgnoreCase(code)){
+                a = ac;
+            }
+        }
+        return a;
+    }
+
     /**
      * Verifies if an advisor is the root of the tree.
      * 
@@ -390,13 +400,17 @@ public class Airline implements Serializable, Comparable<Airline> {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
         while (line != null) {
-            String[] parts = line.split(",");
-            String name = parts[0];
-            String lastName = parts[1];
-            int id = Integer.parseInt(parts[2]);
-            String type = parts[3];
+            String[] parts = line.split(";");
+            String name = parts[1];
+            String lastName = parts[2];
+            int id = Integer.parseInt(parts[3]);
+            String type = parts[4];
             line = br.readLine();
-            ;
+            if(type.equalsIgnoreCase("pilot")){
+                pilots.add(new Pilot(name, lastName, id, this));
+            }else{
+                addAdvisor(new Advisor(name, lastName, id, this));
+            };
         }
         br.close();
     }
@@ -404,11 +418,38 @@ public class Airline implements Serializable, Comparable<Airline> {
     public void exportDataEmployees(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM EMPLOYEES REPORT");
-        pw.println("Name,Last name,Id,Status");
+        pw.println("Name;Last name;Id;Type;Airline");
         for (int i = 0; i < getEmployees().size(); i++) {
             Collaborator e = getEmployees().get(i);
             pw.println(
-                    e.getName() + "," + e.getLastName() + "," + e.getId() + "," + e.getAirline() + "," + e.getType());
+                    e.getName() + ";" + e.getLastName() + ";" + e.getId() + ";" + e.getType() + ";" + e.getAirline());
+        }
+        pw.close();
+    }
+    public void importDataAircraft(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(";");
+            String planeCode = parts[1];
+            int planeWeight = Integer.parseInt(parts[2]);
+            int capacity = Integer.parseInt(parts[3]);
+            line = br.readLine();
+            if(searchAircraft(planeCode)==null){
+                aircraft.add(new Aircraft(planeCode, planeWeight, capacity, this));
+            }
+        }
+        br.close();
+    }
+
+    public void exportDataAircraft(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("AIRPORT SYSTEM AIRCRAFT REPORT");
+        pw.println("Code;Weight;Capacity;Airline");
+        for (int i = 0; i < getAircraft().size(); i++) {
+            Aircraft a = getAircraft().get(i);
+            pw.println(
+                    a.getPlaneCode() + ";" + a.getPlaneWeight() + ";" + a.getCapacity() + ";" + a.getAirline());
         }
         pw.close();
     }

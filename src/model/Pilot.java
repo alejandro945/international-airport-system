@@ -10,7 +10,9 @@ public class Pilot extends Collaborator {
         super(name, lastName, id, airline, "Pilot");
         flight = new ArrayList<>();
     }
-
+    public int getReport() {
+        return flight.size();
+    }
     /**
      * @return List<Flight>
      */
@@ -21,8 +23,8 @@ public class Pilot extends Collaborator {
     /**
      * @param flight
      */
-    public void setFlight(List<Flight> flight) {
-        this.flight = flight;
+    public void setFlight(Flight flight) {
+        this.flight.add(flight);
     }
 
     @Override

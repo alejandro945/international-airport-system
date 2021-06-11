@@ -1,18 +1,22 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Airport implements Serializable {
     private static final long serialVersionUID = 1L;
-    public final String FILE_SEPARATOR = ",";
+    public final String FILE_SEPARATOR = ";";
     public final String SUCCESS = " have been added to our Airport successfully";
     public final String DELETE_SUCCESS = " have been deleted successfully";
     public final String EDIT_SUCCESS = " have been edited  successfully";
@@ -146,6 +150,108 @@ public class Airport implements Serializable {
         this.airlines = airlines;
     }
 
+    public void importDataTracks(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            int id = Integer.parseInt(parts[1]);
+            String gate = parts[2];
+            line = br.readLine();
+            addTrack(new Track(id, gate));
+        }
+        br.close();
+    }
+
+    public void exportDataTracks(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("AIRPORT SYSTEM TRACKS REPORT");
+        pw.println("Code;Gate;Status");
+        for (int i = 0; i < getTrackAmount(); i++) {
+            Track t = tracksToList().get(i);
+            pw.println(t.getId() + FILE_SEPARATOR + t.getGate() + FILE_SEPARATOR + t.getState());
+        }
+        pw.close();
+    }
+
+    public void importDataMigration(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            Flight flight = new Flight(parts[1]);
+            int approved = Integer.parseInt(parts[2]);
+            int covid = Integer.parseInt(parts[3]);
+            int wanted = Integer.parseInt(parts[4]);
+            int minor = Integer.parseInt(parts[5]);
+            line = br.readLine();
+            Migration m = createMigrationZone(flight);
+            m.setapp(approved);
+            m.setcov(covid);
+            m.setwant(wanted);
+            m.setmin(minor);
+            m.airportCharges();
+        }
+        br.close();
+    }
+
+    public void exportDataMigration(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("AIRPORT SYSTEM MIGRATION REPORT");
+        pw.println("Code Flight;Approved;Covid;Wanted;Minor;Capital");
+        for (int i = 0; i < migration.size(); i++) {
+            Migration m = migration.get(i);
+            pw.println(m.getId() + FILE_SEPARATOR + m.getApproved() + FILE_SEPARATOR + m.getCovid() + FILE_SEPARATOR
+                    + m.getWanted() + FILE_SEPARATOR + m.getMinor() + FILE_SEPARATOR + m.getCapital());
+        }
+        pw.close();
+    }
+
+    public void importDataUsers(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[1];
+            String lastName = parts[2];
+            long id = Long.parseLong(parts[3]);
+            String email = parts[4];
+            String password = parts[3];
+            UserRole role = UserRole.valueOf(parts[5]);
+            Airline airline = searchBynaryAirline(parts[6]);
+            line = br.readLine();
+            switch (role) {
+                case COSTUMER_USER:
+                    createUser(name, lastName, id, email, password);
+                    break;
+                case AIRLINE_ADMIN:
+                    createUser(name, lastName, id, email, password, airline);
+                    break;
+                default:
+                    createUser(name, lastName, id, email, password, role);
+                    break;
+            }
+        }
+        br.close();
+    }
+
+    public void exportDataUsers(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("AIRPORT SYSTEM USERS REPORT");
+        pw.println("Name;Last Name;Id;Email;Role;Airline");
+        for (int i = 0; i < users.size(); i++) {
+            User u = users.get(i);
+            String msg = (u.getName() + FILE_SEPARATOR + u.getLastName() + FILE_SEPARATOR + u.getId() + FILE_SEPARATOR
+                    + u.getEmail() + FILE_SEPARATOR + u.getRole().name());
+            if (u instanceof AirlineUser) {
+                AirlineUser a = (AirlineUser) u;
+                msg += FILE_SEPARATOR + a.getAirline();
+            }
+            pw.println(msg);
+        }
+        pw.close();
+    }
+
     public Migration createMigrationZone(Flight flight) {
         Migration render = null;
         if (!searchMigrationFlight(flight.getId())) {
@@ -201,7 +307,7 @@ public class Airport implements Serializable {
             while (i < airlines.size() && newAirline.compareTo(getAirlines().get(i)) > 0) {
                 i++;
             }
-            if (!searchBynaryAirline(airlineName)) {
+            if (searchBynaryAirline(airlineName) == null) {
                 airlines.add(i, newAirline);
                 msg = airlineName + SUCCESS;
             } else {
@@ -211,15 +317,32 @@ public class Airport implements Serializable {
         return msg;
     }
 
-    public boolean searchBynaryAirline(String airlineName) {
-        boolean render = false;
+    public Airline searchBynaryAirline(String airlineName) {
+        Airline render = null;
         int i = 0;
         int j = airlines.size() - 1;
-        while (i <= j && !render) {
+        while (i <= j && render != null) {
             int m = (i + j) / 2;
             if (airlines.get(m).getAirlineName().equals(airlineName)) {
-                render = true;
+                render = airlines.get(m);
             } else if (airlines.get(m).getAirlineName().compareTo(airlineName) > 0) {
+                j = m - 1;
+            } else {
+                i = m + 1;
+            }
+        }
+        return render;
+    }
+
+    public Flight searchBynaryFlight(String code) {
+        Flight render = null;
+        int i = 0;
+        int j = getFlights().size() - 1;
+        while (i <= j && render != null) {
+            int m = (i + j) / 2;
+            if (getFlights().get(m).getId().equals(code)) {
+                render = getFlights().get(m);
+            } else if (getFlights().get(m).getId().compareTo(code) > 0) {
                 j = m - 1;
             } else {
                 i = m + 1;

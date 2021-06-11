@@ -14,6 +14,10 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         costumers = new ArrayList<>();
     }
 
+    public int getReport() {
+        return costumers.size();
+    }
+
     /**
      * @return List<Costumer>
      */
@@ -24,8 +28,8 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
     /**
      * @param costumers
      */
-    public void setCostumers(List<Costumer> costumers) {
-        this.costumers = costumers;
+    public void setCostumers(Costumer c) {
+        this.costumers.add(c);
     }
 
     public Advisor getRight() {
