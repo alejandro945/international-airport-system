@@ -569,4 +569,58 @@ public class Airport implements Serializable {
         return "Track " + track.getId() + EDIT_SUCCESS;
     }
 
+    public List<User> orderUseList() {
+
+        List<User> list = users;
+
+        for (int i = 0; i < list.size(); i++) {
+            User minor = list.get(i);
+            int pos = i;
+
+            for (int j = i + 1; j < list.size(); j++) {
+                if (minor.compareTo(list.get(j)) > 0) {
+                    minor = list.get(j);
+                    pos = j;
+                } else if (minor.compareTo(list.get(j)) == 0) {
+                    if (minor.compareByRole(list.get(j)) > 0) {
+                        minor = list.get(j);
+                        pos = j;
+                    }
+                }
+            }
+            User temp = list.get(i);
+            list.set(i, minor);
+            list.set(pos, temp);
+        }
+
+        return list;
+    }
+
+    public List<Flight> flightList() {
+        boolean inserted = false;
+
+        for (int i = 1; i < flights.size(); i++) {
+            for (int j = i; j > 0 && !inserted; j--) {
+                if (flights.get(j - 1).compareTo(flights.get(j)) == 0) {
+                    if (flights.get(j - 1).compareById(flights.get(j)) < 0) {
+                        Flight temp = flights.get(j);
+                        flights.set(j, flights.get(j - 1));
+                        flights.set(j - 1, temp);
+                        inserted = true;
+                    }
+                }
+            }
+            if (inserted == false) {
+                for (int j = i; j > 0 && flights.get(j - 1).compareTo(flights.get(j)) < 0; j--) {
+                    Flight temp = flights.get(j);
+                    flights.set(j, flights.get(j - 1));
+                    flights.set(j - 1, temp);
+                    inserted = true;
+                }
+            }
+        }
+
+        return flights;
+    }
+
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class User extends Person {
+public class User extends Person implements  Comparable<User> {
     private String email;
     private String password;
     private UserRole role;
@@ -54,4 +54,12 @@ public class User extends Person {
         this.role = role;
     }
 
+    @Override
+    public int compareTo(User other) {
+        return (int) (this.getId()-other.getId());
+    }
+
+    public int compareByRole(User other){
+        return role.name().compareTo(other.getRole().name());
+    }
 }

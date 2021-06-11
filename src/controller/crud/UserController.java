@@ -176,7 +176,7 @@ public class UserController implements Initializable {
     }
 
     public void getData() {
-        ObservableList<User> users = FXCollections.observableArrayList(airport.getUsers());
+        ObservableList<User> users = FXCollections.observableArrayList(airport.orderUseList());
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         lastCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));

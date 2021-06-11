@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Flight implements Serializable {
+public class Flight implements  Comparable<Flight>, Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
     private String departureDate;
@@ -293,6 +293,15 @@ public class Flight implements Serializable {
 
     public void setAirline(Airline airline) {
         this.airline = airline;
+    }
+
+    @Override
+    public int compareTo(Flight other) {
+        return departureDate.compareTo(other.getDepartureDate());
+    }
+
+    public int compareById(Flight other){
+        return id.compareTo(other.getId());
     }
 
 }

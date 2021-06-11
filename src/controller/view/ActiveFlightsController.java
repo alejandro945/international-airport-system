@@ -57,7 +57,7 @@ public class ActiveFlightsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         activeBox.getChildren().clear();
-        for (Flight flight : airport.getFlights()) {
+        for (Flight flight : airport.flightList()) {
             if (flight.getFlightStatus() == FlightState.AIRBORNE) {
                 try {
                     addNode(flight);

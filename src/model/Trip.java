@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trip implements Price, Serializable {
+public class Trip implements  Comparable<Trip>, Price, Serializable {
     private static final long serialVersionUID = 1L;
     private Ticket ticket;
     private Luggage rootLuggage;
@@ -173,5 +173,13 @@ public class Trip implements Price, Serializable {
         this.flightSeat = flightSeat;
     }
 
+    @Override
+    public int compareTo(Trip other) {
+        return tripPrice-other.getTripPrice();
+    }
+
+    public int compareByDate(Trip other){
+        return ticket.getFlight().getDepartureDate().compareTo(other.getTicket().getFlight().getDepartureDate());
+    }
     
 }
