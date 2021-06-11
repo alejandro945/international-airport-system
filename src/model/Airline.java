@@ -198,8 +198,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param advisor
+     * Removes advisor from the binary tree.
+     * @param advisor Advisor to be removed.
      */
     public void removeAdvisor(Advisor advisor) {
         if (assistantRoot == null) {
@@ -216,8 +216,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param advisor
+     * Removes leaf from binary tree.
+     * @param advisor Advisor to be removed.
      */
     private void removeLeaf(Advisor advisor) {
         if (isRoot(advisor)) {
@@ -238,9 +238,9 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param advisor
-     * @param advisorType
+     * Removes advisor when it has child.
+     * @param advisor Advisor to be removed.
+     * @param advisorType Integer representing if it has a child on its left, right or both. Linked with constants.
      */
     private void removeWithChild(Advisor advisor, int advisorType) {
         Advisor nextAdvisor = null;
@@ -290,9 +290,9 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param advisor
-     * @return
+     * Gets minimum value from a binary sub tree.
+     * @param advisor Head advisor from sub tree.
+     * @return Returns minimum advisor from sub tree.
      */
     private Advisor minSubTree(Advisor advisor) {
         if (advisor != null && advisor.getLeft() != null) {
@@ -341,9 +341,9 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param a
-     * @return
+     * Compares two airline names.
+     * @param a Airline to be compared with.
+     * @return Returns -1 if the name is least than the other one. Returns 1 if this name is greater. Returns 0 if both names are the same.
      */
     @Override
     public int compareTo(Airline a) {
@@ -355,35 +355,35 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @return
+     * Creates a list from advisors linked list.
+     * @return Returns list with all advisors.
      */
     public List<Advisor> getAdvisor() {
         List<Advisor> list = new ArrayList<>();
-        rangeAdvisorsAdd( assistantRoot, list);
+        rangeAdvisorsAdd(assistantRoot, list);
         return list;
     }
 
     /**
-     *
-     * @param node
-     * @param list
+     * Auxiliar method to create list from advisors linked list.
+     * @param advisor Actual advisor.
+     * @param list List containing advisors.
      */
-    private void rangeAdvisorsAdd(Advisor node, List<Advisor> list) {
-        if (node == null) {
+    private void rangeAdvisorsAdd(Advisor advisor, List<Advisor> list) {
+        if (advisor == null) {
             return;
         }
-        rangeAdvisorsAdd(node.getLeft(), list);
-        list.add(node);
-        rangeAdvisorsAdd(node.getRight(), list);
+        rangeAdvisorsAdd(advisor.getLeft(), list);
+        list.add(advisor);
+        rangeAdvisorsAdd(advisor.getRight(), list);
     }
 
     /**
-     *
-     * @param name
-     * @param lastName
-     * @param id
-     * @param airline
+     * Adds pilot to the airline.
+     * @param name String containing the pilot's name.
+     * @param lastName String containing the pilot's lastname.
+     * @param id Integer containing the pilot's identification number.
+     * @param airline Airline linked with the pilot.
      */
     public void addPilot(String name, String lastName, int id, Airline airline){
         Pilot temp = new Pilot(name, lastName, id, airline);
@@ -391,17 +391,17 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param id
-     * @param departureDate
-     * @param departureHour
-     * @param arrivalDate
-     * @param arrivalHour
-     * @param origin
-     * @param destination
-     * @param track
-     * @param airline
-     * @param aircraft
+     * Adds flight to the airline.
+     * @param id Identification number of the flight.
+     * @param departureDate Departure date of the flight.
+     * @param departureHour Departure hour of the flight.
+     * @param arrivalDate Arrival date of the flight.
+     * @param arrivalHour Arrival hour of the flight.
+     * @param origin Origin place of the flight.
+     * @param destination Destination of the flight.
+     * @param track Track the flight will use.
+     * @param airline Airline linked with the flight.
+     * @param aircraft Aircraft linked with the flight.
      */
     public void addFlight(String id,String departureDate,String departureHour,String arrivalDate,String arrivalHour,Places origin, Places destination,Track track,Airline airline, Aircraft aircraft){
         Flight temp = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, origin, destination, track, airline, aircraft);
@@ -409,40 +409,40 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param plane
+     * Adds a new aircraft to the airline.
+     * @param plane Aircraft to be added.
      */
     public void addAircraft(Aircraft plane){
         aircraft.add(plane);
     }
 
     /**
-     *
-     * @param pilot
+     * Removes pilot from airline.
+     * @param pilot Pilot to be removed.
      */
     public void removePilot(Pilot pilot){
         pilots.remove(pilot);
     }
 
     /**
-     *
-     * @param flight
+     * Removes flight from airline.
+     * @param flight Flight to be removed.
      */
     public void removeFlight(Flight flight){
         flights.remove(flight);
     }
 
     /**
-     *
-     * @param plane
+     * Removes aircraft from airline.
+     * @param plane Aircraft to be removed.
      */
     public void removeAircraft(Aircraft plane){
         aircraft.remove(plane);
     }
 
     /**
-     *
-     * @param fileName
+     * Imports employee data from file.
+     * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
     public void importDataEmployees(String fileName) throws IOException {
