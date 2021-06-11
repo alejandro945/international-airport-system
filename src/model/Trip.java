@@ -32,6 +32,10 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         calculatePrice(1);
     }
 
+    /**
+     *
+     * @return
+     */
     public int luggagePrice() {
         int amount = 0;
         Luggage temp = rootLuggage;
@@ -44,44 +48,26 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         return amount;
     }
 
-    /**
-     * @return Ticket
-     */
     public Ticket getTicket() {
         return this.ticket;
     }
 
-    /**
-     * @param ticket
-     */
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
 
-    /**
-     * @return Luggage
-     */
     public Luggage getRootLuggage() {
         return this.rootLuggage;
     }
 
-    /**
-     * @param luggage
-     */
     public void setRootLuggage(Luggage rootLuggage) {
         this.rootLuggage = rootLuggage;
     }
 
-    /**
-     * @return int
-     */
     public int getTripPrice() {
         return this.tripPrice;
     }
 
-    /**
-     * @param tripPrice
-     */
     public void setTripPrice(int tripPrice) {
         this.tripPrice = tripPrice;
     }
@@ -118,14 +104,19 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         this.id = id;
     }
 
-    // Compare
-
+    /**
+     *
+     * @param other
+     * @return
+     */
     public int compareByPrice(Trip other) {
         return this.tripPrice - other.tripPrice;
     }
 
-    // Add luggage
-
+    /**
+     *
+     * @param luggage
+     */
     public void addLuggage(Luggage luggage) {
         if (rootLuggage == null) {
             setRootLuggage(luggage);
@@ -143,11 +134,19 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         calculatePrice(1);
     }
 
+    /**
+     *
+     * @param increase
+     */
     @Override
     public void calculatePrice(int increase) {
         tripPrice = ticket.getFlightPrice() + luggagePrice();
     }
 
+    /**
+     *
+     * @return
+     */
     public String seatToString(){
         String letter = String.valueOf(flightSeat.getSeatLetter());
         int num = flightSeat.getSeatNumber();
@@ -155,6 +154,10 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         return ms;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Luggage> getLuggages(){
         List<Luggage> tempList = new ArrayList<>();
         Luggage temp = getRootLuggage();
@@ -173,11 +176,21 @@ public class Trip implements  Comparable<Trip>, Price, Serializable {
         this.flightSeat = flightSeat;
     }
 
+    /**
+     *
+     * @param other
+     * @return
+     */
     @Override
     public int compareTo(Trip other) {
         return tripPrice-other.getTripPrice();
     }
 
+    /**
+     *
+     * @param other
+     * @return
+     */
     public int compareByDate(Trip other){
         return ticket.getFlight().getDepartureDate().compareTo(other.getTicket().getFlight().getDepartureDate());
     }

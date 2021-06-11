@@ -18,16 +18,10 @@ public class Track implements Maintenance, Serializable {
         inMaintenance = false;
     }
 
-    /**
-     * @return int
-     */
     public int getId() {
         return this.id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(int id) {
         this.id = id;
     }
@@ -37,30 +31,18 @@ public class Track implements Maintenance, Serializable {
         return state;
     }
 
-    /**
-     * @return boolean
-     */
     public boolean isInMaintenance() {
         return this.inMaintenance;
     }
 
-    /**
-     * @param state
-     */
     public void setInMaintenance(boolean inMaintenance) {
         this.inMaintenance = inMaintenance;
     }
 
-    /**
-     * @return String
-     */
     public String getGate() {
         return this.gate;
     }
 
-    /**
-     * @param gate
-     */
     public void setGate(String gate) {
         this.gate = gate;
     }
@@ -70,35 +52,28 @@ public class Track implements Maintenance, Serializable {
         inMaintenance = true;
     }
 
-    /**
-     * @return Track
-     */
     public Track getNext() {
         return next;
     }
 
-    /**
-     * @param next
-     */
     public void setNext(Track next) {
         this.next = next;
     }
 
-    /**
-     * @return Track
-     */
     public Track getPrev() {
         return prev;
     }
 
-    /**
-     * @param prev
-     */
     public void setPrev(Track prev) {
         this.prev = prev;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
         return gate;
     }
+
 }

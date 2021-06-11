@@ -69,10 +69,10 @@ public class Costumer extends User {
         this.rootTrip = rootTrip;
     }
 
-    // -------------------- Methods
-
-    // Add trip
-
+    /**
+     *
+     * @param newPNode
+     */
     public void addTrip(Trip newPNode) {
 
         if (rootTrip == null) {
@@ -83,6 +83,11 @@ public class Costumer extends User {
 
     }
 
+    /**
+     *
+     * @param parent
+     * @param newTrip
+     */
     private void addTrip(Trip parent, Trip newTrip) {
         if (newTrip.getTripPrice() <= parent.getTripPrice()) {
             if (parent.getLeft() == null) {
@@ -101,7 +106,10 @@ public class Costumer extends User {
         }
     }
 
-    // Print trips
+    /**
+     *
+     * @return
+     */
     public List<Trip> getTrips() {
         List<Trip> list = new ArrayList<>();
         rangeTripsAdd(rootTrip, list);
@@ -109,7 +117,10 @@ public class Costumer extends User {
         return list;
     }
 
-    // Bubble sorting
+    /**
+     *
+     * @param list
+     */
     private void bubbleSorting(List<Trip> list) {
 
         for (int i = list.size() - 1; i > 0; i--) {
@@ -133,6 +144,11 @@ public class Costumer extends User {
         }
     }
 
+    /**
+     *
+     * @param node
+     * @param list
+     */
     private void rangeTripsAdd(Trip node, List<Trip> list) {
         if (node == null) {
             return;
@@ -142,13 +158,23 @@ public class Costumer extends User {
         rangeTripsAdd(node.getRight(), list);
     }
 
-    // Return trip by object
+    /**
+     *
+     * @param toFind
+     * @return
+     */
     public Trip getTrip(Trip toFind) {
         Trip temp = null;
         rangeTripSearch(rootTrip, toFind, temp);
         return temp;
     }
 
+    /**
+     *
+     * @param node
+     * @param toFind
+     * @param returnV
+     */
     private void rangeTripSearch(Trip node, Trip toFind, Trip returnV) {
         if (node == null) {
             return;
@@ -160,7 +186,11 @@ public class Costumer extends User {
         rangeTripSearch(node.getRight(), toFind, returnV);
     }
 
-    // Delete trip
+    /**
+     *
+     * @param trip
+     * @return
+     */
     public String deleteTrip(Trip trip) {
         Trip temp = trip;
 
@@ -227,6 +257,11 @@ public class Costumer extends User {
 
     }
 
+    /**
+     *
+     * @param starTrip
+     * @return
+     */
     private Trip minTrip(Trip starTrip) {
         if (starTrip.getLeft() == null) {
             return starTrip;
@@ -235,7 +270,11 @@ public class Costumer extends User {
         }
     }
 
-    // Remove Trip
+    /**
+     *
+     * @param trip
+     * @return
+     */
     public String removeTrip(Trip trip) {
         if (rootTrip == null) {
             System.out.println("There are no trips to delete.");
@@ -251,6 +290,10 @@ public class Costumer extends User {
         return "Trip removed";
     }
 
+    /**
+     *
+     * @param trip
+     */
     private void removeLeaf(Trip trip) {
         if (trip == rootTrip) {
             rootTrip = null;
@@ -269,6 +312,11 @@ public class Costumer extends User {
         }
     }
 
+    /**
+     *
+     * @param trip
+     * @param tripType
+     */
     private void removeWithChild(Trip trip, int tripType) {
         Trip nextTrip = null;
 
@@ -317,6 +365,11 @@ public class Costumer extends User {
         trip = null;
     }
 
+    /**
+     *
+     * @param trip
+     * @return
+     */
     private Trip minSubTree(Trip trip) {
         if (trip != null && trip.getLeft() != null) {
             while (!isLeaf(trip)) {
@@ -347,7 +400,11 @@ public class Costumer extends User {
         return trip.getLeft() == null && trip.getRight() == null;
     }
 
-    // Add luggage
+    /**
+     *
+     * @param luggage
+     * @param trip
+     */
     public void addLuggage(Luggage luggage, Trip trip) {
         trip.addLuggage(luggage);
     }
@@ -360,6 +417,12 @@ public class Costumer extends User {
         this.state = CostumerState.values()[state].name();
     }
 
+    /**
+     *
+     * @param node
+     * @param count
+     * @return
+     */
     private int countTrips(Trip node, int count) {
         if (node == null) {
             return 0;
@@ -370,10 +433,12 @@ public class Costumer extends User {
         return count;
     }
 
+    /**
+     *
+     * @return
+     */
     public int countTrips() {
         return countTrips(rootTrip, 0);
     }
-
-    // Update Trip
 
 }

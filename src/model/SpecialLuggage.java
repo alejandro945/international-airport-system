@@ -9,16 +9,10 @@ public class SpecialLuggage extends Luggage {
         calculatePrice(30);
     }
 
-    /**
-     * @return String
-     */
     public String getLuggageType() {
         return this.luggageType;
     }
 
-    /**
-     * @param luggageType
-     */
     public void setLuggageType(String luggageType) {
         this.luggageType = luggageType;
     }

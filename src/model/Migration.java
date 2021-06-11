@@ -91,6 +91,13 @@ public class Migration implements Serializable, Supplier {
         return wanted + covid + minor + approved;
     }
 
+    /**
+     *
+     * @param c
+     * @throws WantedException
+     * @throws CovidException
+     * @throws MinorException
+     */
     public void costumerTypes(Costumer c) throws WantedException, CovidException, MinorException {
         switch (c.getState()) {
             case "WANTED":
@@ -110,6 +117,9 @@ public class Migration implements Serializable, Supplier {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void airportCharges() {
         capital = (wanted + covid + minor) * 10;
