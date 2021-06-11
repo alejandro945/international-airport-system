@@ -79,7 +79,7 @@ public class FlightsBookedController {
     private TableColumn<Trip, String> actionT;
 
     @FXML
-    void filter(ActionEvent event) {
+    public void filter(ActionEvent event) {
         if (date.getValue() == null || destiny.getValue().equals("Countries")) {
             dController.geAirportController().createAlert("Please fill the country and start date field", Route.ERROR);
         } else {
@@ -91,8 +91,7 @@ public class FlightsBookedController {
     public void initialize() {
         filterInfo.setText("");
         loadData();
-        initializeTableView();
-        
+        initializeTableView();     
     }
 
     public void loadData() {

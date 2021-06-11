@@ -122,7 +122,7 @@ public class BookFlightController {
         }
     }
 
-    void newTrip() throws IOException {
+    public void newTrip() throws IOException {
         Stage stageTicket = dController.loadModal(Route.TRIP_MODAL, this); /// Doble click vuelo
         this.modalTicket = stageTicket;
         stageTicket.show();

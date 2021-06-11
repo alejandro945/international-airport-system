@@ -1,0 +1,11 @@
+AIRPORT SYSTEM AIRLINES REPORT
+Airline;Icon Path
+AMERICAN;src/ui/assets/img/american.png/
+AVIANCA;src/ui/assets/img/avianca.png/
+DELTA;src/ui/assets/img/delta.png/
+IBERIA;src/ui/assets/img/iberia.png/
+JET BLUE;src/ui/assets/img/jetBlue.jpg/
+LAN;src/ui/assets/img/lan.png/
+LATAM;src/ui/assets/img/latam.png/
+SPIRIT;src/ui/assets/img/spirit.png/
+VIVA AIR;src/ui/assets/img/vivaair.jpg/

@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import model.*;
 import route.Route;
 
-
 public class AirportController {
 
     @FXML
@@ -34,8 +33,10 @@ public class AirportController {
 
     private LoginController loginController;
     private DashboardController dashboardController;
+    private Airport airport;
 
     public AirportController(Airport airport) {
+        this.airport = airport;
         loginController = new LoginController(airport, this);
         dashboardController = new DashboardController(airport, this);
     }
@@ -46,6 +47,8 @@ public class AirportController {
     @FXML
     public void handleMouseClick(MouseEvent event) {
         if (event.getSource() == btnCloseLogin) {
+            airport.saveData();
+            airport.loadData();
             System.exit(0);
         } else if (event.getSource() == btnMinimize) {
             getWindow().setIconified(true);

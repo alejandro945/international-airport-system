@@ -5,7 +5,6 @@ import controller.crud.*;
 import controller.crud.AirlineEmployeesController;
 import controller.view.*;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,14 +32,8 @@ import java.util.*;
 public class DashboardController implements Initializable {
     private AirportController airportController;
     private Airport airport;
-
-    // For development purposes only.
-    @FXML
-    private ChoiceBox<String> devUserType;
     private int activeUser;
-    private final String[] userTypes = Arrays.toString(UserRole.class.getEnumConstants()).replaceAll("^.|.$", "")
-            .split(", ");
-    // Delete before release.
+    private String type;
 
     @FXML
     private Label lblDate;
@@ -89,42 +82,38 @@ public class DashboardController implements Initializable {
             } else {
                 imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
             }
-            devUserType.setValue(airport.getLogged().getRole().name());
+            type = airport.getLogged().getRole().name();
         } else if (airport.getAirlineLogged() != null) {
             activeUser = 2;
             lblUser.setText(airport.getAirlineLogged().getName());
             File file = new File(airport.getAirlineLogged().getAirline().getIcon());
             airlineLogo.setImage(new Image("file:///" + file.getAbsolutePath()));
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
-            devUserType.setValue(airport.getAirlineLogged().getRole().name());
+            type = airport.getAirlineLogged().getRole().name();
         } else {
             activeUser = 3;
             lblUser.setText(airport.getAdminLogged().getName());
             imgUser.setFill(new ImagePattern(new Image(Route.USER_ICON.getRoute())));
-            devUserType.setValue(airport.getAdminLogged().getRole().name());
+            type = airport.getAdminLogged().getRole().name();
             if (airport.getAdminLogged().getRole() == UserRole.MIGRATION_AGENT) {
-                notifications.setText("Costos del aeropuerto por persona" + airport.getExpenses());
+                renderToast();
             }
         }
         try {
-            changeUserType((ActionEvent) devUserType.getOnAction());
+            renderUser();
         } catch (IOException e) {
-            e.printStackTrace();
+            alert(Route.WARNING, Constant.IOEXCEPTION);
         }
+    }
+
+    public void renderToast() {
+        notifications.setText("Costos del aeropuerto por persona $ " + airport.getExpenses());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         init();
         startClock();
-        devUserType.getItems().addAll(userTypes);
-        devUserType.setOnAction(event -> {
-            try {
-                changeUserType(event);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     public void startClock() {
@@ -184,6 +173,12 @@ public class DashboardController implements Initializable {
 
     @FXML
     public void logout(MouseEvent event) throws IOException, InterruptedException {
+       closeAccount();
+    }
+
+    public void closeAccount() throws IOException, InterruptedException{
+        airport.saveData();
+        airport.loadData();
         airport.setLogged(null);
         airport.setAdminLogged(null);
         airport.setAirlineLogged(null);
@@ -271,8 +266,7 @@ public class DashboardController implements Initializable {
         return activeUser;
     }
 
-    public void changeUserType(ActionEvent event) throws IOException {
-        String type = devUserType.getValue();
+    public void renderUser() throws IOException {
         loadView(Route.HOME);
         switch (type) {
             case ("COSTUMER_USER"):

@@ -201,7 +201,7 @@ public class AirlineEmployeesController implements Initializable {
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-
+        reportCol.setCellValueFactory(new PropertyValueFactory<>("report"));
         renderActions();
         employeesTbl.setItems(employees);
     }
@@ -258,7 +258,7 @@ public class AirlineEmployeesController implements Initializable {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            // modalName.setText("Edit User");
+                            modalName.setText("Edit Employee");
                             prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);

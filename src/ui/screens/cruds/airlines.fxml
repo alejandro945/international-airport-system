@@ -31,6 +31,24 @@
                </graphic>
             </Button>
             <Label layoutX="105.0" layoutY="658.0" prefHeight="20.0" prefWidth="205.0" text="Showing 16 results of 40" textFill="#8d8d8d" />
+            <Button layoutX="590.0" layoutY="25.0" mnemonicParsing="false" onAction="#importInfo" prefHeight="46.0" prefWidth="146.0" styleClass="button2" text="Import" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/protect_80px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="750.0" layoutY="25.0" mnemonicParsing="false" onAction="#exportInfo" prefHeight="46.0" prefWidth="146.0" text="Export" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/increase_80px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Separator layoutY="53.0" prefHeight="9.0" prefWidth="1195.0" />

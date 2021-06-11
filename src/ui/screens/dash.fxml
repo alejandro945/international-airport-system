@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -43,21 +42,8 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="935.0" spacing="10.0" styleClass="main-top" stylesheets="@../assets/styles/vendor.css" HBox.hgrow="ALWAYS">
                <children>
-                  <ImageView fx:id="airlineLogo" fitHeight="52.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="notifications" prefHeight="61.0" prefWidth="281.0" textAlignment="CENTER" wrapText="true" />
-                  <Label layoutX="929.0" layoutY="40.0" text="Test User Type:" textFill="WHITE">
-                     <font>
-                        <Font name="Montserrat Regular" size="12.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="devUserType" prefWidth="150.0" stylesheets="@../assets/styles/dash.css">
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin>
-                  </ChoiceBox>
+                  <ImageView fx:id="airlineLogo" fitHeight="56.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="notifications" alignment="CENTER" prefHeight="61.0" prefWidth="281.0" textAlignment="CENTER" wrapText="true" />
                   <Label fx:id="lblUser" text="Username" textFill="WHITE">
                      <font>
                         <Font name="Montserrat Regular" size="12.0" />

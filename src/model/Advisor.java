@@ -13,7 +13,7 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         super(name, lastName, id, airline, "Advisor");
         costumers = new ArrayList<>();
     }
-
+    @Override
     public int getReport() {
         return costumers.size();
     }
