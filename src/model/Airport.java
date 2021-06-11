@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airport implements Serializable {
+
     private static final long serialVersionUID = 1L;
     public final String FILE_SEPARATOR = ";";
     public final String SUCCESS = " have been added to our Airport successfully";
@@ -471,7 +472,6 @@ public class Airport implements Serializable {
         return render;
     }
 
-    // USER-TOWER-MIGRATION
     /**
      *
      * @param name
@@ -516,7 +516,6 @@ public class Airport implements Serializable {
         return name + EDIT_SUCCESS;
     }
 
-    // AIRLINE-ADMIN
     /**
      *
      * @param name
@@ -561,7 +560,6 @@ public class Airport implements Serializable {
         return name + EDIT_SUCCESS;
     }
 
-    // JWT-COSTUMER
     /**
      *
      * @param name
@@ -583,7 +581,6 @@ public class Airport implements Serializable {
         return msg;
     }
 
-    // OAUTH2
     /**
      *
      * @param name

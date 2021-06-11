@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private Flight flight;
     private Seat fligthSeat;

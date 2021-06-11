@@ -1,6 +1,7 @@
 package model;
 
 public class User extends Person implements  Comparable<User> {
+
     private String email;
     private String password;
     private UserRole role;

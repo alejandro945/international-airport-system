@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Airline implements Serializable, Comparable<Airline> {
+
     private static final long serialVersionUID = 1L;
     private String airlineName;
     private String logo;
@@ -522,4 +523,5 @@ public class Airline implements Serializable, Comparable<Airline> {
         }
         pw.close();
     }
+
 }

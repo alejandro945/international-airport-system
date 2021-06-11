@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trip implements  Comparable<Trip>, Price, Serializable {
+
     private static final long serialVersionUID = 1L;
     private Ticket ticket;
     private Luggage rootLuggage;
     private int tripPrice;
     private String id;
     private Seat flightSeat;
-
     private Trip father;
     private Trip left;
     private Trip right;

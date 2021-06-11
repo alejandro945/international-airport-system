@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Advisor extends Collaborator implements Comparable<Advisor> {
+
     private List<Costumer> costumers;
     private Advisor parent;
     private Advisor right;
@@ -13,6 +14,7 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
         super(name, lastName, id, airline, "Advisor");
         costumers = new ArrayList<>();
     }
+
     @Override
     public int getReport() {
         return costumers.size();

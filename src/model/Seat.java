@@ -3,12 +3,12 @@ package model;
 import java.io.Serializable;
 
 public class Seat implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private int seatNumber;
     private char seatLetter;
     private boolean seatState;
     private boolean economic;
-
     private int price;
 
     public Seat(int seatNumber, char seatLetter, boolean economic, int price) {

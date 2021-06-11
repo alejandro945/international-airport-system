@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aircraft implements Maintenance, Serializable {
+
     private static final long serialVersionUID = 1L;
     private final int AIRCRAFT_COLUMNS = 6;
     private Seat[][] seat;// Bynary Search

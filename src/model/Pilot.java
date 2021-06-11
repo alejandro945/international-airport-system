@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pilot extends Collaborator {
+
     private List<Flight> flight;
 
     public Pilot(String name, String lastName, long id, Airline airline) {

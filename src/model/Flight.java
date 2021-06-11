@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Flight implements  Comparable<Flight>, Serializable {
+
     private static final long serialVersionUID = 1L;
     private String id;
     private String departureDate;

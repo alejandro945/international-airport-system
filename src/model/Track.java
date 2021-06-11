@@ -3,12 +3,12 @@ package model;
 import java.io.Serializable;
 
 public class Track implements Maintenance, Serializable {
+
     private static final long serialVersionUID = 1L;
     private int id;
     private boolean inMaintenance;
     private String gate;
     private String state;
-
     private Track next;
     private Track prev;
 

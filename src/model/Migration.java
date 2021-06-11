@@ -6,6 +6,7 @@ import exeption.WantedException;
 import java.io.Serializable;
 
 public class Migration implements Serializable, Supplier {
+
     private static final long serialVersionUID = 1L;
     private Flight flight;
     private int capital, approved, wanted, covid, minor;
