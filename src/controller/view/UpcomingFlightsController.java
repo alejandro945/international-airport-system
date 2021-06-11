@@ -1,11 +1,6 @@
 package controller.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXTextField;
-
 import controller.Constant;
 import controller.DashboardController;
 import controller.node.NodeUpcomingController;
@@ -19,6 +14,10 @@ import model.Airport;
 import model.Flight;
 import model.FlightState;
 import route.Route;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class UpcomingFlightsController implements Initializable{
 

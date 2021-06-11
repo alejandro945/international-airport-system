@@ -1,16 +1,11 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Airline implements Serializable, Comparable<Airline> {
 

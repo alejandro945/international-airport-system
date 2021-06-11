@@ -3,6 +3,7 @@ package model;
 import exeption.CovidException;
 import exeption.MinorException;
 import exeption.WantedException;
+
 import java.io.Serializable;
 
 public class Migration implements Serializable, Supplier {

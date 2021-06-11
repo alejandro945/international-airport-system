@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import route.*;
+import route.Route;
 
 public class Splash extends Preloader {
     private Stage splash;

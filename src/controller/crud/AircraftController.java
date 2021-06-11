@@ -1,19 +1,11 @@
 package controller.crud;
 
+import com.jfoenix.controls.JFXTextField;
 import controller.Constant;
+import controller.DashboardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.jfoenix.controls.JFXTextField;
-
-import controller.DashboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -24,10 +16,16 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Aircraft;
 import model.Airline;
 import model.Airport;
-import model.Aircraft;
 import route.Route;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class AircraftController implements Initializable {
     @FXML

@@ -1,5 +1,8 @@
 package controller.view;
 
+import com.jfoenix.controls.JFXTextField;
+import controller.Constant;
+import controller.DashboardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,17 +13,12 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import com.jfoenix.controls.JFXTextField;
-import javafx.scene.control.Label;
 import model.Airport;
 import model.Flight;
 import model.FlightState;
@@ -33,9 +31,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import controller.Constant;
-import controller.DashboardController;
 
 public class IndicatorsController implements Initializable {
 

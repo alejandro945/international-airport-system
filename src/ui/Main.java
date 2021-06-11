@@ -1,17 +1,18 @@
 package ui;
 
-import java.io.IOException;
-
 import com.sun.javafx.application.LauncherImpl;
-
 import controller.AirportController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.stage.*;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Airport;
 import route.Route;
+
+import java.io.IOException;
 
 public class Main extends Application {
     private final int RENDER_COMPONENTES = 5000;

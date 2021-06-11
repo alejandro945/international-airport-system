@@ -1,11 +1,6 @@
 package controller.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXTextField;
-
 import controller.Constant;
 import controller.DashboardController;
 import javafx.event.ActionEvent;
@@ -17,6 +12,10 @@ import javafx.scene.image.ImageView;
 import model.Airport;
 import model.User;
 import route.Route;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
 
