@@ -1,9 +1,7 @@
 package controller.view;
 
-import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
 import controller.node.NodeFlightController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,8 +24,6 @@ import java.util.ResourceBundle;
 
 public class ActiveFlightsController implements Initializable {
     private int nodeIndex;
-    @FXML
-    private JFXTextField txtCode;
 
     @FXML
     private VBox activeBox;
@@ -47,11 +43,6 @@ public class ActiveFlightsController implements Initializable {
 
     public DashboardController getDController() {
         return dController;
-    }
-
-    @FXML
-    public void searchFlight(ActionEvent event) {
-
     }
 
     @Override

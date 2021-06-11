@@ -156,7 +156,7 @@ public class DashboardController implements Initializable {
         String time = lblTime.getText().substring(0, 5);
         for (Flight flight : airport.getFlights()) {
             FlightState state = flight.getFlightStatus();
-            if (state == FlightState.SCHEDULED) {
+            if (state == FlightState.SCHEDULED || state == FlightState.BOARD) {
                 if (dateRender.equals(flight.getDepartureDate()) && time.compareTo(flight.getDepartureHour()) < 0) {
                     flight.setFlightStatus(FlightState.BOARD);
                 } else if (dateRender.equals(flight.getArrivalDate())

@@ -1,8 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Aircraft implements Maintenance, Serializable {
 
@@ -11,24 +9,23 @@ public class Aircraft implements Maintenance, Serializable {
     private Seat[][] seat;// Bynary Search
     private Airline airline;
     private Pilot pilot;
-    private List<Costumer> costumer; // Bynary Search
     private int planeWeight;
     private String planeCode;
     private int capacity;
     private boolean inMaintenance;
 
-    public Aircraft(String planeCode, int planeWeight, int capacity,Airline airline) {
+    public Aircraft(String planeCode, int planeWeight, int capacity, Airline airline) {
         this.planeCode = planeCode;
         this.airline = airline;
         this.planeWeight = planeWeight;
         this.capacity = capacity;
         inMaintenance = false;
         createSeats();
-        costumer = new ArrayList<>();
     }
 
     /**
      * Returns a string representation of the object.
+     * 
      * @return Returns a string representation of the object.
      */
     @Override
@@ -76,20 +73,12 @@ public class Aircraft implements Maintenance, Serializable {
         this.pilot = pilot;
     }
 
-    public List<Costumer> getCostumer() {
-        return this.costumer;
-    }
-
     public boolean isInMaintenance() {
         return this.inMaintenance;
     }
 
     public void setInMaintenance(boolean inMaintenance) {
         this.inMaintenance = inMaintenance;
-    }
-
-    public void setCostumer(List<Costumer> costumer) {
-        this.costumer = costumer;
     }
 
     public int getCapacity() {
@@ -106,16 +95,18 @@ public class Aircraft implements Maintenance, Serializable {
     public void createSeats() {
         int rows = capacity / AIRCRAFT_COLUMNS;
         seat = new Seat[rows][AIRCRAFT_COLUMNS];
+        char firstLetter = 'A';
         for (int i = 0; i < rows; i++) {
-            char firstLetter = 'A';
+            int render = 1;
             for (int j = 0; j < AIRCRAFT_COLUMNS; j++) {
                 if (i < 6) {
-                    seat[i][j] = new Seat((i + 1), firstLetter, false, 140000);
+                    seat[i][j] = new Seat((render), firstLetter, false, 140000);
                 } else {
-                    seat[i][j] = new Seat((i + 1), firstLetter, false , 140000);
+                    seat[i][j] = new Seat((render), firstLetter, true, 140000);
                 }
-                firstLetter++;
+                render++;
             }
+            firstLetter++;
         }
     }
 

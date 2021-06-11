@@ -57,7 +57,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <HBox spacing="10.0" />
             <TableView fx:id="luggageTbl" prefHeight="487.0" prefWidth="475.0" stylesheets="@../../../assets/styles/table.css">
                <columns>
                   <TableColumn fx:id="widthCol" prefWidth="146.0" text="Width" />
@@ -75,7 +74,6 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <Button fx:id="cancelBtn" layoutX="912.0" layoutY="19.0" mnemonicParsing="false" onAction="#cancelModalUpdate" styleClass="button2" text="cancel" visible="false" />
       <Pane layoutX="67.0" layoutY="529.0" prefHeight="294.0" prefWidth="529.0" styleClass="box">
          <children>
             <Label fx:id="idTrip" alignment="CENTER" layoutX="25.0" layoutY="76.0" prefHeight="26.0" prefWidth="205.0" text="Trip Id:">

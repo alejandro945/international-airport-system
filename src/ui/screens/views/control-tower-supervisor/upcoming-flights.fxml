@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" style="-fx-background-color: #FFF;" stylesheets="@../../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="80.0" layoutY="14.0" styleClass="menu-label" text="Upcoming Flights">
@@ -15,12 +19,6 @@
       <Separator layoutY="58.0" prefHeight="9.0" prefWidth="1195.0" />
       <VBox fillWidth="false" layoutX="22.0" layoutY="84.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="709.0" prefWidth="1132.0" spacing="20.0" styleClass="box" stylesheets="@../../../assets/styles/vendor.css">
          <children>
-            <HBox spacing="10.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#searchFlight" prefHeight="35.0" prefWidth="203.0" styleClass="button1" text="Search" textFill="WHITE" />
-                  <JFXTextField fx:id="txtCode" alignment="CENTER" prefHeight="27.0" prefWidth="270.0" promptText="Flight Code" unFocusColor="#8103a1" />
-               </children>
-            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="1068.0" styleClass="flight-header">
                <children>
                   <Label alignment="CENTER" prefHeight="20.0" prefWidth="147.0" text="Airline" textFill="WHITE" />

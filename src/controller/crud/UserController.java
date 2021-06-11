@@ -265,6 +265,7 @@ public class UserController implements Initializable {
             dController.geAirportController().createAlert(msg, Route.SUCCESS);
             trimFileds();
             modal.close();
+            setModal(null);
         } else if (validateFields()) {
             if (option == 1) {
                 if (txtRole.getValue() == UserRole.COSTUMER_USER) {
@@ -281,6 +282,7 @@ public class UserController implements Initializable {
             dController.geAirportController().createAlert(msg, Route.SUCCESS);
             trimFileds();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }

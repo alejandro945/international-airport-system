@@ -137,7 +137,6 @@ public class AirlineEmployeesController implements Initializable {
                 dController.alert(Route.WARNING, Constant.IOEXCEPTION);
             }
             airport.saveData();
-            airport.loadData();
             getData();
         }
     }
@@ -161,7 +160,6 @@ public class AirlineEmployeesController implements Initializable {
             }
             dController.geAirportController().createAlert(type + " was successfully edited.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -185,7 +183,6 @@ public class AirlineEmployeesController implements Initializable {
             }
             dController.geAirportController().createAlert(type + " was successfully added.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -248,6 +245,7 @@ public class AirlineEmployeesController implements Initializable {
                             }
                             dController.geAirportController().createAlert(type + " was removed successfully.",
                                     Route.SUCCESS);
+                                    airport.saveData();
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {

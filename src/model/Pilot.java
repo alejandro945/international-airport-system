@@ -21,8 +21,22 @@ public class Pilot extends Collaborator {
         return this.flight;
     }
 
-    public void setFlight(Flight flight) {
-        this.flight.add(flight);
+    /**
+     * @param flight
+     */
+    public void setFlight(Flight fl) {
+        if(flight.isEmpty()){
+            flight.add(fl);
+        }
+        for (Flight f : flight) {
+            if (!f.getId().equals(fl.getId())) {
+                flight.add(fl);
+            }
+        }
+    }
+
+    public void removeFlight(Flight f) {
+        flight.remove(f);
     }
 
     /**

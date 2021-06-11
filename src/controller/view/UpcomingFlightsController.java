@@ -1,10 +1,8 @@
 package controller.view;
 
-import com.jfoenix.controls.JFXTextField;
 import controller.Constant;
 import controller.DashboardController;
 import controller.node.NodeUpcomingController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,9 +20,6 @@ import java.util.ResourceBundle;
 public class UpcomingFlightsController implements Initializable{
 
     @FXML
-    private JFXTextField txtCode;
-
-    @FXML
     private VBox activeBox;
 
     private DashboardController dController;
@@ -34,12 +29,6 @@ public class UpcomingFlightsController implements Initializable{
         this.dController = dController;
         this.airport = airport;
     }
-
-    @FXML
-    public void searchFlight(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (Flight flight : airport.getFlights()) {

@@ -124,7 +124,6 @@ public class AircraftController implements Initializable {
                 dController.alert(Route.WARNING, Constant.IOEXCEPTION);
             }
             airport.saveData();
-            airport.loadData();
             getData();
         }
     }
@@ -137,7 +136,6 @@ public class AircraftController implements Initializable {
             selected.setCapacity(Integer.parseInt(txtCapacity.getText()));
             dController.geAirportController().createAlert("Aircraft was successfully edited.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -157,7 +155,6 @@ public class AircraftController implements Initializable {
                 dController.alert(Route.ERROR, "Aircraft already exists.");
             }
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
