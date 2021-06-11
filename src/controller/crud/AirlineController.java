@@ -73,7 +73,7 @@ public class AirlineController implements Initializable {
     }
 
     @FXML
-    void newAirline(ActionEvent event) throws IOException {
+    public void newAirline(ActionEvent event) throws IOException {
         if (modal == null) {
             Stage stage = dController.loadModal(Route.AIRLINE_MODAL, this);
             setModal(stage);
@@ -116,13 +116,13 @@ public class AirlineController implements Initializable {
     }
 
     @FXML
-    void cancelModal(ActionEvent event) {
+    public void cancelModal(ActionEvent event) {
         modal.close();
         setModal(null);
     }
 
     @FXML
-    void editAirline(ActionEvent event) {
+    public void editAirline(ActionEvent event) {
         if (validateFields()) {
             selected.setAirlineName(txtName.getText());
             selected.setLogo(pathRender);
@@ -131,6 +131,7 @@ public class AirlineController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
@@ -145,6 +146,7 @@ public class AirlineController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }

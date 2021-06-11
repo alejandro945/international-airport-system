@@ -162,12 +162,14 @@ public class FlightController implements Initializable {
             selected.setTrack(cbTrack.getValue());
             selected.setPlane(cbAircraft.getValue());
             selected.getPlane().setPilot(cbPilot.getValue());
+            selected.getPilot().setFlight(selected);
             selected.setFlightStatus(cbStatus.getValue());
             dController.geAirportController().createAlert("Flight was successfully edited.", Route.SUCCESS);
             airport.saveData();
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
@@ -193,6 +195,7 @@ public class FlightController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }

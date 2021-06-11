@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -101,8 +102,12 @@ public class AircraftController implements Initializable {
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(null);
         if (selectedFile != null) {
-        //    alert.setTitle("Export employees");
-        //    restaurant.exportDataEmployees(selectedFile.getAbsolutePath(), separator.getText());
+            dController.alert(Route.SUCCESS, Constant.EXPORT_SUCCESS);
+            try {
+                airline.exportDataAircraft(selectedFile.getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                dController.alert(Route.ERROR, Constant.FILE_NOT_FOUND);
+            }
         }
     }
 
@@ -114,16 +119,20 @@ public class AircraftController implements Initializable {
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
         if (selectedFile != null) {
-         //   alert.setTitle("Import employees");
-          //  airline.importDataEmployees(selectedFile.getAbsolutePath());
+            dController.alert(Route.SUCCESS, Constant.IMPORT_SUCCESS);
+            try {
+                airline.importDataAircraft(selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                dController.alert(Route.WARNING, Constant.IOEXCEPTION);
+            }
             airport.saveData();
             airport.loadData();
             getData();
-        } 
+        }
     }
 
     @FXML
-    void editAircraft(ActionEvent event) {
+   public void editAircraft(ActionEvent event) {
         if (validateFields()) {
             selected.setPlaneCode(txtCode.getText());
             selected.setPlaneWeight(Integer.parseInt(txtWeight.getText()));
@@ -133,21 +142,27 @@ public class AircraftController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
     }
 
     @FXML
-    void saveAircraft(ActionEvent event) {
+   public void saveAircraft(ActionEvent event) {
         if (validateFields()) {
+            if(airline.searchAircraft(txtCode.getText())==null){
             airline.getAircraft().add(new Aircraft(txtCode.getText(), Integer.parseInt(txtWeight.getText()),
                     Integer.parseInt(txtCapacity.getText()), airline));
-            dController.geAirportController().createAlert("Aircraft was successfully added.", Route.SUCCESS);
+            dController.alert( Route.SUCCESS,"Aircraft was successfully added.");
+            }else{
+                dController.alert(Route.ERROR, "Aircraft already exists.");
+            }
             airport.saveData();
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }

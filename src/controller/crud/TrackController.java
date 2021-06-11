@@ -11,11 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.*;
 import route.Route;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -77,14 +80,14 @@ public class TrackController implements Initializable {
     }
 
     @FXML
-    void newTrack(ActionEvent event) throws IOException {
-        if(modal==null){
-        showModal();
-        modalName.setText("Create Track");
-        txtId.setText(airport.getTrackAmount() + 1 + "");
-        cbMaintenance.setDisable(true);
-        btnEdit.setVisible(false);
-        btnSave.setVisible(true);
+    public void newTrack(ActionEvent event) throws IOException {
+        if (modal == null) {
+            showModal();
+            modalName.setText("Create Track");
+            txtId.setText(airport.getTrackAmount() + 1 + "");
+            cbMaintenance.setDisable(true);
+            btnEdit.setVisible(false);
+            btnSave.setVisible(true);
         }
     }
 
@@ -93,35 +96,64 @@ public class TrackController implements Initializable {
     }
 
     @FXML
-    void cancelModal(ActionEvent event) {
+    public void cancelModal(ActionEvent event) {
         modal.close();
         setModal(null);
     }
+
     @FXML
     public void exportInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.EXPORT_SUCCESS);
+            try {
+                airport.exportDataTracks(selectedFile.getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                dController.alert(Route.ERROR, Constant.FILE_NOT_FOUND);
+            }
+        }
     }
 
     @FXML
     public void importInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Resource File");
+        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.IMPORT_SUCCESS);
+            try {
+                airport.importDataTracks(selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                dController.alert(Route.WARNING, Constant.IOEXCEPTION);
+            }
+            airport.saveData();
+            airport.loadData();
+            getData();
+        }
     }
+
     @FXML
-    void editTrack(ActionEvent event) {
+    public void editTrack(ActionEvent event) {
         if (validateFields()) {
-            dController.geAirportController().createAlert(airport.editTrack(selected, txtGate.getText(),cbMaintenance.isSelected()),
-                    Route.SUCCESS);
+            dController.geAirportController().createAlert(
+                    airport.editTrack(selected, txtGate.getText(), cbMaintenance.isSelected()), Route.SUCCESS);
             modal.close();
             airport.saveData();
             airport.loadData();
             getData();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
     }
 
     @FXML
-    void saveTrack(ActionEvent event) {
+    public void saveTrack(ActionEvent event) {
         if (validateFields()) {
             airport.addTrack(new Track(Integer.parseInt(txtId.getText()), txtGate.getText()));
             dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
@@ -129,6 +161,7 @@ public class TrackController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }

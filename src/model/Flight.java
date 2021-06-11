@@ -26,6 +26,10 @@ public class Flight implements Serializable {
     private double journey;
     private long duration;
 
+    public Flight(String id) {
+        this.id = id;
+    }
+
     public Flight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour,
             Places origin, Places destination, Track track, Airline airline, Aircraft aircraft) {
         this.id = id;

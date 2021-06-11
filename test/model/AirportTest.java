@@ -19,7 +19,8 @@ public class AirportTest {
 
         User test1 = new User("Test1", "Test1", 567, "test1@gmail.com", "123", UserRole.values()[1]);
         User test2 = new User("Test2", "Test2", 765, "test2@gmail.com", "123", UserRole.values()[1]);
-
+        User admin = airport.getUsers().get(0);
+        airport.setAdminLogged(admin);
         airport.getUsers().add(test1);
         airport.getUsers().add(test2);
     }
@@ -29,7 +30,8 @@ public class AirportTest {
 
         User test1 = new User("Test1", "Test1", 567, "test1@gmail.com", "123", UserRole.values()[3]);
         User test2 = new User("Test2", "Test2", 765, "test2@gmail.com", "123", UserRole.values()[3]);
-
+        User admin = airport.getUsers().get(0);
+        airport.setAdminLogged(admin);
         airport.getUsers().add(test1);
         airport.getUsers().add(test2);
     }
@@ -39,7 +41,8 @@ public class AirportTest {
 
         User test1 = new User("Test1", "Test1", 567, "test1@gmail.com", "123", UserRole.values()[4]);
         User test2 = new User("Test2", "Test2", 765, "test2@gmail.com", "123", UserRole.values()[4]);
-
+        User admin = airport.getUsers().get(0);
+        airport.setAdminLogged(admin);
         airport.getUsers().add(test1);
         airport.getUsers().add(test2);
     }
@@ -49,7 +52,8 @@ public class AirportTest {
 
         Costumer test1 = new Costumer("Test2", "Test2", 765, "test2@gmail.com", "123");
         Costumer test2 = new Costumer("Test1", "Test1", 765, "test1@gmail.com", "123");
-
+        User admin = airport.getUsers().get(0);
+        airport.setAdminLogged(admin);
         airport.getUsers().add(test1);
         airport.getUsers().add(test2);
     }
@@ -99,8 +103,9 @@ public class AirportTest {
         viva.getFlights().add(fly1);
         avianca.getFlights().add(fly2);
 
-        /* airport.getFlights().add(fly1);
-        airport.getFlights().add(fly2); */
+        /*
+         * airport.getFlights().add(fly1); airport.getFlights().add(fly2);
+         */
     }
 
     private void setupScenary14() {

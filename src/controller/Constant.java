@@ -8,4 +8,6 @@ public class Constant {
     public static final String USER_NOT_EXIST = "Hey validate your password is incorrect";
     public static final String IOEXCEPTION = "Opss, an ioexception had ocurred";
     public static final String FILE_NOT_FOUND = "We could not find the file";
+    public static final String IMPORT_SUCCESS = "Your data have been imported succesfully";
+    public static final String EXPORT_SUCCESS = "Your data have been exported succesfully";
 }

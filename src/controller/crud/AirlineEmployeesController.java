@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.*;
@@ -40,6 +43,9 @@ public class AirlineEmployeesController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> idCol;
+
+    @FXML
+    private TableColumn<?, ?> reportCol;
 
     @FXML
     private TableColumn<?, ?> typeCol;
@@ -81,7 +87,7 @@ public class AirlineEmployeesController implements Initializable {
     }
 
     @FXML
-    void newEmployee(ActionEvent event) throws IOException {
+    public void newEmployee(ActionEvent event) throws IOException {
         if (modal == null) {
             showModal();
             modalName.setText("Create Employee");
@@ -96,19 +102,45 @@ public class AirlineEmployeesController implements Initializable {
     }
 
     @FXML
-    void cancelModal(ActionEvent event) {
+    public void cancelModal(ActionEvent event) {
         modal.close();
         setModal(null);
     }
 
     @FXML
     public void exportInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.EXPORT_SUCCESS);
+            try {
+                airline.exportDataEmployees(selectedFile.getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                dController.alert(Route.ERROR, Constant.FILE_NOT_FOUND);
+            }
+        }
     }
 
     @FXML
     public void importInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Resource File");
+        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.IMPORT_SUCCESS);
+            try {
+                airline.importDataEmployees(selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                dController.alert(Route.WARNING, Constant.IOEXCEPTION);
+            }
+            airport.saveData();
+            airport.loadData();
+            getData();
+        }
     }
 
     @Override
@@ -117,7 +149,7 @@ public class AirlineEmployeesController implements Initializable {
     }
 
     @FXML
-    void editEmployee(ActionEvent event) {
+    public void editEmployee(ActionEvent event) {
         String type = "";
         if (validateFields()) {
             selected.setName(txtName.getText());
@@ -133,13 +165,14 @@ public class AirlineEmployeesController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
     }
 
     @FXML
-    void saveEmployee(ActionEvent event) {
+    public void saveEmployee(ActionEvent event) {
         String type = "";
         if (validateFields()) {
             if (cbType.getValue().equals("Pilot")) {
@@ -156,6 +189,7 @@ public class AirlineEmployeesController implements Initializable {
             airport.loadData();
             getData();
             modal.close();
+            setModal(null);
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
@@ -167,6 +201,7 @@ public class AirlineEmployeesController implements Initializable {
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+
         renderActions();
         employeesTbl.setItems(employees);
     }

@@ -1,5 +1,7 @@
 package controller.crud;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.collections.FXCollections;
@@ -97,12 +100,38 @@ public class UserController implements Initializable {
 
     @FXML
     public void exportInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.EXPORT_SUCCESS);
+            try {
+                airport.exportDataUsers(selectedFile.getAbsolutePath());
+            } catch (FileNotFoundException e) {
+                dController.alert(Route.ERROR, Constant.FILE_NOT_FOUND);
+            }
+        }
     }
 
     @FXML
     public void importInfo(ActionEvent event) {
-
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Resource File");
+        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        if (selectedFile != null) {
+            dController.alert(Route.SUCCESS, Constant.IMPORT_SUCCESS);
+            try {
+                airport.importDataUsers(selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                dController.alert(Route.WARNING, Constant.IOEXCEPTION);
+            }
+            airport.saveData();
+            airport.loadData();
+            getData();
+        }
     }
 
     @FXML
@@ -236,6 +265,7 @@ public class UserController implements Initializable {
             }
             dController.geAirportController().createAlert(msg, Route.SUCCESS);
             trimFileds();
+            modal.close();
         } else if (validateFields()) {
             if (option == 1) {
                 if (txtRole.getValue() == UserRole.COSTUMER_USER) {
@@ -251,6 +281,7 @@ public class UserController implements Initializable {
             }
             dController.geAirportController().createAlert(msg, Route.SUCCESS);
             trimFileds();
+            modal.close();
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
         }
