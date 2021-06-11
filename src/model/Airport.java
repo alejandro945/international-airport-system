@@ -43,6 +43,9 @@ public class Airport implements Serializable {
         dateRender();
     }
 
+    /**
+     *
+     */
     public void dateRender() {
         File file = new File(SAVE_PATH_FILE);
         if (file.length() > 0) {
@@ -50,6 +53,9 @@ public class Airport implements Serializable {
         }
     }
 
+    /**
+     *
+     */
     @SuppressWarnings("unchecked")
     public void loadData() {
         try {
@@ -65,6 +71,9 @@ public class Airport implements Serializable {
         }
     }
 
+    /**
+     *
+     */
     public void saveData() {
         ObjectOutputStream oos;
         try {
@@ -152,6 +161,11 @@ public class Airport implements Serializable {
         this.airlines = airlines;
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws IOException
+     */
     public void importDataAirlines(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -165,6 +179,11 @@ public class Airport implements Serializable {
         br.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public void exportDataAirlines(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM AIRLINES REPORT");
@@ -176,6 +195,11 @@ public class Airport implements Serializable {
         pw.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws IOException
+     */
     public void importDataTracks(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -189,6 +213,11 @@ public class Airport implements Serializable {
         br.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public void exportDataTracks(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM TRACKS REPORT");
@@ -200,6 +229,11 @@ public class Airport implements Serializable {
         pw.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws IOException
+     */
     public void importDataMigration(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -221,6 +255,11 @@ public class Airport implements Serializable {
         br.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public void exportDataMigration(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM MIGRATION REPORT");
@@ -233,6 +272,11 @@ public class Airport implements Serializable {
         pw.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws IOException
+     */
     public void importDataUsers(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -261,6 +305,11 @@ public class Airport implements Serializable {
         br.close();
     }
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public void exportDataUsers(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.println("AIRPORT SYSTEM USERS REPORT");
@@ -278,6 +327,11 @@ public class Airport implements Serializable {
         pw.close();
     }
 
+    /**
+     *
+     * @param flight
+     * @return
+     */
     public Migration createMigrationZone(Flight flight) {
         Migration render = null;
         if (!searchMigrationFlight(flight.getId())) {
@@ -287,6 +341,10 @@ public class Airport implements Serializable {
         return render;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getExpenses() {
         int i = 0;
         int amount = 0;
@@ -297,6 +355,11 @@ public class Airport implements Serializable {
         return amount;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean searchMigrationFlight(String id) {
         boolean render = false;
         for (Migration m : getMigration()) {
@@ -307,6 +370,16 @@ public class Airport implements Serializable {
         return render;
     }
 
+    /**
+     *
+     * @param m
+     * @param flight
+     * @param a
+     * @param c
+     * @param w
+     * @param mn
+     * @return
+     */
     public String editMigration(Migration m, Flight flight, int a, int c, int w, int mn) {
         m.setFlight(flight);
         m.setapp(a);
@@ -316,11 +389,22 @@ public class Airport implements Serializable {
         return "MIGRATION" + EDIT_SUCCESS;
     }
 
+    /**
+     *
+     * @param m
+     * @return
+     */
     public String deleteMigration(Migration m) {
         migration.remove(m);
         return "MIGRATION" + DELETE_SUCCESS;
     }
 
+    /**
+     *
+     * @param airlineName
+     * @param logo
+     * @return
+     */
     public String createAirline(String airlineName, String logo) {
         String msg = "";
         if (airlines.size() == 0) {
@@ -343,6 +427,11 @@ public class Airport implements Serializable {
         return msg;
     }
 
+    /**
+     *
+     * @param airlineName
+     * @return
+     */
     public Airline searchBynaryAirline(String airlineName) {
         Airline render = null;
         int i = 0;
@@ -360,6 +449,11 @@ public class Airport implements Serializable {
         return render;
     }
 
+    /**
+     *
+     * @param code
+     * @return
+     */
     public Flight searchBynaryFlight(String code) {
         Flight render = null;
         int i = 0;
@@ -378,6 +472,16 @@ public class Airport implements Serializable {
     }
 
     // USER-TOWER-MIGRATION
+    /**
+     *
+     * @param name
+     * @param lastName
+     * @param id
+     * @param email
+     * @param password
+     * @param role
+     * @return
+     */
     public String createUser(String name, String lastName, long id, String email, String password, UserRole role) {
         String msg = "";
         if (!searchUserId(id)) {
@@ -390,6 +494,17 @@ public class Airport implements Serializable {
         return msg;
     }
 
+    /**
+     *
+     * @param user
+     * @param name
+     * @param lastName
+     * @param id
+     * @param email
+     * @param password
+     * @param role
+     * @return
+     */
     public String editUser(User user, String name, String lastName, long id, String email, String password,
             UserRole role) {
         user.setName(name);
@@ -402,6 +517,16 @@ public class Airport implements Serializable {
     }
 
     // AIRLINE-ADMIN
+    /**
+     *
+     * @param name
+     * @param lastName
+     * @param id
+     * @param email
+     * @param password
+     * @param airline
+     * @return
+     */
     public String createUser(String name, String lastName, long id, String email, String password, Airline airline) {
         String msg = "";
         if (!searchUserId(id)) {
@@ -414,6 +539,17 @@ public class Airport implements Serializable {
         return msg;
     }
 
+    /**
+     *
+     * @param user
+     * @param name
+     * @param lastName
+     * @param id
+     * @param email
+     * @param password
+     * @param airline
+     * @return
+     */
     public String editUser(AirlineUser user, String name, String lastName, long id, String email, String password,
             Airline airline) {
         user.setName(name);
@@ -426,6 +562,15 @@ public class Airport implements Serializable {
     }
 
     // JWT-COSTUMER
+    /**
+     *
+     * @param name
+     * @param lastName
+     * @param id
+     * @param email
+     * @param password
+     * @return
+     */
     public String createUser(String name, String lastName, long id, String email, String password) {
         String msg = "";
         if (!searchUserId(id)) {
@@ -439,6 +584,14 @@ public class Airport implements Serializable {
     }
 
     // OAUTH2
+    /**
+     *
+     * @param name
+     * @param lastName
+     * @param id
+     * @param iconPath
+     * @return
+     */
     public String createUser(String name, String lastName, long id, String iconPath) {
         String msg = "";
         if (!searchUserId(id)) {
@@ -554,6 +707,10 @@ public class Airport implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Track> getActiveTracks() {
         List<Track> actives = new ArrayList<>();
         for (Track t : tracksToList()) {
@@ -647,6 +804,10 @@ public class Airport implements Serializable {
         return "Track " + track.getId() + EDIT_SUCCESS;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<User> orderUseList() {
 
         List<User> list = users;
@@ -674,6 +835,10 @@ public class Airport implements Serializable {
         return list;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Flight> flightList() {
         boolean inserted = false;
 

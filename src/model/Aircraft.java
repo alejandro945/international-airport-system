@@ -59,76 +59,49 @@ public class Aircraft implements Maintenance, Serializable {
         this.planeCode = planeCode;
     }
 
-    /**
-     * @return Seat[][]
-     */
     public Seat[][] getSeat() {
         return this.seat;
     }
 
-    /**
-     * @param seat
-     */
     public void setSeat(Seat[][] seat) {
         this.seat = seat;
     }
 
-    /**
-     * @return Pilot
-     */
     public Pilot getPilot() {
         return this.pilot;
     }
 
-    /**
-     * @param pilot
-     */
     public void setPilot(Pilot pilot) {
         this.pilot = pilot;
     }
 
-    /**
-     * @return ArrayList<Costumer>
-     */
     public List<Costumer> getCostumer() {
         return this.costumer;
     }
 
-    /**
-     * @return boolean
-     */
     public boolean isInMaintenance() {
         return this.inMaintenance;
     }
 
-    /**
-     * @param inMaintenance
-     */
     public void setInMaintenance(boolean inMaintenance) {
         this.inMaintenance = inMaintenance;
     }
 
-    /**
-     * @param costumer
-     */
     public void setCostumer(List<Costumer> costumer) {
         this.costumer = costumer;
     }
 
-    /**
-     * @return int
-     */
     public int getCapacity() {
         return this.capacity;
     }
 
-    /**
-     * @param capacity
-     */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
+    /**
+     *
+     */
     public void createSeats() {
         int rows = capacity / AIRCRAFT_COLUMNS;
         seat = new Seat[rows][AIRCRAFT_COLUMNS];
@@ -145,6 +118,9 @@ public class Aircraft implements Maintenance, Serializable {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void inMaintenance() {
         inMaintenance = true;

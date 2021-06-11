@@ -9,16 +9,10 @@ public class AirlineUser extends User {
         this.airline = airline;
     }
 
-    /**
-     * @return Airline
-     */
     public Airline getAirline() {
         return this.airline;
     }
 
-    /**
-     * @param airline
-     */
     public void setAirline(Airline airline) {
         this.airline = airline;
     }
