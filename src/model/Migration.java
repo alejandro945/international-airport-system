@@ -103,7 +103,7 @@ public class Migration implements Serializable, Supplier {
                 setCovid();
                 throw new CovidException();
             case "MINOR":
-                setCovid();
+                setMinor();
                 throw new MinorException();
             default:
                 break;

@@ -11,9 +11,13 @@ public class Costumer extends User {
     private String state;
     private String notifications;
 
-    public Costumer() { // JUnit Tests
+    public Costumer() { 
         super("Tester", "User", 8, "testerUser@correo.co", "8", UserRole.COSTUMER_USER);
         int value = (int) ((Math.random() * 4));
+        state = CostumerState.values()[value].name();
+    }
+    public Costumer(int value) { // JUnit Tests
+        super("Tester", "User", 8, "testerUser@correo.co", "8", UserRole.COSTUMER_USER);
         state = CostumerState.values()[value].name();
     }
 

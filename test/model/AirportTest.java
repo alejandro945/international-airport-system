@@ -84,21 +84,6 @@ public class AirportTest {
         viva.getFlights().add(fly1);
         avianca.getFlights().add(fly2);
 
-        /*
-         * airport.getFlights().add(fly1); airport.getFlights().add(fly2);
-         */
-    }
-
-    private void setupScenary14() {
-        airport = new Airport();
-
-        Costumer test2 = new Costumer("Test2", "Test2", 765, "test2@gmail.com", "123");
-        Costumer test1 = new Costumer("Test1", "Test1", 765, "test1@gmail.com", "123");
-        Costumer test3 = new Costumer("Test3", "Test3", 125, "test3@gmail.com", "123");
-
-        airport.getUsers().add(test1);
-        airport.getUsers().add(test2);
-        airport.getUsers().add(test3);
     }
 
     // ----------------------------------------------------------------- cases
@@ -364,12 +349,6 @@ public class AirportTest {
         setupScenary13();
 
         assertEquals(2, airport.getFlights().size());
-
-    }
-
-    @Test
-    public void validateClientPass() {
-        setupScenary14();
 
     }
 }
