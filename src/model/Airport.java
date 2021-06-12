@@ -104,7 +104,7 @@ public class Airport implements Serializable {
     }
 
     /**
-     * Gets the munber of tracks in App.
+     * Gets the number of tracks in App.
      */
     public int getTrackAmount() {
         int trackAmount = 0;

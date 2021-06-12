@@ -61,7 +61,7 @@ public class Flight implements Comparable<Flight>, Serializable {
     }
 
     /**
-     *
+     * Concatenates date and hour for take off and arrival values.
      */
     private void updateFullDates() {
         takesOff = departureDate + " - " + departureHour;
@@ -81,23 +81,14 @@ public class Flight implements Comparable<Flight>, Serializable {
         return plane.getPilot();
     }
 
-    /**
-     * @return ArrayList<Costumer>
-     */
     public List<Costumer> getCostumer() {
         return this.costumer;
     }
 
-    /**
-     * @param costumer
-     */
     public void setCostumer(Costumer c) {
         costumer.add(c);
     }
 
-    /**
-     * @return String
-     */
     public String getDepartureHour() {
         return this.departureHour;
     }
@@ -268,9 +259,10 @@ public class Flight implements Comparable<Flight>, Serializable {
     }
 
     /**
+     * Compares two flights dates.
+     * @param other Flight to be compared with.
+     * @return Returns -1 if this date is least than the other one. Returns 1 if this date is greater. Returns 0 if both dates are the same.
      *
-     * @param other
-     * @return
      */
     @Override
     public int compareTo(Flight other) {
@@ -278,9 +270,10 @@ public class Flight implements Comparable<Flight>, Serializable {
     }
 
     /**
+     * Compares two flights ids.
+     * @param other Flight to be compared with.
+     * @return Returns -1 if this id is least than the other one. Returns 1 if this id is greater. Returns 0 if both ids are the same.
      *
-     * @param other
-     * @return
      */
     public int compareById(Flight other) {
         return id.compareTo(other.getId());

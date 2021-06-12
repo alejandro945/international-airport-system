@@ -71,8 +71,8 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param newPNode
+     * Adds a new trip to the customer.
+     * @param newPNode Trip to be added.
      */
     public void addTrip(Trip newPNode) {
 
@@ -85,9 +85,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param parent
-     * @param newTrip
+     * Adds a new trip to the customer.
+     * @param parent Parent trip.
+     * @param newTrip Trip to be added.
      */
     private void addTrip(Trip parent, Trip newTrip) {
         if (newTrip.getTripPrice() <= parent.getTripPrice()) {
@@ -108,8 +108,8 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @return
+     * Creates a lists from trips linked list.
+     * @return Returns a list with all the customer trips.
      */
     public List<Trip> getTrips() {
         List<Trip> list = new ArrayList<>();
@@ -119,8 +119,8 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param list
+     * Bubble sorting algorithm for trips.
+     * @param list List containing customer's trips.
      */
     private void bubbleSorting(List<Trip> list) {
 
@@ -146,9 +146,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param node
-     * @param list
+     * Auxiliary method to create a list from trip's linked list.
+     * @param node Reference to current trip.
+     * @param list List with trips.
      */
     private void rangeTripsAdd(Trip node, List<Trip> list) {
         if (node == null) {
@@ -160,9 +160,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param toFind
-     * @return
+     * Gets a trip.
+     * @param toFind Trip to be founded.
+     * @return Returns the trip founded. Returns null if nothing is found.
      */
     public Trip getTrip(Trip toFind) {
         Trip temp = null;
@@ -171,10 +171,10 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param node
-     * @param toFind
-     * @param returnV
+     * Searches for a trip.
+     * @param node Reference to current trip.
+     * @param toFind Trip to be founded.
+     * @param returnV Trip to be returned.
      */
     private void rangeTripSearch(Trip node, Trip toFind, Trip returnV) {
         if (node == null) {
@@ -188,9 +188,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param trip
-     * @return
+     * Deletes a trip from customer trip list.
+     * @param trip Trip to be deleted.
+     * @return Returns string with operation result.
      */
     public String deleteTrip(Trip trip) {
         Trip temp = trip;
@@ -257,9 +257,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param starTrip
-     * @return
+     * Gets minimum value from a binary tree.
+     * @param starTrip Head trip from tree.
+     * @return Returns minimum trip from tree.
      */
     private Trip minTrip(Trip starTrip) {
         if (starTrip.getLeft() == null) {
@@ -270,9 +270,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param trip
-     * @return
+     * Removes a trip from trips binary tree.
+     * @param trip Trip to be removed.
+     * @return Returns string with operation result.
      */
     public String removeTrip(Trip trip) {
         if (rootTrip == null) {
@@ -290,8 +290,8 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param trip
+     * Removes leaf from binary tree.
+     * @param trip Trip to be removed.
      */
     private void removeLeaf(Trip trip) {
         if (trip == rootTrip) {
@@ -312,9 +312,10 @@ public class Costumer extends User {
     }
 
     /**
+     * Removes trip when it has child.
+     * @param trip Trip to be removed.
+     * @param tripType Integer representing if it has a child on its left, right or both.
      *
-     * @param trip
-     * @param tripType
      */
     private void removeWithChild(Trip trip, int tripType) {
         Trip nextTrip = null;
@@ -365,9 +366,10 @@ public class Costumer extends User {
     }
 
     /**
+     * Gets minimum value from a binary sub tree.
      *
-     * @param trip
-     * @return
+     * @param trip Head trip from sub tree.
+     * @return Returns minimum trip from sub tree.
      */
     private Trip minSubTree(Trip trip) {
         if (trip != null && trip.getLeft() != null) {
@@ -400,9 +402,9 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param luggage
-     * @param trip
+     * Adds luggage to customer.
+     * @param luggage Luggage to be added.
+     * @param trip Trip reference for the luggage to be added.
      */
     public void addLuggage(Luggage luggage, Trip trip) {
         trip.addLuggage(luggage);
@@ -417,10 +419,10 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @param node
-     * @param count
-     * @return
+     * Counts the amount of trips.
+     * @param node Reference to current trip.
+     * @param count Integer containing the count of trips.
+     * @return Returns an integer with all the amount of trips.
      */
     private int countTrips(Trip node, int count) {
         if (node == null) {
@@ -433,8 +435,8 @@ public class Costumer extends User {
     }
 
     /**
-     *
-     * @return
+     * Auxiliary method to count amount of trips.
+     * @return Returns customer's amount of trips.
      */
     public int countTrips() {
         return countTrips(rootTrip, 0);
