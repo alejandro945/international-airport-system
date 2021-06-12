@@ -122,7 +122,7 @@ You need JDK 1.8_261
 ### Costumer
 
 * <b>Trips</b> <br><br>
-![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/flights.png)<br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/trips.png)<br><br>
 
 * <b>Books</b> <br><br>
 ![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/book.png)<br><br>
