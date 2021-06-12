@@ -15,11 +15,19 @@ public class FlightThread extends Thread {
     private Flight flight;
     private NodeFlightController nf;
 
+    /**
+     * The constructor method of a Flight Thread<br>
+     */
     public FlightThread(Flight flight, NodeFlightController nf) {
         this.flight = flight;
         this.nf = nf;
     }
 
+    /**
+     * 
+     * Method needed by the thread class to efficiently start the concurrency in the
+     * program<br>
+     */
     @Override
     public void run() {
         while (flight.getFlightStatus() == FlightState.AIRBORNE) {

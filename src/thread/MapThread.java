@@ -13,12 +13,20 @@ public class MapThread extends Thread {
     private final String INTERRUPTED_MESSAGE = "Hey an interrupted exception happened, dont worry";
     private final int LIMIT_JOURNEY = 100;
 
-    public MapThread(Flight flight, ActiveFlightsController aController,int node) {
+    /**
+     * The constructor method of a Map Thread<br>
+     */
+    public MapThread(Flight flight, ActiveFlightsController aController, int node) {
         this.flight = flight;
         this.aController = aController;
         this.node = node;
     }
 
+    /**
+     * 
+     * Method needed by the thread class to efficiently start the concurrency in the
+     * program<br>
+     */
     @Override
     public void run() {
         if (flight.getFlightStatus() == FlightState.AIRBORNE) {
@@ -31,7 +39,7 @@ public class MapThread extends Thread {
                 @Override
                 public void run() {
                     if (flight.getProgress() <= LIMIT_JOURNEY) {
-                        aController.setAircraft(flight,node);
+                        aController.setAircraft(flight, node);
                     } else {
                         flight.setFlightStatus(FlightState.DONE);
                     }

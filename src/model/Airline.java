@@ -16,7 +16,6 @@ public class Airline implements Serializable, Comparable<Airline> {
     private Advisor assistantRoot; // Bynary Tree
     private List<Pilot> pilots;
     private List<User> users;
-    private Ticket ticket; // Binary Tree
     private List<Flight> flights;
 
     private final int LEFT_ADVISOR = 1;
@@ -85,14 +84,6 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public Ticket getTicket() {
-        return this.ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
     }
 
     public List<Flight> getFlights() {
@@ -465,8 +456,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param fileName
+     * Exports employee data to a file.
+     * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
     public void exportDataEmployees(String fileName) throws FileNotFoundException {
@@ -482,8 +473,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param fileName
+     * Import aircraft data from file.
+     * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
     public void importDataAircraft(String fileName) throws IOException {
@@ -503,8 +494,8 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param fileName
+     * Exports aircraft data to a file.
+     * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
     public void exportDataAircraft(String fileName) throws FileNotFoundException {

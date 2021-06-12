@@ -1,7 +1,5 @@
 package model;
 
 public enum UserRole {
-
     AIRPORT_ADMIN, AIRLINE_ADMIN, COSTUMER_USER, TOWER_SUPERVISOR, MIGRATION_AGENT
-
 }

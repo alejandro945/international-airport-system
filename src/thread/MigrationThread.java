@@ -17,12 +17,20 @@ public class MigrationThread extends Thread {
     private Migration migration;
     private BarChart<String, Number> bc;
 
+    /**
+     * The constructor method of a Migration Thread<br>
+     */
     public MigrationThread(IndicatorsController iController, Migration migration, BarChart<String, Number> bc) {
         this.iController = iController;
         this.migration = migration;
         this.bc = bc;
     }
 
+    /**
+     * 
+     * Method needed by the thread class to efficiently start the concurrency in the
+     * program<br>
+     */
     @Override
     public void run() {
         for (Costumer c : migration.getFlight().getCostumer()) {
