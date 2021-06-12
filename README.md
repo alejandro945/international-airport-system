@@ -67,6 +67,17 @@ Check out the following video so that you have no doubts about the importance of
 ```
 You need JDK 1.8_261
 ```
+
+** Clarifications: ** By default the software handles a set of data that is found in the data / imports directory.
+
+### Data persistence 🔩
+
+_We handle binary files with all the current information on your system_
+
+```
+Check the general file in data -Airport.data
+```
+
 ## Documentation 📃
 **Don´t hesitate 
 
