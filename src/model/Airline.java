@@ -22,6 +22,9 @@ public class Airline implements Serializable, Comparable<Airline> {
     private final int RIGHT_ADVISOR = 2;
     private final int TWO_ADVISORS = 3;
 
+    /**
+     * The constructor method of an Airline Object<br>
+     */
     public Airline(String airlineName, String logo) {
         pilots = new ArrayList<>();
         flights = new ArrayList<>();
@@ -96,6 +99,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Returns a string representation of the object.
+     * 
      * @return Returns a string representation of the object.
      */
     @Override
@@ -105,13 +109,14 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Searches an aircraft by its code.
+     * 
      * @param code String representing the aircraft code.
      * @return Returns the aircraft if found. Else returns null.
      */
-    public Aircraft searchAircraft(String code){
+    public Aircraft searchAircraft(String code) {
         Aircraft a = null;
         for (Aircraft ac : aircraft) {
-            if(ac.getPlaneCode().equalsIgnoreCase(code)){
+            if (ac.getPlaneCode().equalsIgnoreCase(code)) {
                 a = ac;
             }
         }
@@ -190,6 +195,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Removes advisor from the binary tree.
+     * 
      * @param advisor Advisor to be removed.
      */
     public void removeAdvisor(Advisor advisor) {
@@ -208,6 +214,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Removes leaf from binary tree.
+     * 
      * @param advisor Advisor to be removed.
      */
     private void removeLeaf(Advisor advisor) {
@@ -230,8 +237,10 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Removes advisor when it has child.
-     * @param advisor Advisor to be removed.
-     * @param advisorType Integer representing if it has a child on its left, right or both. Linked with constants.
+     * 
+     * @param advisor     Advisor to be removed.
+     * @param advisorType Integer representing if it has a child on its left, right
+     *                    or both. Linked with constants.
      */
     private void removeWithChild(Advisor advisor, int advisorType) {
         Advisor nextAdvisor = null;
@@ -282,6 +291,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Gets minimum value from a binary sub tree.
+     * 
      * @param advisor Head advisor from sub tree.
      * @return Returns minimum advisor from sub tree.
      */
@@ -333,8 +343,10 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Compares two airline names.
+     * 
      * @param a Airline to be compared with.
-     * @return Returns -1 if the name is least than the other one. Returns 1 if this name is greater. Returns 0 if both names are the same.
+     * @return Returns -1 if the name is least than the other one. Returns 1 if this
+     *         name is greater. Returns 0 if both names are the same.
      */
     @Override
     public int compareTo(Airline a) {
@@ -347,6 +359,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Creates a list from advisors linked list.
+     * 
      * @return Returns list with all advisors.
      */
     public List<Advisor> getAdvisor() {
@@ -357,8 +370,9 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Auxiliar method to create list from advisors linked list.
+     * 
      * @param advisor Actual advisor.
-     * @param list List containing advisors.
+     * @param list    List containing advisors.
      */
     private void rangeAdvisorsAdd(Advisor advisor, List<Advisor> list) {
         if (advisor == null) {
@@ -371,68 +385,77 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Adds pilot to the airline.
-     * @param name String containing the pilot's name.
+     * 
+     * @param name     String containing the pilot's name.
      * @param lastName String containing the pilot's lastname.
-     * @param id Integer containing the pilot's identification number.
-     * @param airline Airline linked with the pilot.
+     * @param id       Integer containing the pilot's identification number.
+     * @param airline  Airline linked with the pilot.
      */
-    public void addPilot(String name, String lastName, int id, Airline airline){
+    public void addPilot(String name, String lastName, int id, Airline airline) {
         Pilot temp = new Pilot(name, lastName, id, airline);
         pilots.add(temp);
     }
 
     /**
      * Adds flight to the airline.
-     * @param id Identification number of the flight.
+     * 
+     * @param id            Identification number of the flight.
      * @param departureDate Departure date of the flight.
      * @param departureHour Departure hour of the flight.
-     * @param arrivalDate Arrival date of the flight.
-     * @param arrivalHour Arrival hour of the flight.
-     * @param origin Origin place of the flight.
-     * @param destination Destination of the flight.
-     * @param track Track the flight will use.
-     * @param airline Airline linked with the flight.
-     * @param aircraft Aircraft linked with the flight.
+     * @param arrivalDate   Arrival date of the flight.
+     * @param arrivalHour   Arrival hour of the flight.
+     * @param origin        Origin place of the flight.
+     * @param destination   Destination of the flight.
+     * @param track         Track the flight will use.
+     * @param airline       Airline linked with the flight.
+     * @param aircraft      Aircraft linked with the flight.
      */
-    public void addFlight(String id,String departureDate,String departureHour,String arrivalDate,String arrivalHour,Places origin, Places destination,Track track,Airline airline, Aircraft aircraft){
-        Flight temp = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, origin, destination, track, airline, aircraft);
+    public void addFlight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour,
+            Places origin, Places destination, Track track, Airline airline, Aircraft aircraft) {
+        Flight temp = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, origin, destination, track,
+                airline, aircraft);
         flights.add(temp);
     }
 
     /**
      * Adds a new aircraft to the airline.
+     * 
      * @param plane Aircraft to be added.
      */
-    public void addAircraft(Aircraft plane){
+    public void addAircraft(Aircraft plane) {
         aircraft.add(plane);
     }
 
     /**
      * Removes pilot from airline.
+     * 
      * @param pilot Pilot to be removed.
      */
-    public void removePilot(Pilot pilot){
+    public void removePilot(Pilot pilot) {
         pilots.remove(pilot);
     }
 
     /**
      * Removes flight from airline.
+     * 
      * @param flight Flight to be removed.
      */
-    public void removeFlight(Flight flight){
+    public void removeFlight(Flight flight) {
         flights.remove(flight);
     }
 
     /**
      * Removes aircraft from airline.
+     * 
      * @param plane Aircraft to be removed.
      */
-    public void removeAircraft(Aircraft plane){
+    public void removeAircraft(Aircraft plane) {
         aircraft.remove(plane);
     }
 
     /**
      * Imports employee data from file.
+     * 
      * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
@@ -446,17 +469,19 @@ public class Airline implements Serializable, Comparable<Airline> {
             int id = Integer.parseInt(parts[3]);
             String type = parts[4];
             line = br.readLine();
-            if(type.equalsIgnoreCase("pilot")){
+            if (type.equalsIgnoreCase("pilot")) {
                 pilots.add(new Pilot(name, lastName, id, this));
-            }else{
+            } else {
                 addAdvisor(new Advisor(name, lastName, id, this));
-            };
+            }
+            ;
         }
         br.close();
     }
 
     /**
      * Exports employee data to a file.
+     * 
      * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
@@ -474,6 +499,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Import aircraft data from file.
+     * 
      * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
@@ -486,7 +512,7 @@ public class Airline implements Serializable, Comparable<Airline> {
             int planeWeight = Integer.parseInt(parts[2]);
             int capacity = Integer.parseInt(parts[3]);
             line = br.readLine();
-            if(searchAircraft(planeCode)==null){
+            if (searchAircraft(planeCode) == null) {
                 aircraft.add(new Aircraft(planeCode, planeWeight, capacity, this));
             }
         }
@@ -495,6 +521,7 @@ public class Airline implements Serializable, Comparable<Airline> {
 
     /**
      * Exports aircraft data to a file.
+     * 
      * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
@@ -504,8 +531,7 @@ public class Airline implements Serializable, Comparable<Airline> {
         pw.println("Code;Weight;Capacity;Airline");
         for (int i = 0; i < getAircraft().size(); i++) {
             Aircraft a = getAircraft().get(i);
-            pw.println(
-                    a.getPlaneCode() + ";" + a.getPlaneWeight() + ";" + a.getCapacity() + ";" + a.getAirline());
+            pw.println(a.getPlaneCode() + ";" + a.getPlaneWeight() + ";" + a.getCapacity() + ";" + a.getAirline());
         }
         pw.close();
     }

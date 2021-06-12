@@ -12,6 +12,9 @@ public class Luggage implements Price, Serializable {
     private Luggage nextLuggage;
     private Luggage previousLuggage;
 
+    /**
+     * The constructor method of a Luggage Object<br>
+     */
     public Luggage(double height, double width, double weight) {
         this.height = height;
         this.width = width;

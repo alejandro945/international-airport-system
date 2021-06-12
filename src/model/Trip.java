@@ -8,7 +8,7 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
 
     private static final long serialVersionUID = 1L;
     private Ticket ticket;
-    private Luggage rootLuggage;
+    private Luggage rootLuggage; //Linked List
     private int tripPrice;
     private String id;
     private Seat flightSeat;

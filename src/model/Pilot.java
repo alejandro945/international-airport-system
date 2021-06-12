@@ -7,6 +7,9 @@ public class Pilot extends Collaborator {
 
     private List<Flight> flight;
 
+    /**
+     * The constructor method of a Pilot Object<br>
+     */
     public Pilot(String name, String lastName, long id, Airline airline) {
         super(name, lastName, id, airline, "Pilot");
         flight = new ArrayList<>();
@@ -25,7 +28,7 @@ public class Pilot extends Collaborator {
      * @param flight
      */
     public void setFlight(Flight fl) {
-        if(flight.isEmpty()){
+        if (flight.isEmpty()) {
             flight.add(fl);
         }
         for (Flight f : flight) {
@@ -41,6 +44,7 @@ public class Pilot extends Collaborator {
 
     /**
      * Returns a string representation of the object.
+     * 
      * @return Returns a string representation of the object.
      */
     @Override

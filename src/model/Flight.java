@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flight implements  Comparable<Flight>, Serializable {
+public class Flight implements Comparable<Flight>, Serializable {
 
     private static final long serialVersionUID = 1L;
     private String id;
@@ -18,7 +18,7 @@ public class Flight implements  Comparable<Flight>, Serializable {
     private Places destination;
     private Aircraft plane;
     private Track track;
-    private List<Costumer> costumer; // Bynary Search
+    private List<Costumer> costumer;
     private FlightState flightStatus;
     private String takesOff; // Joins departure date and hour. For table view purposes.
     private String arrives; // Joins arrival date and hour. For table view purposes.
@@ -30,10 +30,16 @@ public class Flight implements  Comparable<Flight>, Serializable {
     private double journey;
     private long duration;
 
+    /**
+     * The constructor method of a Flight Object for importing objetives<br>
+     */
     public Flight(String id) {
         this.id = id;
     }
 
+    /**
+     * The constructor method of a Flight Object<br>
+     */
     public Flight(String id, String departureDate, String departureHour, String arrivalDate, String arrivalHour,
             Places origin, Places destination, Track track, Airline airline, Aircraft aircraft) {
         this.id = id;
@@ -276,7 +282,7 @@ public class Flight implements  Comparable<Flight>, Serializable {
      * @param other
      * @return
      */
-    public int compareById(Flight other){
+    public int compareById(Flight other) {
         return id.compareTo(other.getId());
     }
 

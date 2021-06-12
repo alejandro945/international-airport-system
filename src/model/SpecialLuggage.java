@@ -4,6 +4,9 @@ public class SpecialLuggage extends Luggage {
 
     private String luggageType;
 
+    /**
+     * The constructor method of a Special Luggage Object<br>
+     */
     public SpecialLuggage(double height, double width, double weight, String luggageType) {
         super(height, width, weight);
         this.luggageType = luggageType;

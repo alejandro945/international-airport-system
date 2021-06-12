@@ -9,6 +9,9 @@ public class Ticket implements Serializable, Price {
     private Seat fligthSeat;
     private int flightPrice;
 
+    /**
+     * The constructor method of a Ticket Object<br>
+     */
     public Ticket(Flight flight, Seat fligthSeat, int flightPrice) {
         this.flight = flight;
         this.fligthSeat = fligthSeat;

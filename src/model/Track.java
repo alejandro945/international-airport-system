@@ -12,6 +12,9 @@ public class Track implements Maintenance, Serializable {
     private Track next;
     private Track prev;
 
+    /**
+     * The constructor method of a Track Object<br>
+     */
     public Track(int id, String gate) {
         this.id = id;
         this.gate = gate;
@@ -70,6 +73,7 @@ public class Track implements Maintenance, Serializable {
 
     /**
      * Returns a string representation of the object.
+     * 
      * @return Returns a string representation of the object.
      */
     public String toString() {

@@ -5,6 +5,9 @@ public abstract class Collaborator extends Person {
     private Airline airline;
     private String type;
 
+    /**
+     * The constructor method of the Collaborator Super Class<br>
+     */
     public Collaborator(String name, String lastName, long id, Airline airline, String type) {
         super(name, lastName, id);
         this.airline = airline;

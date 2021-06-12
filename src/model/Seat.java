@@ -11,17 +11,20 @@ public class Seat implements Serializable {
     private boolean economic;
     private int price;
 
+    /**
+     * The constructor method of a Seat Object<br>
+     */
     public Seat(int seatNumber, char seatLetter, boolean economic, int price) {
         this.seatNumber = seatNumber;
         this.seatLetter = seatLetter;
         this.seatState = false;
         this.economic = economic;
 
-        if(economic){
+        if (economic) {
             this.price = price;
         } else {
-            this.price = (int)((price*0.3)+price);
-        }       
+            this.price = (int) ((price * 0.3) + price);
+        }
     }
 
     public int getSeatNumber() {
@@ -67,5 +70,5 @@ public class Seat implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
-    
-}   
+
+}

@@ -8,7 +8,7 @@ public class Costumer extends User {
 
     Random r = new Random();
     private String iconPath;
-    private Trip rootTrip;
+    private Trip rootTrip; // Binary Tree
     private String state;
     private String notifications;
 
@@ -17,6 +17,9 @@ public class Costumer extends User {
         state = CostumerState.values()[value].name();
     }
 
+    /**
+     * The constructor method of an JWT Costumer Object<br>
+     */
     public Costumer(String name, String lastName, long id, String email, String password) {
         super(name, lastName, id, email, password, UserRole.COSTUMER_USER);
         rootTrip = null;
@@ -24,6 +27,9 @@ public class Costumer extends User {
         state = CostumerState.values()[value].name();
     }
 
+    /**
+     * The constructor method of an Google Auth Costumer Object<br>
+     */
     public Costumer(String name, String lastName, long id, String iconPath) {
         super(name, lastName, id, "", "", UserRole.COSTUMER_USER);
         this.iconPath = iconPath;
@@ -189,8 +195,6 @@ public class Costumer extends User {
     public String deleteTrip(Trip trip) {
         Trip temp = trip;
 
-        // System.out.println(trip);
-
         if (temp != null) {
 
             Trip parent = temp.getFather();
@@ -247,7 +251,7 @@ public class Costumer extends User {
             return temp.getId();
 
         } else {
-            return "No se pudo eliminar";
+            return "It could not been delete it";
         }
 
     }
@@ -282,7 +286,7 @@ public class Costumer extends User {
         } else {
             removeWithChild(trip, 3);
         }
-        return "Trip removed";
+        return "Trip removed succesfully";
     }
 
     /**

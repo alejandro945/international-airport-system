@@ -12,6 +12,9 @@ public class Migration implements Serializable, Supplier {
     private Flight flight;
     private int capital, approved, wanted, covid, minor;
 
+    /**
+     * The constructor method of a Migration Object<br>
+     */
     public Migration(Flight flight) {
         this.flight = flight;
         capital = 0;

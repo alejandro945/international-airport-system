@@ -10,6 +10,9 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
     private Advisor right;
     private Advisor left;
 
+    /**
+     * The constructor method of an Advisor Object<br>
+     */
     public Advisor(String name, String lastName, long id, Airline airline) {
         super(name, lastName, id, airline, "Advisor");
         costumers = new ArrayList<>();
@@ -54,8 +57,10 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
 
     /**
      * Compares two advisors ids.
+     * 
      * @param advisor Advisor to be compared with.
-     * @return Returns -1 if this id is least than the other one. Returns 1 if this id is greater. Returns 0 if both ids are the same.
+     * @return Returns -1 if this id is least than the other one. Returns 1 if this
+     *         id is greater. Returns 0 if both ids are the same.
      */
     @Override
     public int compareTo(Advisor advisor) {
@@ -70,6 +75,7 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
 
     /**
      * Returns a string representation of the object.
+     * 
      * @return Returns a string representation of the object.
      */
     @Override

@@ -4,6 +4,9 @@ public class AirlineUser extends User {
 
     private Airline airline;
 
+    /**
+     * The constructor method of an Airline User Object<br>
+     */
     public AirlineUser(String name, String lastName, long id, String email, String password, Airline airline) {
         super(name, lastName, id, email, password, UserRole.AIRLINE_ADMIN);
         this.airline = airline;

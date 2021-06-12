@@ -19,12 +19,15 @@ public class Airport implements Serializable {
     private List<User> users;
     private List<Airline> airlines;
     private List<Flight> flights;
-    private Track firstTrack;
+    private Track firstTrack; // Linked List
     private AirlineUser airlineLogged;
     private Costumer logged;
     private User adminLogged;
     private List<Migration> migration;
 
+    /**
+     * The constructor method of an Airport Object(main class of the model)<br>
+     */
     public Airport() {
         users = new ArrayList<>();
         airlines = new ArrayList<>();
@@ -35,7 +38,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
+     * Verify that there is indeed a binary file to deserialize and start with the
+     * application persistence.
      */
     public void dateRender() {
         File file = new File(SAVE_PATH_FILE);
@@ -63,7 +67,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     * Saves all program data by writing primitive data types and graphs of Java objects to an OutputStream.
+     * Saves all program data by writing primitive data types and graphs of Java
+     * objects to an OutputStream.
      */
     public void saveData() {
         ObjectOutputStream oos;
@@ -98,6 +103,9 @@ public class Airport implements Serializable {
         this.firstTrack = firstTrack;
     }
 
+    /**
+     * Gets the munber of tracks in App.
+     */
     public int getTrackAmount() {
         int trackAmount = 0;
         Track render = firstTrack;
@@ -154,6 +162,7 @@ public class Airport implements Serializable {
 
     /**
      * Import airlines data from file.
+     * 
      * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
@@ -172,6 +181,7 @@ public class Airport implements Serializable {
 
     /**
      * Export airlines data to a file.
+     * 
      * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
@@ -188,6 +198,7 @@ public class Airport implements Serializable {
 
     /**
      * Import tracks data to a file.
+     * 
      * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
@@ -206,6 +217,7 @@ public class Airport implements Serializable {
 
     /**
      * Export all tracks data to a file.
+     * 
      * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
@@ -222,6 +234,7 @@ public class Airport implements Serializable {
 
     /**
      * Import migration data to a file.
+     * 
      * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
@@ -248,6 +261,7 @@ public class Airport implements Serializable {
 
     /**
      * Export all migration data to a file.
+     * 
      * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
@@ -265,6 +279,7 @@ public class Airport implements Serializable {
 
     /**
      * Import users data to a file.
+     * 
      * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
@@ -298,6 +313,7 @@ public class Airport implements Serializable {
 
     /**
      * Export all users data to a file.
+     * 
      * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
@@ -319,9 +335,12 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param flight
-     * @return
+     * Create an assigned migration instance and binary looking for a flight within
+     * the airport to assign it with its respective clients.<br>
+     * <b> Post: <b> dds a Migration Zone in Airport. <br>
+     * 
+     * @param flight != null
+     * @return A migration object that will be rendered later in App.
      */
     public Migration createMigrationZone(Flight flight) {
         Migration render = null;
@@ -333,8 +352,10 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Obtains the expenses of the airport that must be delivered to the migration
+     * area depending on the clients they have retained on each flight.
+     * 
+     * @return Suppliers cost to pay.
      */
     public int getExpenses() {
         int i = 0;
@@ -347,9 +368,11 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Look for a flight within all immigration zones to verify that it has not been
+     * reviewed before.
+     * 
+     * @param id != String or even null.
+     * @return a boolean condition that will be used later in Thread.
      */
     public boolean searchMigrationFlight(String id) {
         boolean render = false;
@@ -362,14 +385,14 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param m
-     * @param flight
-     * @param a
-     * @param c
-     * @param w
-     * @param mn
-     * @return
+     * Deletes a Migration Instance in Airport destined list.
+     * @param m != null
+     * @param flight != null
+     * @param a != String or null
+     * @param c != String or null
+     * @param w != String or null
+     * @param mn != String or null
+     * @return An String message for notification purposes.
      */
     public String editMigration(Migration m, Flight flight, int a, int c, int w, int mn) {
         m.setFlight(flight);
@@ -381,9 +404,10 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param m
-     * @return
+     * Deletes a Migration Instance in Airport destined list.
+     * 
+     * @param m != null
+     * @return An String message for notification purposes.
      */
     public String deleteMigration(Migration m) {
         migration.remove(m);
@@ -392,8 +416,9 @@ public class Airport implements Serializable {
 
     /**
      * Creates an airline with a name and a logo.
+     * 
      * @param airlineName String representing the airline name.
-     * @param logo String containing the logo image path.
+     * @param logo        String containing the logo image path.
      * @return Returns string with the result of the operation.
      */
     public String createAirline(String airlineName, String logo) {

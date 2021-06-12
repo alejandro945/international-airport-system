@@ -6,7 +6,7 @@ public class Aircraft implements Maintenance, Serializable {
 
     private static final long serialVersionUID = 1L;
     private final int AIRCRAFT_COLUMNS = 6;
-    private Seat[][] seat;// Bynary Search
+    private Seat[][] seat;
     private Airline airline;
     private Pilot pilot;
     private int planeWeight;
@@ -14,6 +14,9 @@ public class Aircraft implements Maintenance, Serializable {
     private int capacity;
     private boolean inMaintenance;
 
+    /**
+     * The constructor method of an Aircraft Object<br>
+     */
     public Aircraft(String planeCode, int planeWeight, int capacity, Airline airline) {
         this.planeCode = planeCode;
         this.airline = airline;
@@ -90,7 +93,7 @@ public class Aircraft implements Maintenance, Serializable {
     }
 
     /**
-     * Creates all aircraft seats.
+     * Creates all aircraft seats (whole division).
      */
     public void createSeats() {
         int rows = capacity / AIRCRAFT_COLUMNS;
