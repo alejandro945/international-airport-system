@@ -58,7 +58,6 @@ public class BookFlightController {
 
     public void initialize() {
         filterInfo.setText("");
-      //  loadData();
         initializeTableView();
     }
 

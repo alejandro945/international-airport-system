@@ -74,56 +74,58 @@ You need JDK 1.8_261
 
 ## Screens 🚀
 
-* <b>_Sign in_</b> <br><br>
+* <b>Sign in</b> <br><br>
 ![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/login.png)<br><br>
-* <b>_  Sign up_</b> <br><br>
+* <b>Sign up</b> <br><br>
 ![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/signup.png)<br><br>
-* <b>_Google OAuth_</b> <br><br>
+* <b>Google OAuth</b> <br><br>
 ![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/Oauth.png)<br><br>
-* <b>_Home_</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Home</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/home.png)<br><br>
+* <b>Profile</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/settings.png)<br><br>
 
 ### Airport Administrator
 
-* <b>_Air Lines_</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Airlines</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/airlines.png)<br><br>
 
-* <b>_Users_</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Users</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/users.png)<br><br>
 
 ### Airline Administrator
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Flights</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/flights.png)<br><br>
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Employees</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/employees.png)<br><br>
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Aircrafts</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/aircrafts.png)<br><br>
 
 ### Tower Supervisor 
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Upcoming</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/upcoming.png)<br><br>
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Active Flights</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/actives.png)<br><br>
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Tracks</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/tracks.png)<br><br>
 
 ### Migration Agent 
-* <b>_Home_</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Indicators</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/indicators.png)<br><br>
 
 ### Costumer
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Trips</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/flights.png)<br><br>
 
-* <b>__</b> <br><br>
-![ScreenShot]()<br><br>
+* <b>Books</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/international-airport-system/blob/master/src/ui/assets/img/screens/book.png)<br><br>
 
 
 ## Build with 🛠️
