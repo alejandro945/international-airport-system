@@ -45,7 +45,7 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
+     * Loads all program data by deserializing primitive data and objects from file.
      */
     @SuppressWarnings("unchecked")
     public void loadData() {
@@ -63,7 +63,7 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
+     * Saves all program data by writing primitive data types and graphs of Java objects to an OutputStream.
      */
     public void saveData() {
         ObjectOutputStream oos;
@@ -153,8 +153,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Import airlines data from file.
+     * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
     public void importDataAirlines(String fileName) throws IOException {
@@ -171,8 +171,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Export airlines data to a file.
+     * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
     public void exportDataAirlines(String fileName) throws FileNotFoundException {
@@ -187,8 +187,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Import tracks data to a file.
+     * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
     public void importDataTracks(String fileName) throws IOException {
@@ -205,8 +205,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Export all tracks data to a file.
+     * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
     public void exportDataTracks(String fileName) throws FileNotFoundException {
@@ -221,8 +221,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Import migration data to a file.
+     * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
     public void importDataMigration(String fileName) throws IOException {
@@ -247,8 +247,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Export all migration data to a file.
+     * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
     public void exportDataMigration(String fileName) throws FileNotFoundException {
@@ -264,8 +264,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Import users data to a file.
+     * @param fileName Name of the file containing all the data.
      * @throws IOException
      */
     public void importDataUsers(String fileName) throws IOException {
@@ -297,8 +297,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param fileName
+     * Export all users data to a file.
+     * @param fileName Name of the file to be exported with the data.
      * @throws FileNotFoundException
      */
     public void exportDataUsers(String fileName) throws FileNotFoundException {

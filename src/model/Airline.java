@@ -104,9 +104,9 @@ public class Airline implements Serializable, Comparable<Airline> {
     }
 
     /**
-     *
-     * @param code
-     * @return
+     * Searches an aircraft by its code.
+     * @param code String representing the aircraft code.
+     * @return Returns the aircraft if found. Else returns null.
      */
     public Aircraft searchAircraft(String code){
         Aircraft a = null;
