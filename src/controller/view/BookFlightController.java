@@ -126,11 +126,6 @@ public class BookFlightController {
         stageTicket.show();
     }
 
-    @FXML
-    public void placeSelection(ActionEvent event) {
-
-    }
-
     public void loadData() {
         List<String> types1 = new ArrayList<>();
         int i = 0;

@@ -9,7 +9,7 @@
 
 This application is the system for Madrid's new international airport. The aim of this software is to manage the main dependencies of the airport and allow customers buy tickets and check their tickets record. The airlines administrators, migration officers, and tower control operator can access this application to accomplish theirs duties. 
 
-Airlines administrator can create new flys, planes, assing personal to airplane. Migration officers can see the length of persons in line to go out and some people flow indicators. Finally, tower control operators can check the status of each current fly.
+Airlines administrator can create new flys, planes, assign personal to airplane. Migration officers can see the length of persons in line to go out and some people flow indicators. Finally, tower control operators can check the status of each current fly.
 
 This version was created by Alejandro Varela, Juan Felipe Sinisterra and Juan David Ballesteros. The interesting about the work, is the application code use a varitie of java tools like collections an data structures, but also the team create some binary trees and linked lists.
 
