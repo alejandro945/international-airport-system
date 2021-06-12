@@ -1,3 +1,0 @@
-echo .DS_Store >> .gitignore
-.vscode/
-.gitignore

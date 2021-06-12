@@ -59,10 +59,25 @@ At the time of creating their ticket, the client can select the category of the 
 * Project description
 * Readme
 
+## Wait, we convince you !! 😝
+
+Check out the following video so that you have no doubts about the importance of this software in your life: https://youtu.be/hsL9wrYC2-A
+
 ### Pre-requirements 💥
 ```
 You need JDK 1.8_261
 ```
+
+** Clarifications: ** By default the software handles a set of data that is found in the data / imports directory.
+
+### Data persistence 🔩
+
+_We handle binary files with all the current information on your system_
+
+```
+Check the general file in data -Airport.data
+```
+
 ## Documentation 📃
 **Don´t hesitate 
 
