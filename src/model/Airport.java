@@ -444,9 +444,9 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param airlineName
-     * @return
+     * Binary search for an airline based on its name.
+     * @param airlineName String containing the name of the airline to be searched.
+     * @return Returns the airline if found. Returns null if not found.
      */
     public Airline searchBynaryAirline(String airlineName) {
         Airline render = null;
@@ -466,9 +466,9 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param code
-     * @return
+     * Binary search for a flight based on its code.
+     * @param code String containing the code of the flight to be searched.
+     * @return Returns the flight if found. Returns null if not found.
      */
     public Flight searchBynaryFlight(String code) {
         Flight render = null;
@@ -488,14 +488,14 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param name
-     * @param lastName
-     * @param id
-     * @param email
-     * @param password
-     * @param role
-     * @return
+     * Creates a new user and adds it to the airport users list.
+     * @param name String containing the user's name.
+     * @param lastName String containing the user's last name.
+     * @param id Long type variable containing the user's identification number.
+     * @param email String containing the user's email address.
+     * @param password String containing the user's password.
+     * @param role User role from enumeration.
+     * @return Returns string with the result of the operation.
      */
     public String createUser(String name, String lastName, long id, String email, String password, UserRole role) {
         String msg = "";
@@ -510,15 +510,15 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param user
-     * @param name
-     * @param lastName
-     * @param id
-     * @param email
-     * @param password
-     * @param role
-     * @return
+     * Edits an existing user's data.
+     * @param user User to be edited.
+     * @param name String containing the user's name.
+     * @param lastName String containing the user's last name.
+     * @param id Long type variable containing the user's identification number.
+     * @param email String containing the user's email address.
+     * @param password String containing the user's password.
+     * @param role User role from enumeration.
+     * @return Returns string with the result of the operation.
      */
     public String editUser(User user, String name, String lastName, long id, String email, String password,
             UserRole role) {
@@ -532,14 +532,13 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param name
-     * @param lastName
-     * @param id
-     * @param email
-     * @param password
-     * @param airline
-     * @return
+     * Creates a new user and adds it to the airport users list.
+     * @param name String containing the user's name.
+     * @param lastName String containing the user's last name.
+     * @param id Long type variable containing the user's identification number.
+     * @param email String containing the user's email address.
+     * @param password String containing the user's password.
+     * @return Returns string with the result of the operation.
      */
     public String createUser(String name, String lastName, long id, String email, String password, Airline airline) {
         String msg = "";
@@ -554,15 +553,14 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param user
-     * @param name
-     * @param lastName
-     * @param id
-     * @param email
-     * @param password
-     * @param airline
-     * @return
+     * Edits an existing user's data.
+     * @param user User to be edited.
+     * @param name String containing the user's name.
+     * @param lastName String containing the user's last name.
+     * @param id Long type variable containing the user's identification number.
+     * @param email String containing the user's email address.
+     * @param password String containing the user's password.
+     * @return Returns string with the result of the operation.
      */
     public String editUser(AirlineUser user, String name, String lastName, long id, String email, String password,
             Airline airline) {
@@ -576,13 +574,13 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param name
-     * @param lastName
-     * @param id
-     * @param email
-     * @param password
-     * @return
+     * Creates a new normal (No defined user type) user and adds it to the airport users list.
+     * @param name String containing the user's name.
+     * @param lastName String containing the user's last name.
+     * @param id Long type variable containing the user's identification number.
+     * @param email String containing the user's email address.
+     * @param password String containing the user's password.
+     * @return Returns string with the result of the operation.
      */
     public String createUser(String name, String lastName, long id, String email, String password) {
         String msg = "";
@@ -597,12 +595,11 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param name
-     * @param lastName
-     * @param id
-     * @param iconPath
-     * @return
+     * Creates a new normal (No defined user type) user and adds it to the airport users list.
+     * @param name String containing the user's name.
+     * @param lastName String containing the user's last name.
+     * @param id Long type variable containing the user's identification number.
+     * @return Returns string with the result of the operation.
      */
     public String createUser(String name, String lastName, long id, String iconPath) {
         String msg = "";
@@ -817,8 +814,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Orders users list.
+     * @return Returns an order list of users.
      */
     public List<User> orderUseList() {
 
@@ -848,8 +845,8 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Orders flights list.
+     * @return Returns ordered list of flights.
      */
     public List<Flight> flightList() {
         boolean inserted = false;
