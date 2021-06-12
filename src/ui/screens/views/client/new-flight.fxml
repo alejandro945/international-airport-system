@@ -3,17 +3,25 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" stylesheets="@../../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fillWidth="false" layoutX="67.0" layoutY="105.0" prefHeight="412.0" prefWidth="529.0" spacing="20.0" styleClass="box">
          <children>
             <HBox spacing="10.0">
                <children>
-                  <JFXComboBox fx:id="destiny" onAction="#placeSelection" prefHeight="26.0" prefWidth="146.0" promptText="Country" unFocusColor="#5b8652" />
+                  <JFXComboBox fx:id="destiny" prefHeight="26.0" prefWidth="146.0" promptText="Country" unFocusColor="#5b8652" />
                   <JFXDatePicker fx:id="date" defaultColor="#6d0094" />
                   <Button mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="121.0" styleClass="button2" text="Search" />
                </children>
@@ -29,11 +37,6 @@
                </columnResizePolicy>
             </TableView>
             <Separator prefHeight="6.0" prefWidth="507.0" />
-            <Label fx:id="filterInfo" text="Double click to delete or create">
-               <font>
-                  <Font name="Montserrat Bold" size="20.0" />
-               </font>
-            </Label>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -68,7 +71,11 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label prefHeight="20.0" prefWidth="205.0" text="Showing 16 results of 40" textFill="#8d8d8d" />
+            <Label fx:id="filterInfo" text="Double click to delete or create">
+               <font>
+                  <Font name="Montserrat Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
