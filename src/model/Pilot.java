@@ -25,7 +25,7 @@ public class Pilot extends Collaborator {
     }
 
     /**
-     * @param flight
+     * @param fl Flight to be set.
      */
     public void setFlight(Flight fl) {
         if (flight.isEmpty()) {
@@ -38,6 +38,10 @@ public class Pilot extends Collaborator {
         }
     }
 
+    /**
+     * Removes flight from pilot's flights list.
+     * @param f Flight to be removed.
+     */
     public void removeFlight(Flight f) {
         flight.remove(f);
     }

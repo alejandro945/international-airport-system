@@ -39,8 +39,8 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @return
+     * Calculates luggage price.
+     * @return Integer representing luggage price.
      */
     public int luggagePrice() {
         int amount = 0;
@@ -111,17 +111,17 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @param other
-     * @return
+     * Compares two trips price.
+     * @param other Trip to be compared.
+     * @return Returns -1 if this price is least than the other one. Returns 1 if this price is greater. Returns 0 if both prices are the same.
      */
     public int compareByPrice(Trip other) {
         return this.tripPrice - other.tripPrice;
     }
 
     /**
-     *
-     * @param luggage
+     * Adds luggage to the trip.
+     * @param luggage Luggage to be added.
      */
     public void addLuggage(Luggage luggage) {
         if (rootLuggage == null) {
@@ -141,8 +141,8 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @param increase
+     * Calculates trip price.
+     * @param increase Price amount to increase.
      */
     @Override
     public void calculatePrice(int increase) {
@@ -150,8 +150,8 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @return
+     * Returns string with all seats.
+     * @return Returns string with all seats.
      */
     public String seatToString() {
         String letter = String.valueOf(flightSeat.getSeatLetter());
@@ -161,8 +161,8 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @return
+     * Gets a list of luggage.
+     * @return Returns a list containing all luggage.
      */
     public List<Luggage> getLuggages() {
         List<Luggage> tempList = new ArrayList<>();
@@ -183,9 +183,9 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @param other
-     * @return
+     * Compares two trip prices.
+     * @param other Trip to be compared with.
+     * @return Returns -1 if this price is least than the other one. Returns 1 if this price is greater. Returns 0 if both prices are the same.
      */
     @Override
     public int compareTo(Trip other) {
@@ -193,9 +193,9 @@ public class Trip implements Comparable<Trip>, Price, Serializable {
     }
 
     /**
-     *
-     * @param other
-     * @return
+     * Compares two trip dates.
+     * @param other Trip to be compared with.
+     * @return Returns -1 if this date is least than the other one. Returns 1 if this date is greater. Returns 0 if both date are the same.
      */
     public int compareByDate(Trip other) {
         return ticket.getFlight().getDepartureDate().compareTo(other.getTicket().getFlight().getDepartureDate());

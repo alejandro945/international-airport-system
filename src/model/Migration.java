@@ -123,7 +123,7 @@ public class Migration implements Serializable, Supplier {
     }
 
     /**
-     *
+     * Calculates and sets capital.
      */
     @Override
     public void airportCharges() {

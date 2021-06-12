@@ -27,8 +27,8 @@ public class Luggage implements Price, Serializable {
     }
 
     /**
-     *
-     * @param increase
+     * Calculates price for luggage.
+     * @param increase Price to be increased.
      */
     public void calculatePrice(int increase) {
         this.luggagePrice = (int) (weight * height) * increase;

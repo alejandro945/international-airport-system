@@ -42,6 +42,10 @@ public class Ticket implements Serializable, Price {
         this.flightPrice = flightPrice;
     }
 
+    /**
+     * Calculates ticket price.
+     * @param increase Integer containing increase.
+     */
     @Override
     public void calculatePrice(int increase) {
         flightPrice = STANDAR_PRICE * (increase / 100) + fligthSeat.getPrice();

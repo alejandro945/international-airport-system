@@ -59,8 +59,8 @@ public class Advisor extends Collaborator implements Comparable<Advisor> {
      * Compares two advisors ids.
      * 
      * @param advisor Advisor to be compared with.
-     * @return Returns -1 if this id is least than the other one. Returns 1 if this
-     *         id is greater. Returns 0 if both ids are the same.
+     * @return Returns -1 if this id is least than the other one. Returns 1 if this id is greater. Returns 0 if both ids are the same.
+     *
      */
     @Override
     public int compareTo(Advisor advisor) {
