@@ -59,6 +59,10 @@ At the time of creating their ticket, the client can select the category of the 
 * Project description
 * Readme
 
+## Wait, we convince you !! 😝
+
+Check out the following video so that you have no doubts about the importance of this software in your life: https://youtu.be/hsL9wrYC2-A
+
 ### Pre-requirements 💥
 ```
 You need JDK 1.8_261
