@@ -391,10 +391,10 @@ public class Airport implements Serializable {
     }
 
     /**
-     *
-     * @param airlineName
-     * @param logo
-     * @return
+     * Creates an airline with a name and a logo.
+     * @param airlineName String representing the airline name.
+     * @param logo String containing the logo image path.
+     * @return Returns string with the result of the operation.
      */
     public String createAirline(String airlineName, String logo) {
         String msg = "";
