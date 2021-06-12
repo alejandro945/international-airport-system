@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1195.0" stylesheets="@../../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="70.0" layoutY="95.0" prefHeight="645.0" prefWidth="1055.0" spacing="20.0" styleClass="box">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="1015.0" spacing="20.0">
+               <children>
+                  <JFXComboBox fx:id="destiny" prefHeight="26.0" prefWidth="146.0" promptText="Country" unFocusColor="#5b8652" />
+                  <JFXDatePicker fx:id="date" defaultColor="#3a0094" />
+                  <Button mnemonicParsing="false" onAction="#filter" prefHeight="35.0" prefWidth="121.0" styleClass="button2" text="Search" />
+                  <ImageView fitHeight="81.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/img/not-flights.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="filterInfo" text="Label" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="bookingsTable" prefHeight="531.0" prefWidth="1015.0" stylesheets="@../../../assets/styles/table.css">
+               <columns>
+                  <TableColumn fx:id="idT" prefWidth="146.0" text="ID" />
+                  <TableColumn fx:id="airlineT" minWidth="0.0" prefWidth="142.0" text="Airline" />
+                  <TableColumn fx:id="dateT" prefWidth="175.0" text="Date" />
+                  <TableColumn fx:id="placeT" prefWidth="146.0" text="Place" />
+                  <TableColumn fx:id="seatT" minWidth="0.0" prefWidth="142.0" text="Seat" />
+                  <TableColumn fx:id="costT" prefWidth="175.0" text="Cost" />
+                  <TableColumn fx:id="actionT" prefWidth="146.0" text="Actions" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
+      <Label layoutX="84.0" layoutY="14.0" styleClass="menu-label" text="My Trips">
+         <font>
+            <Font name="Montserrat Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutY="66.0" prefHeight="10.0" prefWidth="1195.0" />
+   </children>
+</Pane>

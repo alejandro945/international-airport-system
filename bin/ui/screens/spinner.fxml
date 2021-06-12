@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1420.0" styleClass="main-pane" stylesheets="@../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="84.0" fitWidth="96.0" layoutX="669.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/ico.jpeg" />
+         </image>
+      </ImageView>
+      <JFXSpinner layoutX="599.0" layoutY="332.0" prefHeight="183.0" prefWidth="223.0" />
+      <Label layoutX="631.0" layoutY="529.0" styleClass="label-spinner" text="Airport System" />
+   </children>
+</Pane>

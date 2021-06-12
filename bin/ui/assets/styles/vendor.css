@@ -1,0 +1,219 @@
+.navbar{
+    -fx-background-color: linear-gradient(to left,#a28bff ,#3929E0);
+    -fx-background-radius: 40 40 40 40;
+}
+.top-bar{
+    -fx-effect: dropshadow( gaussian, rgba(192, 192, 192, 0.4), 40, 0.2, 0, 30 );
+    -fx-background-radius: 0 40 0 0;
+    -fx-padding: 10;
+    -fx-background-color: white;
+}
+.shape{
+    -fx-stroke: linear-gradient(to left,#fff ,#3929E0);
+    -fx-stroke-width: 2;
+}
+.bar-chart {
+    -fx-background-radius: 10;
+    -fx-background-position: left center;
+}
+.chart-legend {
+    -fx-background-color:  #fafad2;
+    -fx-stroke: #daa520;
+ }
+.chart-bar.default-color0 {
+    -fx-bar-fill: green;
+    -fx-bar-background-radius: 10;
+
+}
+
+.chart-bar.default-color1 {
+    -fx-bar-fill: purple;
+    -fx-bar-fill-radius: 10;
+
+}
+
+.chart-bar.default-color2 {
+    -fx-bar-fill: red;
+    -fx-background-radius: 10;
+}
+.chart-bar.default-color3 {
+    -fx-bar-fill: yellow;
+    -fx-background-radius: 10;
+}
+.box{
+    -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.8, 0.0, 0.0 );
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+}
+.main-pane{
+    -fx-background-color: white;
+    -fx-background-radius: 40 40 40 40;
+}
+.main-dash{
+    -fx-background-color: white;
+    -fx-background-radius: 0 0 40 0;
+}
+.main-top{
+    -fx-background-color: #651FFF;
+    -fx-background-radius: 40 40 0 0;
+}
+.main-side{
+    -fx-background-color: white;
+    -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 90, 0.2, 0.8, 0.0 );
+    -fx-background-radius: 0 40 40 40;
+}
+.button-change{
+    -fx-background-radius: 10;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 8px;
+}
+.modal{
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
+.button{
+    -fx-background-color: linear-gradient(to right,#8b9cff ,#2969e0);
+    -fx-background-radius: 10;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.button1{
+    -fx-background-color: linear-gradient(to right,#8bffae ,#2fe029);
+    -fx-background-radius: 10;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.button2{
+    -fx-background-color: linear-gradient(to left,#fb8bff ,#e02994);
+    -fx-background-radius: 10;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.button:hover{
+    -fx-background-color : linear-gradient(to left,#fb8bff ,#e02994) ;
+}
+.button2:hover{
+    -fx-background-color : linear-gradient(to right,#8b9cff ,#2969e0);
+}
+.label{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 16px;
+}
+.label1{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+.label2{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+.label-spinner{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-size: 25px;
+}
+.menu-label{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+}
+.menu-render{
+    -fx-effect: dropshadow( gaussian, rgba(235, 235, 235, 0.4), 20, 0.2, 0.0, 0.0 );
+    -fx-background-color: #5e55c400;
+    -fx-background-radius: 40;
+}
+.menu{
+    -fx-background-color: linear-gradient(to left,#a28bff ,#3929E0);
+}
+.button-menu
+{
+-fx-background-radius: 14;
+    -fx-background-color:linear-gradient(to right,#8bffae ,#2fe029);
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-label-padding: 5px;
+}
+.button-menu:hover
+{
+    -fx-background-color : linear-gradient(to left,#fb8bff ,#e02994);
+}
+.logo{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-radius: 50;
+}
+.tab{
+    -fx-pref-width: 160px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+.flight-header{
+    -fx-background-color: linear-gradient(to right,#a28bff ,#3929E0);
+        -fx-background-radius:12 12 0 0;   
+}
+.progress-bar > .bar{
+    -fx-background-color: linear-gradient(to right,#a28bff ,#3929E0);
+}
+.label-flight{
+    -fx-font-family: "Century Gothic" ;
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+}
+#active{
+    -fx-background-color:linear-gradient(to right,#8bffae ,#2fe029);
+    -fx-background-radius:20 20 20 20; 
+}
+#error{
+    -fx-background-color: linear-gradient(to right,#ff8b8b ,#ee1b1b);
+    -fx-background-radius:20 20 20 20; 
+}
+#suspense{
+    -fx-background-color: linear-gradient(to right,#fdff8b ,#eeff00);
+    -fx-background-radius:20 20 20 20; 
+}
+.jfx-text-field{
+-fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+}
+.jfx-text-area{
+    -fx-font-family: "Century Gothic" ;
+        -fx-font-style: italic;
+    }
+.jfx-password-field{
+-fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+}
+.jfx-combo-box{
+-fx-font-family: "Century Gothic" ;
+    -fx-font-style: italic;
+}
+
+.grid{
+    /* -fx-grid-lines-visible: true; */
+    -fx-alignment: " center";
+    -fx-padding: 5;
+    -fx-margin: 5;
+    -fx-hgap: 3;
+    -fx-vgap: 3px;
+}
+
+.smallGrid :hover{
+    -fx-font-size:12;
+    -fx-font-weight: bold; 
+    /* -fx-background-color: rgb(179, 176, 176); 
+    -fx-background-radius: 5px;
+    -fx-border-color: gray; 
+    -fx-border-radius: 5px; */
+}

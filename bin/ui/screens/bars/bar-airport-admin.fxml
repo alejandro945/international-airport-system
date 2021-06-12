@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="225.0" style="-fx-background-color: #fff;" stylesheets="@../../assets/styles/vendor.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="770.0" prefWidth="225.0" stylesheets="@../../assets/styles/dash.css">
+         <children>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showHome" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/dashboard.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Home">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="120.0" onMouseClicked="#showAirlines" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgAirlines" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/plane-flat.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Airlines">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showUserCrud" prefHeight="50.0" prefWidth="200.0" spacing="10.0" styleClass="hover">
+               <children>
+                  <ImageView fx:id="imgUsers" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/img/icons/employees.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Users Administrators">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</Pane>
