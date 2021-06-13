@@ -97,11 +97,15 @@ public class Migration implements Serializable, Supplier {
     }
 
     /**
-     *
-     * @param c
-     * @throws WantedException
-     * @throws CovidException
-     * @throws MinorException
+     * Identifies the state of costumers for future decisions.
+     * 
+     * @param c != null
+     * @throws WantedException will be captured in the thread to modify costumer
+     *                         notifications.
+     * @throws CovidException  will be captured in the thread to modify costumer
+     *                         notifications.
+     * @throws MinorException  will be captured in the thread to modify costumer
+     *                         notifications.
      */
     public void costumerTypes(Costumer c) throws WantedException, CovidException, MinorException {
         switch (c.getState()) {

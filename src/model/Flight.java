@@ -221,8 +221,10 @@ public class Flight implements Comparable<Flight>, Serializable {
     }
 
     /**
-     *
-     * @return
+     * Gets each integer of the date and time to compare in later uses of the app
+     * (controllers).
+     * 
+     * @return int array for set localdate instance and get flight duration.
      */
     public int[] getDateFormat() {
         int[] render = new int[10];
@@ -260,8 +262,10 @@ public class Flight implements Comparable<Flight>, Serializable {
 
     /**
      * Compares two flights dates.
+     * 
      * @param other Flight to be compared with.
-     * @return Returns -1 if this date is least than the other one. Returns 1 if this date is greater. Returns 0 if both dates are the same.
+     * @return Returns -1 if this date is least than the other one. Returns 1 if
+     *         this date is greater. Returns 0 if both dates are the same.
      *
      */
     @Override
@@ -271,8 +275,10 @@ public class Flight implements Comparable<Flight>, Serializable {
 
     /**
      * Compares two flights ids.
+     * 
      * @param other Flight to be compared with.
-     * @return Returns -1 if this id is least than the other one. Returns 1 if this id is greater. Returns 0 if both ids are the same.
+     * @return Returns -1 if this id is least than the other one. Returns 1 if this
+     *         id is greater. Returns 0 if both ids are the same.
      *
      */
     public int compareById(Flight other) {
