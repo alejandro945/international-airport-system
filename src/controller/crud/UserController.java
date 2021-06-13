@@ -128,7 +128,6 @@ public class UserController implements Initializable {
                 dController.alert(Route.WARNING, Constant.IOEXCEPTION);
             }
             airport.saveData();
-            airport.loadData();
             getData();
         }
     }
@@ -207,14 +206,16 @@ public class UserController implements Initializable {
                             renderData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (User) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (User) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit User");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit User");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");
@@ -232,7 +233,6 @@ public class UserController implements Initializable {
 
     private void renderData() {
         airport.saveData();
-        airport.loadData();
         getData();
     }
 

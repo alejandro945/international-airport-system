@@ -55,6 +55,7 @@ public class MigrationThread extends Thread {
                 }
             });
         }
+        migration.airportCharges();
     }
 
 }

@@ -103,7 +103,6 @@ public class IndicatorsController implements Initializable {
                     Integer.parseInt(txtWanted.getText()), Integer.parseInt(txtMinor.getText())), Route.SUCCESS);
             modal.close();
             airport.saveData();
-            airport.loadData();
             getData();
         } else {
             dController.geAirportController().createAlert(Constant.EMPTY_FIELDS, Route.WARNING);
@@ -154,7 +153,6 @@ public class IndicatorsController implements Initializable {
                 dController.alert(Route.WARNING, Constant.IOEXCEPTION);
             }
             airport.saveData();
-            airport.loadData();
             getData();
         }
     }
@@ -205,14 +203,16 @@ public class IndicatorsController implements Initializable {
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (Migration) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (Migration) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit Report");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit Report");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");

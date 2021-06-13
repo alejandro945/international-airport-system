@@ -245,18 +245,20 @@ public class AirlineEmployeesController implements Initializable {
                             }
                             dController.geAirportController().createAlert(type + " was removed successfully.",
                                     Route.SUCCESS);
-                                    airport.saveData();
+                            airport.saveData();
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (Collaborator) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (Collaborator) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit Employee");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit Employee");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");

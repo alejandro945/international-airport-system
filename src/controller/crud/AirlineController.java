@@ -224,14 +224,16 @@ public class AirlineController implements Initializable {
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (Airline) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (Airline) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit User");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit User");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");

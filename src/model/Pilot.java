@@ -31,9 +31,11 @@ public class Pilot extends Collaborator {
         if (flight.isEmpty()) {
             flight.add(fl);
         }
-        for (Flight f : flight) {
-            if (!f.getId().equals(fl.getId())) {
+        boolean added = false;
+        for (int i = 0; i < flight.size() && !added; i++) {
+            if(!flight.get(i).getId().equals(fl.getId())){
                 flight.add(fl);
+                added = true;
             }
         }
     }

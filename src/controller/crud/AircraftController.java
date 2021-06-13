@@ -129,7 +129,7 @@ public class AircraftController implements Initializable {
     }
 
     @FXML
-   public void editAircraft(ActionEvent event) {
+    public void editAircraft(ActionEvent event) {
         if (validateFields()) {
             selected.setPlaneCode(txtCode.getText());
             selected.setPlaneWeight(Integer.parseInt(txtWeight.getText()));
@@ -145,13 +145,13 @@ public class AircraftController implements Initializable {
     }
 
     @FXML
-   public void saveAircraft(ActionEvent event) {
+    public void saveAircraft(ActionEvent event) {
         if (validateFields()) {
-            if(airline.searchAircraft(txtCode.getText())==null){
-            airline.getAircraft().add(new Aircraft(txtCode.getText(), Integer.parseInt(txtWeight.getText()),
-                    Integer.parseInt(txtCapacity.getText()), airline));
-            dController.alert( Route.SUCCESS,"Aircraft was successfully added.");
-            }else{
+            if (airline.searchAircraft(txtCode.getText()) == null) {
+                airline.getAircraft().add(new Aircraft(txtCode.getText(), Integer.parseInt(txtWeight.getText()),
+                        Integer.parseInt(txtCapacity.getText()), airline));
+                dController.alert(Route.SUCCESS, "Aircraft was successfully added.");
+            } else {
                 dController.alert(Route.ERROR, "Aircraft already exists.");
             }
             airport.saveData();
@@ -210,14 +210,16 @@ public class AircraftController implements Initializable {
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (Aircraft) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (Aircraft) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit User");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit User");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");

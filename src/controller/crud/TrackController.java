@@ -131,7 +131,6 @@ public class TrackController implements Initializable {
                 dController.alert(Route.WARNING, Constant.IOEXCEPTION);
             }
             airport.saveData();
-            airport.loadData();
             getData();
         }
     }
@@ -143,7 +142,6 @@ public class TrackController implements Initializable {
                     airport.editTrack(selected, txtGate.getText(), cbMaintenance.isSelected()), Route.SUCCESS);
             modal.close();
             airport.saveData();
-            airport.loadData();
             getData();
             setModal(null);
         } else {
@@ -157,7 +155,6 @@ public class TrackController implements Initializable {
             airport.addTrack(new Track(Integer.parseInt(txtId.getText()), txtGate.getText()));
             dController.geAirportController().createAlert("Track was successfully added.", Route.SUCCESS);
             airport.saveData();
-            airport.loadData();
             getData();
             modal.close();
             setModal(null);
@@ -206,14 +203,16 @@ public class TrackController implements Initializable {
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (Track) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (Track) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit User");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit User");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");

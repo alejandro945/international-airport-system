@@ -179,7 +179,7 @@ public class FlightController implements Initializable {
     }
 
     @FXML
-   public void saveFlight(ActionEvent event) {
+    public void saveFlight(ActionEvent event) {
         if (validateFields()) {
             String id = txtID.getText();
             String departureDate = txtTakesOffDate.getValue().toString();
@@ -191,8 +191,8 @@ public class FlightController implements Initializable {
             Track track = cbTrack.getValue();
             Aircraft aircraft = cbAircraft.getValue();
             aircraft.setPilot(cbPilot.getValue());
-            Flight f = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, departure,
-            destination, track, airline, aircraft);
+            Flight f = new Flight(id, departureDate, departureHour, arrivalDate, arrivalHour, departure, destination,
+                    track, airline, aircraft);
             aircraft.getPilot().setFlight(f);
             airline.getFlights().add(f);
             dController.geAirportController().createAlert("Flight was successfully added.", Route.SUCCESS);
@@ -264,14 +264,16 @@ public class FlightController implements Initializable {
                             getData();
                         });
                         edit.setOnAction((ActionEvent event) -> {
-                            selected = (Flight) getTableRow().getItem();
-                            try {
-                                showModal();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            if (modal == null) {
+                                selected = (Flight) getTableRow().getItem();
+                                try {
+                                    showModal();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                modalName.setText("Edit Flight");
+                                prepareEdition(selected);
                             }
-                            modalName.setText("Edit Flight");
-                            prepareEdition(selected);
                         });
                         HBox managebtn = new HBox(edit, delete);
                         managebtn.setStyle("-fx-alignment:center");
